@@ -18,7 +18,7 @@ The biggest issue is, that there is NO standard for the way municipalities mix t
 logger:
   default: warning
   logs:
-    custom_components.renoweb: error
+    custom_components.affalddk: error
     pyrenoweb: error
 ```
 
@@ -145,13 +145,13 @@ Here is the list of currently supported Municipalities
 
 ***
 
-[commits-shield]: https://img.shields.io/github/commit-activity/y/briis/renoweb.svg?style=flat-square
-[commits]: https://github.com/briis/renoweb/commits/main
+[commits-shield]: https://img.shields.io/github/commit-activity/y/briis/affalddk.svg?style=flat-square
+[commits]: https://github.com/briis/affalddk/commits/main
 [hacs]: https://github.com/hacs/integration
 [hacsbadge]: https://img.shields.io/badge/HACS-Custom-orange.svg?style=flat-square
 [forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg?style=flat-square
 [forum]: https://community.home-assistant.io/
-[license-shield]: https://img.shields.io/github/license/briis/renoweb.svg?style=flat-square
+[license-shield]: https://img.shields.io/github/license/briis/affalddk.svg?style=flat-square
 [maintenance-shield]: https://img.shields.io/badge/maintainer-Bjarne%20Riis%20%40briis-blue.svg?style=flat-square
-[releases-shield]: https://img.shields.io/github/release/briis/renoweb.svg?include_prereleases&style=flat-square&style=flat-square
-[releases]: https://github.com/briis/renoweb/releases
+[releases-shield]: https://img.shields.io/github/release/briis/affalddk.svg?include_prereleases&style=flat-square&style=flat-square
+[releases]: https://github.com/briis/renoaffalddkweb/releases
