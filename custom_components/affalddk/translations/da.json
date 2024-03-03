@@ -1,0 +1,35 @@
+{
+    "config": {
+        "error": {
+            "name_exists": "Adressen er allerede sat op. Brug en anden adresse.",
+            "request_error": "Fejl ved hentning af data fra serveren.",
+            "location_not_found": "Den angivne adresse blev ikke fundet.",
+            "municipality_not_supported": "Kommunen er ikke understøttet i denne Integration",
+            "connection_error": "Renoweb svarer ikke. Prøv igen senere."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "municipality": "Vælg Kommune",
+                    "road_name": "Vej navn",
+                    "house_number": "Hus nummer",
+                    "update_interval": "Opdaterings interval (timer)"
+                },
+                "description": "Hent opsamlingsdata fra danske kommuner.",
+                "title": "Affald DK"
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "municipality": "Vælg Kommune",
+                    "road_name": "Vej navn",
+                    "house_number": "Hus nummer",
+                    "update_interval": "Opdaterings interval (timer)"
+                }
+            }
+        }
+    }
+}

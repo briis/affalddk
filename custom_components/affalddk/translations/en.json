@@ -1,0 +1,35 @@
+{
+    "config": {
+        "error": {
+            "name_exists": "Address already setup. Choose another address.",
+            "location_not_found": "The location you entered is not found",
+            "request_error": "Error retrieving data from the Endpoint",
+            "municipality_not_supported": "The Municipality is not supported by this Integration",
+            "connection_error": "Renoweb is not sending data. Please try again later."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "municipality": "Select Municipality",
+                    "road_name": "Road name",
+                    "house_number": "House Number",
+                    "update_interval": "Update Interval (Hours)"
+                },
+                "description": "Setup Home Assistant to collect Pick-Up data from Danish Municipalities.",
+                "title": "Affald DK"
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "municipality": "Select Municipality",
+                    "road_name": "Road name",
+                    "house_number": "House Number",
+                    "update_interval": "Update Interval (Hours)"
+                }
+            }
+        }
+    }
+}

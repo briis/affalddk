@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="510.2px"
+	 height="510.2px" viewBox="0 0 510.2 510.2" style="enable-background:new 0 0 510.2 510.2;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#5A6E78;}
+	.st1{display:none;}
+	.st2{display:inline;}
+	.st3{fill:#FFFFFF;}
+</style>
+<g id="baggrund">
+	<rect x="0" y="0" class="st0" width="510.2" height="510.2"/>
+</g>
+<g id="fraktion" class="st1">
+	<g class="st2">
+		<path class="st3" d="M167.2,457l9-46l14.7,33.2l15.2-33.2l8.1,46h-6.6l-4.1-25.8L190.7,459l-12.3-27.8l-4.6,25.8H167.2z"/>
+		<path class="st3" d="M245.3,420.3h-17.1v10.3h16.6v6.1h-16.6V451h17.1v6.1h-23.6v-42.7h23.6V420.3z"/>
+		<path class="st3" d="M268.7,420.3V457h-6.5v-36.7h-9.8v-6.1h26.1v6.1H268.7z"/>
+		<path class="st3" d="M306,446.6h-18.3L283,457H276l21.2-45.4l20.4,45.4h-7.1L306,446.6z M303.4,440.6l-6.3-14.5l-6.6,14.5H303.4z"
+			/>
+		<path class="st3" d="M330.5,414.3V451h12.6v6.1h-19v-42.7H330.5z"/>
+	</g>
+</g>
+<g id="ikon">
+	<g>
+		
+			<ellipse transform="matrix(0.8965 -0.4429 0.4429 0.8965 -51.5667 131.2134)" class="st3" cx="255.1" cy="176" rx="54.7" ry="18.4"/>
+		<g>
+			<rect x="205.4" y="299" class="st3" width="99.5" height="13.6"/>
+			<rect x="205.4" y="317.7" class="st3" width="99.5" height="45.9"/>
+			<rect x="205.4" y="280.2" class="st3" width="99.5" height="13.6"/>
+			<rect x="205.4" y="210.5" class="st3" width="99.5" height="45.9"/>
+			<rect x="205.4" y="261.5" class="st3" width="99.5" height="13.6"/>
+		</g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+</g>
+</svg>
