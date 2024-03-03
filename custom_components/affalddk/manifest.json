@@ -1,6 +1,9 @@
 {
     "domain": "affalddk",
     "name": "Affaldshåndtering DK",
+    "after_dependencies": [
+        "http"
+    ],
     "codeowners": [
         "@briis"
     ],
