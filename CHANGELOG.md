@@ -1,5 +1,16 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.0.0
+
+  **Date**: `2024-03-04`
+
+  ## What's Changed
+  * Even though it says V2.0.0, this is the first release of this Integration. Please see the [README.md](https://github.com/briis/affalddk/blob/main/README.md) for a descriptin and installation instructions.
+
+---------------------------
+<details>
+  <summary><b>VERSION 2.0.0-Beta-3</b></summary>
+
   ## Version 2.0.0-Beta-3
 
   **Date**: `2024-03-04`
@@ -13,6 +24,12 @@
   * @briis made their first contribution in https://github.com/briis/affalddk/pull/2
 
   **Full Changelog**: https://github.com/briis/affalddk/compare/2.0.0-beta2...v2.0.0-beta3
+
+</details>
+
+---------------------------
+<details>
+  <summary><b>VERSION 2.0.0-Beta-2</b></summary>
 
   ## Version 2.0.0-Beta-2
 
@@ -40,4 +57,5 @@
 
   I have now been through all Municipalities and checked if they work with this Integration. There are 47 Munipalities that will work , and if you don't see your municipality in the Dropdown List, then it will not work.
 
+</details>
 
