@@ -68,7 +68,7 @@ This integration uses the `entity_picture` attribute, which means you can get ni
 
 ### HACS Installation
 
-This Integration is not yet part of the default HACS store, but you can add it as a Custom repository in HACS by doing the following:
+This Integration is not yet part of the default HACS store, (Work in progress, but that can take some time) but you can add it as a Custom repository in HACS by doing the following:
 
 1. Go to HACS in your HA installation, and click on *Integrations*
 2. Click the three vertical dots in the upper right corner, and select *Custom repositories*
