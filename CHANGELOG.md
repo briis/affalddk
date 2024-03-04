@@ -1,5 +1,18 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.0.0-Beta-3
+
+  **Date**: `2024-03-04`
+
+  ## What's Changed
+  * Bump ruff from 0.2.2 to 0.3.0 by @dependabot in https://github.com/briis/affalddk/pull/1
+  * Version 2 beta3 by @briis in https://github.com/briis/affalddk/pull/2
+
+  ## New Contributors
+  * @dependabot made their first contribution in https://github.com/briis/affalddk/pull/1
+  * @briis made their first contribution in https://github.com/briis/affalddk/pull/2
+
+  **Full Changelog**: https://github.com/briis/affalddk/compare/2.0.0-beta2...v2.0.0-beta3
 
   ## Version 2.0.0-Beta-2
 
