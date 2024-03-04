@@ -5,10 +5,13 @@
 [![License][license-shield]](LICENSE)
 [![hacs][hacsbadge]][hacs]
 ![Project Maintenance][maintenance-shield]
-[![Community Forum][forum-shield]][forum]
 
+<a href="https://www.buymeacoffee.com/briis" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 145px !important;" ></a>
 
-The renoweb integration adds support for retreiving Garbage Collection data from Municipalities around Denmark.
+<p align="center">
+  <img width="384" height="128" src="https://github.com/briis/affalddk/blob/main/images/brand/logo@2x.png?raw=true">
+</p>
+The Affaldshåndtering DK integration adds support for retreiving Garbage Collection data from Municipalities around Denmark.
 
 ### INTRODUCTION
 
@@ -16,8 +19,10 @@ This integration replaces the [RenoWeb integration](https://github.com/briis/ren
 
 This is a complete rewrite of the RenowWeb V1.x Integration as the API this uses is slowly being phased out, and we needed to find a new way of collecting the data.
 
-If you were a previous user of Renoweb, you would have had to de-install the Integration before upgrading, as Unique ID's of all sensors would have been new, thus having to change your Automations, Scripts and Dashboard entries.
-With that in mind I decided to also use the opportunity to change the domain name of the Integration to `affalddk` So why change the name and not just give it a new version number?
+If I had updated Renoweb to V2.0 and you were a previous user of Renoweb, you would have had to de-install the Integration before upgrading, as Unique ID's of all sensors would have been new, thus having to change your Automations, Scripts and Dashboard entries.
+With that in mind I decided to also use the opportunity to change the domain name of the Integration to `affalddk`
+
+So why change the name and not just give it a new version number?
 
 For a long time I wanted to have this Integration part of the Default HACS store, but in order to do that, you need to have Logo and icon images in the Home Assistant Brand Database. As Renoweb does not really have a logo by itself, I could not create one, as this could violate their rights to the name. But calling it something that is not related directly to Renoweb, gives me the possibility to invent my own logo and thus getting this added to the Default HACS store.
 
@@ -45,6 +50,13 @@ Platform | Description
 
 A big thank you to @thomaspalmdk for finding the new API, and to the people who helped Beta test it.
 
+### UPGRADING FROM RENOWEB V1.x
+As stated above there is no upgrade path from Renoweb V1.x, and the two cannot co-exist, so before you install this integration:
+1. first remove Renoweb from the *Devices & Services* section.
+2. Then go to HACS, and de-install Renoweb
+3. Finally restart Home Assistant
+4. When Home Assistant is running again follow the [INSTALLATION](#INSTALLATION) section below.
+
 ## PRE-WORK
 
 This integration uses the `entity_picture` attribute, which means you can get nice looking Pictograms instead of Icons on your dashboard. If you want to use this feature, do the following:
@@ -62,7 +74,7 @@ This Integration is not yet part of the default HACS store, but you can add it a
 2. Click the three vertical dots in the upper right corner, and select *Custom repositories*
 3. Add `https://github.com/briis/affalddk` and select *Integration* as Category, and then click *Add*
 
-You should now be able to find this Integration in HACS. After the installation of the files, you must restart Home Assistant, or else you will not be able to add Affald-DK from the Integration Page.
+You should now be able to find this Integration in HACS. After the installation of the files, you must restart Home Assistant, or else you will not be able to add Affald-DK from the *Devices & Services* Page.
 
 If you are not familiar with HACS, or haven't installed it, I would recommend to [look through the HACS documentation](https://hacs.xyz/), before continuing. Even though you can install the Integration manually, I would recommend using HACS, as you would always be reminded when a new release is published.
 
@@ -80,10 +92,10 @@ If you are not familiar with HACS, or haven't installed it, I would recommend to
 
 To add Affald-DK to your installation, do the following:
 
-- Go to Configuration and Integrations
-- Click the + ADD INTEGRATION button in the lower right corner.
-- Search for *Affald* and click the integration.
-- When loaded, there will be a configuration box, where you must enter:
+- Go to *Settings* and *Devices & Services*
+- Click the **+ ADD INTEGRATION** button in the lower right corner.
+- Search for *Affald** and click the integration.
+- When loaded, there will be a configuration box, where you must select and enter:
 
   | Parameter | Required | Default Value | Description |
   | --------- | -------- | ------------- | ----------- |
@@ -91,7 +103,7 @@ To add Affald-DK to your installation, do the following:
   | `Road name` | Yes | None | Type the name of the road you want to get collection data for. Without house number. |
   | `House Number` | Yes | None | The house number of the address. Also accepts letters. If you have a house number like 2A or similar, and it does not work, try putting a space between the number and the letter, like 2 A |
 
-- Click on SUBMIT to save your data. If all goes well you should now have see entities under the *Affaldshåndtering DK* integration
+- Click on SUBMIT to save your data. If all goes well you should now have entities under the *Affaldshåndtering DK* integration
 
 
 You can configure more than 1 instance of the Integration by using a different Address.
