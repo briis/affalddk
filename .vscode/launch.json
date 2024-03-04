@@ -5,15 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Debug Renoweb",
-            "type": "python",
+            "name": "Python: Debug Affaldshåndtering DK",
+            "type": "debugpy",
             "request": "attach",
             "justMyCode": false,
-            "port": 5678,
-            "host": "localhost",
             "pathMappings": [
                 {
-                    "localRoot": "/workspaces/renoweb",
+                    "localRoot": "/workspaces/affalddk",
                     "remoteRoot": "."
                 }
             ]

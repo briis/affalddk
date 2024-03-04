@@ -103,7 +103,7 @@ class AffaldDKOptionsFlowHandler(config_entries.OptionsFlow):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> FlowResult:
         """Manage the options."""
         if user_input is not None:
-            return self.async_create_entry(title="Options for Renoweb", data=user_input)
+            return self.async_create_entry(title="Options for Affaldshåndtering DK", data=user_input)
 
         return self.async_show_form(
             step_id="init",
