@@ -60,7 +60,7 @@ As stated above there is no upgrade path from Renoweb V1.x, and the two cannot c
 ## PRE-WORK
 
 This integration uses the `entity_picture` attribute, which means you can get nice looking Pictograms instead of Icons on your dashboard. If you want to use this feature, do the following:
-* Download the file `affalddk_images.zip` from the [latest relase](https://github.com/briis/affalddk/releases) and unzip the content. (Find the **Assets** link in the bottom of the release and click it to unfold) You should see a file called `affalddk_images` with a bunch of `.svg` files in it.
+* Download the file `affalddk_images.zip` from the [latest relase](https://github.com/briis/affalddk/releases) and unzip the content. (Find the **Assets** link in the bottom of the release and click it to unfold) You should see a file called `affalddk_images.zip` with a bunch of `.svg` files in it.
 * Open a file share to the `config` share on your Home Assistant entity, and go to the `www` directory. If this directory does not exist, just create it.
 * Now create a folder called `affalddk` in the `www` directory and copy all the `.svg` files to this directory. This is where this integration will look for the Entity Pictures.
 
