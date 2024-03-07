@@ -27,7 +27,7 @@ So why change the name and not just give it a new version number?
 For a long time I wanted to have this Integration part of the Default HACS store, but in order to do that, you need to have Logo and icon images in the Home Assistant Brand Database. As Renoweb does not really have a logo by itself, I could not create one, as this could violate their rights to the name. But calling it something that is not related directly to Renoweb, gives me the possibility to invent my own logo and thus getting this added to the Default HACS store.
 
 ### DESCRIPTION
-Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from **Renoweb** and that accounts for close to 50% of all Municipalities. Go to the [Municipality List](#MUNICIPALITIES) to see if your Municipality will work with this integration.
+Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from **Renoweb** and that accounts for more than 50% of all Municipalities. Go to the [Municipality List](#MUNICIPALITIES) to see if your Municipality will work with this integration.
 
 The biggest issue is, that there is NO standard for the way municipalities mix the content of containers. Some have glas & metal in one container, others have glas and paper in one container, etc and also even though they do mix the same content in a container, they do not name it the same. In order to have some structure I need them grouped together and this is a bit of a challenge with all these different types. If a new pickup-type is found, the system will log a warning, which you can put in an issue and I will add it to the list. Please enable logging for the wrapper module in Home assistant to get this warning in Home Assistant, by adding this code to your `configuration.yaml`:
 
@@ -100,6 +100,7 @@ To add Affald-DK to your installation, do the following:
   | Parameter | Required | Default Value | Description |
   | --------- | -------- | ------------- | ----------- |
   | `Municipality` | Yes | None | Select your Municipality from the Dropdown list. You can press the first letter of your municipality to quickly scroll down. |
+  | `Zipcode` | Yes | None | Enter the Zipcode of the address. This is required as some municipalities use the same road name in several cities, so we need to make sure we pick the right street. |
   | `Road name` | Yes | None | Type the name of the road you want to get collection data for. Without house number. |
   | `House Number` | Yes | None | The house number of the address. Also accepts letters. If you have a house number like 2A or similar, and it does not work, try putting a space between the number and the letter, like 2 A |
 
@@ -154,6 +155,7 @@ Here is the list of currently supported Municipalities
     - Ringkøbing-Skjern
     - Ringsted
     - Roskilde
+    - Rudersdal
     - Rødovre
     - Samsø
     - Slagelse
