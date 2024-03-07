@@ -7,10 +7,11 @@
   ## What's Changed
 
 - Fixing wrong Issue Link address. Closing [#10](https://github.com/briis/affalddk/issues/10)
-- Bump pyrenoweb to 2.0.5 Closing wrong types of garbage types in Egedal [#6](https://github.com/briis/affalddk/issues/6)
+- Bump pyrenoweb to 2.0.5 Closing wrong types of garbage types in Egedal and Allerød [#6](https://github.com/briis/affalddk/issues/6)
 - Handling the case where the same Road exists more than once in a Municipality. There is now a requirement to enter the Zipcode of the Address when setting up a new entity in Home Assistant. Closing Issue [#5](https://github.com/briis/affalddk/issues/5)
 - Fixing missing containers in Aalborg. Closing [#11](https://github.com/briis/affalddk/issues/11)
 - Added Rudersdal back to the list as they do work with this Integration. Closing [#8](https://github.com/briis/affalddk/issues/8)
+- Bump dependency `pyrenoweb` to 2.0.6
 
 ---------------------------
 
