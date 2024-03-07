@@ -25,6 +25,7 @@ from .const import (
     CONF_MUNICIPALITY,
     CONF_ROAD_NAME,
     CONF_UPDATE_INTERVAL,
+    CONF_ZIPCODE,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
 )
@@ -54,7 +55,7 @@ class RenowebFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         try:
             renoweb = GarbageCollection(municipality=user_input[CONF_MUNICIPALITY], session=session)
             await renoweb.async_init()
-            address_info: RenoWebAddressInfo = await renoweb.get_address_id(street=user_input[CONF_ROAD_NAME], house_number=user_input[CONF_HOUSE_NUMBER])
+            address_info: RenoWebAddressInfo = await renoweb.get_address_id(zipcode=user_input[CONF_ZIPCODE],street=user_input[CONF_ROAD_NAME], house_number=user_input[CONF_HOUSE_NUMBER])
         except RenowWebNotSupportedError:
             errors["base"] = "municipality_not_supported"
             return await self._show_setup_form(errors)
@@ -85,6 +86,7 @@ class RenowebFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema(
                 {
                     vol.Required(CONF_MUNICIPALITY):selector({"select": {"options": MUNICIPALITIES_ARRAY}}),
+                    vol.Required(CONF_ZIPCODE): str,
                     vol.Required(CONF_ROAD_NAME): str,
                     vol.Required(CONF_HOUSE_NUMBER): str,
                 }
