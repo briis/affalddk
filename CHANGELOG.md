@@ -1,5 +1,15 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.0.1
+
+  **Date**: `2024-03-xx`
+
+  ## What's Changed
+
+- Fixing wrong Issue Link address. Closing [#10](https://github.com/briis/affalddk/issues/10)
+- Bump pyrenoweb to 2.0.5 Closing wrong types of garbage types in Egedal [#6](https://github.com/briis/affalddk/issues/6)
+
+
   ## Version 2.0.0
 
   **Date**: `2024-03-04`
