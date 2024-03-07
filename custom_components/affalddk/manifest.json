@@ -10,9 +10,9 @@
     "config_flow": true,
     "documentation": "https://github.com/briis/affalddk",
     "iot_class": "cloud_polling",
-    "issue_tracker": "https://github.com/briis/affald/issues",
+    "issue_tracker": "https://github.com/briis/affalddk/issues",
     "requirements": [
-        "pyrenoweb==2.0.4"
+        "pyrenoweb==2.0.6"
     ],
-    "version": "2.0.0-beta3"
+    "version": "2.0.1"
 }
