@@ -12,7 +12,7 @@
     "iot_class": "cloud_polling",
     "issue_tracker": "https://github.com/briis/affalddk/issues",
     "requirements": [
-        "pyrenoweb==2.0.4"
+        "pyrenoweb==2.0.5"
     ],
-    "version": "2.0.0-beta3"
+    "version": "2.0.1"
 }
