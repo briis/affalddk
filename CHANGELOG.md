@@ -1,8 +1,24 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.0.2
+
+  **Date**: `2024-03-09`
+
+  ## What's Changed
+
+  This is a Hotfix release, only adding missing containers for some municipalities
+
+- Add missing containers for Rudersdal and Høje Taastrup. Closing [#15](https://github.com/briis/affalddk/issues/15) and [#16](https://github.com/briis/affalddk/issues/16)
+- Bump dependency `pyrenoweb` to 2.0.9
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.0.1
 
-  **Date**: `2024-03-xx`
+  **Date**: `2024-03-07`
 
   ## What's Changed
 
@@ -13,10 +29,8 @@
 - Added Rudersdal back to the list as they do work with this Integration. Closing [#8](https://github.com/briis/affalddk/issues/8)
 - Bump dependency `pyrenoweb` to 2.0.6
 
----------------------------
 
-<details>
-  <summary><b>VERSION 2.0.0</b></summary>
+  ## Version 2.0.0
 
   **Date**: `2024-03-04`
 
