@@ -9,6 +9,7 @@
   This is a Hotfix release, only adding missing containers for some municipalities
 
 - Add missing containers for Rudersdal and Høje Taastrup. Closing [#15](https://github.com/briis/affalddk/issues/15) and [#16](https://github.com/briis/affalddk/issues/16)
+- Optimied a few SVG files.
 - Bump dependency `pyrenoweb` to 2.0.9
 
 ---------------------------
