@@ -1,12 +1,20 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
-  ## Version 2.0.3
-
   **Date**: `2024-03-10`
 
-  ## What's Changed
+  This is a Hotfix release, only adding missing containers for some municipalities.
 
-  This is a Hotfix release, only adding missing containers for some municipalities
+  I am sorry for these frequent releases, but this will most likely go on for a little while, until we mapped all the containers to the right Category. If you are missing a container, please add this to your configuration file:
+```yaml
+logger:
+  default: warning
+  logs:
+    custom_components.affalddk: error
+    pyrenoweb: error
+```
+And create an issue with the data from the logfile, and the Municipality that has the issue.
+
+  ## What's Changed
 
 - Fixing the Genbrug category for Hvidovre kommune
 - Fixing the Genbrug category for Greve kommune
