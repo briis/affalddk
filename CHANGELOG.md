@@ -1,5 +1,23 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.0.3
+
+  **Date**: `2024-03-10`
+
+  ## What's Changed
+
+  This is a Hotfix release, only adding missing containers for some municipalities
+
+- Fixing the Genbrug category for Hvidovre kommune
+- Fixing the Genbrug category for Greve kommune
+- Fixing the Genbrug category for Egedal kommune
+- Bump dependency `pyrenoweb` to 2.0.10
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.0.2
 
   **Date**: `2024-03-09`
@@ -12,10 +30,6 @@
 - Optimied a few SVG files.
 - Bump dependency `pyrenoweb` to 2.0.9
 
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.0.1
 
