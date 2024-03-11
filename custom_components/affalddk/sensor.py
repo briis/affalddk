@@ -26,6 +26,7 @@ from homeassistant.helpers.update_coordinator import (
 from . import AffaldDKtDataUpdateCoordinator
 from .const import (
     ATTR_DATE_LONG,
+    ATTR_DATE_SHORT,
     ATTR_DESCRIPTION,
     ATTR_DURATION,
     ATTR_LAST_UPDATE,
@@ -270,6 +271,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         return {
             ATTR_DATE: _date.date() if _date else None,
             ATTR_DATE_LONG: f"{_day_name_long} {_date.strftime("d. %d-%m-%Y") if _date else None}" ,
+            ATTR_DATE_SHORT: f"{_day_name} {_date.strftime("d. %d/%m") if _date else None}" ,
             ATTR_DESCRIPTION: self._pickup_events.description,
             ATTR_DURATION: _day_text,
             ATTR_ENTITY_PICTURE: f"/local/affalddk/{self._pickup_events.entity_picture}?{str(_current_date.timestamp())}",

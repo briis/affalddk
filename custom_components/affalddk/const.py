@@ -1,6 +1,7 @@
 """Constants in renoweb component."""
 
 ATTR_DATE_LONG = "date_long"
+ATTR_DATE_SHORT = "date_short"
 ATTR_DURATION = "duration"
 ATTR_DESCRIPTION = "description"
 ATTR_LAST_UPDATE = "last_update"
