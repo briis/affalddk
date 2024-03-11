@@ -6,6 +6,7 @@
 
 - Adding new Attribute `date_short`. Closing [#22](https://github.com/briis/affalddk/issues/22)
 - Fixing missing Calendard state. Closing [#27](https://github.com/briis/affalddk/issues/27)
+- Fixing missing Containers for Kerteminde. Closing [#19](https://github.com/briis/affalddk/issues/19)
 - Bump dependency `pyrenoweb` to 2.0.11
 
 ---------------------------
