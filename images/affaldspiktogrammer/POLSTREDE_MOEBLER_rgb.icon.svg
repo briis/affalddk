@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="680.32001"
+   height="680.32001"
+   viewBox="0 0 680.32001 680.32001"
+   sodipodi:docname="POLSTREDE_MOEBLER_rgb.icon.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.6859713"
+     inkscape:cx="340.16"
+     inkscape:cy="340.16"
+     inkscape:window-width="2560"
+     inkscape:window-height="1361"
+     inkscape:window-x="2551"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g8" />
+  <g
+     id="g8"
+     inkscape:groupmode="layer"
+     inkscape:label="ink_ext_XXXXXX"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,680.32)">
+    <g
+       id="g10"
+       transform="scale(0.1)">
+      <path
+         d="M 5102.36,-0.0117188 H 0.00390625 V 5102.36 H 5102.36 V -0.0117188"
+         style="fill:#9a1844;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path12" />
+      <path
+         d="m 2550.31,2115.92 v -4.83"
+         style="fill:none;stroke:#231f20;stroke-width:7.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path44" />
+      <path
+         d="m 1096.35,2037.52 h 178.51 v 204 h -178.51 v -204"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path46" />
+      <path
+         d="m 3876.07,2037.52 h 178.5 v 204 h -178.5 v -204"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path48" />
+      <path
+         d="M 1140.73,2610.45 H 2455.7 c 38.26,0 69.37,31.12 69.37,69.36 v 983.49 c 0,38.25 -31.11,69.37 -69.37,69.37 H 1140.73 c -38.27,0 -69.38,-31.12 -69.38,-69.37 v -983.49 c 0,-38.24 31.11,-69.36 69.38,-69.36"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path50" />
+      <path
+         d="m 2644.93,2610.45 h 1314.98 c 38.25,0 69.36,31.12 69.36,69.36 v 983.49 c 0,38.25 -31.11,69.37 -69.36,69.37 h -225.08 l 21.95,-95.96 -126.04,-115.25 47.17,-98.88 -187.92,-258.37 60.32,189.32 -51.33,129.35 51.33,63.54 -54.83,129.46 49.36,56.79 h -899.91 c -38.25,0 -69.38,-31.12 -69.38,-69.37 v -983.49 c 0,-38.24 31.13,-69.36 69.38,-69.36"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path52" />
+      <path
+         d="m 4255.2,3161.73 h -93.12 c -44.51,0 -80.93,-36.42 -80.93,-80.94 V 2554.83 H 1019.48 v 525.96 c 0,44.52 -36.41,80.94 -80.945,80.94 h -93.109 c -44.52,0 -80.938,-36.42 -80.938,-80.94 v -705.12 c 0,-44.51 36.418,-80.94 80.938,-80.94 H 4255.2 c 44.51,0 80.94,36.43 80.94,80.94 v 705.12 c 0,44.52 -36.43,80.94 -80.94,80.94"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path54" />
+    </g>
+  </g>
+</svg>

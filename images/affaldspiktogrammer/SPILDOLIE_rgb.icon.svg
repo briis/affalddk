@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="680.32001"
+   height="680.32001"
+   viewBox="0 0 680.32001 680.32001"
+   sodipodi:docname="SPILDOLIE_rgb.icon.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.6859713"
+     inkscape:cx="340.16"
+     inkscape:cy="340.16"
+     inkscape:window-width="2560"
+     inkscape:window-height="1361"
+     inkscape:window-x="2551"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g8" />
+  <g
+     id="g8"
+     inkscape:groupmode="layer"
+     inkscape:label="ink_ext_XXXXXX"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,680.32)">
+    <g
+       id="g10"
+       transform="scale(0.1)">
+      <path
+         d="M 5102.36,0 H 0 V 5102.36 H 5102.36 V 0"
+         style="fill:#ea1d2c;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path12" />
+      <path
+         d="m 3747.97,2268.78 -207.67,781.95 c -9.96,38.46 -21.05,62.03 -37.08,78.83 -18.89,19.8 -44.8,29.43 -79.21,29.45 l -586.37,4.49 9.56,-0.01 h 0.09 0.09 c 112.92,0.72 164,69.1 213.39,135.24 50.92,68.17 103.57,138.66 230.35,160.27 l 188.25,25.5 -13.49,49.91 -182.08,-24.92 -0.81,-0.12 c -65.71,-11.13 -120.4,-35.03 -167.2,-73.04 -40.54,-32.94 -69.95,-72.32 -95.9,-107.07 -47.63,-63.78 -85.26,-114.16 -172.76,-114.74 l -355.54,0.09 -909.43,816.38 -456.39,-0.09 -0.82,-50.38 438.42,-0.28 758.15,-771.56 v -273.94 c -188.25,-86.89 -318.9,-277.29 -318.9,-498.23 v -905.68 h 1097.01 v 905.68 c 0,220.94 -130.66,411.34 -318.9,498.23 v 178.14 l 643.01,-4.89 h 0.19 c 41.76,0 53.35,-17.5 67.01,-70.16 l 207.69,-782.07 c 37.72,-142.81 -38.29,-202.99 -105.35,-256.09 -9.97,-7.89 -19.38,-15.35 -28.22,-22.93 l 33.2,-38.74 c 8.09,6.93 17.13,14.09 26.7,21.67 34.29,27.16 76.97,60.96 104.69,109.24 32.76,57.1 38.76,122.48 18.32,199.87"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path32" />
+    </g>
+  </g>
+</svg>
