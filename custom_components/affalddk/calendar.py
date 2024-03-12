@@ -77,12 +77,36 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
     @property
     def event(self) -> CalendarEvent | None:
         """Return the next upcoming event."""
-        return self._event
+        item = None
+        _next_pickup = datetime.datetime(2030, 12, 31, 23, 59, 00)
+        _pickup_event: PickupType = None
+        _pickup_events: PickupType = None
+        if self._coordinator.data.pickup_events is None:
+            return None
+
+        # Find the next pickup event
+        for row in self._coordinator.data.pickup_events:
+            if row == 'next_pickup':
+                continue
+            _pickup_event: PickupType = self._coordinator.data.pickup_events.get(row)
+            if _pickup_event.date <= _next_pickup:
+                _next_pickup = _pickup_event.date
+                _pickup_events = _pickup_event
+                item = row
+
+        _start: dt = _pickup_events.date
+        _end: dt = _start + timedelta(days=1)
+        return CalendarEvent(
+            summary=NAME_LIST.get(item),
+            description=_pickup_events.description,
+            start=dt_util.as_local(_start),
+            end=dt_util.as_local(_end),
+        )
 
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime.datetime, end_date: datetime.datetime) -> list[CalendarEvent]:
         """"Return calendar events within a datetime range."""
 
-        events = []
+        events: list[CalendarEvent] = []
         for item in self._coordinator.data.pickup_events:
             if self._coordinator.data.pickup_events.get(item) is None:
                 continue
