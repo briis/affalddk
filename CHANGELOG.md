@@ -6,6 +6,9 @@
 
   ## What's Changed
 
+- Fixing missing containers for Lyngby-Taarbæk. Closing issue [#40](https://github.com/briis/affalddk/issues/40)
+- Fixing missing containers for Aalborg. Closing issue [#35](https://github.com/briis/affalddk/issues/35)
+- Removed Rebild Kommune from the supported Municipalities list, as they have switched to another provider. Working on adding support for that provider, that also seems to service other Municipalities in Nordjylland.
 - Bump dependency `pyrenoweb` to 2.0.12
 
 ---------------------------
