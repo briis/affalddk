@@ -6,6 +6,7 @@
 
   ## What's Changed
 
+- Compressed newly added SVG images, so they are fster to load.
 - Bump dependency `pyrenoweb` to 2.0.15
 
 ---------------------------
