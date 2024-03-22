@@ -14,5 +14,5 @@
     "requirements": [
         "pyrenoweb==2.0.11"
     ],
-    "version": "2.0.4"
+    "version": "2.0.5"
 }
