@@ -16,7 +16,6 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
 )
-from homeassistant.util import dt as dt_util
 
 from pyrenoweb import NAME_LIST, PickupType
 from . import AffaldDKtDataUpdateCoordinator
