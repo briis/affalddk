@@ -75,10 +75,16 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
         self._event: CalendarEvent | None = None
 
     @property
+    def all_day(self) -> bool:
+        """Return true if the event is an all-day event."""
+        return True
+
+    @property
     def event(self) -> CalendarEvent | None:
         """Return the next upcoming event."""
         item = None
-        _next_pickup = datetime.datetime(2030, 12, 31, 23, 59, 00)
+        _next_pickup = dt(2030, 12, 31, 0, 0, 0)
+        _next_pickup = _next_pickup.date()
         _pickup_event: PickupType = None
         _pickup_events: PickupType = None
         if self._coordinator.data.pickup_events is None:
@@ -94,13 +100,14 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
                 _pickup_events = _pickup_event
                 item = row
 
-        _start: dt = _pickup_events.date
-        _end: dt = _start + timedelta(days=1)
+        _start: datetime.date = _pickup_events.date
+        _end: datetime.date = _start + timedelta(days=1)
+
         return CalendarEvent(
             summary=NAME_LIST.get(item),
             description=_pickup_events.description,
-            start=dt_util.as_local(_start),
-            end=dt_util.as_local(_end),
+            start=_start,
+            end=_end
         )
 
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime.datetime, end_date: datetime.datetime) -> list[CalendarEvent]:
@@ -116,16 +123,16 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
             _pickup_events: PickupType = self._coordinator.data.pickup_events.get(item) if self._coordinator.data.pickup_events else None
 
             _summary = NAME_LIST.get(item)
-            _start: dt = _pickup_events.date
-            _end: dt = _start + timedelta(days=1)
+            _start: datetime.date = _pickup_events.date
+            _end: datetime.date = _start + timedelta(days=1)
 
             if _start and _end:
                 events.append(
                     CalendarEvent(
                         summary=_summary,
                         description=_pickup_events.description,
-                        start=dt_util.as_local(_start),
-                        end=dt_util.as_local(_end),
+                        start=_start,
+                        end=_end,
                     )
                 )
         return events
