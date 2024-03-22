@@ -118,6 +118,7 @@ Here is the list of currently supported Municipalities
     - Aalborg
     - Albertslund
     - Allerød
+    - Billund
     - Brøndby
     - Brønderslev
     - Dragør
@@ -151,7 +152,6 @@ Here is the list of currently supported Municipalities
     - Næstved
     - Odsherred
     - Randers
-    - Rebild
     - Ringkøbing-Skjern
     - Ringsted
     - Roskilde
