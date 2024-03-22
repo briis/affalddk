@@ -75,11 +75,6 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
         self._event: CalendarEvent | None = None
 
     @property
-    def all_day(self) -> bool:
-        """Return true if the event is an all-day event."""
-        return True
-
-    @property
     def event(self) -> CalendarEvent | None:
         """Return the next upcoming event."""
         item = None
