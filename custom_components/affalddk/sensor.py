@@ -50,6 +50,16 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
+        key="batterier",
+        name="Batterier",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="elektronik",
+        name="Elektronik",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
         key="glas",
         name="Glas",
         native_unit_of_measurement="dage",
@@ -67,6 +77,11 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
     AffaldDKSensorEntityDescription(
         key="papirglas",
         name="Papir, Pap & Glas",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="papirglasdaaser",
+        name="Papir, Glas & Dåser",
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
