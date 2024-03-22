@@ -1,6 +1,21 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.0.5
+
   **Date**: `2024-03-xx`
+
+  ## What's Changed
+
+- Bump dependency `pyrenoweb` to 2.0.12
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
+  ## Version 2.0.4
+
+  **Date**: `2024-03-12`
 
   ## What's Changed
 
@@ -9,10 +24,7 @@
 - Fixing missing Containers for Kerteminde. Closing [#19](https://github.com/briis/affalddk/issues/19)
 - Bump dependency `pyrenoweb` to 2.0.11
 
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
+  ## Version 2.0.3
 
   **Date**: `2024-03-10`
 
