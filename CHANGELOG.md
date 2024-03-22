@@ -12,9 +12,10 @@
 - Fixing missing containers for Solrød. Closing issue [#32](https://github.com/briis/affalddk/issues/32)
 - Removed Rebild Kommune from the supported Municipalities list, as they have switched to another provider. Working on adding support for that provider, that also seems to service other Municipalities in Nordjylland.
 - Added support for Billund Kommune. They were accidentially left out.
-- Added new Categories `batterier`, `papirglasdaaser` and `elektronik`. This also means you will have to redownload the images and update the directory with new files.
+- Added new Categories `batterier`, `papirglasdaaser` and `elektronik`. **NOTE:** This also means you will have to redownload the images and update the directory with new files.
 - Converted Calendar Events from time based events to full day events. Giving better support for some Lovelace cards. Closing [#34](https://github.com/briis/affalddk/issues/34)
-- Bump dependency `pyrenoweb` to 2.0.13
+- The sensor `Næste Afhentning`, now has a list of all entities that are picked up on that date. Use the attribute `name` to get the categories, and the attribute `description` to get a more detailed list of content. The icon and entity_picture will now always be the recycle symbol. Closing issue [#41](https://github.com/briis/affalddk/issues/41) and [#42](https://github.com/briis/affalddk/issues/42)
+- Bump dependency `pyrenoweb` to 2.0.14
 
 ---------------------------
 
