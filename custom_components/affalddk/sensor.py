@@ -4,6 +4,7 @@ from __future__ import annotations
 import logging
 
 from dataclasses import dataclass
+import datetime
 from datetime import datetime as dt
 from types import MappingProxyType
 from typing import Any
@@ -50,6 +51,16 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
+        key="batterier",
+        name="Batterier",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="elektronik",
+        name="Elektronik",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
         key="glas",
         name="Glas",
         native_unit_of_measurement="dage",
@@ -67,6 +78,11 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
     AffaldDKSensorEntityDescription(
         key="papirglas",
         name="Papir, Pap & Glas",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="papirglasdaaser",
+        name="Papir, Glas & Dåser",
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
@@ -227,9 +243,11 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         """Return unit of sensor."""
 
         current_time = dt.today()
-        pickup_time: dt = self._pickup_events.date
+        current_time = current_time.date()
+        pickup_time: datetime.date = self._pickup_events.date
+        _pickup_days = (pickup_time - current_time).days
         if pickup_time:
-            if ((pickup_time - current_time).days + 1) == 1:
+            if _pickup_days + 1 == 1:
                 return "dag"
 
         return super().native_unit_of_measurement
@@ -239,9 +257,11 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         """Return state of the sensor."""
 
         current_time = dt.today()
-        pickup_time: dt = self._pickup_events.date
+        current_time = current_time.date()
+        pickup_time: datetime.date = self._pickup_events.date
+        _pickup_days = (pickup_time - current_time).days
         if pickup_time:
-            return (pickup_time - current_time).days + 1
+            return _pickup_days + 1
 
     @property
     def icon(self) -> str | None:
@@ -253,9 +273,13 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
     def extra_state_attributes(self) -> None:
         """Return non standard attributes."""
 
-        _date: dt = self._pickup_events.date
+        _date: datetime.date = self._pickup_events.date
+        _timestamp = dt.today()
         _current_date = dt.today()
+        _current_date = _current_date.date()
         _state = (_date - _current_date).days + 1
+        if _state < 0:
+            _state = 0
         _day_number = _date.weekday()
         _weekdays = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]
         _weekdays_full = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"]
@@ -269,12 +293,12 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             _day_text = f"Om {_state} dage"
 
         return {
-            ATTR_DATE: _date.date() if _date else None,
+            ATTR_DATE: _date if _date else None,
             ATTR_DATE_LONG: f"{_day_name_long} {_date.strftime("d. %d-%m-%Y") if _date else None}" ,
             ATTR_DATE_SHORT: f"{_day_name} {_date.strftime("d. %d/%m") if _date else None}" ,
             ATTR_DESCRIPTION: self._pickup_events.description,
             ATTR_DURATION: _day_text,
-            ATTR_ENTITY_PICTURE: f"/local/affalddk/{self._pickup_events.entity_picture}?{str(_current_date.timestamp())}",
+            ATTR_ENTITY_PICTURE: f"/local/affalddk/{self._pickup_events.entity_picture}?{str(_timestamp.timestamp())}",
             ATTR_LAST_UPDATE: self._pickup_events.last_updated,
             ATTR_NAME: self._pickup_events.friendly_name,
         }
