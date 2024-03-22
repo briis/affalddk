@@ -13,7 +13,8 @@
 - Removed Rebild Kommune from the supported Municipalities list, as they have switched to another provider. Working on adding support for that provider, that also seems to service other Municipalities in Nordjylland.
 - Added support for Billund Kommune. They were accidentially left out.
 - Added new Categories `batterier`, `papirglasdaaser` and `elektronik`. This also means you will have to redownload the images and update the directory with new files.
-- Bump dependency `pyrenoweb` to 2.0.12
+- Converted Calendar Events from time based events to full day events. Giving better support for some Lovelace cards. Closing [#34](https://github.com/briis/affalddk/issues/34)
+- Bump dependency `pyrenoweb` to 2.0.13
 
 ---------------------------
 
