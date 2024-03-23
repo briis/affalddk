@@ -7,7 +7,7 @@
   ## What's Changed
 
 - Compressed newly added SVG images, so they are faster to load.
-- Placing Textil correctly for Roskilde Kommune (and possible other Municipalities). Cloisng #49
+- Placing Textil correctly for Roskilde and Aalborg (and possible other Municipalities). Cloisng #49
 - Adding new category `papirglasmetalplast`. **Note** You need to download the image files again.
 - Fixing missing containers for Lyngby-Taarbæk. Closing #50
 - Fixing occasionally wrong address id being returned.
