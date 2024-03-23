@@ -1,5 +1,24 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.0.6
+
+  **Date**: `2024-03-23`
+
+  ## What's Changed
+
+- Compressed newly added SVG images, so they are faster to load.
+- Placing Textil correctly for Roskilde and Aalborg (and possible other Municipalities). Cloisng #49
+- Adding new category `papirglasmetalplast`. **Note** You need to download the image files again.
+- Fixing missing containers for Lyngby-Taarbæk. Closing #50
+- Fixing occasionally wrong address id being returned.
+- Bump dependency `pyrenoweb` to 2.0.15
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
+
   ## Version 2.0.5
 
   **Date**: `2024-03-22`
@@ -16,11 +35,6 @@
 - Converted Calendar Events from time based events to full day events. Giving better support for some Lovelace cards. Closing [#34](https://github.com/briis/affalddk/issues/34)
 - The sensor `Næste Afhentning`, now has a list of all entities that are picked up on that date. Use the attribute `name` to get the categories, and the attribute `description` to get a more detailed list of content. The icon and entity_picture will now always be the recycle symbol. Closing issue [#41](https://github.com/briis/affalddk/issues/41) and [#42](https://github.com/briis/affalddk/issues/42)
 - Bump dependency `pyrenoweb` to 2.0.14
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.0.4
 
