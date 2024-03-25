@@ -128,7 +128,6 @@ Here is the list of currently supported Municipalities
     - Fredensborg
     - Frederiksberg
     - Frederikssund
-    - Furesø
     - Gentofte
     - Gladsaxe
     - Glostrup
@@ -147,6 +146,7 @@ Here is the list of currently supported Municipalities
     - Jammerbugt
     - Kerteminde
     - Køge
+    - Lejre
     - Lyngby-Taarbæk
     - Mariagerfjord
     - Næstved
