@@ -1,5 +1,20 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.0.7
+
+  **Date**: `2024-03-xx`
+
+  ## What's Changed
+
+- Removed Furesø kommune as they are no longer using Renoweb.
+- Added Lejre kommune, that was left out in the initial release.
+- Bump dependency `pyrenoweb` to 2.0.16
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.0.6
 
   **Date**: `2024-03-23`
@@ -12,11 +27,6 @@
 - Fixing missing containers for Lyngby-Taarbæk. Closing #50
 - Fixing occasionally wrong address id being returned.
 - Bump dependency `pyrenoweb` to 2.0.15
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 
   ## Version 2.0.5
