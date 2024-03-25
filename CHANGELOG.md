@@ -6,8 +6,9 @@
 
   ## What's Changed
 
-- Removed Furesø kommune as they are no longer using Renoweb.
-- Added Lejre kommune, that was left out in the initial release.
+- Removed Furesø kommune as they are no longer using Renoweb. Closing [#51](https://github.com/briis/affalddk/issues/51)
+- Added Lejre kommune, that was left out in the initial release. Closing [#52](https://github.com/briis/affalddk/issues/52)
+- Fixing wrong date count on sensors. Closing [#54](https://github.com/briis/affalddk/issues/54)
 - Bump dependency `pyrenoweb` to 2.0.16
 
 ---------------------------
