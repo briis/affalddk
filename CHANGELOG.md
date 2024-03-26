@@ -13,7 +13,8 @@
 - Fixing wrong date count on sensors. Closing [#54](https://github.com/briis/affalddk/issues/54)
 - Fixed categories for Solrød kommune. Closing [#53](https://github.com/briis/affalddk/issues/53)
 - Fixing the `calendar.get_events` service call so that it now supports a start and end date. Thank you to @chamook for the initial Pull Request.
-- Bump dependency `pyrenoweb` to 2.0.16
+- Partly fix of #59. Catagorize container `Pap og papir/metal, glas og hård plast` correctly for Sorø Kommune
+- Bump dependency `pyrenoweb` to 2.0.17
 
 ---------------------------
 
