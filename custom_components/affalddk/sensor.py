@@ -131,6 +131,11 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
+        key="plast",
+        name="Plast",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
         key="plastmetal",
         name="Plast & Metal",
         native_unit_of_measurement="dage",
@@ -252,7 +257,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         pickup_time: datetime.date = self._pickup_events.date
         _pickup_days = (pickup_time - current_time).days
         if pickup_time:
-            if _pickup_days + 1 == 1:
+            if _pickup_days == 1:
                 return "dag"
 
         return super().native_unit_of_measurement
@@ -266,7 +271,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         pickup_time: datetime.date = self._pickup_events.date
         _pickup_days = (pickup_time - current_time).days
         if pickup_time:
-            return _pickup_days + 1
+            return _pickup_days
 
     @property
     def icon(self) -> str | None:
@@ -282,7 +287,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         _timestamp = dt.today()
         _current_date = dt.today()
         _current_date = _current_date.date()
-        _state = (_date - _current_date).days + 1
+        _state = (_date - _current_date).days
         if _state < 0:
             _state = 0
         _day_number = _date.weekday()

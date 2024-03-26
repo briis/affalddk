@@ -125,6 +125,11 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
             _start: datetime.date = _pickup_events.date
             _end: datetime.date = _start + timedelta(days=1)
 
+            if start_date.date() > _start:
+                continue
+            if end_date.date() < _end:
+                continue
+
             if _start and _end:
                 events.append(
                     CalendarEvent(
