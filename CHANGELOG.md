@@ -6,10 +6,13 @@
 
   ## What's Changed
 
+**NOTE**: A new category 'plast' has been added, so you will have to redownload the images files.
+
 - Removed Furesø kommune as they are no longer using Renoweb. Closing [#51](https://github.com/briis/affalddk/issues/51)
 - Added Lejre kommune, that was left out in the initial release. Closing [#52](https://github.com/briis/affalddk/issues/52)
 - Fixing wrong date count on sensors. Closing [#54](https://github.com/briis/affalddk/issues/54)
 - Fixed categories for Solrød kommune. Closing [#53](https://github.com/briis/affalddk/issues/53)
+- Fixing the `calendar.get_events` service call so that it now supports a start and end date. Thank you to @chamook for the initial Pull Request.
 - Bump dependency `pyrenoweb` to 2.0.16
 
 ---------------------------
