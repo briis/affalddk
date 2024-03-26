@@ -131,6 +131,11 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
+        key="plast",
+        name="Plast",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
         key="plastmetal",
         name="Plast & Metal",
         native_unit_of_measurement="dage",
