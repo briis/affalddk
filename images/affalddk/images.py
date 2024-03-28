@@ -1,7 +1,7 @@
-"""
-This module contains the embedded images for Entity Pictures.
+"""This module contains the embedded images for Entity Pictures.
 This file has been auto generated from a template, images.py.template, so do not edit it directly.
 """
+
 from __future__ import annotations
 
 PICTURE_ITEMS = {
