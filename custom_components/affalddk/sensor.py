@@ -303,6 +303,10 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         else:
             _day_text = f"Om {_state} dage"
 
+        _categori = self.entity_description.key
+        if _categori == "next_pickup":
+            _categori = "genbrug"
+
         return {
             ATTR_DATE: _date if _date else None,
             ATTR_DATE_LONG: f"{_day_name_long} {_date.strftime("d. %d-%m-%Y") if _date else None}" ,
@@ -310,7 +314,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             ATTR_DESCRIPTION: self._pickup_events.description,
             ATTR_DURATION: _day_text,
             # ATTR_ENTITY_PICTURE: f"/local/affalddk/{self._pickup_events.entity_picture}?{str(_timestamp.timestamp())}",
-            ATTR_ENTITY_PICTURE: PICTURE_ITEMS.get(self.entity_description.key),
+            ATTR_ENTITY_PICTURE: PICTURE_ITEMS.get(_categori),
             ATTR_LAST_UPDATE: self._pickup_events.last_updated,
             ATTR_NAME: self._pickup_events.friendly_name,
         }
