@@ -2,7 +2,7 @@
 
 # Define the path to the template and the output file
 template_path="images.py.template"
-output_path="../../custom_components/affalddk/images.py"
+output_path="images.py"
 
 # Start with copying the template to the output
 cp "$template_path" "$output_path"
