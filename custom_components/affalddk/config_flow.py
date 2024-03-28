@@ -116,7 +116,7 @@ class AffaldDKOptionsFlowHandler(config_entries.OptionsFlow):
                         default=self.config_entry.options.get(
                             CONF_UPDATE_INTERVAL, DEFAULT_SCAN_INTERVAL
                         ),
-                    ): vol.All(vol.Coerce(int), vol.Range(min=3, max=24)),
+                    ): vol.All(vol.Coerce(int), vol.Range(min=1, max=24)),
                 }
             ),
         )
