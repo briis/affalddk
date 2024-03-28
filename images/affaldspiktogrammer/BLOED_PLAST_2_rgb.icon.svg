@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="680.32001"
+   height="680.32001"
+   viewBox="0 0 680.32001 680.32001"
+   sodipodi:docname="BLOED_PLAST_2_rgb.icon.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.6859713"
+     inkscape:cx="340.16"
+     inkscape:cy="340.16"
+     inkscape:window-width="2560"
+     inkscape:window-height="1361"
+     inkscape:window-x="2551"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g8" />
+  <g
+     id="g8"
+     inkscape:groupmode="layer"
+     inkscape:label="ink_ext_XXXXXX"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,680.32)">
+    <g
+       id="g10"
+       transform="scale(0.1)">
+      <path
+         d="M 5102.36,0 H 0 V 5102.36 H 5102.36 V 0"
+         style="fill:#8d1b8f;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path12" />
+      <path
+         d="m 2938.83,3698.42 c 0,-49.11 -40.18,-89.29 -89.29,-89.29 h -586.77 c -49.11,0 -89.3,40.18 -89.3,89.29 v 0 c 0,49.11 40.19,89.29 89.3,89.29 h 586.77 c 49.11,0 89.29,-40.18 89.29,-89.29 z m 386,-1322.17 c -7.09,68.12 -14.18,137.05 -5.18,204.94 7.21,54.44 24.66,107.21 29.17,161.95 5.76,70.05 -9.9,139.91 -26.03,208.22 -11.62,49.23 -23.55,100.97 -10.74,149.89 6.84,26.14 20.4,49.81 30.17,74.94 14.12,36.33 103.99,350.38 107.19,688.68 0.42,44.44 8.92,84.43 2.49,128.38 -177.56,51.02 -737.96,41.29 -953.06,41.29 -813.91,0 -834.45,41.27 -834.9,44.1 l 37.1,-742.05 c 21.66,-202.48 55.15,-410.8 162.81,-581.75 10.15,-16.12 21.35,-33.29 20.78,-52.49 -0.46,-15.06 -8.16,-28.71 -15.13,-41.96 -65.45,-124.46 -81.73,-263.73 -96.82,-404.39 -10.82,-100.86 -21.64,-201.72 -32.46,-302.59 -8.88,-82.76 -8.64,-138.05 -17.52,-220.81 -0.73,-30.76 -30.1,-57.35 -48.7,-81.44 -18.59,-24.09 -24.35,-78.3 -25.94,-122.41 38.38,-14.63 286.58,-8.58 496.6,-1.18 133.84,4.72 254.3,20.75 287.58,24.82 332.44,40.62 686.67,20.1 1021.12,4.94 -21.05,68.58 -40.57,147.01 -48.01,218.51 -20.84,200.14 -59.69,400.27 -80.52,600.41"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path32" />
+      <path
+         d="m 1663.94,4078.64 -0.01,0.15 c 0,0 0,-0.05 0.01,-0.15"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path34" />
+    </g>
+  </g>
+</svg>

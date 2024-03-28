@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="680.32001"
+   height="680.32001"
+   viewBox="0 0 680.32001 680.32001"
+   sodipodi:docname="BRANDSLUKKERE_rgb.icon.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.6859713"
+     inkscape:cx="340.16"
+     inkscape:cy="340.16"
+     inkscape:window-width="2560"
+     inkscape:window-height="1361"
+     inkscape:window-x="2551"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g8" />
+  <g
+     id="g8"
+     inkscape:groupmode="layer"
+     inkscape:label="ink_ext_XXXXXX"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,680.32)">
+    <g
+       id="g10"
+       transform="scale(0.1)">
+      <path
+         d="M 5102.36,0 H 0 V 5102.36 H 5102.36 V 0"
+         style="fill:#ea1d2c;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path12" />
+      <path
+         d="m 1654.55,1953.04 321.2,-36.29 -0.55,786.74 h -102.01 l -218.64,-750.45"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path42" />
+      <path
+         d="m 3255.55,4028.1 v 102.07 h -510.98 c -54.59,0 -69.8,12.15 -81.88,34.53 -14.46,26.77 -0.01,61.08 34.29,82.52 27.68,17.3 456.26,248.85 456.26,248.85 l -48.39,89.98 -472.39,-254.9 c -6.59,-3.87 -12.09,-8.2 -17.45,-11.66 -53.55,-34.28 -198.94,-158.08 -199.12,-158.26 l 0.02,-84.39 h -174.19 c -77.76,0 -147.72,-7.83 -207.91,-23.25 -66.28,-16.99 -123.19,-43.79 -169.15,-79.65 -99.94,-78 -150.61,-199.3 -150.61,-360.55 0,-133.3 32.9,-230.6 67.74,-333.61 42.97,-127.05 91.61,-270.96 92.23,-525.27 h 102.05 c -0.62,271.09 -52.12,423.46 -97.61,557.96 -33.46,98.95 -62.36,184.42 -62.36,300.92 0,130 36.42,221.63 111.34,280.1 69.13,53.95 174.87,81.3 314.28,81.3 h 174.2 l 0.02,-86 C 2222.88,3845.05 2081.73,3710.33 2079.53,3550.4 V 1785.22 h 943.93 V 3550.4 c -2.27,164.44 -151.43,302.25 -352.87,341.89 v 135.81 h 584.96"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path44" />
+    </g>
+  </g>
+</svg>
