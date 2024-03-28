@@ -38,6 +38,7 @@ from .const import (
     DEFAULT_BRAND,
     DOMAIN,
 )
+from .images import PICTURE_ITEMS
 from pyrenoweb import ICON_LIST, PickupType
 
 @dataclass
@@ -308,7 +309,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             ATTR_DATE_SHORT: f"{_day_name} {_date.strftime("d. %d/%m") if _date else None}" ,
             ATTR_DESCRIPTION: self._pickup_events.description,
             ATTR_DURATION: _day_text,
-            ATTR_ENTITY_PICTURE: f"/local/affalddk/{self._pickup_events.entity_picture}?{str(_timestamp.timestamp())}",
+            # ATTR_ENTITY_PICTURE: f"/local/affalddk/{self._pickup_events.entity_picture}?{str(_timestamp.timestamp())}",
+            ATTR_ENTITY_PICTURE: PICTURE_ITEMS.get(self.entity_description.key),
             ATTR_LAST_UPDATE: self._pickup_events.last_updated,
             ATTR_NAME: self._pickup_events.friendly_name,
         }
