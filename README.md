@@ -36,7 +36,7 @@ logger:
   default: warning
   logs:
     custom_components.affalddk: debug
-    pyrenoweb: debug
+    pyaffalddk: debug
 ```
 
 #### This integration will set up the following platforms.
