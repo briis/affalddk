@@ -34,13 +34,13 @@ jobs:
         with:
           files: ${{ github.workspace }}/custom_components/affalddk/affalddk.zip
 
-      - name: "ZIP the Entity Picture Images"
-        shell: "bash"
-        run: |
-          cd "${{ github.workspace }}/images/affalddk"
-          zip affalddk_images.zip -r ./
+      # - name: "ZIP the Entity Picture Images"
+      #   shell: "bash"
+      #   run: |
+      #     cd "${{ github.workspace }}/images/affalddk"
+      #     zip affalddk_images.zip -r ./
 
-      - name: "Upload the images ZIP file to the release"
-        uses: softprops/action-gh-release@v2.0.4
-        with:
-          files: ${{ github.workspace }}/images/affalddk/affalddk_images.zip
+      # - name: "Upload the images ZIP file to the release"
+      #   uses: softprops/action-gh-release@v2.0.4
+      #   with:
+      #     files: ${{ github.workspace }}/images/affalddk/affalddk_images.zip
