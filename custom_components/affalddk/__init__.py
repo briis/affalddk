@@ -77,14 +77,18 @@ class AffaldDKtDataUpdateCoordinator(DataUpdateCoordinator["AffaldDKData"]):
         self.hass = hass
         self.config_entry = config_entry
 
-        update_interval = timedelta(hours=self.config_entry.options.get(CONF_UPDATE_INTERVAL, DEFAULT_SCAN_INTERVAL))
+        _updatetime: int = self.config_entry.options.get(CONF_UPDATE_INTERVAL, DEFAULT_SCAN_INTERVAL) * 60
+        update_interval = timedelta(minutes=_updatetime)
 
         super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=update_interval)
 
     async def _async_update_data(self) -> AffaldDKData:
         """Fetch data from WeatherFlow Forecast."""
         try:
-            return await self.affalddk.fetch_data()
+            _states: AffaldDKData = await self.affalddk.fetch_data()
+            _LOGGER.debug("Data fetched")
+            return _states
+
         except Exception as err:
             raise UpdateFailed(f"Update failed: {err}") from err
 
