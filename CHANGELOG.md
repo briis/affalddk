@@ -1,5 +1,20 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.1.0
+
+  **Date**: `2024-03-29`
+
+  ## What's Changed
+
+- The biggest change in thhis version is that you no longer need to download the images for the `entity_picture`. Thanks to @LordMike these images are now embedded as base64 data images. @LordMike did a lot of work to ensure the images are small enough to be able stay under the character limit, and he also made a great little script I can use if when future changes to images are needed. Thanks again @LordMike. With this implemented, you do not need the images in `/config/www/affalddk` and this directory can be deleted.
+- Trying to fix the lack of automatic updates, that occur, at least on my production machines. When running the development environment, updates are executed as planned, but not in production. As there are hours between updates, it takes som time to figure out what is going on (or not going on). This relates to issue [#61](https://github.com/briis/affalddk/issues/61)
+- Migrated dependency `pyrenoweb` to `pyaffalddk` as the plan is to support more than RenoWeb in the future, and then the name most embrace that.
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.0.7
 
   **Date**: `2024-03-26`
@@ -16,11 +31,6 @@
 - Partly fix of #59. Catagorize container `Pap og papir/metal, glas og hård plast` correctly for Sorø Kommune
 - Bumped minimum required HA version to 2024.2.0, to ensure that HA is using Python 3.12. Previous versions of Python might not work.
 - Bump dependency `pyrenoweb` to 2.0.17
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.0.6
 
