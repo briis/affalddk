@@ -35,8 +35,8 @@ The biggest issue is, that there is NO standard for the way municipalities mix t
 logger:
   default: warning
   logs:
-    custom_components.affalddk: error
-    pyrenoweb: error
+    custom_components.affalddk: debug
+    pyrenoweb: debug
 ```
 
 #### This integration will set up the following platforms.
@@ -48,7 +48,7 @@ Platform | Description
 
 ## CREDITS
 
-A big thank you to @thomaspalmdk for finding the new API, and to the people who helped Beta test it.
+A big thank you to @thomaspalmdk for finding the new API, and to the people who helped Beta test it. Also thank you to @LordMike for making the embedded image functionality.
 
 ### UPGRADING FROM RENOWEB V1.x
 As stated above there is no upgrade path from Renoweb V1.x, and the two cannot co-exist, so before you install this integration:
@@ -57,12 +57,6 @@ As stated above there is no upgrade path from Renoweb V1.x, and the two cannot c
 3. Finally restart Home Assistant
 4. When Home Assistant is running again follow the [INSTALLATION](#INSTALLATION) section below.
 
-## PRE-WORK
-
-This integration uses the `entity_picture` attribute, which means you can get nice looking Pictograms instead of Icons on your dashboard. If you want to use this feature, do the following:
-* Download the file `affalddk_images.zip` from the [latest relase](https://github.com/briis/affalddk/releases) and unzip the content. (Find the **Assets** link in the bottom of the release and click it to unfold) You should see a file called `affalddk_images.zip` with a bunch of `.svg` files in it.
-* Open a file share to the `config` share on your Home Assistant entity, and go to the `www` directory. If this directory does not exist, just create it.
-* Now create a folder called `affalddk` in the `www` directory and copy all the `.svg` files to this directory. This is where this integration will look for the Entity Pictures.
 
 ## INSTALLATION
 
