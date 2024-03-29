@@ -6,12 +6,12 @@ import logging
 from types import MappingProxyType
 from typing import Any, Self
 
-from pyrenoweb import (
+from pyaffalddk import (
     GarbageCollection,
     PickupEvents,
-    RenowWebNotSupportedError,
-    RenowWebNotValidAddressError,
-    RenowWebNoConnection,
+    AffaldDKNotSupportedError,
+    AffaldDKNotValidAddressError,
+    AffaldDKNoConnection,
 )
 
 from homeassistant.config_entries import ConfigEntry
@@ -118,13 +118,13 @@ class AffaldDKData:
 
         try:
             resp: PickupEvents = await self.affalddk_data.get_pickup_data(address_id=self._config[CONF_ADDRESS_ID])
-        except RenowWebNotSupportedError as err:
+        except AffaldDKNotSupportedError as err:
             _LOGGER.debug(err)
             return False
-        except RenowWebNotValidAddressError as err:
+        except AffaldDKNotValidAddressError as err:
             _LOGGER.debug(err)
             return False
-        except RenowWebNoConnection as notreadyerror:
+        except AffaldDKNoConnection as notreadyerror:
             _LOGGER.debug(notreadyerror)
             raise ConfigEntryNotReady from notreadyerror
         except Exception as notreadyerror:

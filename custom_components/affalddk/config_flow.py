@@ -10,13 +10,13 @@ from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers.aiohttp_client import async_create_clientsession
 from homeassistant.helpers.selector import selector
 
-from pyrenoweb import (
+from pyaffalddk import (
     GarbageCollection,
     MUNICIPALITIES_ARRAY,
-    RenoWebAddressInfo,
-    RenowWebNotSupportedError,
-    RenowWebNotValidAddressError,
-    RenowWebNoConnection,
+    AffaldDKAddressInfo,
+    AffaldDKNotSupportedError,
+    AffaldDKNotValidAddressError,
+    AffaldDKNoConnection,
 )
 
 from .const import (
@@ -55,14 +55,14 @@ class RenowebFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         try:
             renoweb = GarbageCollection(municipality=user_input[CONF_MUNICIPALITY], session=session)
             await renoweb.async_init()
-            address_info: RenoWebAddressInfo = await renoweb.get_address_id(zipcode=user_input[CONF_ZIPCODE],street=user_input[CONF_ROAD_NAME], house_number=user_input[CONF_HOUSE_NUMBER])
-        except RenowWebNotSupportedError:
+            address_info: AffaldDKAddressInfo = await renoweb.get_address_id(zipcode=user_input[CONF_ZIPCODE],street=user_input[CONF_ROAD_NAME], house_number=user_input[CONF_HOUSE_NUMBER])
+        except AffaldDKNotSupportedError:
             errors["base"] = "municipality_not_supported"
             return await self._show_setup_form(errors)
-        except RenowWebNotValidAddressError:
+        except AffaldDKNotValidAddressError:
             errors["base"] = "location_not_found"
             return await self._show_setup_form(errors)
-        except RenowWebNoConnection:
+        except AffaldDKNoConnection:
             errors["base"] = "connection_error"
             return await self._show_setup_form(errors)
 

@@ -39,7 +39,7 @@ from .const import (
     DOMAIN,
 )
 from .images import PICTURE_ITEMS
-from pyrenoweb import ICON_LIST, PickupType
+from pyaffalddk import ICON_LIST, PickupType
 
 @dataclass
 class AffaldDKSensorEntityDescription(SensorEntityDescription):
@@ -285,7 +285,6 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         """Return non standard attributes."""
 
         _date: datetime.date = self._pickup_events.date
-        _timestamp = dt.today()
         _current_date = dt.today()
         _current_date = _current_date.date()
         _state = (_date - _current_date).days
@@ -313,7 +312,6 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             ATTR_DATE_SHORT: f"{_day_name} {_date.strftime("d. %d/%m") if _date else None}" ,
             ATTR_DESCRIPTION: self._pickup_events.description,
             ATTR_DURATION: _day_text,
-            # ATTR_ENTITY_PICTURE: f"/local/affalddk/{self._pickup_events.entity_picture}?{str(_timestamp.timestamp())}",
             ATTR_ENTITY_PICTURE: PICTURE_ITEMS.get(_categori),
             ATTR_LAST_UPDATE: self._pickup_events.last_updated,
             ATTR_NAME: self._pickup_events.friendly_name,
