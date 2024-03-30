@@ -17,6 +17,6 @@ CONF_ZIPCODE = "zipcode"
 DEFAULT_ATTRIBUTION = "Data delivered by Danish Municipalities"
 DEFAULT_BRAND = "@BRiis"
 DEFAULT_API_VERSION = "Legacy"
-DEFAULT_SCAN_INTERVAL = 2
+DEFAULT_SCAN_INTERVAL = 4
 DOMAIN = "affalddk"
 
