@@ -6,12 +6,12 @@ import logging
 from types import MappingProxyType
 from typing import Any, Self
 
-from pyrenoweb import (
+from pyaffalddk import (
     GarbageCollection,
     PickupEvents,
-    RenowWebNotSupportedError,
-    RenowWebNotValidAddressError,
-    RenowWebNoConnection,
+    AffaldDKNotSupportedError,
+    AffaldDKNotValidAddressError,
+    AffaldDKNoConnection,
 )
 
 from homeassistant.config_entries import ConfigEntry
@@ -20,7 +20,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError, ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
-
+from homeassistant.util.dt import now
 from .const import (
     CONF_ADDRESS_ID,
     CONF_MUNICIPALITY,
@@ -66,7 +66,7 @@ async def async_update_entry(hass: HomeAssistant, config_entry: ConfigEntry):
 class CannotConnect(HomeAssistantError):
     """Unable to connect to the web site."""
 
-class AffaldDKtDataUpdateCoordinator(DataUpdateCoordinator["AffaldDKData"]):
+class AffaldDKtDataUpdateCoordinator(DataUpdateCoordinator[PickupEvents]):
     """Class to manage fetching AffaldDK data."""
 
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None:
@@ -77,6 +77,7 @@ class AffaldDKtDataUpdateCoordinator(DataUpdateCoordinator["AffaldDKData"]):
         self.hass = hass
         self.config_entry = config_entry
 
+        # update_interval = timedelta(minutes=2)
         update_interval = timedelta(hours=self.config_entry.options.get(CONF_UPDATE_INTERVAL, DEFAULT_SCAN_INTERVAL))
 
         super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=update_interval)
@@ -84,7 +85,12 @@ class AffaldDKtDataUpdateCoordinator(DataUpdateCoordinator["AffaldDKData"]):
     async def _async_update_data(self) -> AffaldDKData:
         """Fetch data from WeatherFlow Forecast."""
         try:
-            return await self.affalddk.fetch_data()
+            _states: AffaldDKData = await self.affalddk.fetch_data()
+            _last_update = now()
+            _LOGGER.debug("Data fetched %s", _last_update.strftime("%Y-%m-%d %H:%M:%S"))
+
+            return _states
+
         except Exception as err:
             raise UpdateFailed(f"Update failed: {err}") from err
 
@@ -114,13 +120,13 @@ class AffaldDKData:
 
         try:
             resp: PickupEvents = await self.affalddk_data.get_pickup_data(address_id=self._config[CONF_ADDRESS_ID])
-        except RenowWebNotSupportedError as err:
+        except AffaldDKNotSupportedError as err:
             _LOGGER.debug(err)
             return False
-        except RenowWebNotValidAddressError as err:
+        except AffaldDKNotValidAddressError as err:
             _LOGGER.debug(err)
             return False
-        except RenowWebNoConnection as notreadyerror:
+        except AffaldDKNoConnection as notreadyerror:
             _LOGGER.debug(notreadyerror)
             raise ConfigEntryNotReady from notreadyerror
         except Exception as notreadyerror:

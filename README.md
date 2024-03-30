@@ -19,7 +19,7 @@ This integration replaces the [RenoWeb integration](https://github.com/briis/ren
 
 This is a complete rewrite of the RenowWeb V1.x Integration as the API this uses is slowly being phased out, and we needed to find a new way of collecting the data.
 
-If I had updated Renoweb to V2.0 and you were a previous user of Renoweb, you would have had to de-install the Integration before upgrading, as Unique ID's of all sensors would have been new, thus having to change your Automations, Scripts and Dashboard entries.
+If I had updated Renoweb to V2.0 and you were a previous user of Renoweb, you would anyway have had to redo all your dashboards and automations, as Unique ID's of all sensors would have been new, thus having to change your Automations, Scripts and Dashboard entries.
 With that in mind I decided to also use the opportunity to change the domain name of the Integration to `affalddk`
 
 So why change the name and not just give it a new version number?
@@ -35,8 +35,8 @@ The biggest issue is, that there is NO standard for the way municipalities mix t
 logger:
   default: warning
   logs:
-    custom_components.affalddk: error
-    pyrenoweb: error
+    custom_components.affalddk: debug
+    pyaffalddk: debug
 ```
 
 #### This integration will set up the following platforms.
@@ -48,21 +48,16 @@ Platform | Description
 
 ## CREDITS
 
-A big thank you to @thomaspalmdk for finding the new API, and to the people who helped Beta test it.
+A big thank you to @thomaspalmdk for finding the new API, and to the people who helped Beta test it. Also thank you to @LordMike for making the embedded image functionality.
 
 ### UPGRADING FROM RENOWEB V1.x
-As stated above there is no upgrade path from Renoweb V1.x, and the two cannot co-exist, so before you install this integration:
+As of V2.1.x of this Integration it can co-exist with the previous RenoWeb integration, as the dependecy API module has changed its name. So all you have to do is to install this integration, and then migrate your Dashboard, Automations and Scripts to use the new Entity names.
+
+I still recommend that you de-install the previous integration, to not overload the servers. To deinstall *RenoWeb* do the following:
 1. first remove Renoweb from the *Devices & Services* section.
 2. Then go to HACS, and de-install Renoweb
 3. Finally restart Home Assistant
-4. When Home Assistant is running again follow the [INSTALLATION](#INSTALLATION) section below.
 
-## PRE-WORK
-
-This integration uses the `entity_picture` attribute, which means you can get nice looking Pictograms instead of Icons on your dashboard. If you want to use this feature, do the following:
-* Download the file `affalddk_images.zip` from the [latest relase](https://github.com/briis/affalddk/releases) and unzip the content. (Find the **Assets** link in the bottom of the release and click it to unfold) You should see a file called `affalddk_images.zip` with a bunch of `.svg` files in it.
-* Open a file share to the `config` share on your Home Assistant entity, and go to the `www` directory. If this directory does not exist, just create it.
-* Now create a folder called `affalddk` in the `www` directory and copy all the `.svg` files to this directory. This is where this integration will look for the Entity Pictures.
 
 ## INSTALLATION
 

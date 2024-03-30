@@ -17,7 +17,7 @@ from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
 )
 
-from pyrenoweb import NAME_LIST, PickupType
+from pyaffalddk import NAME_LIST, PickupType
 from . import AffaldDKtDataUpdateCoordinator
 from .const import (
     CONF_ADDRESS_ID,
