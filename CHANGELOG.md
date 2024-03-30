@@ -9,7 +9,7 @@
 - The biggest change in this version is that you no longer need to download the images for the `entity_picture`. Thanks to @LordMike these images are now embedded as base64 data images. @LordMike did a lot of work to ensure the images are small enough to be able stay under the character limit, and he also made a great little script I can use if and when future changes to images are needed. Thanks again @LordMike. With this implemented, you do not need the images in `/config/www/affalddk` and this directory can be deleted.
 - Updates are sometimes not executed according to time interval. This release should now fix this. Closing [#61](https://github.com/briis/affalddk/issues/61)
 - Adjusted the update Interval, so that you can now set it to between 1 and 24 hours.
-- Migrated dependency `pyrenoweb` to `pyaffalddk` as the plan is to support more than RenoWeb in the future, and then the name most embrace that.
+- Migrated dependency `pyrenoweb` to `pyaffalddk` as the plan is to support more than RenoWeb in the future, and then the name should embrace that.
 
 ---------------------------
 
