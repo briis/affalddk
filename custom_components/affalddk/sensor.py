@@ -23,6 +23,7 @@ from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
     DataUpdateCoordinator,
 )
+from homeassistant.util.dt import now
 
 from . import AffaldDKtDataUpdateCoordinator
 from .const import (
@@ -253,7 +254,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
     def native_unit_of_measurement(self) -> str | None:
         """Return unit of sensor."""
 
-        current_time = dt.today()
+        current_time = now()
         current_time = current_time.date()
         pickup_time: datetime.date = self._pickup_events.date
         _pickup_days = (pickup_time - current_time).days
@@ -267,7 +268,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
     def native_value(self) -> StateType:
         """Return state of the sensor."""
 
-        current_time = dt.today()
+        current_time = now()
         current_time = current_time.date()
         pickup_time: datetime.date = self._pickup_events.date
         _pickup_days = (pickup_time - current_time).days
@@ -285,6 +286,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         """Return non standard attributes."""
 
         _date: datetime.date = self._pickup_events.date
+        _current_time = now()
         _current_date = dt.today()
         _current_date = _current_date.date()
         _state = (_date - _current_date).days
@@ -313,7 +315,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             ATTR_DESCRIPTION: self._pickup_events.description,
             ATTR_DURATION: _day_text,
             ATTR_ENTITY_PICTURE: PICTURE_ITEMS.get(_categori),
-            ATTR_LAST_UPDATE: self._pickup_events.last_updated,
+            ATTR_LAST_UPDATE: _current_time.strftime("%Y-%m-%d %H:%M:%S"),
             ATTR_NAME: self._pickup_events.friendly_name,
         }
 

@@ -14,7 +14,7 @@ CONF_ROAD_NAME = "road_name"
 CONF_UPDATE_INTERVAL = "update_interval"
 CONF_ZIPCODE = "zipcode"
 
-DEFAULT_ATTRIBUTION = "Data delivered by Renoweb"
+DEFAULT_ATTRIBUTION = "Data delivered by Danish Municipalities"
 DEFAULT_BRAND = "@BRiis"
 DEFAULT_API_VERSION = "Legacy"
 DEFAULT_SCAN_INTERVAL = 2
