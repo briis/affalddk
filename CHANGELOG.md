@@ -1,5 +1,20 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.1.1
+
+  **Date**: `2024-04-03`
+
+  ## What's Changed
+
+- Found the real error for the sensors not being updated when containers have been collected. So you would see the -1 days for Next Pickup container. Closing [#61](https://github.com/briis/affalddk/issues/61)
+- Added `Miljøboks` for Gentofte kommune. Closing [#64](https://github.com/briis/affalddk/issues/64)
+- Bump dependency `pyaffalddk` to version 2.0.20
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.1.0
 
   **Date**: `2024-03-30`
@@ -10,11 +25,6 @@
 - Updates are sometimes not executed according to time interval. This release should now fix this. Closing [#61](https://github.com/briis/affalddk/issues/61)
 - Adjusted the update Interval, so that you can now set it to between 1 and 24 hours.
 - Migrated dependency `pyrenoweb` to `pyaffalddk` as the plan is to support more than RenoWeb in the future, and then the name should embrace that.
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.0.7
 
