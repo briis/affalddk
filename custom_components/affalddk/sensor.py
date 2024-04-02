@@ -23,7 +23,7 @@ from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
     DataUpdateCoordinator,
 )
-from homeassistant.util.dt import now
+from homeassistant.util.dt import now, as_local
 
 from . import AffaldDKtDataUpdateCoordinator
 from .const import (
@@ -239,7 +239,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         self.entity_description = description
         self._config = config
         self._coordinator = coordinator
-        self._pickup_events: PickupType = coordinator.data.pickup_events.get(description.key) if coordinator.data.pickup_events else None
+        self._pickup_events: PickupType = None
 
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, self._config.data[CONF_ADDRESS_ID])},
@@ -254,6 +254,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
     def native_unit_of_measurement(self) -> str | None:
         """Return unit of sensor."""
 
+        self._pickup_events = self._coordinator.data.pickup_events.get(self.entity_description.key) if self._coordinator.data.pickup_events else None
         current_time = now()
         current_time = current_time.date()
         pickup_time: datetime.date = self._pickup_events.date
@@ -268,6 +269,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
     def native_value(self) -> StateType:
         """Return state of the sensor."""
 
+        self._pickup_events = self._coordinator.data.pickup_events.get(self.entity_description.key) if self._coordinator.data.pickup_events else None
         current_time = now()
         current_time = current_time.date()
         pickup_time: datetime.date = self._pickup_events.date
@@ -285,8 +287,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
     def extra_state_attributes(self) -> None:
         """Return non standard attributes."""
 
+        self._pickup_events = self._coordinator.data.pickup_events.get(self.entity_description.key) if self._coordinator.data.pickup_events else None
         _date: datetime.date = self._pickup_events.date
-        _current_time = now()
         _current_date = dt.today()
         _current_date = _current_date.date()
         _state = (_date - _current_date).days
@@ -315,7 +317,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             ATTR_DESCRIPTION: self._pickup_events.description,
             ATTR_DURATION: _day_text,
             ATTR_ENTITY_PICTURE: PICTURE_ITEMS.get(_categori),
-            ATTR_LAST_UPDATE: _current_time.strftime("%Y-%m-%d %H:%M:%S"),
+            ATTR_LAST_UPDATE: as_local(self._pickup_events.last_updated),
             ATTR_NAME: self._pickup_events.friendly_name,
         }
 

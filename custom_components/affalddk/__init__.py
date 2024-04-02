@@ -108,6 +108,7 @@ class AffaldDKData:
 
     def initialize_data(self) -> bool:
         """Establish connection to API."""
+        #self.hass.config.time_zone
         self.affalddk_data = GarbageCollection(
                 municipality=self._config[CONF_MUNICIPALITY],
                 session=async_get_clientsession(self.hass),
