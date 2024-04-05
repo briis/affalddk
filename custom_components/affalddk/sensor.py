@@ -255,27 +255,29 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         """Return unit of sensor."""
 
         self._pickup_events = self._coordinator.data.pickup_events.get(self.entity_description.key) if self._coordinator.data.pickup_events else None
-        current_time = now()
-        current_time = current_time.date()
-        pickup_time: datetime.date = self._pickup_events.date
-        _pickup_days = (pickup_time - current_time).days
-        if pickup_time:
-            if _pickup_days == 1:
-                return "dag"
+        if self._pickup_events is not None:
+            current_time = now()
+            current_time = current_time.date()
+            pickup_time: datetime.date = self._pickup_events.date
+            _pickup_days = (pickup_time - current_time).days
+            if pickup_time:
+                if _pickup_days == 1:
+                    return "dag"
 
-        return super().native_unit_of_measurement
+            return super().native_unit_of_measurement
 
     @property
     def native_value(self) -> StateType:
         """Return state of the sensor."""
 
         self._pickup_events = self._coordinator.data.pickup_events.get(self.entity_description.key) if self._coordinator.data.pickup_events else None
-        current_time = now()
-        current_time = current_time.date()
-        pickup_time: datetime.date = self._pickup_events.date
-        _pickup_days = (pickup_time - current_time).days
-        if pickup_time:
-            return _pickup_days
+        if self._pickup_events is not None:
+            current_time = now()
+            current_time = current_time.date()
+            pickup_time: datetime.date = self._pickup_events.date
+            _pickup_days = (pickup_time - current_time).days
+            if pickup_time:
+                return _pickup_days
 
     @property
     def icon(self) -> str | None:
@@ -288,38 +290,39 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         """Return non standard attributes."""
 
         self._pickup_events = self._coordinator.data.pickup_events.get(self.entity_description.key) if self._coordinator.data.pickup_events else None
-        _date: datetime.date = self._pickup_events.date
-        _current_date = dt.today()
-        _current_date = _current_date.date()
-        _state = (_date - _current_date).days
-        if _state < 0:
-            _state = 0
-        _day_number = _date.weekday()
-        _weekdays = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]
-        _weekdays_full = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"]
-        _day_name = _weekdays[_day_number]
-        _day_name_long = _weekdays_full[_day_number]
-        if _state == 0:
-            _day_text = "I dag"
-        elif _state == 1:
-            _day_text = "I morgen"
-        else:
-            _day_text = f"Om {_state} dage"
+        if self._pickup_events is not None:
+            _date: datetime.date = self._pickup_events.date
+            _current_date = dt.today()
+            _current_date = _current_date.date()
+            _state = (_date - _current_date).days
+            if _state < 0:
+                _state = 0
+            _day_number = _date.weekday()
+            _weekdays = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]
+            _weekdays_full = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"]
+            _day_name = _weekdays[_day_number]
+            _day_name_long = _weekdays_full[_day_number]
+            if _state == 0:
+                _day_text = "I dag"
+            elif _state == 1:
+                _day_text = "I morgen"
+            else:
+                _day_text = f"Om {_state} dage"
 
-        _categori = self.entity_description.key
-        if _categori == "next_pickup":
-            _categori = "genbrug"
+            _categori = self.entity_description.key
+            if _categori == "next_pickup":
+                _categori = "genbrug"
 
-        return {
-            ATTR_DATE: _date if _date else None,
-            ATTR_DATE_LONG: f"{_day_name_long} {_date.strftime("d. %d-%m-%Y") if _date else None}" ,
-            ATTR_DATE_SHORT: f"{_day_name} {_date.strftime("d. %d/%m") if _date else None}" ,
-            ATTR_DESCRIPTION: self._pickup_events.description,
-            ATTR_DURATION: _day_text,
-            ATTR_ENTITY_PICTURE: PICTURE_ITEMS.get(_categori),
-            ATTR_LAST_UPDATE: as_local(self._pickup_events.last_updated),
-            ATTR_NAME: self._pickup_events.friendly_name,
-        }
+            return {
+                ATTR_DATE: _date if _date else None,
+                ATTR_DATE_LONG: f"{_day_name_long} {_date.strftime("d. %d-%m-%Y") if _date else None}" ,
+                ATTR_DATE_SHORT: f"{_day_name} {_date.strftime("d. %d/%m") if _date else None}" ,
+                ATTR_DESCRIPTION: self._pickup_events.description,
+                ATTR_DURATION: _day_text,
+                ATTR_ENTITY_PICTURE: PICTURE_ITEMS.get(_categori),
+                ATTR_LAST_UPDATE: as_local(self._pickup_events.last_updated),
+                ATTR_NAME: self._pickup_events.friendly_name,
+            }
 
     async def async_added_to_hass(self):
         """When entity is added to hass."""
