@@ -1,5 +1,19 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.1.2
+
+  **Date**: `2024-04-05`
+
+  ## What's Changed
+
+- Re-added `Miljøboks` for Gentofte kommune as it was placed in the wrong location for 2.1.1. Closing [#64](https://github.com/briis/affalddk/issues/64)
+- Bump dependency `pyaffalddk` to version 2.0.21
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.1.1
 
   **Date**: `2024-04-03`
@@ -9,11 +23,6 @@
 - Found the real error for the sensors not being updated when containers have been collected. All data is now updated correctly according to the update interval set. Closing [#61](https://github.com/briis/affalddk/issues/61)
 - Added `Miljøboks` for Gentofte kommune. Closing [#64](https://github.com/briis/affalddk/issues/64)
 - Bump dependency `pyaffalddk` to version 2.0.20
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.1.0
 
