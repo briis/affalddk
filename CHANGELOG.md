@@ -1,5 +1,20 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.1.3
+
+  **Date**: `2024-04-06`
+
+  ## What's Changed
+
+- Added missing container for Svendborg kommune. Closing [#68](https://github.com/briis/affalddk/issues/68)
+- Added missing container for Mariagerfjord kommune. Closing [#67](https://github.com/briis/affalddk/issues/67)
+- Bump dependency `pyaffalddk` to version 2.0.22
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.1.2
 
   **Date**: `2024-04-05`
@@ -8,11 +23,6 @@
 
 - Re-added `Miljøboks` for Gentofte kommune as it was placed in the wrong location for 2.1.1. Closing [#64](https://github.com/briis/affalddk/issues/64)
 - Bump dependency `pyaffalddk` to version 2.0.21
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.1.1
 
