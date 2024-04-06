@@ -40,7 +40,7 @@ from .const import (
     DOMAIN,
 )
 from .images import PICTURE_ITEMS
-from pyaffalddk import ICON_LIST, PickupType
+from pyaffalddk import ICON_LIST, PickupType, WEEKDAYS, WEEKDAYS_SHORT
 
 @dataclass
 class AffaldDKSensorEntityDescription(SensorEntityDescription):
@@ -298,10 +298,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             if _state < 0:
                 _state = 0
             _day_number = _date.weekday()
-            _weekdays = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]
-            _weekdays_full = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"]
-            _day_name = _weekdays[_day_number]
-            _day_name_long = _weekdays_full[_day_number]
+            _day_name = WEEKDAYS_SHORT[_day_number]
+            _day_name_long = WEEKDAYS[_day_number]
             if _state == 0:
                 _day_text = "I dag"
             elif _state == 1:
