@@ -8,6 +8,7 @@
 
 - Added missing container for Svendborg kommune. Closing [#68](https://github.com/briis/affalddk/issues/68)
 - Added missing container for Mariagerfjord kommune. Closing [#67](https://github.com/briis/affalddk/issues/67)
+- Imporoved error handling on sensor entities.
 - Bump dependency `pyaffalddk` to version 2.0.22
 
 ---------------------------
