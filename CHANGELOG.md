@@ -1,5 +1,22 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.1.4
+
+  **Date**: `2024-04-16`
+
+  This is a minor release, with a Hotfix for Faxe Kommune
+
+  ## What's Changed
+
+- Added `|` as separator to Next Pickup sensor, to easier identify items.
+- Added missing containers for Papir & Plast and Metal & Glas for Faxe kommune. Closing #71
+- Bump dependency `pyaffalddk` to version 2.0.23
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.1.3
 
   **Date**: `2024-04-07`
@@ -10,11 +27,6 @@
 - Added missing container for Mariagerfjord kommune. Closing [#67](https://github.com/briis/affalddk/issues/67)
 - Imporoved error handling on sensor entities.
 - Bump dependency `pyaffalddk` to version 2.0.22
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.1.2
 
