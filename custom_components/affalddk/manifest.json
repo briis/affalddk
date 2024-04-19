@@ -12,7 +12,7 @@
     "iot_class": "cloud_polling",
     "issue_tracker": "https://github.com/briis/affalddk/issues",
     "requirements": [
-        "pyaffalddk==2.0.23"
+        "pyaffalddk==2.0.24"
     ],
-    "version": "2.1.4"
+    "version": "2.1.5"
 }

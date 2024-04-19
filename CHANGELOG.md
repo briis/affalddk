@@ -8,6 +8,8 @@
 
 - Added new category Plast, MDK, Glas & Metal.
 - Added missing containers for Varde kommune. Closing #75
+- Support for Gladsaxe kommunes storskrald definition by @DeKi90
+- Bump dependency `pyaffalddk` to version 2.0.24
 
 ---------------------------
 
