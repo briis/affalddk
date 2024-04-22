@@ -1,5 +1,20 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.1.6
+
+  **Date**: `2024-04-22`
+
+  ## What's Changed
+
+- Modified change from `pyaffalddk` 2.0.25, as it caused problems for many with the category Storskrald. It will now work for all, including Gladsaxe. Closing [#76](https://github.com/briis/affalddk/issues/76)
+- Added more details to warning if category not found. Makes it easier to debug when errors are reported.
+- Bump dependency `pyaffalddk` to version 2.0.26
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.1.5
 
   **Date**: `2024-04-19`
@@ -10,11 +25,6 @@
 - Added missing containers for Varde kommune. Closing #75
 - Support for Gladsaxe kommunes storskrald definition by @DeKi90
 - Bump dependency `pyaffalddk` to version 2.0.24
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.1.4
 
