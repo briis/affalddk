@@ -1,5 +1,20 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.1.7
+
+  **Date**: `2024-04-xx`
+
+  ## What's Changed
+
+- Fixed missing containers for Glostrup Kommune. Closing [#79](https://github.com/briis/affalddk/issues/79)
+- Added new category images for `restaffald` and `madaffald`
+- Bump dependency `pyaffalddk` to version 2.0.27
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.1.6
 
   **Date**: `2024-04-22`
@@ -9,11 +24,6 @@
 - Modified change from `pyaffalddk` 2.0.25, as it caused problems for many with the category Storskrald. It will now work for all, including Gladsaxe. Closing [#76](https://github.com/briis/affalddk/issues/76)
 - Added more details to warning if category not found. Makes it easier to debug when errors are reported.
 - Bump dependency `pyaffalddk` to version 2.0.26
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.1.5
 
