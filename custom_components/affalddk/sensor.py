@@ -68,8 +68,13 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
+        key="madaffald",
+        name="Madaffald",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
         key="dagrenovation",
-        name="Dagrenovations",
+        name="Dagrenovation",
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
@@ -114,7 +119,7 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
     ),
     AffaldDKSensorEntityDescription(
         key="jern",
-        name="Jern",
+        name="Metal",
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
@@ -185,6 +190,11 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
     AffaldDKSensorEntityDescription(
         key="pappapir",
         name="Pap & Papir",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="restaffald",
+        name="Restaffald",
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
