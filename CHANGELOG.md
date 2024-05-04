@@ -11,6 +11,7 @@
 - Fixed missing containers for Glostrup Kommune. Closing [#79](https://github.com/briis/affalddk/issues/79)
 - Fixed missing containers for Egedal Kommune. Closing [#84](https://github.com/briis/affalddk/issues/84)
 - Fixed missing containers for Lyngby-Taarbæk Kommune. Closing [#83](https://github.com/briis/affalddk/issues/83)
+- Fixed missing Tekstil container for Solrød Kommune.
 - Bump dependency `pyaffalddk` to version 2.0.28
 
 ---------------------------
