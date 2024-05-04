@@ -2,14 +2,17 @@
 
   ## Version 2.1.7
 
-  **Date**: `2024-04-xx`
+  **Date**: `2024-05-04`
 
   ## What's Changed
 
 - Added new Categories `Madaffald` and `Restaffald`
 - Added new category images for `restaffald` and `madaffald`
 - Fixed missing containers for Glostrup Kommune. Closing [#79](https://github.com/briis/affalddk/issues/79)
-- Bump dependency `pyaffalddk` to version 2.0.27
+- Fixed missing containers for Egedal Kommune. Closing [#84](https://github.com/briis/affalddk/issues/84)
+- Fixed missing containers for Lyngby-Taarbæk Kommune. Closing [#83](https://github.com/briis/affalddk/issues/83)
+- Fixed missing Tekstil container for Solrød Kommune.
+- Bump dependency `pyaffalddk` to version 2.0.28
 
 ---------------------------
 
