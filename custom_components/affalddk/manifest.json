@@ -14,5 +14,5 @@
     "requirements": [
         "pyaffalddk==2.0.28"
     ],
-    "version": "2.1.7"
+    "version": "2.1.8"
 }
