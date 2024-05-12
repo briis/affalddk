@@ -1,5 +1,19 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.1.8
+
+  **Date**: `2024-05-12`
+
+  ## What's Changed
+
+* Fixing missing details for Vejen and Randers. Closing [#87](https://github.com/briis/affalddk/issues/87) and [pyaffalddk #3](https://github.com/briis/pyaffalddk/issues/3)
+* Bump dependency `pyaffalddk` to version 2.0.29
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.1.7
 
   **Date**: `2024-05-04`
@@ -13,11 +27,6 @@
 - Fixed missing containers for Lyngby-Taarbæk Kommune. Closing [#83](https://github.com/briis/affalddk/issues/83)
 - Fixed missing Tekstil container for Solrød Kommune.
 - Bump dependency `pyaffalddk` to version 2.0.28
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.1.6
 
