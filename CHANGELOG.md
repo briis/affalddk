@@ -9,6 +9,8 @@
 * Fixing missing details for Slagelse and Randers. Closing [#97](https://github.com/briis/affalddk/issues/97)
 * Bump dependency `pyaffalddk` to version 2.0.30
 
+## [Dependabot](https://github.com/apps/dependabot) updates
+
 ---------------------------
 
 <details>
