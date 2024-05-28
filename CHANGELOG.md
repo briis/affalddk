@@ -1,5 +1,19 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.1.9
+
+  **Date**: `2024-05-28`
+
+  ## What's Changed
+
+* Fixing missing details for Slagelse and Randers. Closing [#97](https://github.com/briis/affalddk/issues/97)
+* Bump dependency `pyaffalddk` to version 2.0.30
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.1.8
 
   **Date**: `2024-05-12`
@@ -8,11 +22,6 @@
 
 * Fixing missing details for Vejen and Randers. Closing [#87](https://github.com/briis/affalddk/issues/87) and [pyaffalddk #3](https://github.com/briis/pyaffalddk/issues/3)
 * Bump dependency `pyaffalddk` to version 2.0.29
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.1.7
 
