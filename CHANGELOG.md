@@ -1,5 +1,22 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.1.10
+
+  **Date**: `2024-06-15`
+
+  ## What's Changed
+
+* Fixing missing details for Faxe. Closing [`pyaffalddk` #4](https://github.com/briis/pyaffalddk/issues/4)
+* Fixing missing details for Lyngby-Taarbæk. Closing [#105](https://github.com/briis/affalddk/issues/105)
+* Bump dependency `pyaffalddk` to version 2.0.31
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.1.9
 
   **Date**: `2024-05-28`
@@ -10,11 +27,6 @@
 * Bump dependency `pyaffalddk` to version 2.0.30
 
 ## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.1.8
 
