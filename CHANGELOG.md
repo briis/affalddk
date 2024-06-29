@@ -1,5 +1,21 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+  ## Version 2.1.11
+
+  **Date**: `2024-06-29`
+
+  ## What's Changed
+
+* Adding Bornholm as new Municipality. I have limited test data to go on, but some data is being returned. If anything is missing, please report back. Closing [#114](https://github.com/briis/affalddk/issues/114)
+* Bump dependency `pyaffalddk` to version 2.0.33
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
   ## Version 2.1.10
 
   **Date**: `2024-06-15`
@@ -12,10 +28,6 @@
 
 ## [Dependabot](https://github.com/apps/dependabot) updates
 
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.1.9
 
