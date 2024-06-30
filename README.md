@@ -114,6 +114,7 @@ Here is the list of currently supported Municipalities
     - Albertslund
     - Allerød
     - Billund
+    - Bornholm
     - Brøndby
     - Brønderslev
     - Dragør
