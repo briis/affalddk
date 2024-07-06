@@ -1,5 +1,21 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.1.12
+
+**Date**: `2024-07-05`
+
+## What's Changed
+
+* Fixing missing containers in Esbjerg. Closing [AffaldDK #117](https://github.com/briis/affalddk/issues/117)
+* Fixing missing containers in Gribskov. Closing [AffaldDK #118](https://github.com/briis/affalddk/issues/118)
+* Bump dependency `pyaffalddk` to version 2.0.34
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
 ## Version 2.1.11
 
 **Date**: `2024-06-30`
@@ -8,13 +24,6 @@
 
 * Adding Bornholm as new Municipality. I have limited test data to go on, but some data is being returned. If anything is missing, please report back. Closing [#114](https://github.com/briis/affalddk/issues/114)
 * Bump dependency `pyaffalddk` to version 2.0.33
-
-## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
   ## Version 2.1.10
 
@@ -25,8 +34,6 @@
 * Fixing missing details for Faxe. Closing [`pyaffalddk` #4](https://github.com/briis/pyaffalddk/issues/4)
 * Fixing missing details for Lyngby-Taarbæk. Closing [#105](https://github.com/briis/affalddk/issues/105)
 * Bump dependency `pyaffalddk` to version 2.0.31
-
-## [Dependabot](https://github.com/apps/dependabot) updates
 
 
   ## Version 2.1.9
