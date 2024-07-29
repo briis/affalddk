@@ -1,5 +1,21 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.1.13
+
+**Date**: `2024-07-29`
+
+## What's Changed
+
+* Fixing missing Types in Albertslund. Closing [AffaldDK #129](https://github.com/briis/affalddk/issues/129)
+* Bump `pyaffalddk` to V2.0.35
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.1.12
 
 **Date**: `2024-07-06`
@@ -10,12 +26,6 @@
 * Fixing missing containers in Gribskov. Closing [AffaldDK #118](https://github.com/briis/affalddk/issues/118)
 * Bump dependency `pyaffalddk` to version 2.0.34
 
-## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 ## Version 2.1.11
 
 **Date**: `2024-06-30`
