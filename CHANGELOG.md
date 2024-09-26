@@ -1,5 +1,22 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.1.17
+
+**Date**: `2024-09-26`
+
+## What's Changed
+
+* Fixing missing Types in Svendborg. Closing [AffaldDK #151](https://github.com/briis/affalddk/issues/151)
+* Fixing missing Types in Horsens. Closing [pyaffalddk #14](https://github.com/briis/pyaffalddk/issues/14)
+* Bump `pyaffalddk` to V2.0.39
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.1.16
 
 **Date**: `2024-08-20`
@@ -9,13 +26,6 @@
 * Fixing missing Types in Solrød. Closing [AffaldDK #139](https://github.com/briis/affalddk/issues/139)
 * Fixing missing Types in Egedal. Closing [AffaldDK #142](https://github.com/briis/affalddk/issues/142)
 * Bump `pyaffalddk` to V2.0.38
-
-## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.1.15
 
