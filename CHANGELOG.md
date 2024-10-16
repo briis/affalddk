@@ -6,8 +6,9 @@
 
 ## What's Changed
 
-* Corrected wrong image for Pap, Pair, Glas & Metal. Contributing to [AffaldDK #159](https://github.com/briis/affalddk/issues/159)
-* Bump `pyaffalddk` to V2.0.40
+* Corrected wrong image for Pap, Pair, Glas & Metal. Closing [AffaldDK #159](https://github.com/briis/affalddk/issues/159)
+* Added new Material Type `juletrae` and also added new image. Closing [AffaldDK #165](https://github.com/briis/affalddk/issues/165)
+* Bump `pyaffalddk` to V2.0.41
 
 ## [Dependabot](https://github.com/apps/dependabot) updates
 
