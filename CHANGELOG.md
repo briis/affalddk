@@ -1,5 +1,22 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.1.19
+
+**Date**: `2024-10-11`
+
+## What's Changed
+
+* Corrected wrong image for Pap, Pair, Glas & Metal. Closing [AffaldDK #159](https://github.com/briis/affalddk/issues/159)
+* Added new Material Type `juletrae` and also added new image. Closing [AffaldDK #165](https://github.com/briis/affalddk/issues/165)
+* Bump `pyaffalddk` to V2.0.41
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.1.18
 
 **Date**: `2024-10-04`
@@ -8,13 +25,6 @@
 
 * Start Fixing issues, after Bornholm has changed naming of many un its. Contributing to [AffaldDK #159](https://github.com/briis/affalddk/issues/159)
 * Bump `pyaffalddk` to V2.0.40
-
-## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.1.17
 
