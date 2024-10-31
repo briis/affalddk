@@ -176,4 +176,4 @@ Here is the list of currently supported Municipalities
 [license-shield]: https://img.shields.io/github/license/briis/affalddk.svg?style=flat-square
 [maintenance-shield]: https://img.shields.io/badge/maintainer-Bjarne%20Riis%20%40briis-blue.svg?style=flat-square
 [releases-shield]: https://img.shields.io/github/release/briis/affalddk.svg?include_prereleases&style=flat-square&style=flat-square
-[releases]: https://github.com/briis/renoaffalddkweb/releases
+[releases]: https://github.com/briis/affalddk/releases
