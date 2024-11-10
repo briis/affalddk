@@ -33,6 +33,7 @@ PLATFORMS = [Platform.SENSOR, Platform.CALENDAR]
 
 _LOGGER = logging.getLogger(__name__)
 
+
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool:
     """Set up AffaldDK from a config entry."""
 
@@ -48,6 +49,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
 
     return True
 
+
 async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool:
     """Unload a config entry."""
 
@@ -59,26 +61,32 @@ async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> 
 
     return unload_ok
 
+
 async def async_update_entry(hass: HomeAssistant, config_entry: ConfigEntry):
     """Reload WeatherFlow Forecast component when options changed."""
     await hass.config_entries.async_reload(config_entry.entry_id)
 
+
 class CannotConnect(HomeAssistantError):
     """Unable to connect to the web site."""
+
 
 class AffaldDKtDataUpdateCoordinator(DataUpdateCoordinator[PickupEvents]):
     """Class to manage fetching AffaldDK data."""
 
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None:
         """Initialize global WeatherFlow forecast data updater."""
-        self.affalddk = AffaldDKData(
-            hass, config_entry.data)
+        self.affalddk = AffaldDKData(hass, config_entry.data)
         self.affalddk.initialize_data()
         self.hass = hass
         self.config_entry = config_entry
 
         # update_interval = timedelta(minutes=2)
-        update_interval = timedelta(hours=self.config_entry.options.get(CONF_UPDATE_INTERVAL, DEFAULT_SCAN_INTERVAL))
+        update_interval = timedelta(
+            hours=self.config_entry.options.get(
+                CONF_UPDATE_INTERVAL, DEFAULT_SCAN_INTERVAL
+            )
+        )
 
         super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=update_interval)
 
@@ -108,10 +116,9 @@ class AffaldDKData:
 
     def initialize_data(self) -> bool:
         """Establish connection to API."""
-        #self.hass.config.time_zone
         self.affalddk_data = GarbageCollection(
-                municipality=self._config[CONF_MUNICIPALITY],
-                session=async_get_clientsession(self.hass),
+            municipality=self._config[CONF_MUNICIPALITY],
+            session=async_get_clientsession(self.hass),
         )
 
         return True
@@ -120,7 +127,9 @@ class AffaldDKData:
         """Fetch data from API."""
 
         try:
-            resp: PickupEvents = await self.affalddk_data.get_pickup_data(address_id=self._config[CONF_ADDRESS_ID])
+            resp: PickupEvents = await self.affalddk_data.get_pickup_data(
+                address_id=self._config[CONF_ADDRESS_ID]
+            )
         except AffaldDKNotSupportedError as err:
             _LOGGER.debug(err)
             return False
