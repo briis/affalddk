@@ -34,6 +34,7 @@ from .const import (
     ATTR_LAST_UPDATE,
     CONF_ADDRESS_ID,
     CONF_HOUSE_NUMBER,
+    CONF_MUNICIPALITY,
     CONF_ROAD_NAME,
     DEFAULT_ATTRIBUTION,
     DEFAULT_BRAND,
@@ -280,6 +281,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
                 f"{self._config.data[CONF_HOUSE_NUMBER]}"
             ),
             configuration_url="https://github.com/briis/affalddk",
+            model=f"Kommune: {config.data[CONF_MUNICIPALITY]}",
             model_id=f"ID: {config.data[CONF_ADDRESS_ID]}",
         )
         self._attr_unique_id = f"{config.data[CONF_ADDRESS_ID]} {description.key}"

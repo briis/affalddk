@@ -8,6 +8,7 @@
 
 * Fixing issue where there is a weekday present but next pick-up is undefined. Typically occurs around New Years time. Closing [AffaldDK #179](https://github.com/briis/affalddk/issues/179)
 * Added December 31st of next year, if a Pickup Type is valid, but no current date is given.
+* Added Municipality and Address ID to 'Service Info', to be used when asking for support.
 * Bump `pyaffalddk` to V2.0.44
 
 ## [Dependabot](https://github.com/apps/dependabot) updates
