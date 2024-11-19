@@ -6,8 +6,8 @@
 
 ## What's Changed
 
+* Around every New Year a bunch of Pickup Types will have no dates for the next pickup, as the calendar for following year has not yet been created. That will result in some Sensors with `Undefined` or `Unavailable` in their value, and they will be unavailable, until they have a date again. As of version 2.1.20, they will now get an artificial date which is always December 31. the following year. As soon as a valid date is found for these sensors, this date will be used instead.
 * Fixing issue where there is a weekday present but next pick-up is undefined. Typically occurs around New Years time. Closing [AffaldDK #179](https://github.com/briis/affalddk/issues/179)
-* Added December 31st of next year, if a Pickup Type is valid, but no current date is given.
 * Added Municipality and Address ID to 'Service Info', to be used when asking for support.
 * Bump `pyaffalddk` to V2.0.44
 
