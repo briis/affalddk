@@ -1,5 +1,23 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.1.20
+
+**Date**: `2024-11-18`
+
+## What's Changed
+
+* Around every New Year a bunch of Pickup Types will have no dates for the next pickup, as the calendar for following year has not yet been created. That will result in some Sensors with `Undefined` or `Unavailable` in their value, and they will be unavailable, until they have a date again. As of version 2.1.20, they will now get an artificial date which is always December 31. the following year. As soon as a valid date is found for these sensors, this date will be used instead.
+* Fixing issue where there is a weekday present but next pick-up is undefined. Typically occurs around New Years time. Closing [AffaldDK #179](https://github.com/briis/affalddk/issues/179)
+* Added Municipality and Address ID to 'Service Info', to be used when asking for support.
+* Bump `pyaffalddk` to V2.0.44
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.1.19
 
 **Date**: `2024-10-11`
@@ -9,13 +27,6 @@
 * Corrected wrong image for Pap, Pair, Glas & Metal. Closing [AffaldDK #159](https://github.com/briis/affalddk/issues/159)
 * Added new Material Type `juletrae` and also added new image. Closing [AffaldDK #165](https://github.com/briis/affalddk/issues/165)
 * Bump `pyaffalddk` to V2.0.41
-
-## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.1.18
 
