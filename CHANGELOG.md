@@ -1,14 +1,16 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
-## Version 2.2.0
+## Version 2.2.0-beta2
 
 **Date**: `2024-11-25`
 
 ## What's Changed
 
 * Added Odense Kommune to list of supported municipalities.
+* Added Aarhus Kommune to list of supported municipalities.
 * Added base support for municipalities that can deliver data via an iCalendar file.
-* Bump `pyaffalddk` to V2.1.0
+* Added new Material Type `Genbrugsspand, 240L (2-delt) (1 stk.)`. Closing [AffaldDK #186](https://github.com/briis/affalddk/issues/186)
+* Bump `pyaffalddk` to V2.1.1
 
 ## [Dependabot](https://github.com/apps/dependabot) updates
 
