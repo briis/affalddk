@@ -1,5 +1,22 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.2.0
+
+**Date**: `2024-11-25`
+
+## What's Changed
+
+* Added Odense Kommune to list of supported municipalities.
+* Added base support for municipalities that can deliver data via an iCalendar file.
+* Bump `pyaffalddk` to V2.1.0
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.1.20
 
 **Date**: `2024-11-19`
@@ -10,13 +27,6 @@
 * Fixing issue where there is a weekday present but next pick-up is undefined. Typically occurs around New Years time. Closing [AffaldDK #179](https://github.com/briis/affalddk/issues/179)
 * Added Municipality and Address ID to 'Service Info', to be used when asking for support.
 * Bump `pyaffalddk` to V2.0.44
-
-## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.1.19
 
