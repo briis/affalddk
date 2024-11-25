@@ -114,6 +114,7 @@ Here is the list of currently supported Municipalities
 
     - Aabenraa
     - Aalborg
+    - Aarhus
     - Albertslund
     - Allerød
     - Billund
