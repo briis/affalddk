@@ -149,6 +149,7 @@ Here is the list of currently supported Municipalities
     - Lyngby-Taarbæk
     - Mariagerfjord
     - Næstved
+    - Odense
     - Odsherred
     - Randers
     - Ringkøbing-Skjern
