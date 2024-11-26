@@ -4,4 +4,14 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+python3 -m pip install --upgrade pip
 python3 -m pip install --requirement requirements.txt
+
+sudo apt update && sudo apt upgrade -y
+sudo apt install ffmpeg -y
+sudo apt install libpcap0.8 -y
+sudo apt install libturbojpeg0 -y
+
+wget https://github.com/AlexxIT/go2rtc/releases/download/v1.9.7/go2rtc_linux_arm64
+sudo mv go2rtc_linux_arm64 /bin/go2rtc
+sudo chmod +x /bin/go2rtc
