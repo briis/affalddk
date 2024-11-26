@@ -4,4 +4,7 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+sudo apt update && sudo apt upgrade -y
+
+python3 -m pip install --upgrade pip
 python3 -m pip install --upgrade --pre homeassistant

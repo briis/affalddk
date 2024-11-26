@@ -4,4 +4,10 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+python3 -m pip install --upgrade pip
 python3 -m pip install --requirement requirements.txt
+
+sudo apt update && sudo apt upgrade -y
+sudo apt install ffmpeg -y
+sudo apt install libpcap0.8 -y
+sudo apt install libturbojpeg0 -y
