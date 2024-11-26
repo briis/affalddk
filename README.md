@@ -114,7 +114,7 @@ Here is the list of currently supported Municipalities
 
     - Aabenraa
     - Aalborg
-    - Aarhus (Version 2.2.0-beta2)
+    - Aarhus
     - Albertslund
     - Allerød
     - Billund
@@ -150,7 +150,7 @@ Here is the list of currently supported Municipalities
     - Lyngby-Taarbæk
     - Mariagerfjord
     - Næstved
-    - Odense (Version 2.2.0-beta1)
+    - Odense
     - Odsherred
     - Randers
     - Ringkøbing-Skjern
