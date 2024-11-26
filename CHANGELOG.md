@@ -2,7 +2,7 @@
 
 ## Version 2.2.0
 
-**Date**: `TBD`
+**Date**: `2024-11-26`
 
 ## What's Changed
 
