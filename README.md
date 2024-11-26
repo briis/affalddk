@@ -27,7 +27,9 @@ So why change the name and not just give it a new version number?
 For a long time I wanted to have this Integration part of the Default HACS store, but in order to do that, you need to have Logo and icon images in the Home Assistant Brand Database. As Renoweb does not really have a logo by itself, I could not create one, as this could violate their rights to the name. But calling it something that is not related directly to Renoweb, gives me the possibility to invent my own logo and thus getting this added to the Default HACS store.
 
 ### DESCRIPTION
-Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from **Renoweb** and that accounts for more than 50% of all Municipalities. As of release 2.2.0, there is now also a possibility to read an iCalendar file (`.ics` file) which a few municipalities offer for their customers. If your municipality is not on the list, and you have the option for that, please create a Feature Request, and I will do my best to get it added.
+Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from **Renoweb** and that accounts for more than 50% of all Municipalities.
+
+As of release 2.2.0, there is now also a possibility to read an **iCalendar** file (`.ics` file) which a few municipalities offer for their customers. If your municipality is not on the list, and you have the option for that, please create a Feature Request, and I will do my best to get it added.
 
 Go to the [Municipality List](#MUNICIPALITIES) to see if your Municipality will work with this integration.
 
@@ -112,7 +114,7 @@ Around every New Year a bunch of Pickup Types will have no dates for the next pi
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities
+Here is the list of currently supported Municipalities (57)
 
     - Aabenraa
     - Aalborg
