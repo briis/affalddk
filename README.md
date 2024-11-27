@@ -19,13 +19,6 @@ This integration replaces the [RenoWeb integration](https://github.com/briis/ren
 
 This is a complete rewrite of the RenowWeb V1.x Integration as the API this uses is slowly being phased out, and we needed to find a new way of collecting the data.
 
-If I had updated Renoweb to V2.0 and you were a previous user of Renoweb, you would anyway have had to redo all your dashboards and automations, as Unique ID's of all sensors would have been new, thus having to change your Automations, Scripts and Dashboard entries.
-With that in mind I decided to also use the opportunity to change the domain name of the Integration to `affalddk`
-
-So why change the name and not just give it a new version number?
-
-For a long time I wanted to have this Integration part of the Default HACS store, but in order to do that, you need to have Logo and icon images in the Home Assistant Brand Database. As Renoweb does not really have a logo by itself, I could not create one, as this could violate their rights to the name. But calling it something that is not related directly to Renoweb, gives me the possibility to invent my own logo and thus getting this added to the Default HACS store.
-
 ### DESCRIPTION
 Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from **Renoweb** and that accounts for more than 50% of all Municipalities.
 
@@ -53,14 +46,6 @@ Platform | Description
 ## CREDITS
 
 A big thank you to @thomaspalmdk for finding the new API, and to the people who helped Beta test it. Also thank you to @LordMike for making the embedded image functionality.
-
-### UPGRADING FROM RENOWEB V1.x
-As of V2.1.x of this Integration it can co-exist with the previous RenoWeb integration, as the dependecy API module has changed its name. So all you have to do is to install this integration, and then migrate your Dashboard, Automations and Scripts to use the new Entity names.
-
-I still recommend that you de-install the previous integration, to not overload the servers. To deinstall *RenoWeb* do the following:
-1. first remove Renoweb from the *Devices & Services* section.
-2. Then go to HACS, and de-install Renoweb
-3. Finally restart Home Assistant
 
 
 ## INSTALLATION
