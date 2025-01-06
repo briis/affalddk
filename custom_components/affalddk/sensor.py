@@ -1,4 +1,5 @@
 """Support for AffaldDK sensor data."""
+
 from __future__ import annotations
 
 import logging
@@ -23,7 +24,7 @@ from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
     DataUpdateCoordinator,
 )
-from homeassistant.util.dt import now, as_local
+from homeassistant.util.dt import as_local, now, utcnow
 
 from . import AffaldDKtDataUpdateCoordinator
 from .const import (
@@ -369,7 +370,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
                 ATTR_DESCRIPTION: self._pickup_events.description,
                 ATTR_DURATION: _day_text,
                 ATTR_ENTITY_PICTURE: PICTURE_ITEMS.get(_categori),
-                ATTR_LAST_UPDATE: as_local(self._pickup_events.last_updated),
+                # ATTR_LAST_UPDATE: as_local(utcnow()),
                 ATTR_NAME: self._pickup_events.friendly_name,
             }
 

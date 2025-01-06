@@ -1,4 +1,5 @@
 """Support for the Affald DK Garbage Collection Service."""
+
 from __future__ import annotations
 
 from datetime import timedelta
@@ -112,7 +113,7 @@ class AffaldDKData:
         self.hass = hass
         self._config = config
         self.affalddk_data: GarbageCollection
-        self.pickup_events: PickupEvents = []
+        self.pickup_events: PickupEvents
 
     def initialize_data(self) -> bool:
         """Establish connection to API."""
@@ -132,10 +133,10 @@ class AffaldDKData:
             )
         except AffaldDKNotSupportedError as err:
             _LOGGER.debug(err)
-            return False
+            raise CannotConnect() from err
         except AffaldDKNotValidAddressError as err:
             _LOGGER.debug(err)
-            return False
+            raise CannotConnect() from err
         except AffaldDKNoConnection as notreadyerror:
             _LOGGER.debug(notreadyerror)
             raise ConfigEntryNotReady from notreadyerror

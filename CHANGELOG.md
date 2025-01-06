@@ -1,5 +1,23 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.2.2
+
+**Date**: `2024-01-05`
+
+## What's Changed
+
+* Fixing missing DAYLIGHT information in iCal data. Closing [AffaldDK #205](https://github.com/briis/affalddk/issues/205)
+* Fixing missing containers in Køge after renaming. Closing [AffaldDK #207](https://github.com/briis/affalddk/issues/207)
+* Fixing blocking timezone call when upgrading to python 3.13
+* Bump `pyaffalddk` to V2.1.5
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.2.1
 
 **Date**: `2024-12-09`
@@ -8,13 +26,6 @@
 
 * Fixing renamed containers in Egedal kommune. Closing [AffaldDK #194](https://github.com/briis/affalddk/issues/194)
 * Bump `pyaffalddk` to V2.1.2
-
-## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.2.0
 
