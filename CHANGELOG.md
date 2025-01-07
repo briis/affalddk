@@ -9,6 +9,7 @@
 * Changed the Last Update field as this causes blocking IO issues with Home Assistant. Now this value is calculated based on homeassistant dt functions.
 * Fixing missing DAYLIGHT information in iCal data. Closing [AffaldDK #205](https://github.com/briis/affalddk/issues/205)
 * Fixing missing containers in Køge after renaming. Closing [AffaldDK #207](https://github.com/briis/affalddk/issues/207)
+* Bump development environment to Python 3.1.3 and Home Assistant 2025.1
 * Bump `pyaffalddk` to V2.1.6
 
 ## [Dependabot](https://github.com/apps/dependabot) updates
