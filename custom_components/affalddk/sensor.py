@@ -24,7 +24,7 @@ from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
     DataUpdateCoordinator,
 )
-from homeassistant.util.dt import now, as_local
+from homeassistant.util.dt import now
 
 from . import AffaldDKtDataUpdateCoordinator
 from .const import (
