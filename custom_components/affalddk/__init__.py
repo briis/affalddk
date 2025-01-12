@@ -20,7 +20,6 @@ from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError, ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
-from homeassistant.util.dt import now
 from .const import (
     CONF_ADDRESS_ID,
     CONF_MUNICIPALITY,
@@ -37,7 +36,7 @@ _LOGGER = logging.getLogger(__name__)
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool:
     """Set up AffaldDK from a config entry."""
 
-    coordinator = AffaldDKtDataUpdateCoordinator(hass, config_entry)
+    coordinator = AffaldDKDataUpdateCoordinator(hass, config_entry)
     if ConfigEntryState == ConfigEntryState.SETUP_IN_PROGRESS:
         await coordinator.async_config_entry_first_refresh()
     else:
@@ -74,7 +73,7 @@ class CannotConnect(HomeAssistantError):
     """Unable to connect to the web site."""
 
 
-class AffaldDKtDataUpdateCoordinator(DataUpdateCoordinator):
+class AffaldDKDataUpdateCoordinator(DataUpdateCoordinator):
     """Class to manage fetching AffaldDK data."""
 
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None:
@@ -84,6 +83,7 @@ class AffaldDKtDataUpdateCoordinator(DataUpdateCoordinator):
         self.hass = hass
         self.config_entry = config_entry
 
+        # update_interval = timedelta(minutes=2)
         update_interval = timedelta(
             hours=self.config_entry.options.get(
                 CONF_UPDATE_INTERVAL, DEFAULT_SCAN_INTERVAL
@@ -101,12 +101,7 @@ class AffaldDKtDataUpdateCoordinator(DataUpdateCoordinator):
     async def _async_update_data(self) -> AffaldDKData:
         """Fetch data from WeatherFlow Forecast."""
         try:
-            _states: AffaldDKData = await self.affalddk.fetch_data()
-            _last_update = now()
-            _LOGGER.debug("Data fetched %s", _last_update.strftime("%Y-%m-%d %H:%M:%S"))
-
-            return _states
-
+            return await self.affalddk.fetch_data()
         except Exception as err:
             raise UpdateFailed(f"Update failed: {err}") from err
 
@@ -119,12 +114,12 @@ class AffaldDKData:
 
         self.hass = hass
         self._config = config.data
-        self.affalddk_data: GarbageCollection
+        self._affalddk_data: GarbageCollection
         self.pickup_events: PickupEvents
 
     def initialize_data(self) -> bool:
         """Establish connection to API."""
-        self.affalddk_data = GarbageCollection(
+        self._affalddk_data = GarbageCollection(
             municipality=self._config[CONF_MUNICIPALITY],
             session=async_get_clientsession(self.hass),
         )
@@ -135,7 +130,7 @@ class AffaldDKData:
         """Fetch data from API."""
 
         try:
-            resp: PickupEvents = await self.affalddk_data.get_pickup_data(
+            self.pickup_events = await self._affalddk_data.get_pickup_data(
                 address_id=self._config[CONF_ADDRESS_ID]
             )
         except AffaldDKNotSupportedError as err:
@@ -151,9 +146,7 @@ class AffaldDKData:
             _LOGGER.debug(notreadyerror)
             raise ConfigEntryNotReady from notreadyerror
 
-        if not resp:
+        if not self.pickup_events:
             raise CannotConnect()
-
-        self.pickup_events = resp
 
         return self

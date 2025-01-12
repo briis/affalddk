@@ -7,7 +7,6 @@ import logging
 from dataclasses import dataclass
 import datetime
 from datetime import datetime as dt
-from types import MappingProxyType
 from typing import Any
 
 from homeassistant.components.sensor import (
@@ -26,7 +25,7 @@ from homeassistant.helpers.update_coordinator import (
 )
 from homeassistant.util.dt import now
 
-from . import AffaldDKtDataUpdateCoordinator
+from . import AffaldDKDataUpdateCoordinator
 from .const import (
     ATTR_DATE_LONG,
     ATTR_DATE_SHORT,
@@ -237,17 +236,17 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """AffaldDK sensor platform."""
-    coordinator: AffaldDKtDataUpdateCoordinator = hass.data[DOMAIN][
+    coordinator: AffaldDKDataUpdateCoordinator = hass.data[DOMAIN][
         config_entry.entry_id
     ]
 
-    if coordinator.data.pickup_events == {}:
+    if coordinator.affalddk.pickup_events is not None:
         return
 
-    entities: list[AffaldDKSensor[Any]] = [
+    entities: list[AffaldDKSensor] = [
         AffaldDKSensor(coordinator, description, config_entry)
         for description in SENSOR_TYPES
-        if coordinator.data.pickup_events.get(description.key) is not None
+        if coordinator.data.get(description.key) is not None
     ]
 
     async_add_entities(entities, False)
@@ -262,16 +261,16 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
 
     def __init__(
         self,
-        coordinator: AffaldDKtDataUpdateCoordinator,
+        coordinator: AffaldDKDataUpdateCoordinator,
         description: AffaldDKSensorEntityDescription,
-        config: MappingProxyType[str, Any],
+        config: ConfigEntry,
     ) -> None:
         """Initialize a AffaldDK sensor."""
         super().__init__(coordinator)
         self.entity_description = description
         self._config = config
         self._coordinator = coordinator
-        self._pickup_events: PickupType = None
+        self._pickup_events: PickupType
 
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, self._config.data[CONF_ADDRESS_ID])},
@@ -291,31 +290,31 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
     def native_unit_of_measurement(self) -> str | None:
         """Return unit of sensor."""
 
-        self._pickup_events = (
-            self._coordinator.data.pickup_events.get(self.entity_description.key)
-            if self._coordinator.data.pickup_events
-            else None
-        )
-        if self._pickup_events is not None:
-            current_time = now()
-            current_time = current_time.date()
-            pickup_time: datetime.date = self._pickup_events.date
-            _pickup_days = (pickup_time - current_time).days
-            if pickup_time:
-                if _pickup_days == 1:
-                    return "dag"
+        pickup_data = self._coordinator.data.get(self.entity_description.key)
+        if pickup_data is not None:
+            if self._pickup_events is not None and self._pickup_events.date is not None:
+                current_time = now()
+                current_time = current_time.date()
+                pickup_time: datetime.date = self._pickup_events.date
+                _pickup_days = (pickup_time - current_time).days
+                if pickup_time:
+                    if _pickup_days == 1:
+                        return "dag"
 
-            return super().native_unit_of_measurement
+                return super().native_unit_of_measurement
 
     @property
     def native_value(self) -> StateType:
         """Return state of the sensor."""
 
-        self._pickup_events = (
-            self._coordinator.data.pickup_events.get(self.entity_description.key)
-            if self._coordinator.data.pickup_events
-            else None
+        self._pickup_events = getattr(
+            self._coordinator.data, self.entity_description.key
         )
+        # self._pickup_events = (
+        #     self._coordinator.data.pickup_events.get(self.entity_description.key)
+        #     if self._coordinator.data.pickup_events
+        #     else None
+        # )
         if self._pickup_events is not None:
             current_time = now()
             current_time = current_time.date()
