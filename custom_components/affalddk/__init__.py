@@ -4,8 +4,7 @@ from __future__ import annotations
 
 from datetime import timedelta
 import logging
-from types import MappingProxyType
-from typing import Any, Self
+from typing import Self
 
 from pyaffalddk import (
     GarbageCollection,
@@ -15,7 +14,7 @@ from pyaffalddk import (
     AffaldDKNoConnection,
 )
 
-from homeassistant.config_entries import ConfigEntry
+from homeassistant.config_entries import ConfigEntry, ConfigEntryState
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError, ConfigEntryNotReady
@@ -39,7 +38,10 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
     """Set up AffaldDK from a config entry."""
 
     coordinator = AffaldDKtDataUpdateCoordinator(hass, config_entry)
-    await coordinator.async_config_entry_first_refresh()
+    if ConfigEntryState == ConfigEntryState.SETUP_IN_PROGRESS:
+        await coordinator.async_config_entry_first_refresh()
+    else:
+        await coordinator.async_refresh()
 
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN][config_entry.entry_id] = coordinator
@@ -72,24 +74,29 @@ class CannotConnect(HomeAssistantError):
     """Unable to connect to the web site."""
 
 
-class AffaldDKtDataUpdateCoordinator(DataUpdateCoordinator[PickupEvents]):
+class AffaldDKtDataUpdateCoordinator(DataUpdateCoordinator):
     """Class to manage fetching AffaldDK data."""
 
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None:
         """Initialize global WeatherFlow forecast data updater."""
-        self.affalddk = AffaldDKData(hass, config_entry.data)
+        self.affalddk = AffaldDKData(hass, config_entry)
         self.affalddk.initialize_data()
         self.hass = hass
         self.config_entry = config_entry
 
-        # update_interval = timedelta(minutes=2)
         update_interval = timedelta(
             hours=self.config_entry.options.get(
                 CONF_UPDATE_INTERVAL, DEFAULT_SCAN_INTERVAL
             )
         )
 
-        super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=update_interval)
+        super().__init__(
+            hass,
+            _LOGGER,
+            name=DOMAIN,
+            update_interval=update_interval,
+            config_entry=config_entry,
+        )
 
     async def _async_update_data(self) -> AffaldDKData:
         """Fetch data from WeatherFlow Forecast."""
@@ -107,11 +114,11 @@ class AffaldDKtDataUpdateCoordinator(DataUpdateCoordinator[PickupEvents]):
 class AffaldDKData:
     """Keep data for AffaldDK."""
 
-    def __init__(self, hass: HomeAssistant, config: MappingProxyType[str, Any]) -> None:
+    def __init__(self, hass: HomeAssistant, config: ConfigEntry) -> None:
         """Initialise affalddk entity data."""
 
         self.hass = hass
-        self._config = config
+        self._config = config.data
         self.affalddk_data: GarbageCollection
         self.pickup_events: PickupEvents
 
