@@ -270,7 +270,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         self.entity_description = description
         self._config = config
         self._coordinator = coordinator
-        self._pickup_events: PickupType
+        self._pickup_events: PickupType | None = None
 
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, self._config.data[CONF_ADDRESS_ID])},
@@ -315,13 +315,12 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         #     if self._coordinator.data.pickup_events
         #     else None
         # )
-        if self._pickup_events is not None:
+        if self._pickup_events is not None and self._pickup_events.date is not None:
             current_time = now()
             current_time = current_time.date()
             pickup_time: datetime.date = self._pickup_events.date
             _pickup_days = (pickup_time - current_time).days
-            if pickup_time:
-                return _pickup_days
+            return _pickup_days
 
     @property
     def icon(self) -> str | None:
@@ -330,15 +329,12 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         return ICON_LIST.get(self.entity_description.key)
 
     @property
-    def extra_state_attributes(self) -> None:
+    def extra_state_attributes(self) -> dict[str, Any] | None:
         """Return non standard attributes."""
 
-        self._pickup_events = (
-            self._coordinator.data.pickup_events.get(self.entity_description.key)
-            if self._coordinator.data.pickup_events
-            else None
-        )
-        if self._pickup_events is not None:
+        pickup_events = self._coordinator.data.get("pickup_events", {})
+        self._pickup_events = pickup_events.get(self.entity_description.key) if pickup_events else None
+        if isinstance(self._pickup_events, PickupType) and self._pickup_events.date is not None:
             _date: datetime.date = self._pickup_events.date
             _current_date = dt.today()
             _current_date = _current_date.date()
@@ -370,8 +366,9 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
                 ATTR_DURATION: _day_text,
                 ATTR_ENTITY_PICTURE: PICTURE_ITEMS.get(_categori),
                 ATTR_LAST_UPDATE: now().isoformat(),
-                ATTR_NAME: self._pickup_events.friendly_name,
-            }
+                    ATTR_NAME: self._pickup_events.friendly_name,
+                }
+            return None
 
     async def async_added_to_hass(self):
         """When entity is added to hass."""
