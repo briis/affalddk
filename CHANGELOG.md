@@ -7,6 +7,7 @@
 ## What's Changed
 
 * Fixing Missing Material in Egedal Kommune. Closing [AffaldDK #221](https://github.com/briis/affalddk/issues/221)
+* Fixing Missing Material in Gladsaxe Kommune. Closing [AffaldDK #238](https://github.com/briis/affalddk/issues/238)
 * Fixing Missing Material in Gribskov Kommune. Closing [AffaldDK #242](https://github.com/briis/affalddk/issues/242)
 * Fixed Blocking Call. Closing [AffaldDK #213](https://github.com/briis/affalddk/issues/213)
 * Added function to find a date based on Weekday and Odd or Even week. Closing [AffaldDK #226](https://github.com/briis/affalddk/issues/226)
