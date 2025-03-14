@@ -116,7 +116,7 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
         start_date: datetime.datetime,
         end_date: datetime.datetime,
     ) -> list[CalendarEvent]:
-        """ "Return calendar events within a datetime range."""
+        """Return calendar events within a datetime range."""
 
         events: list[CalendarEvent] = []
         for item in self._coordinator.data.pickup_events:
