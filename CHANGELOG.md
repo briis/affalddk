@@ -1,8 +1,28 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.2.3
+
+**Date**: `2025-03-14`
+
+## What's Changed
+
+* Fixing Missing Material in Egedal Kommune. Closing [AffaldDK #221](https://github.com/briis/affalddk/issues/221)
+* Fixing Missing Material in Gribskov Kommune. Closing [AffaldDK #242](https://github.com/briis/affalddk/issues/242)
+* Fixed Blocking Call. Closing [AffaldDK #213](https://github.com/briis/affalddk/issues/213)
+* Added function to find a date based on Weekday and Odd or Even week. Closing [AffaldDK #226](https://github.com/briis/affalddk/issues/226)
+* **IMPORTANT** Removed Sorø Kommune as they no longer have en open API.
+* Bump `pyaffalddk` to V2.1.7
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.2.2
 
-**Date**: `2024-01-07`
+**Date**: `2025-01-07`
 
 ## What's Changed
 
@@ -11,13 +31,6 @@
 * Fixing missing containers in Køge after renaming. Closing [AffaldDK #207](https://github.com/briis/affalddk/issues/207)
 * Bump development environment to Python 3.1.3 and Home Assistant 2025.1
 * Bump `pyaffalddk` to V2.1.6
-
-## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.2.1
 
