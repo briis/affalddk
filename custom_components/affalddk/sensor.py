@@ -26,7 +26,7 @@ from homeassistant.helpers.update_coordinator import (
 )
 from homeassistant.util.dt import now
 
-from . import AffaldDKtDataUpdateCoordinator
+from . import AffaldDKDataUpdateCoordinator
 from .const import (
     ATTR_DATE_LONG,
     ATTR_DATE_SHORT,
@@ -237,7 +237,7 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """AffaldDK sensor platform."""
-    coordinator: AffaldDKtDataUpdateCoordinator = hass.data[DOMAIN][
+    coordinator: AffaldDKDataUpdateCoordinator = hass.data[DOMAIN][
         config_entry.entry_id
     ]
 
@@ -262,7 +262,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
 
     def __init__(
         self,
-        coordinator: AffaldDKtDataUpdateCoordinator,
+        coordinator: AffaldDKDataUpdateCoordinator,
         description: AffaldDKSensorEntityDescription,
         config: MappingProxyType[str, Any],
     ) -> None:

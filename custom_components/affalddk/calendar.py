@@ -1,4 +1,5 @@
 """Support for AffaldDK Waste calendars."""
+
 from __future__ import annotations
 
 import datetime
@@ -18,7 +19,7 @@ from homeassistant.helpers.update_coordinator import (
 )
 
 from pyaffalddk import NAME_LIST, PickupType
-from . import AffaldDKtDataUpdateCoordinator
+from . import AffaldDKDataUpdateCoordinator
 from .const import (
     CONF_ADDRESS_ID,
     CONF_HOUSE_NUMBER,
@@ -33,12 +34,17 @@ _LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(
-    hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddEntitiesCallback
+    hass: HomeAssistant,
+    config_entry: ConfigEntry,
+    async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up AffaldDK Waste calendard items based on a config entry."""
 
-    coordinator: AffaldDKtDataUpdateCoordinator = hass.data[DOMAIN][config_entry.entry_id]
+    coordinator: AffaldDKDataUpdateCoordinator = hass.data[DOMAIN][
+        config_entry.entry_id
+    ]
 
+    coordinator.data.pickup_events = coordinator.data.pickup_events or {}
     if coordinator.data.pickup_events == {}:
         return
 
@@ -54,8 +60,8 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
 
     def __init__(
         self,
-        coordinator: AffaldDKtDataUpdateCoordinator,
-        config: MappingProxyType[str, Any]
+        coordinator: AffaldDKDataUpdateCoordinator,
+        config: MappingProxyType[str, Any],
     ) -> None:
         """Initialize a AffaldDK sensor."""
         super().__init__(coordinator)
@@ -86,7 +92,7 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
 
         # Find the next pickup event
         for row in self._coordinator.data.pickup_events:
-            if row == 'next_pickup':
+            if row == "next_pickup":
                 continue
             _pickup_event: PickupType = self._coordinator.data.pickup_events.get(row)
             if _pickup_event.date <= _next_pickup:
@@ -101,20 +107,29 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
             summary=NAME_LIST.get(item),
             description=_pickup_events.description,
             start=_start,
-            end=_end
+            end=_end,
         )
 
-    async def async_get_events(self, hass: HomeAssistant, start_date: datetime.datetime, end_date: datetime.datetime) -> list[CalendarEvent]:
-        """"Return calendar events within a datetime range."""
+    async def async_get_events(
+        self,
+        hass: HomeAssistant,
+        start_date: datetime.datetime,
+        end_date: datetime.datetime,
+    ) -> list[CalendarEvent]:
+        """Return calendar events within a datetime range."""
 
         events: list[CalendarEvent] = []
         for item in self._coordinator.data.pickup_events:
             if self._coordinator.data.pickup_events.get(item) is None:
                 continue
-            if item == 'next_pickup':
+            if item == "next_pickup":
                 continue
 
-            _pickup_events: PickupType = self._coordinator.data.pickup_events.get(item) if self._coordinator.data.pickup_events else None
+            _pickup_events: PickupType = (
+                self._coordinator.data.pickup_events.get(item)
+                if self._coordinator.data.pickup_events
+                else None
+            )
 
             if start_date.date() > _pickup_events.date:
                 continue
@@ -140,7 +155,6 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
                     )
                 )
         return events
-
 
     async def async_added_to_hass(self):
         """When entity is added to hass."""
