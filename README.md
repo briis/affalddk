@@ -150,7 +150,6 @@ Here is the list of currently supported Municipalities (57)
     - Samsø
     - Slagelse
     - Solrød
-    - Sorø
     - Stevns
     - Svendborg
     - Sønderborg
