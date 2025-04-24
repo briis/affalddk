@@ -7,6 +7,7 @@
 ## What's Changed
 
 * Support for **Københavns Kommune** added. Thank you to @TermeHansen for implementing this
+* Rewritten `Config Flow`, to remove deprecation warning.
 * Bump `pyaffalddk` to V2.2.0
 
 ## [Dependabot](https://github.com/apps/dependabot) updates
