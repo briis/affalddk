@@ -1,5 +1,5 @@
 colorlog==6.9.0
-homeassistant==2025.3.3
+homeassistant==2025.4.3
 pip>=23.2.1,<25.1
 ruff==0.11.0
 zlib_ng==0.5.1
