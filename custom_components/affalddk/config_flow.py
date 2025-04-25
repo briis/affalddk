@@ -2,13 +2,20 @@
 
 from __future__ import annotations
 
-import logging
-import voluptuous as vol
 from typing import Any
-from homeassistant import config_entries
+
+import voluptuous as vol
+
+from homeassistant.config_entries import (
+    ConfigEntry,
+    ConfigFlow,
+    ConfigFlowResult,
+    OptionsFlow,
+)
+import logging
+
 from homeassistant.core import callback
 from homeassistant.helpers.aiohttp_client import async_create_clientsession
-from homeassistant.helpers.event import async_call_later
 from homeassistant.helpers.selector import selector
 
 from pyaffalddk import (
@@ -20,7 +27,6 @@ from pyaffalddk import (
     AffaldDKNoConnection,
 )
 
-from . import async_setup_entry, async_unload_entry
 from .const import (
     CONF_ADDRESS_ID,
     CONF_HOUSE_NUMBER,
@@ -35,64 +41,23 @@ from .const import (
 _LOGGER = logging.getLogger(__name__)
 
 
-class RenowebFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
+
+class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
     """Config Flow for AffaldDK."""
 
     VERSION = 1
-    CONNECTION_CLASS = config_entries.CONN_CLASS_CLOUD_POLL
 
-    @staticmethod
     @callback
-    def async_get_options_flow(config_entry: config_entries.ConfigEntry):
-        """Get the options flow for AffaldDK."""
-        return AffaldDKOptionsFlowHandler(config_entry)
-
-    async def async_step_user(self, user_input: dict[str, Any] | None = None):
-        """Handle a flow initialized by the user."""
+    def _show_setup_form(
+            self,
+            user_input: dict[str, Any] | None = None,
+            errors: dict[str, str] | None = None,
+    ) -> ConfigFlowResult:
+        """Show the setup form to the user."""
 
         if user_input is None:
-            return await self._show_setup_form(user_input)
+            user_input = {}
 
-        errors = {}
-        session = async_create_clientsession(self.hass)
-
-        try:
-            renoweb = await self.hass.async_add_executor_job(
-                lambda: GarbageCollection(
-                    municipality=user_input[CONF_MUNICIPALITY], session=session
-                )
-            )
-            await renoweb.async_init()
-            address_info: AffaldDKAddressInfo = await renoweb.get_address_id(
-                zipcode=user_input[CONF_ZIPCODE],
-                street=user_input[CONF_ROAD_NAME],
-                house_number=user_input[CONF_HOUSE_NUMBER],
-            )
-        except AffaldDKNotSupportedError:
-            errors["base"] = "municipality_not_supported"
-            return await self._show_setup_form(errors)
-        except AffaldDKNotValidAddressError:
-            errors["base"] = "location_not_found"
-            return await self._show_setup_form(errors)
-        except AffaldDKNoConnection:
-            errors["base"] = "connection_error"
-            return await self._show_setup_form(errors)
-
-        await self.async_set_unique_id(address_info.address_id)
-        self._abort_if_unique_id_configured
-
-        return self.async_create_entry(
-            title=f"{address_info.vejnavn} {address_info.husnr}",
-            data={
-                CONF_MUNICIPALITY: address_info.kommunenavn,
-                CONF_ROAD_NAME: address_info.vejnavn,
-                CONF_HOUSE_NUMBER: address_info.husnr,
-                CONF_ADDRESS_ID: address_info.address_id,
-            },
-        )
-
-    async def _show_setup_form(self, errors=None):
-        """Show the setup form to the user."""
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
@@ -108,30 +73,71 @@ class RenowebFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             errors=errors or {},
         )
 
+    async def async_step_user(self, user_input: dict[str, Any] | None = None):
+        """Handle a flow initialized by the user."""
+        errors: dict[str, str] = {}
 
-class AffaldDKOptionsFlowHandler(config_entries.OptionsFlow):
-    """Handle a AffaldDK options flow."""
+        if user_input is None:
+            return self._show_setup_form(user_input, errors)
 
-    def __init__(self, config_entry: config_entries.ConfigEntry) -> None:
-        """Initialize the options flow."""
-        self.config_entry = config_entry
+        municipality = user_input[CONF_MUNICIPALITY]
+        zipcode = user_input[CONF_ZIPCODE]
+        street = user_input[CONF_ROAD_NAME]
+        house_number = user_input[CONF_HOUSE_NUMBER]
 
-    async def _do_update(
-        self,
-        *args,
-        **kwargs,  # pylint: disable=unused-argument
-    ) -> None:
-        """Update after settings change."""
-        await async_unload_entry(self.hass, self.config_entry)
-        await async_setup_entry(self.hass, self.config_entry)
+        try:
+            session = async_create_clientsession(self.hass)
+            renoweb = await self.hass.async_add_executor_job(
+                lambda: GarbageCollection(
+                    municipality=municipality, session=session
+                )
+            )
+            await renoweb.async_init()
+            address_info: AffaldDKAddressInfo = await renoweb.get_address_id(
+                zipcode=zipcode,
+                street=street,
+                house_number=house_number,
+            )
+        except AffaldDKNotSupportedError:
+            errors["base"] = "municipality_not_supported"
+            return self._show_setup_form(errors)
+        except AffaldDKNotValidAddressError:
+            errors["base"] = "location_not_found"
+            return self._show_setup_form(errors)
+        except AffaldDKNoConnection:
+            errors["base"] = "connection_error"
+            return self._show_setup_form(errors)
 
-    async def async_step_init(self, user_input: dict[str, Any] | None = None):
+        await self.async_set_unique_id(address_info.address_id)
+        self._abort_if_unique_id_configured
+
+        return self.async_create_entry(
+            title=f"{address_info.vejnavn} {address_info.husnr}",
+            data={
+                CONF_MUNICIPALITY: address_info.kommunenavn,
+                CONF_ROAD_NAME: address_info.vejnavn,
+                CONF_HOUSE_NUMBER: address_info.husnr,
+                CONF_ADDRESS_ID: address_info.address_id,
+            },
+        )
+
+    @staticmethod
+    @callback
+    def async_get_options_flow(
+        config_entry: ConfigEntry,
+    ) -> OptionsFlow:
+        """Get the options flow for this handler."""
+        return OptionsFlowHandler()
+
+class OptionsFlowHandler(OptionsFlow):
+    """Handle Options."""
+
+    async def async_step_init(
+        self, user_input: dict[str, Any] | None = None
+    ) -> ConfigFlowResult:
         """Manage the options."""
         if user_input is not None:
-            async_call_later(self.hass, 2, self._do_update)
-            return self.async_create_entry(
-                title="Options for Affaldshåndtering DK", data=user_input
-            )
+            return self.async_create_entry(title="", data=user_input)
 
         return self.async_show_form(
             step_id="init",

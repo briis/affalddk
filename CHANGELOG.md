@@ -1,5 +1,22 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.3.0
+
+**Date**: `2025-04-24`
+
+## What's Changed
+
+* Support for **Københavns Kommune** added. Thank you to @TermeHansen for implementing this
+* Rewritten `Config Flow`, to remove deprecation warning.
+* Bump `pyaffalddk` to V2.2.0
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.2.3
 
 **Date**: `2025-03-19`
@@ -13,13 +30,6 @@
 * Added function to find a date based on Weekday and Odd or Even week. Closing [AffaldDK #226](https://github.com/briis/affalddk/issues/226)
 * **IMPORTANT** Removed Sorø Kommune as they no longer have en open API.
 * Bump `pyaffalddk` to V2.1.7
-
-## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.2.2
 

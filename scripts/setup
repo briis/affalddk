@@ -12,6 +12,6 @@ sudo apt install ffmpeg -y
 sudo apt install libpcap0.8 -y
 sudo apt install libturbojpeg0 -y
 
-wget https://github.com/AlexxIT/go2rtc/releases/download/v1.9.8/go2rtc_linux_arm64
+wget https://github.com/AlexxIT/go2rtc/releases/download/v1.9.9/go2rtc_linux_arm64
 sudo mv go2rtc_linux_arm64 /bin/go2rtc
 sudo chmod +x /bin/go2rtc

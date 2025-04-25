@@ -7,6 +7,7 @@ on:
       - "**/info.md"
       - "**/CHANGELOG.md"
       - "**/CONTRIBUTING.md"
+      - "**/requirements.txt"
     branches:
       - "main"
   pull_request:
@@ -22,9 +23,9 @@ jobs:
           uses: "actions/checkout@v4.2.2"
 
         - name: "Set up Python"
-          uses: actions/setup-python@v5.4.0
+          uses: actions/setup-python@v5.5.0
           with:
-            python-version: "3.12"
+            python-version: "3.13"
             cache: "pip"
 
         - name: "Install requirements"

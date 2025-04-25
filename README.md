@@ -46,7 +46,7 @@ Platform | Description
 ## CREDITS
 
 A big thank you to @thomaspalmdk for finding the new API, and to the people who helped Beta test it. Also thank you to @LordMike for making the embedded image functionality.
-
+Thank you to @TermeHansen for adding the code for supporting Københavns Kommune.
 
 ## INSTALLATION
 
@@ -134,6 +134,7 @@ Here is the list of currently supported Municipalities (57)
     - Hørsholm
     - Jammerbugt
     - Kerteminde
+    - København
     - Køge
     - Lejre
     - Lyngby-Taarbæk
