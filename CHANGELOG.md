@@ -1,5 +1,21 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.3.1
+
+**Date**: `2025-05-01`
+
+## What's Changed
+
+* Fixing wrong pickup date for KK, due to conversion to UTC. Thank you to @TermeHansen for implementing this
+* Bump `pyaffalddk` to V2.2.1
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.3.0
 
 **Date**: `2025-04-24`
@@ -9,13 +25,6 @@
 * Support for **Københavns Kommune** added. Thank you to @TermeHansen for implementing this
 * Rewritten `Config Flow`, to remove deprecation warning.
 * Bump `pyaffalddk` to V2.2.0
-
-## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.2.3
 
