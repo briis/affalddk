@@ -1,5 +1,25 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.4.0
+
+**Date**: `ONLY IN PRE_RELEASE`
+
+## What's Changed
+
+Many Municipalities started to use MitID, for validation before you could retrieve data for your Garbage Collection. This meant in reality that this Component stopped working when that happened. @TermeHansen with the support from @ttopholm have now made a new interface, that uses the Perfect Waste API to retrieve the data. This should solve the issue for all the Municipalities that use them. But not all do. Before final release, we will go through the list, and might have to remove municipalities that we can no longer support.
+On the plus side, a lot of new Municipalities are now supported, that we did not support before, but because they use Perfect Waste, they are now supported.
+
+* Timezone bug in ics data from Kbh by @TermeHansen in #26
+* new interface for Perfect Waste by @TermeHansen in #28
+* Bump `pyaffalddk` to V2.3.0
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.3.1
 
 **Date**: `2025-05-01`
@@ -10,11 +30,6 @@
 * Bump `pyaffalddk` to V2.2.1
 
 ## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.3.0
 
