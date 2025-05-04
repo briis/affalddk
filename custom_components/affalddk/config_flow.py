@@ -26,6 +26,7 @@ from pyaffalddk import (
     AffaldDKNotValidAddressError,
     AffaldDKNoConnection,
 )
+from pyaffalddk.const import MUNICIPALITIES_LIST
 
 from .const import (
     CONF_ADDRESS_ID,
@@ -58,12 +59,13 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
         if user_input is None:
             user_input = {}
 
+        options = [key for key, val in MUNICIPALITIES_LIST if val[1] in ['2', '3', '4', '5']]
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
                 {
                     vol.Required(CONF_MUNICIPALITY): selector(
-                        {"select": {"options": MUNICIPALITIES_ARRAY}}
+                        {"select": {"options": options}}
                     ),
                     vol.Required(CONF_ZIPCODE): str,
                     vol.Required(CONF_ROAD_NAME): str,
