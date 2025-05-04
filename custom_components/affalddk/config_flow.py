@@ -20,7 +20,6 @@ from homeassistant.helpers.selector import selector
 
 from pyaffalddk import (
     GarbageCollection,
-    MUNICIPALITIES_ARRAY,
     AffaldDKAddressInfo,
     AffaldDKNotSupportedError,
     AffaldDKNotValidAddressError,
