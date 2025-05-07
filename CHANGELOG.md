@@ -1,6 +1,6 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
-## Version 2.4.0-Beta2
+## Version 2.4.0-Beta3
 
 **Date**: `ONLY IN PRE_RELEASE`
 
