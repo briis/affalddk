@@ -3,6 +3,7 @@ description: Report an issue with the Affaldshåndtering DK integration
 labels: ["bug"]
 assignees:
   - briis
+  - TermeHansen
 body:
   - type: markdown
     attributes:
