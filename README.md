@@ -18,7 +18,7 @@ The Affaldshåndtering DK integration adds support for retreiving Garbage Collec
 As of May 2025, there is no longer support for municipalities that just use RenoWeb, as they have all implemented MitID validation, for you to see your own Garbage Pickup Data. I am sure there a good reasons for that, but unfortunately that broke most of this integration.
 As of release 2.4.0, this integration now supports the following API's:
 - Municipalities that use **Perfect Waste**
-- Municipalities that use **AffaldsPortalen**
+- Municipalities that use **AffaldsPortal**
 - Municipalities that have an **iCal** implementation. (Like København)
 
 That also means that a few Municipalities that were previously supported through **RenoWeb** and are not using any of the above API's, are no longer supported. There is no workarounf for that at the moment.
@@ -47,7 +47,7 @@ Platform | Description
 
 ## CREDITS
 
-@TermeHansen is now a new Co-Developer on this Integration, and has done a fantastic job to get support for Municipalities that use *Perfect Waste* and *AffaldsPortalen* plus he has rewritten the underlying ``pyaffalddk`library, to make it easier to maintain going forward.
+@TermeHansen is now a new Co-Developer on this Integration, and has done a fantastic job to get support for Municipalities that use *Perfect Waste* and *AffaldsPortal* plus he has rewritten the underlying ``pyaffalddk`library, to make it easier to maintain going forward.
 
 ## INSTALLATION
 
@@ -100,69 +100,69 @@ Around every New Year a bunch of Pickup Types will have no dates for the next pi
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (63)
+Here is the list of currently supported Municipalities (61)
 
-	-	Aabenraa
-	-	Aalborg
-	-	Aarhus
-	-	Albertslund
-	-	Allerød
-	-	Ballerup
-	-	Billund
-	-	Bornholm
-	-	Brøndby
-	-	Brønderslev
-	-	Dragør
-	-	Egedal
-	-	Esbjerg
-	-	Faxe
-	-	Fredensborg
-	-	Frederiksberg
-	-	Frederikssund
-	-	Gentofte
-	-	Gladsaxe
-	-	Glostrup
-	-	Greve
-	-	Gribskov
-	-	Guldborgsund
-	-	Halsnæs
-	-	Hedensted
-	-	Helsingør
-	-	Herlev
-	-	Hillerød
-	-	Hjørring
-	-	Horsens
-	-	Hvidovre
-	-	Høje-Taastrup
-	-	Hørsholm
-	-	Jammerbugt
-	-	Kalundborg
-	-	Kerteminde
-	-	København
-	-	Køge
-	-	Lejre
-	-	Lolland
-	-	Lyngby-Taarbæk
-	-	Mariagerfjord
-	-	Næstved
-	-	Odense
-	-	Odsherred
-	-	Randers
-	-	Ringkøbing-Skjern
-	-	Ringsted
-	-	Roskilde
-	-	Rudersdal
-	-	Rødovre
-	-	Samsø
-	-	Slagelse
-	-	Solrød
-	-	Stevns
-	-	Svendborg
-	-	Sønderborg
-	-	Tårnby
-	-	Varde
-	-	Vejen
-	-	Vordingborg
+- Aabenraa (Affaldsportal)
+- Aalborg (Affaldsportal)
+- Aarhus (iCal)
+- Albertslund (Affaldsportal)
+- Allerød (Affaldsportal)
+- Ballerup (Perfect Waste)
+- Billund (Affaldsportal)
+- Bornholm (Affaldsportal)
+- Brøndby (Affaldsportal)
+- Brønderslev (Affaldsportal)
+- Dragør (Affaldsportal)
+- Egedal (Affaldsportal)
+- Esbjerg (Affaldsportal)
+- Faxe (Perfect Waste)
+- Fredensborg (Affaldsportal)
+- Frederiksberg (Affaldsportal)
+- Frederikssund (Perfect Waste)
+- Gentofte (Affaldsportal)
+- Gladsaxe (Perfect Waste)
+- Glostrup (Affaldsportal)
+- Greve (Perfect Waste)
+- Gribskov (Perfect Waste)
+- Guldborgsund (Perfect Waste)
+- Halsnæs (Perfect Waste)
+- Hedensted (Affaldsportal)
+- Helsingør (Affaldsportal)
+- Herlev (Affaldsportal)
+- Hillerød (Perfect Waste)
+- Hjørring (Affaldsportal)
+- Horsens (Perfect Waste)
+- Hvidovre (Perfect Waste)
+- Høje-Taastrup (Perfect Waste)
+- Hørsholm (Affaldsportal)
+- Jammerbugt (Affaldsportal)
+- Kalundborg (Perfect Waste)
+- Kerteminde (Affaldsportal)
+- København (iCal)
+- Køge (Perfect Waste)
+- Lejre (Affaldsportal)
+- Lolland (Perfect Waste)
+- Lyngby-Taarbæk (Affaldsportal)
+- Mariagerfjord (Affaldsportal)
+- Næstved (Perfect Waste)
+- Odense (iCal)
+- Odsherred (Perfect Waste)
+- Randers (Affaldsportal)
+- Ringkøbing-Skjern (Perfect Waste)
+- Ringsted (Affaldsportal)
+- Roskilde (Perfect Waste)
+- Rudersdal (Affaldsportal)
+- Rødovre (Affaldsportal)
+- Samsø (Affaldsportal)
+- Slagelse (Perfect Waste)
+- Solrød (Affaldsportal)
+- Stevns (Perfect Waste)
+- Svendborg (Affaldsportal)
+- Sønderborg (Affaldsportal)
+- Tårnby (Perfect Waste)
+- Varde (Affaldsportal)
+- Vejen (Perfect Waste)
+- Vordingborg (Affaldsportal)
 
 ***
 
