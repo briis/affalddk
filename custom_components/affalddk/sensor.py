@@ -40,12 +40,14 @@ from .const import (
     DEFAULT_ATTRIBUTION,
     DEFAULT_BRAND,
     DOMAIN,
+)
+from .images import PICTURE_ITEMS
+from pyaffalddk import (
+    ICON_LIST,
+    PickupType,
     WEEKDAYS,
     WEEKDAYS_SHORT,
 )
-from .images import PICTURE_ITEMS
-from pyaffalddk import ICON_LIST, PickupType
-
 
 @dataclass(frozen=True)
 class AffaldDKSensorEntityDescription(SensorEntityDescription):
