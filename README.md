@@ -15,14 +15,16 @@ The Affaldshåndtering DK integration adds support for retreiving Garbage Collec
 
 ### INTRODUCTION
 
-This integration replaces the [RenoWeb integration](https://github.com/briis/renoweb), which will no longer be maintained.
+As of May 2025, there is no longer support for municipalities that just use RenoWeb, as they have all implemented MitID validation, for you to see your own Garbage Pickup Data. I am sure there a good reasons for that, but unfortunately that broke most of this integration.
+As of release 2.4.0, this integration now supports the following API's:
+- Municipalities that use **Perfect Waste**
+- Municipalities that use **AffaldsPortalen**
+- Municipalities that have an **iCal** implementation. (Like København)
 
-This is a complete rewrite of the RenowWeb V1.x Integration as the API this uses is slowly being phased out, and we needed to find a new way of collecting the data.
+That also means that a few Municipalities that were previously supported through **RenoWeb** and are not using any of the above API's, are no longer supported. There is no workarounf for that at the moment.
 
 ### DESCRIPTION
 Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from **Renoweb** and that accounts for more than 50% of all Municipalities.
-
-As of release 2.2.0, there is now also a possibility to read an **iCalendar** file (`.ics` file) which a few municipalities offer for their customers. If your municipality is not on the list, and you have the option for that, please create a Feature Request, and I will do my best to get it added.
 
 Go to the [Municipality List](#MUNICIPALITIES) to see if your Municipality will work with this integration.
 
@@ -45,8 +47,7 @@ Platform | Description
 
 ## CREDITS
 
-A big thank you to @thomaspalmdk for finding the new API, and to the people who helped Beta test it. Also thank you to @LordMike for making the embedded image functionality.
-Thank you to @TermeHansen for adding the code for supporting Københavns Kommune.
+@TermeHansen is now a new Co-Developer on this Integration, and has done a fantastic job to get support for Municipalities that use *Perfect Waste* and *AffaldsPortalen* plus he has rewritten the underlying ``pyaffalddk`library, to make it easier to maintain going forward.
 
 ## INSTALLATION
 
@@ -99,65 +100,69 @@ Around every New Year a bunch of Pickup Types will have no dates for the next pi
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (57)
+Here is the list of currently supported Municipalities (63)
 
-    - Aabenraa
-    - Aalborg
-    - Aarhus
-    - Albertslund
-    - Allerød
-    - Billund
-    - Bornholm
-    - Brøndby
-    - Brønderslev
-    - Dragør
-    - Egedal
-    - Esbjerg
-    - Faxe
-    - Fredensborg
-    - Frederiksberg
-    - Frederikssund
-    - Gentofte
-    - Gladsaxe
-    - Glostrup
-    - Greve
-    - Gribskov
-    - Halsnæs
-    - Hedensted
-    - Helsingør
-    - Herlev
-    - Hillerød
-    - Hjørring
-    - Horsens
-    - Hvidovre
-    - Høje-Taastrup
-    - Hørsholm
-    - Jammerbugt
-    - Kerteminde
-    - København
-    - Køge
-    - Lejre
-    - Lyngby-Taarbæk
-    - Mariagerfjord
-    - Næstved
-    - Odense
-    - Odsherred
-    - Randers
-    - Ringkøbing-Skjern
-    - Ringsted
-    - Roskilde
-    - Rudersdal
-    - Rødovre
-    - Samsø
-    - Slagelse
-    - Solrød
-    - Stevns
-    - Svendborg
-    - Sønderborg
-    - Tårnby
-    - Varde
-    - Vejen
-    - Vordingborg
+	-	Aabenraa
+	-	Aalborg
+	-	Aarhus
+	-	Albertslund
+	-	Allerød
+	-	Ballerup
+	-	Billund
+	-	Bornholm
+	-	Brøndby
+	-	Brønderslev
+	-	Dragør
+	-	Egedal
+	-	Esbjerg
+	-	Faxe
+	-	Fredensborg
+	-	Frederiksberg
+	-	Frederikssund
+	-	Gentofte
+	-	Gladsaxe
+	-	Glostrup
+	-	Greve
+	-	Gribskov
+	-	Guldborgsund
+	-	Halsnæs
+	-	Hedensted
+	-	Helsingør
+	-	Herlev
+	-	Hillerød
+	-	Hjørring
+	-	Horsens
+	-	Hvidovre
+	-	Høje-Taastrup
+	-	Hørsholm
+	-	Jammerbugt
+	-	Kalundborg
+	-	Kerteminde
+	-	København
+	-	Køge
+	-	Lejre
+	-	Lolland
+	-	Lyngby-Taarbæk
+	-	Mariagerfjord
+	-	Næstved
+	-	Odense
+	-	Odsherred
+	-	Randers
+	-	Ringkøbing-Skjern
+	-	Ringsted
+	-	Roskilde
+	-	Rudersdal
+	-	Rødovre
+	-	Samsø
+	-	Slagelse
+	-	Solrød
+	-	Stevns
+	-	Svendborg
+	-	Sønderborg
+	-	Tårnby
+	-	Varde
+	-	Vejen
+	-	Vordingborg
 
 ***
 
