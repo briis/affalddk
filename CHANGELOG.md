@@ -16,7 +16,21 @@ With this new Beta release @TermeHansen has also implemented the first version t
 * Adding interface for the affaldsportalen / renoweb.servicegh
 * Changed address_id to the new naming uid, to avoid unique_id issues. Fixing partly [#273](https://github.com/briis/affalddk/issues/273)
 * Adopted code to match changes in `pyaffalddk` 2.5.0
-* Bump `pyaffalddk` to V2.4.0
+* Added and/or changed Fractions for the following Municipalities_
+  * Mariagerfjord ([#261](https://github.com/briis/affalddk/issues/261))
+  * Aalborg ([#261](https://github.com/briis/affalddk/issues/261))
+  * Egedal ([#261](https://github.com/briis/affalddk/issues/261))
+  * Svendborg ([#261](https://github.com/briis/affalddk/issues/261))
+  * Glostrup ([#261](https://github.com/briis/affalddk/issues/261))
+  * Lyngby-Taarbaek ([#261](https://github.com/briis/affalddk/issues/261))
+  * Esbjerg ([#267](https://github.com/briis/affalddk/issues/267))
+  * Randers ([#268](https://github.com/briis/affalddk/issues/268))
+  * Sønderborg ([#269](https://github.com/briis/affalddk/issues/269))
+  * Kerteminde ([#270](https://github.com/briis/affalddk/issues/270))
+  * Næstved ([#271](https://github.com/briis/affalddk/issues/271))
+  * Jammerbugt ([#273](https://github.com/briis/affalddk/issues/273))
+  * Ruderdal
+* Bump `pyaffalddk` to V2.5.0
 
 ## [Dependabot](https://github.com/apps/dependabot) updates
 
