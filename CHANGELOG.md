@@ -1,6 +1,6 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
-## Version 2.4.0-Beta3
+## Version 2.4.0-Beta4
 
 **Date**: `ONLY IN PRE_RELEASE`
 
@@ -14,6 +14,7 @@ With this new Beta release @TermeHansen has also implemented the first version t
 * Timezone bug in ics data from Kbh by @TermeHansen in #26
 * new interface for Perfect Waste by @TermeHansen in #28
 * Adding interface for the affaldsportalen / renoweb.servicegh
+* Changed address_id to the new nam,ing uid, to avoid unique_id. Fixing partly [#273](https://github.com/briis/affalddk/issues/273)
 * Bump `pyaffalddk` to V2.4.0
 
 ## [Dependabot](https://github.com/apps/dependabot) updates
