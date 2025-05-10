@@ -20,3 +20,5 @@ DEFAULT_API_VERSION = "Legacy"
 DEFAULT_SCAN_INTERVAL = 4
 DOMAIN = "affalddk"
 
+WEEKDAYS = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"]
+WEEKDAYS_SHORT = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]

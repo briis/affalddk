@@ -15,6 +15,7 @@ With this new Beta release @TermeHansen has also implemented the first version t
 * new interface for Perfect Waste by @TermeHansen in #28
 * Adding interface for the affaldsportalen / renoweb.servicegh
 * Changed address_id to the new naming uid, to avoid unique_id issues. Fixing partly [#273](https://github.com/briis/affalddk/issues/273)
+* Adopted code to match changes in `pyaffalddk` 2.5.0
 * Bump `pyaffalddk` to V2.4.0
 
 ## [Dependabot](https://github.com/apps/dependabot) updates

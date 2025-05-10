@@ -25,7 +25,7 @@ from pyaffalddk import (
     AffaldDKNotValidAddressError,
     AffaldDKNoConnection,
 )
-from pyaffalddk.const import MUNICIPALITIES_LIST
+from pyaffalddk.municipalities import MUNICIPALITIES_ARRAY
 
 from .const import (
     CONF_ADDRESS_ID,
@@ -58,7 +58,7 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
         if user_input is None:
             user_input = {}
 
-        options = [key for key, val in MUNICIPALITIES_LIST.items() if val[1] in ['2', '3', '4', '5', '6']]
+        options = [key for key, val in MUNICIPALITIES_ARRAY.items() if val[1] in ['2', '3', '4', '5', '6']]
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
@@ -109,7 +109,7 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
             errors["base"] = "connection_error"
             return self._show_setup_form(errors)
 
-        await self.async_set_unique_id(address_info.uid))
+        await self.async_set_unique_id(address_info.uid)
         self._abort_if_unique_id_configured
 
         return self.async_create_entry(
@@ -118,7 +118,7 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
                 CONF_MUNICIPALITY: address_info.kommunenavn,
                 CONF_ROAD_NAME: address_info.vejnavn,
                 CONF_HOUSE_NUMBER: address_info.husnr,
-                CONF_ADDRESS_ID: address_info.uid),
+                CONF_ADDRESS_ID: address_info.uid,
             },
         )
 
