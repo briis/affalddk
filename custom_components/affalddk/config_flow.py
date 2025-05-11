@@ -20,12 +20,12 @@ from homeassistant.helpers.selector import selector
 
 from pyaffalddk import (
     GarbageCollection,
-    MUNICIPALITIES_ARRAY,
     AffaldDKAddressInfo,
     AffaldDKNotSupportedError,
     AffaldDKNotValidAddressError,
     AffaldDKNoConnection,
 )
+from pyaffalddk.municipalities import MUNICIPALITIES_ARRAY
 
 from .const import (
     CONF_ADDRESS_ID,
@@ -58,12 +58,13 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
         if user_input is None:
             user_input = {}
 
+        options = [key for key, val in MUNICIPALITIES_ARRAY.items() if val[1] in ['2', '3', '4', '5', '6']]
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
                 {
                     vol.Required(CONF_MUNICIPALITY): selector(
-                        {"select": {"options": MUNICIPALITIES_ARRAY}}
+                        {"select": {"options": options}}
                     ),
                     vol.Required(CONF_ZIPCODE): str,
                     vol.Required(CONF_ROAD_NAME): str,
@@ -87,13 +88,13 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
 
         try:
             session = async_create_clientsession(self.hass)
-            renoweb = await self.hass.async_add_executor_job(
+            affalddkapi = await self.hass.async_add_executor_job(
                 lambda: GarbageCollection(
                     municipality=municipality, session=session
                 )
             )
-            await renoweb.async_init()
-            address_info: AffaldDKAddressInfo = await renoweb.get_address_id(
+            await affalddkapi.async_init()
+            address_info: AffaldDKAddressInfo = await affalddkapi.get_address_id(
                 zipcode=zipcode,
                 street=street,
                 house_number=house_number,
@@ -108,7 +109,7 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
             errors["base"] = "connection_error"
             return self._show_setup_form(errors)
 
-        await self.async_set_unique_id(address_info.address_id)
+        await self.async_set_unique_id(address_info.uid)
         self._abort_if_unique_id_configured
 
         return self.async_create_entry(
@@ -117,7 +118,7 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
                 CONF_MUNICIPALITY: address_info.kommunenavn,
                 CONF_ROAD_NAME: address_info.vejnavn,
                 CONF_HOUSE_NUMBER: address_info.husnr,
-                CONF_ADDRESS_ID: address_info.address_id,
+                CONF_ADDRESS_ID: address_info.uid,
             },
         )
 

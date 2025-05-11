@@ -42,8 +42,12 @@ from .const import (
     DOMAIN,
 )
 from .images import PICTURE_ITEMS
-from pyaffalddk import ICON_LIST, PickupType, WEEKDAYS, WEEKDAYS_SHORT
-
+from pyaffalddk import (
+    ICON_LIST,
+    PickupType,
+    WEEKDAYS,
+    WEEKDAYS_SHORT,
+)
 
 @dataclass(frozen=True)
 class AffaldDKSensorEntityDescription(SensorEntityDescription):
