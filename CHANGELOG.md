@@ -1,16 +1,22 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
-## Version 2.4.0-Beta4
+## Version 2.4.0
 
-**Date**: `ONLY IN PRE_RELEASE`
+**Date**: `2025-05-11`
+
+We have now decided to release this as the new official release 2.4.0, which implements a whole new backend module that has gone through a tremendous rework, mostly thanks to @TermeHansen.
+We do realize there will still be some naming of fractions or missing fractions that you will find, but please report this by opening an issue, and **remember to attach the log output from HA**.
+
+Many Municipalities started to use MitID, for validation before you could retrieve data for your Garbage Collection. This meant in reality that this Component stopped working when that happened.
+@TermeHansen with the support from @ttopholm have now made a new interface, that uses the **Perfect Waste** API to retrieve the data.
+@TermeHansen has also implemented the first version that supports **Affaldsportalen**. So if you can see your Garbage Collection schedule using that App or Website, you should also be able to use this Integration.
+This should solve the issue for all the Municipalities that use them. But not all do. We have gone through the list, and to our best knowledge, all previously supported Municpalities should still work, and on top of that there is now also support for 4 new Municpalities:
+- Ballerup
+- Guldborgsund
+- Kalundborg
+- Lolland
 
 ## What's Changed
-
-Many Municipalities started to use MitID, for validation before you could retrieve data for your Garbage Collection. This meant in reality that this Component stopped working when that happened. @TermeHansen with the support from @ttopholm have now made a new interface, that uses the **Perfect Waste** API to retrieve the data. This should solve the issue for all the Municipalities that use them. But not all do. Before final release, we will go through the list, and might have to remove municipalities that we can no longer support.
-On the plus side, a lot of new Municipalities are now supported, that we did not support before, but because they use Perfect Waste, they are now supported.
-
-With this new Beta release @TermeHansen has also implemented the first version that supports **Affaldsportalen**. So if you can see your Garbage Collection schedule using that App or Website, you should also be able to use this Integration.
-
 * Timezone bug in ics data from Kbh by @TermeHansen in #26
 * new interface for Perfect Waste by @TermeHansen in #28
 * Adding interface for the affaldsportalen / renoweb.servicegh
@@ -29,7 +35,8 @@ With this new Beta release @TermeHansen has also implemented the first version t
   * Kerteminde ([#270](https://github.com/briis/affalddk/issues/270))
   * Næstved ([#271](https://github.com/briis/affalddk/issues/271))
   * Jammerbugt ([#273](https://github.com/briis/affalddk/issues/273))
-  * Ruderdal
+  * Rudersdal
+  * Rødovre
 * Bump `pyaffalddk` to V2.5.0
 
 ## [Dependabot](https://github.com/apps/dependabot) updates
