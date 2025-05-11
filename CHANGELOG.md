@@ -1,5 +1,12 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.4.1
+
+**Date**: `2025-05-11`
+
+## What's Changed
+* Fixing issue with configure of new entities Closing [AffaldDK #276](https://github.com/briis/affalddk/issues/276)
+
 ## Version 2.4.0
 
 **Date**: `2025-05-11`
