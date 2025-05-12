@@ -1,11 +1,24 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
-## Version 2.4.1
+## Version 2.4.2
 
-**Date**: `2025-05-11`
+**Date**: `2025-05-12`
 
 ## What's Changed
-* Fixing issue with configure of new entities Closing [AffaldDK #276](https://github.com/briis/affalddk/issues/276)
+
+* Fixing issue with new installations not displaying any data. Closing [AffaldDK #281](https://github.com/briis/affalddk/issues/281)
+
+  **For those people who made a new setup of an address, after 2.4.0, you have to remove that address, and set it up again, and then it should work**
+* Fixing missing Fractions in Høe-Taastrup, Esbjerg, Gentofte and Hjørring. Cloising issues:
+  * [#280](https://github.com/briis/affalddk/issues/280)
+  * [#277](https://github.com/briis/affalddk/issues/277)
+  * [#275](https://github.com/briis/affalddk/issues/275)
+  * [#265](https://github.com/briis/affalddk/issues/265)
+* Unfortunately we also had to remove the following Municipalities from the supported list, as they are still stuck behind the MitID wall, and we have found no alternative way to support those:
+  * Frederiksberg
+  * Hedensted
+  * Ringsted
+* Bump `pyaffalddk` to V2.5.1
 
 ## Version 2.4.0
 
@@ -52,6 +65,52 @@ This should solve the issue for all the Municipalities that use them. But not al
 
 <details>
   <summary><b>PREVIOUS CHANGES</b></summary>
+
+## Version 2.4.1
+
+**Date**: `2025-05-11`
+
+## What's Changed
+* Fixing issue with configure of new entities Closing [AffaldDK #276](https://github.com/briis/affalddk/issues/276)
+
+## Version 2.4.0
+
+**Date**: `2025-05-11`
+
+We have now decided to release this as the new official release 2.4.0, which implements a whole new backend module that has gone through a tremendous rework, mostly thanks to @TermeHansen.
+We do realize there will still be some naming of fractions or missing fractions that you will find, but please report this by opening an issue, and **remember to attach the log output from HA**.
+
+Many Municipalities started to use MitID, for validation before you could retrieve data for your Garbage Collection. This meant in reality that this Component stopped working when that happened.
+@TermeHansen with the support from @ttopholm have now made a new interface, that uses the **Perfect Waste** API to retrieve the data.
+@TermeHansen has also implemented the first version that supports **Affaldsportalen**. So if you can see your Garbage Collection schedule using that App or Website, you should also be able to use this Integration.
+This should solve the issue for all the Municipalities that use them. But not all do. We have gone through the list, and to our best knowledge, all previously supported Municpalities should still work, and on top of that there is now also support for 4 new Municpalities:
+- Ballerup
+- Guldborgsund
+- Kalundborg
+- Lolland
+
+## What's Changed
+* Timezone bug in ics data from Kbh by @TermeHansen in #26
+* new interface for Perfect Waste by @TermeHansen in #28
+* Adding interface for the affaldsportalen / renoweb.servicegh
+* Changed address_id to the new naming uid, to avoid unique_id issues. Fixing partly [#273](https://github.com/briis/affalddk/issues/273)
+* Adopted code to match changes in `pyaffalddk` 2.5.0
+* Added and/or changed Fractions for the following Municipalities_
+  * Mariagerfjord ([#261](https://github.com/briis/affalddk/issues/261))
+  * Aalborg ([#261](https://github.com/briis/affalddk/issues/261))
+  * Egedal ([#261](https://github.com/briis/affalddk/issues/261))
+  * Svendborg ([#261](https://github.com/briis/affalddk/issues/261))
+  * Glostrup ([#261](https://github.com/briis/affalddk/issues/261))
+  * Lyngby-Taarbaek ([#261](https://github.com/briis/affalddk/issues/261))
+  * Esbjerg ([#267](https://github.com/briis/affalddk/issues/267))
+  * Randers ([#268](https://github.com/briis/affalddk/issues/268))
+  * Sønderborg ([#269](https://github.com/briis/affalddk/issues/269))
+  * Kerteminde ([#270](https://github.com/briis/affalddk/issues/270))
+  * Næstved ([#271](https://github.com/briis/affalddk/issues/271))
+  * Jammerbugt ([#273](https://github.com/briis/affalddk/issues/273))
+  * Rudersdal
+  * Rødovre
+* Bump `pyaffalddk` to V2.5.0
 
 ## Version 2.3.1
 

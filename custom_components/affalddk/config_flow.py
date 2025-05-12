@@ -118,7 +118,7 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
                 CONF_MUNICIPALITY: address_info.kommunenavn,
                 CONF_ROAD_NAME: address_info.vejnavn,
                 CONF_HOUSE_NUMBER: address_info.husnr,
-                CONF_ADDRESS_ID: address_info.uid,
+                CONF_ADDRESS_ID: address_info.address_id,
             },
         )
 
