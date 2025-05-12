@@ -8,6 +8,18 @@
 
 * Fixing issue with new installations not displaying any data. Closing [AffaldDK #281](https://github.com/briis/affalddk/issues/281)
 
+  **For those people who made a new setup of an address, after 2.4.0, you have to remove that address, and set it up again, and then it should work**
+* Fixing missing Fractions in Høe-Taastrup, Esbjerg, Gentofte and Hjørring. Cloising issues:
+  * [#280](https://github.com/briis/affalddk/issues/280)
+  * [#277](https://github.com/briis/affalddk/issues/277)
+  * [#275](https://github.com/briis/affalddk/issues/275)
+  * [#265](https://github.com/briis/affalddk/issues/265)
+* Unfortunately we also had to remove the following Municipalities from the supported list, as they are still stuck behind the MitID wall, and we have found no alternative way to support those:
+  * Frederiksberg
+  * Hedensted
+  * Ringsted
+* Bump `pyaffalddk` to V2.5.1
+
 ## Version 2.4.0
 
 **Date**: `2025-05-11`
