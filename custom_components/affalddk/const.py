@@ -8,6 +8,8 @@ ATTR_LAST_UPDATE = "last_update"
 
 CONF_ADDRESS = "address"
 CONF_ADDRESS_ID = "address_id"
+CONF_CALENDAR_END_TIME = "calendar_end_time"
+CONF_CALENDAR_START_TIME = "calendar_start_time"
 CONF_HOUSE_NUMBER = "house_number"
 CONF_MUNICIPALITY = "municipality"
 CONF_ROAD_NAME = "road_name"
