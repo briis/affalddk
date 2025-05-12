@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import datetime
-from datetime import datetime as dt, timedelta
+from datetime import datetime as dt, timedelta, time
 import logging
 from types import MappingProxyType
 from typing import Any
@@ -17,15 +17,19 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
 )
-
+from homeassistant.util.dt import get_default_time_zone
 from pyaffalddk import NAME_LIST, PickupType
 from . import AffaldDKDataUpdateCoordinator
 from .const import (
     CONF_ADDRESS_ID,
+    CONF_CALENDAR_END_TIME,
+    CONF_CALENDAR_START_TIME,
     CONF_HOUSE_NUMBER,
     CONF_ROAD_NAME,
     DEFAULT_ATTRIBUTION,
     DEFAULT_BRAND,
+    DEFAULT_END_TIME,
+    DEFAULT_START_TIME,
     DOMAIN,
 )
 
@@ -44,6 +48,11 @@ async def async_setup_entry(
         config_entry.entry_id
     ]
 
+    # entities: list[AffaldDKCalendar[Any]] = [
+    #     AffaldDKCalendar(coordinator, config[1])
+    #     for config in coordinator.data.items()
+    # ]
+    # async_add_entities(entities, False)
     coordinator.data.pickup_events = coordinator.data.pickup_events or {}
     if coordinator.data.pickup_events == {}:
         return
@@ -78,13 +87,15 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
 
         self._attr_unique_id = config.data[CONF_ADDRESS_ID]
         self._event: CalendarEvent | None = None
+        self._end_time = self._config.options.get(CONF_CALENDAR_END_TIME, DEFAULT_END_TIME)
+        self._start_time = self._config.options.get(CONF_CALENDAR_START_TIME, DEFAULT_START_TIME)
 
     @property
     def event(self) -> CalendarEvent | None:
         """Return the next upcoming event."""
         item = None
-        _next_pickup = dt(2030, 12, 31, 0, 0, 0)
-        _next_pickup = _next_pickup.date()
+        _next_pickup: dt = dt(2030, 12, 31, self._start_time, 0, 0).replace(tzinfo=get_default_time_zone())
+        # _next_pickup = _next_pickup.date()
         _pickup_event: PickupType = None
         _pickup_events: PickupType = None
         if self._coordinator.data.pickup_events is None:
@@ -95,8 +106,10 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
             if row == "next_pickup":
                 continue
             _pickup_event: PickupType = self._coordinator.data.pickup_events.get(row)
-            if _pickup_event.date <= _next_pickup:
-                _next_pickup = _pickup_event.date
+            _start_dt = dt.combine(_pickup_event.date, time(self._start_time, 0, 0)).replace(tzinfo=get_default_time_zone())
+            _end_dt = dt.combine(_pickup_event.date, time(self._end_time, 0, 0)).replace(tzinfo=get_default_time_zone())
+            if _start_dt is not None and _next_pickup is not None and _start_dt <= _next_pickup:
+                _next_pickup = _start_dt
                 _pickup_events = _pickup_event
                 item = row
 
@@ -104,10 +117,10 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
         _end: datetime.date = _start + timedelta(days=1)
 
         return CalendarEvent(
-            summary=NAME_LIST.get(item),
+            summary=NAME_LIST.get(item, "Unknown") if item else "Unknown",
             description=_pickup_events.description,
-            start=_start,
-            end=_end,
+            start=_start_dt,
+            end=_end_dt,
         )
 
     async def async_get_events(
@@ -131,27 +144,30 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
                 else None
             )
 
-            if start_date.date() > _pickup_events.date:
+            if start_date > dt.combine(_pickup_events.date, time(self._start_time, 0, 0)).replace(tzinfo=get_default_time_zone()):
                 continue
-            if end_date.date() < _pickup_events.date:
-                continue
-
-            _summary = NAME_LIST.get(item)
-            _start: datetime.date = _pickup_events.date
-            _end: datetime.date = _start + timedelta(days=1)
-
-            if start_date.date() > _start:
-                continue
-            if end_date.date() < _end:
+            if end_date < dt.combine(_pickup_events.date, time(self._end_time, 0, 0)).replace(tzinfo=get_default_time_zone()):
                 continue
 
-            if _start and _end:
+            _summary = NAME_LIST.get(item,"Unknown") if item else "Unknown"
+            # _start: datetime.date = _pickup_events.date
+            # _end: datetime.date = _start + timedelta(days=1)
+
+            _start_dt = dt.combine(_pickup_events.date, time(self._start_time, 0, 0)).replace(tzinfo=get_default_time_zone())
+            _end_dt = dt.combine(_pickup_events.date, time(self._end_time, 0, 0)).replace(tzinfo=get_default_time_zone())
+
+            if start_date > _start_dt:
+                continue
+            if end_date < _end_dt:
+                continue
+
+            if _start_dt and _end_dt:
                 events.append(
                     CalendarEvent(
                         summary=_summary,
                         description=_pickup_events.description,
-                        start=_start,
-                        end=_end,
+                        start=_start_dt,
+                        end=_end_dt,
                     )
                 )
         return events
