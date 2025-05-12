@@ -6,7 +6,8 @@
 
 ## What's Changed
 
-* Calendar Items are now no longer full day events, but have a timespan for the day. Default is from 7:00 to 16:00, but both these can be changed in the configuration settings. Closing [#93](https://github.com/briis/affalddk/issues/93)
+* Calendar Items are now no longer full day events, but have a timespan for the day. Default is from 7:00 to 15:00, but both these can be changed in the configuration settings. Closing [#93](https://github.com/briis/affalddk/issues/93)
+* Function still missing to move to *Next Pickup* when time of day has passed
 
 ## [Dependabot](https://github.com/apps/dependabot) updates
 
