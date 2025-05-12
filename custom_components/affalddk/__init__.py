@@ -65,7 +65,7 @@ async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> 
 
 
 async def async_update_entry(hass: HomeAssistant, config_entry: ConfigEntry):
-    """Reload WeatherFlow Forecast component when options changed."""
+    """Reload AffaldDK component when options changed."""
     await hass.config_entries.async_reload(config_entry.entry_id)
 
 
@@ -77,7 +77,7 @@ class AffaldDKDataUpdateCoordinator(DataUpdateCoordinator):
     """Class to manage fetching AffaldDK data."""
 
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None:
-        """Initialize global WeatherFlow forecast data updater."""
+        """Initialize global AffaldDK data updater."""
         self.affalddk = AffaldDKData(hass, config_entry)
         self.affalddk.initialize_data()
         self.hass = hass
@@ -99,7 +99,7 @@ class AffaldDKDataUpdateCoordinator(DataUpdateCoordinator):
         )
 
     async def _async_update_data(self) -> AffaldDKData:
-        """Fetch data from WeatherFlow Forecast."""
+        """Fetch data from AffaldDK."""
         try:
             return await self.affalddk.fetch_data()
         except Exception as err:

@@ -29,12 +29,16 @@ from pyaffalddk.municipalities import MUNICIPALITIES_LIST
 
 from .const import (
     CONF_ADDRESS_ID,
+    CONF_CALENDAR_END_TIME,
+    CONF_CALENDAR_START_TIME,
     CONF_HOUSE_NUMBER,
     CONF_MUNICIPALITY,
     CONF_ROAD_NAME,
     CONF_UPDATE_INTERVAL,
     CONF_ZIPCODE,
+    DEFAULT_END_TIME,
     DEFAULT_SCAN_INTERVAL,
+    DEFAULT_START_TIME,
     DOMAIN,
 )
 
@@ -150,6 +154,18 @@ class OptionsFlowHandler(OptionsFlow):
                             CONF_UPDATE_INTERVAL, DEFAULT_SCAN_INTERVAL
                         ),
                     ): vol.All(vol.Coerce(int), vol.Range(min=1, max=24)),
+                    vol.Optional(
+                        CONF_CALENDAR_START_TIME,
+                        default=self.config_entry.options.get(
+                            CONF_CALENDAR_START_TIME, DEFAULT_START_TIME
+                        ),
+                    ): vol.All(vol.Coerce(int), vol.Range(min=5, max=12)),
+                    vol.Optional(
+                        CONF_CALENDAR_END_TIME,
+                        default=self.config_entry.options.get(
+                            CONF_CALENDAR_END_TIME, DEFAULT_END_TIME
+                        ),
+                    ): vol.All(vol.Coerce(int), vol.Range(min=12, max=20)),
                 }
             ),
         )
