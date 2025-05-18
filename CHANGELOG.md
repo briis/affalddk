@@ -2,12 +2,21 @@
 
 ## Version 2.4.3
 
-**Date**: `UNRELEASED`
+**Date**: `2025-05-18`
 
 ## What's Changed
 
-* Calendar Items are now no longer full day events, but have a timespan for the day. Default is from 7:00 to 15:00, but both these can be changed in the configuration settings. Closing [#93](https://github.com/briis/affalddk/issues/93)
-* Function still missing to move to *Next Pickup* when time of day has passed
+* **Calendar Items are now no longer full day events**, but have a timespan for the day. Default is from 7:00 to 15:00, but both these can be changed in the configuration settings. Partially fixing [#93](https://github.com/briis/affalddk/issues/93)
+  * Function still missing to move to *Next Pickup* when time of day has passed
+* Fixing several missing fractions:
+  * Rudersdal - Material type [Farligt affald, distrikt A] is not defined in the system for Genbrug #289
+  * Herlev - Herlev Kommune - #290
+  * Bornholms Kommune #291
+  * Helsingør Kommune - Mangler 5 entiteter #292
+  * Sønderborg mangler en entitet #293
+  * [Storskrald Distrikt 3] is not defined #294
+* Big re-structure and cleanup of internal material string to defined fractions code
+* Bump `pyaffalddk` to V2.6.0
 
 ## [Dependabot](https://github.com/apps/dependabot) updates
 
