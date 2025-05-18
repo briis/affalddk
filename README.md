@@ -43,7 +43,7 @@ logger:
 Platform | Description
 -- | --
 `sensor` | A Home Assistant `sensor` entity, with all available sensor from the API. State value will be the days until next pick-up
-`calendar` | An entry will be made in to a local Home Assistant `calendar`. There will be a full-day event every time there is a pick-up, describing what is collected.
+`calendar` | An entry will be made in to a local Home Assistant `calendar`. There will be a time based event every time there is a pick-up, describing what is collected. The default time is from 07:00 to 15:00. This value can be change in the Configuration section.
 
 ## CREDITS
 
