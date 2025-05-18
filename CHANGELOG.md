@@ -1,5 +1,31 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.4.3
+
+**Date**: `2025-05-18`
+
+## What's Changed
+
+* **Calendar Items are now no longer full day events**, but have a timespan for the day. Default is from 7:00 to 15:00, but both these can be changed in the configuration settings. First part of fixing [#93](https://github.com/briis/affalddk/issues/93)
+  * Function still missing to move to *Next Pickup* when time of day has passed. This is a bit more complicated, as we only update data a few times a day.
+  * You might see that existing calendar entries are not changed right away, but all future entries will be time based and not date based.
+* Fixing several missing fractions:
+  * Rudersdal - Material type [Farligt affald, distrikt A] is not defined in the system for Genbrug #289
+  * Herlev - Herlev Kommune - #290
+  * Bornholms Kommune #291
+  * Helsingør Kommune - Mangler 5 entiteter #292
+  * Sønderborg mangler en entitet #293
+  * [Storskrald Distrikt 3] is not defined #294
+* Big re-structure and cleanup of internal material string to defined fractions code
+* Bump `pyaffalddk` to V2.6.0
+
+## [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.4.2
 
 **Date**: `2025-05-12`
@@ -19,52 +45,6 @@
   * Hedensted
   * Ringsted
 * Bump `pyaffalddk` to V2.5.1
-
-## Version 2.4.0
-
-**Date**: `2025-05-11`
-
-We have now decided to release this as the new official release 2.4.0, which implements a whole new backend module that has gone through a tremendous rework, mostly thanks to @TermeHansen.
-We do realize there will still be some naming of fractions or missing fractions that you will find, but please report this by opening an issue, and **remember to attach the log output from HA**.
-
-Many Municipalities started to use MitID, for validation before you could retrieve data for your Garbage Collection. This meant in reality that this Component stopped working when that happened.
-@TermeHansen with the support from @ttopholm have now made a new interface, that uses the **Perfect Waste** API to retrieve the data.
-@TermeHansen has also implemented the first version that supports **Affaldsportalen**. So if you can see your Garbage Collection schedule using that App or Website, you should also be able to use this Integration.
-This should solve the issue for all the Municipalities that use them. But not all do. We have gone through the list, and to our best knowledge, all previously supported Municpalities should still work, and on top of that there is now also support for 4 new Municpalities:
-- Ballerup
-- Guldborgsund
-- Kalundborg
-- Lolland
-
-## What's Changed
-* Timezone bug in ics data from Kbh by @TermeHansen in #26
-* new interface for Perfect Waste by @TermeHansen in #28
-* Adding interface for the affaldsportalen / renoweb.servicegh
-* Changed address_id to the new naming uid, to avoid unique_id issues. Fixing partly [#273](https://github.com/briis/affalddk/issues/273)
-* Adopted code to match changes in `pyaffalddk` 2.5.0
-* Added and/or changed Fractions for the following Municipalities_
-  * Mariagerfjord ([#261](https://github.com/briis/affalddk/issues/261))
-  * Aalborg ([#261](https://github.com/briis/affalddk/issues/261))
-  * Egedal ([#261](https://github.com/briis/affalddk/issues/261))
-  * Svendborg ([#261](https://github.com/briis/affalddk/issues/261))
-  * Glostrup ([#261](https://github.com/briis/affalddk/issues/261))
-  * Lyngby-Taarbaek ([#261](https://github.com/briis/affalddk/issues/261))
-  * Esbjerg ([#267](https://github.com/briis/affalddk/issues/267))
-  * Randers ([#268](https://github.com/briis/affalddk/issues/268))
-  * Sønderborg ([#269](https://github.com/briis/affalddk/issues/269))
-  * Kerteminde ([#270](https://github.com/briis/affalddk/issues/270))
-  * Næstved ([#271](https://github.com/briis/affalddk/issues/271))
-  * Jammerbugt ([#273](https://github.com/briis/affalddk/issues/273))
-  * Rudersdal
-  * Rødovre
-* Bump `pyaffalddk` to V2.5.0
-
-## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.4.1
 
