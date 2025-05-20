@@ -62,7 +62,8 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
         if user_input is None:
             user_input = {}
 
-        options = [key for key, val in MUNICIPALITIES_LIST.items() if val[1] in ['2', '3', '4', '5', '6', '7']]
+        # options = [key for key, val in MUNICIPALITIES_LIST.items() if val[1] in ['2', '3', '4', '5', '6', '7']]
+        options = [key for key, val in MUNICIPALITIES_LIST.items()]
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
