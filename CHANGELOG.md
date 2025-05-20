@@ -9,6 +9,14 @@
   * Furesø
   * Ishøj
   * Vallensbæk
+* Added new API for AffaldOnline with new municipalities:
+  * Favrskov
+  * Holbæk
+  * Langeland
+  * Morsø
+  * Rebild
+  * Vejle
+  * Ærø
 
 ### Changes
 
