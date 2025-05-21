@@ -23,7 +23,7 @@
 ### Changes
 
 * @TermeHansen made even more optimizations on the API Module, making it more robust to handle changes in the Fraction naming, and unifying Pickup Event Functions.
-* Bump `pyaffalddk` to V2.7.0
+* Bump `pyaffalddk` to V2.8.0
 
 ### [Dependabot](https://github.com/apps/dependabot) updates
 
