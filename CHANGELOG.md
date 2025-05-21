@@ -18,7 +18,7 @@
   * Vejle
   * Ærø
 * Added new API for Revas with new municipalities:
-  * Viborg
+  * Viborg ([#297](https://github.com/briis/affalddk/issues/297))
 
 
 **Note**: We know that when we add new Municipalities, some of them will miss some fractions (Garbage or Material Types). Please make sure you create an issue, where you attach the Log entries from Home Assistant. This will make sure we can fix these issue before the final release.
