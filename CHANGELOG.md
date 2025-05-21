@@ -18,6 +18,8 @@
   * Vejle
   * Ærø
 
+**Note**: We know that when we add new Municipalities, some of them will miss some fractions (Garbage or Material Types). Please make sure you create an issue, where you attach the Log entries from Home Assistant. This will make sure we can fix these issue before the final release.
+
 ### Changes
 
 * @TermeHansen made even more optimizations on the API Module, making it more robust to handle changes in the Fraction naming, and unifying Pickup Event Functions.
