@@ -17,10 +17,11 @@ The Affaldshåndtering DK integration adds support for retreiving Garbage Collec
 
 As of May 2025, there is no longer support for municipalities that just use RenoWeb, as they have all implemented MitID validation, for you to see your own Garbage Pickup Data. I am sure there a good reasons for that, but unfortunately that broke most of this integration.
 As of release 2.4.0, this integration now supports the following API's:
-- Municipalities that use **Perfect Waste**
-- Municipalities that use **AffaldsPortal**
-- Municipalities that use **Vest Forbrænding**
 - Municipalities that use **AffaldOnline**
+- Municipalities that use **AffaldsPortal**
+- Municipalities that use **Perfect Waste**
+- Municipalities that use **Revas**
+- Municipalities that use **Vest Forbrænding**
 - Municipalities that have an **iCal** implementation. (Like København)
 
 That also means that a few Municipalities that were previously supported through **RenoWeb** and are not using any of the above API's, are no longer supported. There is no workarounf for that at the moment.
@@ -102,7 +103,7 @@ Around every New Year a bunch of Pickup Types will have no dates for the next pi
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (61)
+Here is the list of currently supported Municipalities (68)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
@@ -170,6 +171,7 @@ Here is the list of currently supported Municipalities (61)
 - Varde (Affaldsportal)
 - Vejen (Perfect Waste)
 - Vejle (AffaldOnline)
+- Viborg (Revas)
 - Vordingborg (Affaldsportal)
 - Ærø (AffaldOnline)
 
