@@ -17,13 +17,19 @@
   * Rebild
   * Vejle
   * Ærø
+* Added new API for Revas with new municipalities:
+  * Viborg
+
 
 **Note**: We know that when we add new Municipalities, some of them will miss some fractions (Garbage or Material Types). Please make sure you create an issue, where you attach the Log entries from Home Assistant. This will make sure we can fix these issue before the final release.
 
 ### Changes
 
 * @TermeHansen made even more optimizations on the API Module, making it more robust to handle changes in the Fraction naming, and unifying Pickup Event Functions.
-* Bump `pyaffalddk` to V2.8.0
+* Fixed missing Fractions in:
+  * Esbjerg ([#298](https://github.com/briis/affalddk/issues/298))
+  * Solrød ([#300](https://github.com/briis/affalddk/issues/300))
+* Bump `pyaffalddk` to V2.9.0
 
 ### [Dependabot](https://github.com/apps/dependabot) updates
 
