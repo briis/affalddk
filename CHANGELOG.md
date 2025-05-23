@@ -2,7 +2,7 @@
 
 ## Version 2.5.0
 
-**Date**: `ONLY IN PRE_RELEASE`
+**Date**: `2025-05-23`
 
 ### Added
 * Added new API for Vest Forbrænding, fixing Ballerup and adding new municipalities:
