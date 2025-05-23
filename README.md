@@ -24,10 +24,10 @@ As of release 2.4.0, this integration now supports the following API's:
 - Municipalities that use **Vest Forbrænding**
 - Municipalities that have an **iCal** implementation. (Like København)
 
-That also means that a few Municipalities that were previously supported through **RenoWeb** and are not using any of the above API's, are no longer supported. There is no workarounf for that at the moment.
+That also means that a few Municipalities that were previously supported through **RenoWeb** and are not using any of the above API's, are no longer supported. There is no workaround for that at the moment.
 
 ### DESCRIPTION
-Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from **Renoweb** and that accounts for more than 50% of all Municipalities.
+Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from Garbage Pickup API's listed above and that accounts for around 70% of all Municipalities.
 
 Go to the [Municipality List](#MUNICIPALITIES) to see if your Municipality will work with this integration.
 
