@@ -41,13 +41,14 @@ from .const import (
     DEFAULT_BRAND,
     DOMAIN,
 )
-from .images import PICTURE_ITEMS
 from pyaffalddk import (
     ICON_LIST,
     PickupType,
     WEEKDAYS,
     WEEKDAYS_SHORT,
 )
+
+git_images = 'https://github.com/briis/affalddk/raw/refs/heads/main/images/affalddk/'
 
 @dataclass(frozen=True)
 class AffaldDKSensorEntityDescription(SensorEntityDescription):
@@ -373,7 +374,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
                 ATTR_DATE_SHORT: f"{_day_name} {_date.strftime("d. %d/%m") if _date else None}",
                 ATTR_DESCRIPTION: self._pickup_events.description,
                 ATTR_DURATION: _day_text,
-                ATTR_ENTITY_PICTURE: PICTURE_ITEMS.get(_categori),
+                ATTR_ENTITY_PICTURE: f'{git_images}{_categori}.svg',
                 ATTR_LAST_UPDATE: now().isoformat(),
                 ATTR_NAME: self._pickup_events.friendly_name,
             }
