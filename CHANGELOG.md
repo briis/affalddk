@@ -1,5 +1,43 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.5.0
+
+**Date**: `2025-05-23`
+
+### Added
+* Added new API for Vest Forbrænding, fixing Ballerup and adding new municipalities:
+  * Furesø
+  * Ishøj
+  * Vallensbæk
+* Added new API for AffaldOnline with new municipalities:
+  * Favrskov
+  * Holbæk
+  * Langeland
+  * Morsø
+  * Rebild
+  * Vejle
+  * Ærø
+* Added new API for Revas with new municipalities:
+  * Viborg ([#297](https://github.com/briis/affalddk/issues/297))
+
+
+**Note**: We know that when we add new Municipalities, some of them will miss some fractions (Garbage or Material Types). Please make sure you create an issue, where you attach the Log entries from Home Assistant. This will make sure we can fix these issue before the final release.
+
+### Changes
+
+* @TermeHansen made even more optimizations on the API Module, making it more robust to handle changes in the Fraction naming, and unifying Pickup Event Functions.
+* Fixed missing Fractions in:
+  * Esbjerg ([#298](https://github.com/briis/affalddk/issues/298))
+  * Solrød ([#300](https://github.com/briis/affalddk/issues/300))
+* Bump `pyaffalddk` to V2.9.0
+
+### [Dependabot](https://github.com/apps/dependabot) updates
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.4.3
 
 **Date**: `2025-05-18`
@@ -18,13 +56,6 @@
   * [Storskrald Distrikt 3] is not defined #294
 * Big re-structure and cleanup of internal material string to defined fractions code
 * Bump `pyaffalddk` to V2.6.0
-
-## [Dependabot](https://github.com/apps/dependabot) updates
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.4.2
 
