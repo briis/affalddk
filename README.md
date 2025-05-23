@@ -103,7 +103,7 @@ Around every New Year a bunch of Pickup Types will have no dates for the next pi
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (68)
+Here is the list of currently supported Municipalities (69)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
