@@ -1,5 +1,31 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.6.0
+
+**Date**: `2025-05-27`
+
+### Added
+* Added new API for Open Experience:
+  * Fredericia
+  * Frederiksberg
+  * Nordfyns
+  * Thy
+
+* @TermeHansen made more optimizations on the API Module, hopefully it more robust to handle changes in the Fraction naming.
+* Bump `pyaffalddk` to V2.10.0
+* Fixed missing Fractions in:
+  * Viborg ([#297](https://github.com/briis/affalddk/issues/297))
+  * Greve ([#305](https://github.com/briis/affalddk/issues/305))
+  * Albertslund ([#304](https://github.com/briis/affalddk/issues/304))
+  * Favrskov ([#302](https://github.com/briis/affalddk/issues/302))
+  * Holbæk ([#306](https://github.com/briis/affalddk/issues/306))
+  * Fredensborg ([#308](https://github.com/briis/affalddk/issues/308))
+  * Billund ([#309](https://github.com/briis/affalddk/issues/309))
+
+
+**Note**: We know that when we add new Municipalities, some of them will miss some fractions (Garbage or Material Types). Please make sure you create an issue, where you attach the Log entries from Home Assistant. This will make sure we can fix these issue before the final release.
+
+
 ## Version 2.5.0
 
 **Date**: `2025-05-23`

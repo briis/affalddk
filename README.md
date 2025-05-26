@@ -20,7 +20,7 @@ As of release 2.4.0, this integration now supports the following API's:
 - Municipalities that use **AffaldOnline**
 - Municipalities that use **AffaldsPortal**
 - Municipalities that use **Perfect Waste**
-- Municipalities that use **Revas**
+- Municipalities that use **Open Experience**
 - Municipalities that use **Vest Forbrænding**
 - Municipalities that have an **iCal** implementation. (Like København)
 
@@ -103,12 +103,12 @@ Around every New Year a bunch of Pickup Types will have no dates for the next pi
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (69)
+Here is the list of currently supported Municipalities (73)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
 - Aarhus (iCal)
-- Albertslund (Affaldsportal)
+- Albertslund (Vestforbrænding)
 - Allerød (Affaldsportal)
 - Ballerup (Vestforbrænding)
 - Billund (Affaldsportal)
@@ -121,6 +121,8 @@ Here is the list of currently supported Municipalities (69)
 - Favrskov (AffaldOnline)
 - Faxe (Perfect Waste)
 - Fredensborg (Affaldsportal)
+- Fredericia (Open Experience)
+- Frederiksberg (Open Experience)
 - Frederikssund (Perfect Waste)
 - Furesø (Vestforbrænding)
 - Gentofte (Affaldsportal)
@@ -151,6 +153,7 @@ Here is the list of currently supported Municipalities (69)
 - Lyngby-Taarbæk (Affaldsportal)
 - Mariagerfjord (Affaldsportal)
 - Morsø (AffaldOnline)
+- Nordfyns (Open Experience)
 - Næstved (Perfect Waste)
 - Odense (iCal)
 - Odsherred (Perfect Waste)
@@ -166,6 +169,7 @@ Here is the list of currently supported Municipalities (69)
 - Stevns (Perfect Waste)
 - Svendborg (Affaldsportal)
 - Sønderborg (Affaldsportal)
+- Thy (Open Experience)
 - Tårnby (Perfect Waste)
 - Vallensbæk (Vestforbrænding)
 - Varde (Affaldsportal)
