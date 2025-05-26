@@ -8,6 +8,7 @@
 * Added new API for Open Experience:
   * Fredericia
   * Frederiksberg
+  * Holstebro
   * Nordfyns
   * Thy
 
@@ -15,9 +16,11 @@
 
 ### Changes
 
+* Next_event will now move to next comming event after the end time.
+* We will only fetch online data once a day no matter how often the sensor is updating.
 * @TermeHansen made more optimizations on the API Module, hopefully it more robust to handle changes in the Fraction naming.
 * Changed to use links for fraction images instead of base64 data strings, to fix [#230](https://github.com/briis/affalddk/issues/230)
-* Bump `pyaffalddk` to V2.10.0
+* Bump `pyaffalddk` to V2.10.1
 * Fixed missing Fractions in:
   * Viborg ([#297](https://github.com/briis/affalddk/issues/297))
   * Greve ([#305](https://github.com/briis/affalddk/issues/305))

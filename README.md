@@ -103,7 +103,7 @@ Around every New Year a bunch of Pickup Types will have no dates for the next pi
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (73)
+Here is the list of currently supported Municipalities (74)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
@@ -137,6 +137,7 @@ Here is the list of currently supported Municipalities (73)
 - Hillerød (Perfect Waste)
 - Hjørring (Affaldsportal)
 - Holbæk (AffaldOnline)
+- Holstebro (Open Experience)
 - Horsens (Perfect Waste)
 - Hvidovre (Perfect Waste)
 - Høje-Taastrup (Perfect Waste)
