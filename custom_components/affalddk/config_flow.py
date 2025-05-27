@@ -45,7 +45,6 @@ from .const import (
 _LOGGER = logging.getLogger(__name__)
 
 
-
 class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
     """Config Flow for AffaldDK."""
 
@@ -86,9 +85,9 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
             return self._show_setup_form(user_input, errors)
 
         municipality = user_input[CONF_MUNICIPALITY]
-        zipcode = user_input[CONF_ZIPCODE]
-        street = user_input[CONF_ROAD_NAME]
-        house_number = user_input[CONF_HOUSE_NUMBER]
+        zipcode = user_input[CONF_ZIPCODE].strip()
+        street = user_input[CONF_ROAD_NAME].strip()
+        house_number = user_input[CONF_HOUSE_NUMBER].strip()
 
         try:
             session = async_create_clientsession(self.hass)

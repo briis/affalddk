@@ -307,8 +307,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             else None
         )
         if self._pickup_events is not None:
-            current_time = now()
-            current_time = current_time.date()
+            current_time = now().date()
             pickup_time: datetime.date = self._pickup_events.date
             _pickup_days = (pickup_time - current_time).days
             if pickup_time:
@@ -327,8 +326,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             else None
         )
         if self._pickup_events is not None:
-            current_time = now()
-            current_time = current_time.date()
+            current_time = now().date()
             pickup_time: datetime.date = self._pickup_events.date
             _pickup_days = (pickup_time - current_time).days
             if pickup_time:
@@ -349,10 +347,18 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             if self._coordinator.data.pickup_events
             else None
         )
+        _categori = self.entity_description.key
+        if _categori == "next_pickup":
+            _categori = "genbrug"
+
+        att = {
+            ATTR_ENTITY_PICTURE: f'{git_images}{_categori}.svg',
+            ATTR_LAST_UPDATE: now().isoformat()
+        }
+
         if self._pickup_events is not None:
             _date: datetime.date = self._pickup_events.date
-            _current_date = dt.today()
-            _current_date = _current_date.date()
+            _current_date = dt.today().date()
             _state = (_date - _current_date).days
             if _state < 0:
                 _state = 0
@@ -366,23 +372,16 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             else:
                 _day_text = f"Om {_state} dage"
 
-            _categori = self.entity_description.key
-            if _categori == "next_pickup":
-                _categori = "genbrug"
-
-            return {
-                ATTR_DATE: _date if _date else None,
-                ATTR_DATE_LONG: (
-                    f"{_day_name_long} "
-                    f"{_date.strftime('d. %d-%m-%Y') if _date else None}"
-                ),
-                ATTR_DATE_SHORT: f"{_day_name} {_date.strftime("d. %d/%m") if _date else None}",
-                ATTR_DESCRIPTION: self._pickup_events.description,
-                ATTR_DURATION: _day_text,
-                ATTR_ENTITY_PICTURE: f'{git_images}{_categori}.svg',
-                ATTR_LAST_UPDATE: now().isoformat(),
-                ATTR_NAME: self._pickup_events.friendly_name,
-            }
+            att[ATTR_DATE] = _date if _date else None
+            att[ATTR_DATE_LONG] = (
+                f"{_day_name_long} "
+                f"{_date.strftime('d. %d-%m-%Y') if _date else None}"
+            )
+            att[ATTR_DATE_SHORT] = f"{_day_name} {_date.strftime('d. %d/%m') if _date else None}"
+            att[ATTR_DESCRIPTION] = self._pickup_events.description
+            att[ATTR_DURATION] = _day_text
+            att[ATTR_NAME] = self._pickup_events.friendly_name
+        return att
 
     async def async_added_to_hass(self):
         """When entity is added to hass."""
