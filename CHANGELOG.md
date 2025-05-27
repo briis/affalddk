@@ -21,15 +21,17 @@
 * We will only fetch online data once a day no matter how often the sensor is updating.
 * @TermeHansen made more optimizations on the API Module, hopefully it more robust to handle changes in the Fraction naming.
 * Changed to use links for fraction images instead of base64 data strings, to fix [#230](https://github.com/briis/affalddk/issues/230)
-* Bump `pyaffalddk` to V2.10.2
+* Bump `pyaffalddk` to V2.10.3
 * Fixed missing Fractions in:
+  * Holstebro ([#214](https://github.com/briis/affalddk/issues/214))
   * Viborg ([#297](https://github.com/briis/affalddk/issues/297))
-  * Greve ([#305](https://github.com/briis/affalddk/issues/305))
-  * Albertslund ([#304](https://github.com/briis/affalddk/issues/304))
   * Favrskov ([#302](https://github.com/briis/affalddk/issues/302))
+  * Albertslund ([#304](https://github.com/briis/affalddk/issues/304))
+  * Greve ([#305](https://github.com/briis/affalddk/issues/305))
   * Holbæk ([#306](https://github.com/briis/affalddk/issues/306))
   * Fredensborg ([#308](https://github.com/briis/affalddk/issues/308))
   * Billund ([#309](https://github.com/briis/affalddk/issues/309))
+  * Ringøbing-Skjern ([#314](https://github.com/briis/affalddk/issues/314))
 
 ---------------------------
 
