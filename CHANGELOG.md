@@ -32,6 +32,7 @@
   * Fredensborg ([#308](https://github.com/briis/affalddk/issues/308))
   * Billund ([#309](https://github.com/briis/affalddk/issues/309))
   * Ringøbing-Skjern ([#314](https://github.com/briis/affalddk/issues/314))
+  * fix Allerød, rest/mad mangler ([#315](https://github.com/briis/affalddk/issues/315))
 
 ---------------------------
 
