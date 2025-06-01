@@ -96,6 +96,14 @@ To add Affald-DK to your installation, do the following:
 
 You can configure more than 1 instance of the Integration by using a different Address.
 
+### MUNICIPALITY SPECIFIC Q&A
+
+Based on user feedback, we are in this section collecting answers that often arise for a specific Municipality.
+
+#### Odense
+
+Odense has introduced reCAPTCHA, which is a technology to ensure this is a real person and not a computer retrieving data. So before the instegration works you need to follow the instructions [found here](https://github.com/briis/affalddk/issues/257#issuecomment-2848522391)
+
 ### MORE INFORMATION
 
 Around every New Year a bunch of Pickup Types will have no dates for the next pickup, as the calendar for the following year has not yet been created. That will result in some Sensors with `Undefined` or `Unavailable` in their value, and they will be unavailable, until they have a date again. As of version 2.1.20, they will now get an artificial date which is always December 31. the following year. As soon as a valid date is found for these sensors, this date will be used instead.
@@ -156,7 +164,7 @@ Here is the list of currently supported Municipalities (74)
 - Morsø (AffaldOnline)
 - Nordfyns (Open Experience)
 - Næstved (Perfect Waste)
-- Odense (iCal)
+- Odense (iCal) - [read this](#Odense) before adding the integration
 - Odsherred (Perfect Waste)
 - Randers (Affaldsportal)
 - Rebild (AffaldOnline)
