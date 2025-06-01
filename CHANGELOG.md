@@ -2,7 +2,7 @@
 
 ## Version 2.6.0
 
-**Date**: `2025-05-27`
+**Date**: `2025-06-01`
 
 ### Added
 * Added new API for Open Experience:
