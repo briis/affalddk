@@ -16,7 +16,7 @@ The Affaldshåndtering DK integration adds support for retreiving Garbage Collec
 ### INTRODUCTION
 
 As of May 2025, there is no longer support for municipalities that just use RenoWeb, as they have all implemented MitID validation, for you to see your own Garbage Pickup Data. I am sure there a good reasons for that, but unfortunately that broke most of this integration.
-As of release 2.4.0, this integration now supports the following API's:
+As of release 2.6.0, this integration now supports the following API's:
 - Municipalities that use **AffaldOnline**
 - Municipalities that use **AffaldsPortal**
 - Municipalities that use **Perfect Waste**
@@ -31,11 +31,11 @@ Municipalities in Denmark, do not have one standard for how to expose the Pickup
 
 Go to the [Municipality List](#MUNICIPALITIES) to see if your Municipality will work with this integration.
 
-The biggest issue is, that there is NO standard for the way municipalities mix the content of containers. Some have glas & metal in one container, others have glas and paper in one container, etc and also even though they do mix the same content in a container, they do not name it the same. In order to have some structure I need them grouped together and this is a bit of a challenge with all these different types. If a new pickup-type is found, the system will log a warning, which you can put in an issue and I will add it to the list. Please enable logging for the wrapper module in Home assistant to get this warning in Home Assistant, by adding this code to your `configuration.yaml`:
+The biggest issue is, that there is NO standard for the way municipalities mix the content of containers. Some have glas & metal in one container, others have glas and paper in one container, etc and also, even though they do mix the same content in a container, they do not name it the same. In order to have some structure we need them grouped together and this is a bit of a challenge with all these different types. If a new pickup-type is found, the system will log a warning, which you can put in an issue and we will add it to the list. Please enable logging for the wrapper module in Home assistant to get this warning in Home Assistant, by adding this code to your `configuration.yaml`:
 
 ```yaml
 logger:
-  default: warning
+  default: warning # Or whatever level you want
   logs:
     custom_components.affalddk: debug
     pyaffalddk: debug
@@ -50,7 +50,7 @@ Platform | Description
 
 ## CREDITS
 
-@TermeHansen is now a new Co-Developer on this Integration, and has done a fantastic job to get support for Municipalities that use *Perfect Waste* and *AffaldsPortal* plus he has rewritten the underlying ``pyaffalddk`library, to make it easier to maintain going forward.
+@TermeHansen is now a new Co-Developer on this Integration, and has done a fantastic job to get support for Municipalities that use other API's than Renoweb and he has rewritten the underlying ``pyaffalddk`library, to make it easier to maintain going forward.
 
 ## INSTALLATION
 
@@ -102,11 +102,7 @@ Based on user feedback, we are in this section collecting answers that often ari
 
 #### Odense
 
-Odense has introduced reCAPTCHA, which is a technology to ensure this is a real person and not a computer retrieving data. So before the instegration works you need to follow the instructions [found here](https://github.com/briis/affalddk/issues/257#issuecomment-2848522391)
-
-### MORE INFORMATION
-
-Around every New Year a bunch of Pickup Types will have no dates for the next pickup, as the calendar for the following year has not yet been created. That will result in some Sensors with `Undefined` or `Unavailable` in their value, and they will be unavailable, until they have a date again. As of version 2.1.20, they will now get an artificial date which is always December 31. the following year. As soon as a valid date is found for these sensors, this date will be used instead.
+Odense has introduced reCAPTCHA, which is a technology to ensure that a real person and not a computer is retrieving data. So before the integration works you need to follow the instructions [found here](https://github.com/briis/affalddk/issues/257#issuecomment-2848522391)
 
 
 ## MUNICIPALITIES
