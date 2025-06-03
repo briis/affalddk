@@ -1,5 +1,19 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.6.1
+
+**Date**: `ONLY PRE_RELEASE`
+
+### Added
+*
+
+### Changes
+
+* With version 2.6.0 the Next Pickup should change after the End time of the Pickup had passed. Unfortunately the Update Interval was not changed during that release. As of 2.6.1 update interval is now every hour and cannot be changed. This means every hour we check if end time has passed and if yes the Next Pickup will change to one after today. Data from the Garbage API is only loaded once a day, so we do not spam the providers.
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
 ## Version 2.6.0
 
 **Date**: `2025-06-01`
@@ -35,9 +49,6 @@
   * fix Allerød, rest/mad mangler ([#315](https://github.com/briis/affalddk/issues/315))
 
 ---------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.5.0
 
