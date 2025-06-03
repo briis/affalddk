@@ -1,7 +1,7 @@
 colorlog==6.9.0
 homeassistant==2025.5.2
 pip>=23.2.1,<25.2
-ruff==0.11.11
+ruff==0.11.12
 zlib_ng==0.5.1
 isal==1.7.2
 ical==8.3.1
