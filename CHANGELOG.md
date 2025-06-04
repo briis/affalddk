@@ -12,10 +12,15 @@
   * Syddjurs
 * Added Assens to AffaldOnline ([#229](https://github.com/briis/affalddk/issues/229))
 
+**Note**: We know that when we add new Municipalities, some of them will miss some fractions (Garbage or Material Types). Please make sure you create an issue, where you attach the Log entries from Home Assistant. This will make sure we can fix these issue before the final release.
 
 ### Changes
 
 * With version 2.6.0 the Next Pickup should change after the End time of the Pickup had passed. Unfortunately the Update Interval was not changed during that release. As of 2.7.0 update interval is now every hour and cannot be changed. This means every hour we check if end time has passed and if yes the Next Pickup will change to one after today. Data from the Garbage API is only loaded once a day, so we do not spam the providers.
+* fix bug in set_next_pickup when only one fraction type
+* Fixed missing or failing Fractions in:
+  * Dragør ([#321](https://github.com/briis/affalddk/issues/321))
+  * Aalborg [#51](https://github.com/briis/pyaffalddk/issues/51)
 
 ---------------------------
 
