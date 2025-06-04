@@ -1,15 +1,19 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
-## Version 2.6.1
+## Version 2.7.0
 
 **Date**: `ONLY PRE_RELEASE`
 
 ### Added
-*
+* Added new API for Provas:
+  * Haderslev
+* Added Assens to AffaldOnline
+
 
 ### Changes
 
-* With version 2.6.0 the Next Pickup should change after the End time of the Pickup had passed. Unfortunately the Update Interval was not changed during that release. As of 2.6.1 update interval is now every hour and cannot be changed. This means every hour we check if end time has passed and if yes the Next Pickup will change to one after today. Data from the Garbage API is only loaded once a day, so we do not spam the providers.
+* With version 2.6.0 the Next Pickup should change after the End time of the Pickup had passed. Unfortunately the Update Interval was not changed during that release. As of 2.7.0 update interval is now every hour and cannot be changed. This means every hour we check if end time has passed and if yes the Next Pickup will change to one after today. Data from the Garbage API is only loaded once a day, so we do not spam the providers.
+
 ---------------------------
 
 <details>
