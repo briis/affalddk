@@ -23,7 +23,6 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, Upda
 from .const import (
     CONF_ADDRESS_ID,
     CONF_MUNICIPALITY,
-    CONF_UPDATE_INTERVAL,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
 )
