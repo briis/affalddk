@@ -7,6 +7,9 @@
 ### Added
 * Added new API for Provas:
   * Haderslev
+* Added new API for Renodjurs:
+  * Norddjurs
+  * Syddjurs
 * Added Assens to AffaldOnline
 
 
