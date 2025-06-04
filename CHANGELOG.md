@@ -5,12 +5,12 @@
 **Date**: `ONLY PRE_RELEASE`
 
 ### Added
-* Added new API for Provas:
+* Added new API for Provas: ([#216](https://github.com/briis/affalddk/issues/216))
   * Haderslev
-* Added new API for Renodjurs:
+* Added new API for Renodjurs: ([#246](https://github.com/briis/affalddk/issues/246))
   * Norddjurs
   * Syddjurs
-* Added Assens to AffaldOnline
+* Added Assens to AffaldOnline ([#229](https://github.com/briis/affalddk/issues/229))
 
 
 ### Changes
