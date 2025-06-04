@@ -34,10 +34,8 @@ from .const import (
     CONF_HOUSE_NUMBER,
     CONF_MUNICIPALITY,
     CONF_ROAD_NAME,
-    CONF_UPDATE_INTERVAL,
     CONF_ZIPCODE,
     DEFAULT_END_TIME,
-    DEFAULT_SCAN_INTERVAL,
     DEFAULT_START_TIME,
     DOMAIN,
 )
@@ -147,12 +145,12 @@ class OptionsFlowHandler(OptionsFlow):
             step_id="init",
             data_schema=vol.Schema(
                 {
-                    vol.Optional(
-                        CONF_UPDATE_INTERVAL,
-                        default=self.config_entry.options.get(
-                            CONF_UPDATE_INTERVAL, DEFAULT_SCAN_INTERVAL
-                        ),
-                    ): vol.All(vol.Coerce(int), vol.Range(min=1, max=24)),
+                    # vol.Optional(
+                    #     CONF_UPDATE_INTERVAL,
+                    #     default=self.config_entry.options.get(
+                    #         CONF_UPDATE_INTERVAL, DEFAULT_SCAN_INTERVAL
+                    #     ),
+                    # ): vol.All(vol.Coerce(int), vol.Range(min=1, max=24)),
                     vol.Optional(
                         CONF_CALENDAR_START_TIME,
                         default=self.config_entry.options.get(
