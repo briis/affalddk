@@ -21,6 +21,7 @@ from homeassistant.util.dt import get_default_time_zone
 from pyaffalddk import NAME_LIST, PickupType
 from . import AffaldDKDataUpdateCoordinator
 from .const import (
+    CONF_ADDRESS,
     CONF_ADDRESS_ID,
     CONF_CALENDAR_END_TIME,
     CONF_CALENDAR_START_TIME,
@@ -76,12 +77,18 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
         super().__init__(coordinator)
         self._config = config
         self._coordinator = coordinator
+        name = DOMAIN.capitalize()
+        if CONF_ADDRESS in self._config.data:
+            name += f" {self._config.data[CONF_ADDRESS]}"
+        else:
+            # backwards compatible
+            name += f" {self._config.data[CONF_ROAD_NAME]} {self._config.data[CONF_HOUSE_NUMBER]}"
 
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, self._config.data[CONF_ADDRESS_ID])},
             entry_type=DeviceEntryType.SERVICE,
             manufacturer=DEFAULT_BRAND,
-            name=f"{DOMAIN.capitalize()} {self._config.data[CONF_ROAD_NAME]} {self._config.data[CONF_HOUSE_NUMBER]}",
+            name=name,
             configuration_url="https://github.com/briis/affalddk",
         )
 
