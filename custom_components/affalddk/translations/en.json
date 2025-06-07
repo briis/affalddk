@@ -14,11 +14,17 @@
                     "zipcode": "Zipcode",
                     "road_name": "Road name",
                     "house_number": "House Number",
-                    "update_interval": "Update Interval (Hours)",
                     "calendar_end_time": "Pickup end time",
                     "calendar_start_time": "Pickup start time"
                 },
                 "description": "Setup Home Assistant to collect Garbage Pick-Up data from Danish Municipalities.",
+                "title": "Affald DK"
+            },
+            "select_address": {
+                "data": {
+                    "address": "Select Address"
+                },
+                "description": "{municipality}\nRoad name: \"{road_name}\"\nHouse Number: \"{house_number}\"\nZipcode: \"{zipcode}\"",
                 "title": "Affald DK"
             }
         }
@@ -31,7 +37,6 @@
                     "zipcode": "Zipcode",
                     "road_name": "Road name",
                     "house_number": "House Number",
-                    "update_interval": "Update Interval (Hours)",
                     "calendar_end_time": "Pickup end time",
                     "calendar_start_time": "Pickup start time"
                 }

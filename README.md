@@ -19,8 +19,10 @@ As of May 2025, there is no longer support for municipalities that just use Reno
 As of release 2.6.0, this integration now supports the following API's:
 - Municipalities that use **AffaldOnline**
 - Municipalities that use **AffaldsPortal**
-- Municipalities that use **Perfect Waste**
 - Municipalities that use **Open Experience**
+- Municipalities that use **Perfect Waste**
+- Municipalities that use **Provas**
+- Municipalities that use **Renodjurs**
 - Municipalities that use **Vest Forbrænding**
 - Municipalities that have an **iCal** implementation. (Like København)
 
@@ -107,13 +109,14 @@ Odense has introduced reCAPTCHA, which is a technology to ensure that a real per
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (74)
+Here is the list of currently supported Municipalities (78)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
 - Aarhus (iCal)
 - Albertslund (Vestforbrænding)
 - Allerød (Affaldsportal)
+- Assens (AffaldOnline)
 - Ballerup (Vestforbrænding)
 - Billund (Affaldsportal)
 - Bornholm (Affaldsportal)
@@ -135,6 +138,7 @@ Here is the list of currently supported Municipalities (74)
 - Greve (Perfect Waste)
 - Gribskov (Perfect Waste)
 - Guldborgsund (Perfect Waste)
+- Haderslev (Provas)
 - Halsnæs (Perfect Waste)
 - Helsingør (Affaldsportal)
 - Herlev (Affaldsportal)
@@ -158,6 +162,7 @@ Here is the list of currently supported Municipalities (74)
 - Lyngby-Taarbæk (Affaldsportal)
 - Mariagerfjord (Affaldsportal)
 - Morsø (AffaldOnline)
+- Norddjurs (Renodjurs)
 - Nordfyns (Open Experience)
 - Næstved (Perfect Waste)
 - Odense (iCal) - [read this](#Odense) before adding the integration
@@ -173,6 +178,7 @@ Here is the list of currently supported Municipalities (74)
 - Solrød (Affaldsportal)
 - Stevns (Perfect Waste)
 - Svendborg (Affaldsportal)
+- Syddjurs (Renodjurs)
 - Sønderborg (Affaldsportal)
 - Thy (Open Experience)
 - Tårnby (Perfect Waste)

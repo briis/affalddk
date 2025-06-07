@@ -33,6 +33,7 @@ from .const import (
     ATTR_DESCRIPTION,
     ATTR_DURATION,
     ATTR_LAST_UPDATE,
+    CONF_ADDRESS,
     CONF_ADDRESS_ID,
     CONF_HOUSE_NUMBER,
     CONF_MUNICIPALITY,
@@ -282,15 +283,17 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         self._config = config
         self._coordinator = coordinator
         self._pickup_events: PickupType = None
-
+        name = DOMAIN.capitalize()
+        if CONF_ADDRESS in self._config.data:
+            name += f" {self._config.data[CONF_ADDRESS]}"
+        else:
+            # backwards compatible
+            name += f" {self._config.data[CONF_ROAD_NAME]} {self._config.data[CONF_HOUSE_NUMBER]}"
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, self._config.data[CONF_ADDRESS_ID])},
             entry_type=DeviceEntryType.SERVICE,
             manufacturer=DEFAULT_BRAND,
-            name=(
-                f"{DOMAIN.capitalize()} {self._config.data[CONF_ROAD_NAME]} "
-                f"{self._config.data[CONF_HOUSE_NUMBER]}"
-            ),
+            name=name,
             configuration_url="https://github.com/briis/affalddk",
             model=f"Kommune: {config.data[CONF_MUNICIPALITY]}",
             model_id=f"ID: {config.data[CONF_ADDRESS_ID]}",
