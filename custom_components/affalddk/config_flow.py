@@ -13,6 +13,7 @@ from homeassistant.config_entries import (
     OptionsFlow,
 )
 import logging
+import aiohttp
 
 from homeassistant.core import callback
 from homeassistant.helpers.aiohttp_client import async_create_clientsession
@@ -43,18 +44,39 @@ from .const import (
 _LOGGER = logging.getLogger(__name__)
 
 
+def municipalityFromCoor(lon, lat):
+    """Municipality from longitude and latitude."""
+
+    url = f"https://api.dataforsyningen.dk/kommuner/reverse?x={lon}&y={lat}"
+    async with aiohttp.ClientSession() as session, session.get(url) as response:
+        if response.status == 200:
+            js = await response.json()
+            return js.get("navn", '')
+
+
 class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
     """Config Flow for AffaldDK."""
 
     VERSION = 1
 
     @callback
-    def _show_setup_form(self, user_input={}, errors={}) -> ConfigFlowResult:
+    async def _show_setup_form(self, user_input={}, errors={}) -> ConfigFlowResult:
         """Show the setup form to the user."""
 
-        options = [key for key, val in MUNICIPALITIES_LIST.items()]
+        options = list(MUNICIPALITIES_LIST.keys())
+
+        municipality = user_input.get(CONF_MUNICIPALITY)
+        if not municipality:
+            server_municipality = await self.hass.async_add_executor_job(
+                municipalityFromCoor,
+                self.hass.config.longitude,
+                self.hass.config.latitude,
+            )
+            if server_municipality in options:
+                municipality = server_municipality
+
         schema = vol.Schema({
-            vol.Required(CONF_MUNICIPALITY, default=user_input.get(CONF_MUNICIPALITY)): selector(
+            vol.Required(CONF_MUNICIPALITY, default=municipality): selector(
                 {"select": {"options": options}}
             ),
             vol.Required(CONF_ZIPCODE, default=user_input.get(CONF_ZIPCODE, '')): str,
@@ -76,20 +98,19 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
             title=address_info.address,
             data={
                 CONF_MUNICIPALITY: address_info.kommunenavn,
-                CONF_ADDRESS: address_info.address,
+                CONF_ADDRESS: address_info.address.capitalize(),
                 CONF_ADDRESS_ID: address_info.address_id,
             },
         )
 
-    async def async_step_user(self, user_input: dict[str, Any] | None = None, from_select=False):
+    async def async_step_user(self, user_input=None, from_select=False):
         """Handle a flow initialized by the user."""
-        _LOGGER.debug(f'USER: {user_input}')
         errors: dict[str, str] = {}
 
-        if user_input is None:
-            return self._show_setup_form()
+        if not user_input:
+            return await self._show_setup_form()
         if from_select:
-            return self._show_setup_form(user_input=user_input)
+            return await self._show_setup_form(user_input=user_input)
 
         municipality = user_input[CONF_MUNICIPALITY]
         zipcode = user_input[CONF_ZIPCODE].strip()
@@ -122,11 +143,10 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
             errors["base"] = "connection_error"
 
         if errors:
-            return self._show_setup_form(user_input=user_input, errors=errors)
+            return await self._show_setup_form(user_input=user_input, errors=errors)
 
     async def async_step_select_address(self, user_input=None, options=[]):
         """Handle a flow initialized by the select address."""
-        _LOGGER.debug(f'SELECT: {user_input}')
         if user_input is not None:
             if user_input['address'] == 'tilbage..':
                 return await self.async_step_user(user_input=self.user_input, from_select=True)
@@ -134,7 +154,7 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
 
         return self.async_show_form(
             step_id="select_address",
-            description_placeholders=self.user_input,
+            description_placeholders={k: v.capitalize() for k, v in self.user_input.items()},
             data_schema=vol.Schema({
                 vol.Required(CONF_ADDRESS): selector(
                     {"select": {"options": options}}

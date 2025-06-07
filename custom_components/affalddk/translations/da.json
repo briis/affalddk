@@ -20,11 +20,11 @@
                 "description": "Hent affalds opsamlingsdata fra danske kommuner.",
                 "title": "Affald DK"
             },
-            "select_option": {
+            "select_address": {
                 "data": {
                     "address": "Vælg Addresse"
                 },
-                "description": "{municipality} -- Postnummer: {zipcode}",
+                "description": "{municipality}\nVej navn: \"{road_name}\"\nHus nummer: \"{house_number}\"\nPostnummer: \"{zipcode}\"",
                 "title": "Affald DK"
             }
         }

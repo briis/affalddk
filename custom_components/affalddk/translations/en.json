@@ -20,11 +20,11 @@
                 "description": "Setup Home Assistant to collect Garbage Pick-Up data from Danish Municipalities.",
                 "title": "Affald DK"
             },
-            "select_option": {
+            "select_address": {
                 "data": {
                     "address": "Select Address"
                 },
-                "description": "{municipality} -- Zipcode: {zipcode}",
+                "description": "{municipality}\nRoad name: \"{road_name}\"\nHouse Number: \"{house_number}\"\nZipcode: \"{zipcode}\"",
                 "title": "Affald DK"
             }
         }
