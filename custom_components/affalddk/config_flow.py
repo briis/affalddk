@@ -44,14 +44,14 @@ from .const import (
 _LOGGER = logging.getLogger(__name__)
 
 
-def municipalityFromCoor(lon, lat):
+async def municipalityFromCoor(lon, lat):
     """Municipality from longitude and latitude."""
 
     url = f"https://api.dataforsyningen.dk/kommuner/reverse?x={lon}&y={lat}"
     async with aiohttp.ClientSession() as session, session.get(url) as response:
         if response.status == 200:
             js = await response.json()
-            return js.get("navn", '')
+            return js.get("navn", '').capitalize()
 
 
 class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
@@ -67,8 +67,7 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
 
         municipality = user_input.get(CONF_MUNICIPALITY)
         if not municipality:
-            server_municipality = await self.hass.async_add_executor_job(
-                municipalityFromCoor,
+            server_municipality = await municipalityFromCoor(
                 self.hass.config.longitude,
                 self.hass.config.latitude,
             )
