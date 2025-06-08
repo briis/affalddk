@@ -41,6 +41,7 @@ from .const import (
     DOMAIN,
 )
 
+GOBACK = '<- Tilbage'
 _LOGGER = logging.getLogger(__name__)
 
 
@@ -130,7 +131,7 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
             if len(address_list) == 1:
                 return await self._create_entry(address_list[0])
             elif len(address_list) > 1:
-                return await self.async_step_select_address(options=['tilbage..'] + address_list)
+                return await self.async_step_select_address(options=[GOBACK] + address_list)
             else:
                 errors["base"] = "location_not_found"
 
@@ -147,7 +148,7 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
     async def async_step_select_address(self, user_input=None, options=[]):
         """Handle a flow initialized by the select address."""
         if user_input is not None:
-            if user_input['address'] == 'tilbage..':
+            if user_input['address'] == GOBACK:
                 return await self.async_step_user(user_input=self.user_input, from_select=True)
             return await self._create_entry(user_input['address'])
 
