@@ -17,7 +17,7 @@
                     "calendar_end_time": "Tømmings slut tid",
                     "calendar_start_time": "Tømmings start tid"
                 },
-                "description": "Hent affalds opsamlingsdata fra danske kommuner.",
+                "description": "Hent affald opsamlingsdata fra danske kommuner.",
                 "title": "Affald DK"
             },
             "select_address": {
