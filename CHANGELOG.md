@@ -18,7 +18,7 @@
 
 * With version 2.7.0 the Next Pickup should change after the End time of the Pickup had passed. Unfortunately the Update Interval was not changed during that release. As of 2.7.0 update interval is now every hour and cannot be changed. This means every hour we check if end time has passed and if yes the Next Pickup will change to one after today. Data from the Garbage API is only loaded once a day, so we do not spam the providers.
 * fix bug in set_next_pickup when only one fraction type
-* With version 2.7.0 searching for an address, will use only `roadname` and `zipcode` -  and `hourse_number` will be used as `house_numer` + wildcard to return a list of results for a new seconds selction step (if more than one result).
+* With version 2.7.0 searching for an address, will use only `roadname` and `zipcode` -  and `house_number` will be used as `house_number` + wildcard to return a list of results for a new seconds selction step (if more than one result).
 
 * Fixed missing or failing Fractions in:
   * Dragør ([#321](https://github.com/briis/affalddk/issues/321))
