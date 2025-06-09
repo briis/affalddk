@@ -89,10 +89,10 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
             errors=errors or {},
         )
 
-    async def _create_entry(self, address_name) -> ConfigEntry:
+    async def _create_entry(self, address_name) -> ConfigFlowResult:
         address_info = await self.affalddkapi.get_address(address_name)
         await self.async_set_unique_id(address_info.uid)
-        self._abort_if_unique_id_configured
+        self._abort_if_unique_id_configured()
 
         return self.async_create_entry(
             title=address_info.address,
