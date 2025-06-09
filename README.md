@@ -92,7 +92,7 @@ To add Affald-DK to your installation, do the following:
   | `Municipality` | Yes | None | Select your Municipality from the Dropdown list. You can press the first letter of your municipality to quickly scroll down. |
   | `Zipcode` | Yes | None | Enter the Zipcode of the address. This is required as some municipalities use the same road name in several cities, so we need to make sure we pick the right street. |
   | `Road name` | Yes | None | Type the name of the road you want to get collection data for. Without house number. |
-  | `House Number` | Yes | None | The house number of the address. Also accepts letters. If you have a house number like 2A or similar, and it does not work, try putting a space between the number and the letter, like 2 A |
+  | `House Number` | Yes | None | The house number of the address. Also accepts letters. If you have a house number like 2A or similar, and it does not work, try putting a space between the number and the letter, like 2 A. If more than 1 address is returned a second selection box will pop-up from where you can select the correct address |
 
 - Click on SUBMIT to save your data. If all goes well you should now have entities under the *Affaldshåndtering DK* integration
 
