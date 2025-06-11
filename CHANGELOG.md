@@ -11,6 +11,13 @@
   * Norddjurs
   * Syddjurs
 * Added Assens to AffaldOnline ([#229](https://github.com/briis/affalddk/issues/229))
+* Added new municipalities to *Open Experience*
+  * Lemvig
+  * Skive
+  * Struer
+* Added new API for Renosyd, supporting new Municipalities:
+  * Odder
+  * Skanderborg
 
 **Note**: We know that when we add new Municipalities, some of them will miss some fractions (Garbage or Material Types). Please make sure you create an issue, where you attach the Log entries from Home Assistant. This will make sure we can fix these issue before the final release.
 
@@ -22,7 +29,8 @@
 
 * Fixed missing or failing Fractions in:
   * Dragør ([#321](https://github.com/briis/affalddk/issues/321))
-  * Aalborg [#51](https://github.com/briis/pyaffalddk/issues/51)
+  * Aalborg ([#51](https://github.com/briis/pyaffalddk/issues/51))
+  * Horsens ([#326](https://github.com/briis/affalddk/issues/326))
 
 ---------------------------
 
