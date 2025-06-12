@@ -23,14 +23,14 @@ As of release 2.6.0, this integration now supports the following API's:
 - Municipalities that use **Perfect Waste**
 - Municipalities that use **Provas**
 - Municipalities that use **Renodjurs**
-- Municipalities that use **Renosyd**
+- Municipalities that use **RenoSyd**
 - Municipalities that use **Vest Forbrænding**
 - Municipalities that have an **iCal** implementation. (Like København)
 
 That also means that a few Municipalities that were previously supported through **RenoWeb** and are not using any of the above API's, are no longer supported. There is no workaround for that at the moment.
 
 ### DESCRIPTION
-Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from Garbage Pickup API's listed above and that accounts for around 70% of all Municipalities.
+Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from Garbage Pickup API's listed above and that accounts for around 85% of all Municipalities.
 
 Go to the [Municipality List](#MUNICIPALITIES) to see if your Municipality will work with this integration.
 
@@ -167,7 +167,7 @@ Here is the list of currently supported Municipalities (83)
 - Norddjurs (Renodjurs)
 - Nordfyns (Open Experience)
 - Næstved (Perfect Waste)
-- Odder (Renosyd)
+- Odder (RenoSyd)
 - Odense (iCal) - [read this](#Odense) before adding the integration
 - Odsherred (Perfect Waste)
 - Randers (Affaldsportal)
@@ -177,7 +177,7 @@ Here is the list of currently supported Municipalities (83)
 - Rudersdal (Affaldsportal)
 - Rødovre (Affaldsportal)
 - Samsø (Affaldsportal)
-- Skanderborg (Renosyd)
+- Skanderborg (RenoSyd)
 - Skive (Open Experience)
 - Slagelse (Perfect Waste)
 - Solrød (Affaldsportal)

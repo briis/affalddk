@@ -15,7 +15,7 @@
   * Lemvig
   * Skive
   * Struer
-* Added new API for Renosyd, supporting new Municipalities:
+* Added new API for RenoSyd, supporting new Municipalities:
   * Odder
   * Skanderborg
 
@@ -31,6 +31,8 @@
   * Dragør ([#321](https://github.com/briis/affalddk/issues/321))
   * Aalborg ([#51](https://github.com/briis/pyaffalddk/issues/51))
   * Horsens ([#326](https://github.com/briis/affalddk/issues/326))
+
+* Bump `pyaffalddk` to 2.11.1
 
 ---------------------------
 
