@@ -95,8 +95,6 @@ To add Affald-DK to your installation, do the following:
   | `Road name` | Yes | None | Type the name of the road you want to get collection data for. Without house number. |
   | `House Number` | Yes | None | The house number of the address. Also accepts letters. If you have a house number like 2A or similar, and it does not work, try putting a space between the number and the letter, like 2 A. If more than 1 address is returned a second selection box will pop-up from where you can select the correct address. |
 
-  *If more than one address is found that could match the search criteria, you will be presented with a list of the addresses found, and you select the the correct one from that list.*
-
 - Click on SUBMIT to save your data. If all goes well you should now have entities under the *Affaldshåndtering DK* integration
 
 You can configure more than 1 instance of the Integration by using a different Address.
