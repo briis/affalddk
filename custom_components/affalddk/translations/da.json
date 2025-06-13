@@ -14,11 +14,17 @@
                     "zipcode": "Postnummer",
                     "road_name": "Vej navn",
                     "house_number": "Hus nummer",
-                    "update_interval": "Opdaterings interval (timer)",
                     "calendar_end_time": "Tømmings slut tid",
                     "calendar_start_time": "Tømmings start tid"
                 },
-                "description": "Hent affalds opsamlingsdata fra danske kommuner.",
+                "description": "Hent affald opsamlingsdata fra danske kommuner.",
+                "title": "Affald DK"
+            },
+            "select_address": {
+                "data": {
+                    "address": "Vælg Addresse"
+                },
+                "description": "{municipality}\nVej navn: \"{road_name}\"\nHus nummer: \"{house_number}\"\nPostnummer: \"{zipcode}\"",
                 "title": "Affald DK"
             }
         }
@@ -31,7 +37,6 @@
                     "zipcode": "Postnummer",
                     "road_name": "Vej navn",
                     "house_number": "Hus nummer",
-                    "update_interval": "Opdaterings interval (timer)",
                     "calendar_end_time": "Tømmings slut tid",
                     "calendar_start_time": "Tømmings start tid"
                 }

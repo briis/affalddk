@@ -23,7 +23,6 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, Upda
 from .const import (
     CONF_ADDRESS_ID,
     CONF_MUNICIPALITY,
-    CONF_UPDATE_INTERVAL,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
 )
@@ -83,12 +82,12 @@ class AffaldDKDataUpdateCoordinator(DataUpdateCoordinator):
         self.hass = hass
         self.config_entry = config_entry
 
-        # update_interval = timedelta(minutes=2)
-        update_interval = timedelta(
-            hours=self.config_entry.options.get(
-                CONF_UPDATE_INTERVAL, DEFAULT_SCAN_INTERVAL
-            )
-        )
+        update_interval = timedelta(hours=DEFAULT_SCAN_INTERVAL)
+        # update_interval = timedelta(
+        #     hours=self.config_entry.options.get(
+        #         CONF_UPDATE_INTERVAL, DEFAULT_SCAN_INTERVAL
+        #     )
+        # )
 
         super().__init__(
             hass,

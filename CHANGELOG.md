@@ -1,5 +1,46 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.7.0
+
+**Date**: `2025-06-13`
+
+### Added
+* Added new API for Provas: ([#216](https://github.com/briis/affalddk/issues/216))
+  * Haderslev
+* Added new API for Renodjurs: ([#246](https://github.com/briis/affalddk/issues/246))
+  * Norddjurs
+  * Syddjurs
+* Added Assens to AffaldOnline ([#229](https://github.com/briis/affalddk/issues/229))
+* Added new municipalities to *Open Experience*
+  * Lemvig
+  * Skive
+  * Struer
+* Added new API for RenoSyd, supporting new Municipalities:
+  * Odder
+  * Skanderborg
+
+**Note**: We know that when we add new Municipalities, some of them will miss some fractions (Garbage or Material Types). Please make sure you create an issue, where you attach the Log entries from Home Assistant. This will make sure we can fix these issue before the final release.
+
+### Changes
+
+* With version 2.7.0 the Next Pickup should change after the End time of the Pickup had passed. Unfortunately the Update Interval was not changed during that release. As of 2.7.0 update interval is now every hour and cannot be changed. This means every hour we check if end time has passed and if yes the Next Pickup will change to one after today. Data from the Garbage API is only loaded once a day, so we do not spam the providers.
+* fix bug in set_next_pickup when only one fraction type
+* With version 2.7.0 searching for an address, will use only `roadname` and `zipcode` -  and `house_number` will be used as `house_number` + wildcard to return a list of results for a new seconds selction step (if more than one result). Fixing [#323](https://github.com/briis/affalddk/issues/323)
+
+* Fixed missing or failing Fractions in:
+  * Dragør ([#321](https://github.com/briis/affalddk/issues/321))
+  * Aalborg ([#51](https://github.com/briis/pyaffalddk/issues/51))
+  * Horsens ([#326](https://github.com/briis/affalddk/issues/326))
+  * Jammerbugt ([#328](https://github.com/briis/affalddk/issues/328))
+
+* Rewrite of `get_next_event` logic, to ensure getting true next event and not next pickup type
+
+* Bump `pyaffalddk` to 2.12.0
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
 ## Version 2.6.0
 
 **Date**: `2025-06-01`
@@ -35,9 +76,6 @@
   * fix Allerød, rest/mad mangler ([#315](https://github.com/briis/affalddk/issues/315))
 
 ---------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.5.0
 

@@ -19,15 +19,18 @@ As of May 2025, there is no longer support for municipalities that just use Reno
 As of release 2.6.0, this integration now supports the following API's:
 - Municipalities that use **AffaldOnline**
 - Municipalities that use **AffaldsPortal**
-- Municipalities that use **Perfect Waste**
 - Municipalities that use **Open Experience**
+- Municipalities that use **Perfect Waste**
+- Municipalities that use **Provas**
+- Municipalities that use **Renodjurs**
+- Municipalities that use **RenoSyd**
 - Municipalities that use **Vest Forbrænding**
 - Municipalities that have an **iCal** implementation. (Like København)
 
 That also means that a few Municipalities that were previously supported through **RenoWeb** and are not using any of the above API's, are no longer supported. There is no workaround for that at the moment.
 
 ### DESCRIPTION
-Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from Garbage Pickup API's listed above and that accounts for around 70% of all Municipalities.
+Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from Garbage Pickup API's listed above and that accounts for around 85% of all Municipalities.
 
 Go to the [Municipality List](#MUNICIPALITIES) to see if your Municipality will work with this integration.
 
@@ -90,7 +93,7 @@ To add Affald-DK to your installation, do the following:
   | `Municipality` | Yes | None | Select your Municipality from the Dropdown list. You can press the first letter of your municipality to quickly scroll down. |
   | `Zipcode` | Yes | None | Enter the Zipcode of the address. This is required as some municipalities use the same road name in several cities, so we need to make sure we pick the right street. |
   | `Road name` | Yes | None | Type the name of the road you want to get collection data for. Without house number. |
-  | `House Number` | Yes | None | The house number of the address. Also accepts letters. If you have a house number like 2A or similar, and it does not work, try putting a space between the number and the letter, like 2 A |
+  | `House Number` | Yes | None | The house number of the address. Also accepts letters. If you have a house number like 2A or similar, and it does not work, try putting a space between the number and the letter, like 2 A. If more than 1 address is returned a second selection box will pop-up from where you can select the correct address. |
 
 - Click on SUBMIT to save your data. If all goes well you should now have entities under the *Affaldshåndtering DK* integration
 
@@ -107,13 +110,14 @@ Odense has introduced reCAPTCHA, which is a technology to ensure that a real per
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (74)
+Here is the list of currently supported Municipalities (83)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
 - Aarhus (iCal)
 - Albertslund (Vestforbrænding)
 - Allerød (Affaldsportal)
+- Assens (AffaldOnline)
 - Ballerup (Vestforbrænding)
 - Billund (Affaldsportal)
 - Bornholm (Affaldsportal)
@@ -135,6 +139,7 @@ Here is the list of currently supported Municipalities (74)
 - Greve (Perfect Waste)
 - Gribskov (Perfect Waste)
 - Guldborgsund (Perfect Waste)
+- Haderslev (Provas)
 - Halsnæs (Perfect Waste)
 - Helsingør (Affaldsportal)
 - Herlev (Affaldsportal)
@@ -154,12 +159,15 @@ Here is the list of currently supported Municipalities (74)
 - Køge (Perfect Waste)
 - Langeland (AffaldOnline)
 - Lejre (Affaldsportal)
+- Lemvig (Open Experience)
 - Lolland (Perfect Waste)
 - Lyngby-Taarbæk (Affaldsportal)
 - Mariagerfjord (Affaldsportal)
 - Morsø (AffaldOnline)
+- Norddjurs (Renodjurs)
 - Nordfyns (Open Experience)
 - Næstved (Perfect Waste)
+- Odder (RenoSyd)
 - Odense (iCal) - [read this](#Odense) before adding the integration
 - Odsherred (Perfect Waste)
 - Randers (Affaldsportal)
@@ -169,10 +177,14 @@ Here is the list of currently supported Municipalities (74)
 - Rudersdal (Affaldsportal)
 - Rødovre (Affaldsportal)
 - Samsø (Affaldsportal)
+- Skanderborg (RenoSyd)
+- Skive (Open Experience)
 - Slagelse (Perfect Waste)
 - Solrød (Affaldsportal)
 - Stevns (Perfect Waste)
+- Struer (Open Experience)
 - Svendborg (Affaldsportal)
+- Syddjurs (Renodjurs)
 - Sønderborg (Affaldsportal)
 - Thy (Open Experience)
 - Tårnby (Perfect Waste)
