@@ -1,6 +1,6 @@
 {
     "name": "ludeeus/integration_blueprint",
-    "image": "mcr.microsoft.com/devcontainers/python:3.13-bookworm",
+    "image": "mcr.microsoft.com/devcontainers/python:dev-3.13",
     "postCreateCommand": "scripts/setup",
     "forwardPorts": [
         8123
