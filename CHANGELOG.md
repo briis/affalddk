@@ -2,7 +2,7 @@
 
 ## Version 2.7.0
 
-**Date**: `ONLY PRE_RELEASE`
+**Date**: `2025-06-13`
 
 ### Added
 * Added new API for Provas: ([#216](https://github.com/briis/affalddk/issues/216))
@@ -31,8 +31,11 @@
   * Dragør ([#321](https://github.com/briis/affalddk/issues/321))
   * Aalborg ([#51](https://github.com/briis/pyaffalddk/issues/51))
   * Horsens ([#326](https://github.com/briis/affalddk/issues/326))
+  * Jammerbugt ([#328](https://github.com/briis/affalddk/issues/328))
 
-* Bump `pyaffalddk` to 2.11.1
+* Rewrite of `get_next_event` logic, to ensure getting true next event and not next pickup type
+
+* Bump `pyaffalddk` to 2.12.0
 
 ---------------------------
 
