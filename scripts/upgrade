@@ -7,7 +7,6 @@ cd "$(dirname "$0")/.."
 sudo apt update && sudo apt upgrade -y
 
 python3 -m pip install --upgrade pip
-python3 -m pip install --requirement requirements.txt
 python3 -m pip install --upgrade --pre homeassistant
 
 sudo apt update && sudo apt upgrade -y
