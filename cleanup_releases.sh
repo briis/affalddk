@@ -2,7 +2,7 @@
 
 # Settings
 REPO="briis/affalddk"
-DAYS_OLD=360
+DAYS_OLD=40
 
 # Get date for cutoff
 CUTOFF_DATE=$(date -v-"$DAYS_OLD"d +"%Y-%m-%d")
