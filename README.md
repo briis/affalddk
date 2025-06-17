@@ -26,6 +26,7 @@ As of release 2.6.0, this integration now supports the following API's:
 - Municipalities that use **RenoSyd**
 - Municipalities that use **Vest Forbrænding**
 - Municipalities that have an **iCal** implementation. (Like København)
+- The municipality of **Herning**
 
 That also means that a few Municipalities that were previously supported through **RenoWeb** and are not using any of the above API's, are no longer supported. There is no workaround for that at the moment.
 
@@ -93,7 +94,7 @@ To add Affald-DK to your installation, do the following:
   | `Municipality` | Yes | None | Select your Municipality from the Dropdown list. You can press the first letter of your municipality to quickly scroll down. |
   | `Zipcode` | Yes | None | Enter the Zipcode of the address. This is required as some municipalities use the same road name in several cities, so we need to make sure we pick the right street. |
   | `Road name` | Yes | None | Type the name of the road you want to get collection data for. Without house number. |
-  | `House Number` | Yes | None | The house number of the address. Also accepts letters. If you have a house number like 2A or similar, and it does not work, try putting a space between the number and the letter, like 2 A. If more than 1 address is returned a second selection box will pop-up from where you can select the correct address. |
+  | `House Number` | No | None | The house number of the address. Also accepts letters. If you have a house number like 2A or similar, and it does not work, try putting a space between the number and the letter, like 2 A. If more than 1 address is returned a second selection box will pop-up from where you can select the correct address. If the correct address is not found, don't put anything in the House Number field and all addresses for the road will be displayed. |
 
 - Click on SUBMIT to save your data. If all goes well you should now have entities under the *Affaldshåndtering DK* integration
 
@@ -143,6 +144,7 @@ Here is the list of currently supported Municipalities (83)
 - Halsnæs (Perfect Waste)
 - Helsingør (Affaldsportal)
 - Herlev (Affaldsportal)
+- Herning (Herning API)
 - Hillerød (Perfect Waste)
 - Hjørring (Affaldsportal)
 - Holbæk (AffaldOnline)
