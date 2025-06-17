@@ -1,6 +1,25 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
-## Version 2.7.0
+## Version 2.7.1
+
+**Date**: `PRE-RELEASE ONLY`
+
+### Added
+* Added new API for Herning: ([#330](https://github.com/briis/affalddk/issues/330))
+
+**Note**: We know that when we add new Municipalities, some of them will miss some fractions (Garbage or Material Types). Please make sure you create an issue, where you attach the Log entries from Home Assistant. This will make sure we can fix these issue before the final release.
+
+### Changes
+
+* Fixed missing or failing Fractions in:
+  * Hjørring ([#329](https://github.com/briis/affalddk/issues/329))
+
+* Bump `pyaffalddk` to 2.12.1
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
 
 **Date**: `2025-06-13`
 
@@ -37,10 +56,7 @@
 
 * Bump `pyaffalddk` to 2.12.0
 
----------------------------
 
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 ## Version 2.6.0
 
 **Date**: `2025-06-01`
