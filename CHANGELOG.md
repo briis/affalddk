@@ -13,8 +13,9 @@
 
 * Fixed missing or failing Fractions in:
   * Hjørring ([#329](https://github.com/briis/affalddk/issues/329))
+  * Lolland ([#333](https://github.com/briis/affalddk/issues/333))
 
-* Bump `pyaffalddk` to 2.12.1
+* Bump `pyaffalddk` to 2.12.2
 
 ---------------------------
 
