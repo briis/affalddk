@@ -6,6 +6,7 @@
 
 ### Added
 * Added new API for Herning: ([#330](https://github.com/briis/affalddk/issues/330))
+* Added new API for Ikast-Brande: ([#330](https://github.com/briis/affalddk/issues/340))
 
 **Note**: We know that when we add new Municipalities, some of them will miss some fractions (Garbage or Material Types). Please make sure you create an issue, where you attach the Log entries from Home Assistant. This will make sure we can fix these issue before the final release.
 
@@ -15,8 +16,9 @@
   * Hjørring ([#329](https://github.com/briis/affalddk/issues/329))
   * Lolland ([#333](https://github.com/briis/affalddk/issues/333))
   * Randers ([#333](https://github.com/briis/affalddk/issues/335))
+  * Næstved (from facebook dk home assistant user group)
 
-* Bump `pyaffalddk` to 2.12.3
+* Bump `pyaffalddk` to 2.12.4
 
 ---------------------------
 
