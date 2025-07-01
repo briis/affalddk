@@ -27,11 +27,12 @@ As of release 2.6.0, this integration now supports the following API's:
 - Municipalities that use **Vest Forbrænding**
 - Municipalities that have an **iCal** implementation. (Like København)
 - The municipality of **Herning**
+- The municipality of **Ikast-Brande**
 
 That also means that a few Municipalities that were previously supported through **RenoWeb** and are not using any of the above API's, are no longer supported. There is no workaround for that at the moment.
 
 ### DESCRIPTION
-Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from Garbage Pickup API's listed above and that accounts for around 85% of all Municipalities.
+Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from Garbage Pickup API's listed above and that accounts for around 86% of all Municipalities.
 
 Go to the [Municipality List](#MUNICIPALITIES) to see if your Municipality will work with this integration.
 
@@ -111,7 +112,7 @@ Odense has introduced reCAPTCHA, which is a technology to ensure that a real per
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (83)
+Here is the list of currently supported Municipalities (84)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
@@ -153,6 +154,7 @@ Here is the list of currently supported Municipalities (83)
 - Hvidovre (Perfect Waste)
 - Høje-Taastrup (Perfect Waste)
 - Hørsholm (Affaldsportal)
+- Ikast-Brande (Ikast-Brande)
 - Ishøj (Vestforbrænding)
 - Jammerbugt (Affaldsportal)
 - Kalundborg (Perfect Waste)
