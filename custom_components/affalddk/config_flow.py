@@ -92,6 +92,7 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
     async def _create_entry(self, address_name) -> ConfigFlowResult:
         """Create a config entry from the selected address."""
         address_info = await self.affalddkapi.get_address(address_name)
+        await self.affalddkapi.init_address(address_info.address_id)
         await self.async_set_unique_id(address_info.uid)
         self._abort_if_unique_id_configured
 
