@@ -26,11 +26,13 @@ As of release 2.6.0, this integration now supports the following API's:
 - Municipalities that use **RenoSyd**
 - Municipalities that use **Vest Forbrænding**
 - Municipalities that have an **iCal** implementation. (Like København)
+- The municipality of **Herning**
+- The municipality of **Ikast-Brande**
 
 That also means that a few Municipalities that were previously supported through **RenoWeb** and are not using any of the above API's, are no longer supported. There is no workaround for that at the moment.
 
 ### DESCRIPTION
-Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from Garbage Pickup API's listed above and that accounts for around 85% of all Municipalities.
+Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from Garbage Pickup API's listed above and that accounts for around 86% of all Municipalities.
 
 Go to the [Municipality List](#MUNICIPALITIES) to see if your Municipality will work with this integration.
 
@@ -93,7 +95,7 @@ To add Affald-DK to your installation, do the following:
   | `Municipality` | Yes | None | Select your Municipality from the Dropdown list. You can press the first letter of your municipality to quickly scroll down. |
   | `Zipcode` | Yes | None | Enter the Zipcode of the address. This is required as some municipalities use the same road name in several cities, so we need to make sure we pick the right street. |
   | `Road name` | Yes | None | Type the name of the road you want to get collection data for. Without house number. |
-  | `House Number` | Yes | None | The house number of the address. Also accepts letters. If you have a house number like 2A or similar, and it does not work, try putting a space between the number and the letter, like 2 A. If more than 1 address is returned a second selection box will pop-up from where you can select the correct address. |
+  | `House Number` | No | None | The house number of the address. Also accepts letters. If you have a house number like 2A or similar, and it does not work, try putting a space between the number and the letter, like 2 A. If more than 1 address is returned a second selection box will pop-up from where you can select the correct address. If the correct address is not found, don't put anything in the House Number field and all addresses for the road will be displayed. |
 
 - Click on SUBMIT to save your data. If all goes well you should now have entities under the *Affaldshåndtering DK* integration
 
@@ -110,7 +112,7 @@ Odense has introduced reCAPTCHA, which is a technology to ensure that a real per
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (83)
+Here is the list of currently supported Municipalities (85)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
@@ -143,6 +145,7 @@ Here is the list of currently supported Municipalities (83)
 - Halsnæs (Perfect Waste)
 - Helsingør (Affaldsportal)
 - Herlev (Affaldsportal)
+- Herning (Herning API)
 - Hillerød (Perfect Waste)
 - Hjørring (Affaldsportal)
 - Holbæk (AffaldOnline)
@@ -151,6 +154,7 @@ Here is the list of currently supported Municipalities (83)
 - Hvidovre (Perfect Waste)
 - Høje-Taastrup (Perfect Waste)
 - Hørsholm (Affaldsportal)
+- Ikast-Brande (Ikast-Brande)
 - Ishøj (Vestforbrænding)
 - Jammerbugt (Affaldsportal)
 - Kalundborg (Perfect Waste)

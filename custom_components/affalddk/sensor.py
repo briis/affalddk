@@ -168,6 +168,11 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
+        key="storskraldogfarligtaffald",
+        name="Storskrald & Farligt affald",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
         key="storskraldogtekstilaffald",
         name="Storskrald & Tekstilaffald",
         native_unit_of_measurement="dage",
