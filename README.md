@@ -112,7 +112,7 @@ Odense has introduced reCAPTCHA, which is a technology to ensure that a real per
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (84)
+Here is the list of currently supported Municipalities (85)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
