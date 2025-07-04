@@ -2,7 +2,7 @@
 
 ## Version 2.7.1
 
-**Date**: `PRE-RELEASE ONLY`
+**Date**: `2025-07-04`
 
 ### Added
 * Added new API for Herning: ([#330](https://github.com/briis/affalddk/issues/330))
