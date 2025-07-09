@@ -13,7 +13,7 @@
     "issue_tracker": "https://github.com/briis/affalddk/issues",
     "requirements": [
         "beautifulsoup4",
-        "pyaffalddk==2.12.4"
+        "pyaffalddk==2.12.5"
     ],
     "version": "2.7.1"
 }
