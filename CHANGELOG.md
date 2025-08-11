@@ -1,5 +1,23 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.7.3
+
+**Date**: `IN BETA RELEASE`
+
+### Changes
+
+* Fixed missing or failing Fractions in:
+  * Solrød ([#349](https://github.com/briis/affalddk/issues/349))
+  * Gladsaxe ([#352](https://github.com/briis/affalddk/issues/352))
+
+* Bump `pyaffalddk` to 2.12.6
+
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.7.2
 
 **Date**: `2025-07-09`
@@ -10,12 +28,6 @@
   * Solrød ([#343](https://github.com/briis/affalddk/issues/343))
 
 * Bump `pyaffalddk` to 2.12.5
-
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.7.1
 
