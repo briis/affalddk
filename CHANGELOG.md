@@ -9,8 +9,9 @@
 * Fixed missing or failing Fractions in:
   * Solrød ([#349](https://github.com/briis/affalddk/issues/349))
   * Gladsaxe ([#352](https://github.com/briis/affalddk/issues/352))
+  * Brønderslev ([#356](https://github.com/briis/affalddk/issues/356))
 
-* Bump `pyaffalddk` to 2.12.6
+* Bump `pyaffalddk` to 2.12.7
 
 
 ---------------------------
