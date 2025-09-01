@@ -4,6 +4,9 @@
 
 **Date**: `IN BETA RELEASE`
 
+### Added
+* Added new API for Silkeborg: ([#361](https://github.com/briis/affalddk/issues/361))
+
 ### Changes
 
 * Fixed missing or failing Fractions in:
@@ -12,7 +15,7 @@
   * Brønderslev ([#356](https://github.com/briis/affalddk/issues/356))
   * Faxe ([#65](https://github.com/briis/pyaffalddk/pull/65))
 
-* Bump `pyaffalddk` to 2.12.8
+* Bump `pyaffalddk` to 2.13.0
 
 
 ---------------------------
