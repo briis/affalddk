@@ -15,7 +15,7 @@
   * Brønderslev ([#356](https://github.com/briis/affalddk/issues/356))
   * Faxe ([#65](https://github.com/briis/pyaffalddk/pull/65))
 
-* Bump `pyaffalddk` to 2.13.0
+* Bump `pyaffalddk` to 2.13.1
 
 
 ---------------------------
