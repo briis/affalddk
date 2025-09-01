@@ -117,7 +117,7 @@ Here is the list of currently supported Municipalities (86)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
-- Aarhus (iCal)
+- Aarhus (Aarhus)
 - Albertslund (Vestforbrænding)
 - Allerød (Affaldsportal)
 - Assens (AffaldOnline)
