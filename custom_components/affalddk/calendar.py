@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import datetime
-from datetime import datetime as dt, timedelta, time
+from datetime import datetime as dt, time
 import logging
 from types import MappingProxyType
 from typing import Any
@@ -18,7 +18,6 @@ from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
 )
 from homeassistant.util.dt import get_default_time_zone
-from pyaffalddk import NAME_LIST, PickupType
 from . import AffaldDKDataUpdateCoordinator
 from .const import (
     CONF_ADDRESS,
@@ -49,16 +48,8 @@ async def async_setup_entry(
         config_entry.entry_id
     ]
 
-    # entities: list[AffaldDKCalendar[Any]] = [
-    #     AffaldDKCalendar(coordinator, config[1])
-    #     for config in coordinator.data.items()
-    # ]
-    # async_add_entities(entities, False)
-    coordinator.data.pickup_events = coordinator.data.pickup_events or {}
-    if coordinator.data.pickup_events == {}:
-        return
-
-    async_add_entities([AffaldDKCalendar(coordinator, config_entry)])
+    if coordinator.data.pickup_events:
+        async_add_entities([AffaldDKCalendar(coordinator, config_entry)])
 
 
 class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity):
@@ -100,35 +91,16 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
     @property
     def event(self) -> CalendarEvent | None:
         """Return the next upcoming event."""
-        item = None
-        _next_pickup: dt = dt(2030, 12, 31, self._start_time, 0, 0).replace(tzinfo=get_default_time_zone())
-        # _next_pickup = _next_pickup.date()
-        _pickup_event: PickupType = None
-        _pickup_events: PickupType = None
-        if self._coordinator.data.pickup_events is None:
-            return None
-
-        # Find the next pickup event
-        for row in self._coordinator.data.pickup_events:
-            if row == "next_pickup":
-                continue
-            _pickup_event: PickupType = self._coordinator.data.pickup_events.get(row)
-            _start_dt = dt.combine(_pickup_event.date, time(self._start_time, 0, 0)).replace(tzinfo=get_default_time_zone())
-            _end_dt = dt.combine(_pickup_event.date, time(self._end_time, 0, 0)).replace(tzinfo=get_default_time_zone())
-            if _start_dt is not None and _next_pickup is not None and _start_dt <= _next_pickup:
-                _next_pickup = _start_dt
-                _pickup_events = _pickup_event
-                item = row
-
-        _start: datetime.date = _pickup_events.date
-        _end: datetime.date = _start + timedelta(days=1)
-
-        return CalendarEvent(
-            summary=NAME_LIST.get(item, "Unknown") if item else "Unknown",
-            description=_pickup_events.description,
-            start=_start_dt,
-            end=_end_dt,
-        )
+        if next_pickup := self._coordinator.data.pickup_events.get('next_pickup'):
+            _start_dt = dt.combine(next_pickup.date, time(self._start_time, 0, 0)).replace(tzinfo=get_default_time_zone())
+            _end_dt = dt.combine(next_pickup.date, time(self._end_time, 0, 0)).replace(tzinfo=get_default_time_zone())
+            return CalendarEvent(
+                summary=next_pickup.friendly_name,
+                description=next_pickup.description,
+                start=_start_dt,
+                end=_end_dt,
+            )
+        return None
 
     async def async_get_events(
         self,
@@ -139,44 +111,19 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
         """Return calendar events within a datetime range."""
 
         events: list[CalendarEvent] = []
-        for item in self._coordinator.data.pickup_events:
-            if self._coordinator.data.pickup_events.get(item) is None:
-                continue
-            if item == "next_pickup":
-                continue
-
-            _pickup_events: PickupType = (
-                self._coordinator.data.pickup_events.get(item)
-                if self._coordinator.data.pickup_events
-                else None
-            )
-
-            if start_date > dt.combine(_pickup_events.date, time(self._start_time, 0, 0)).replace(tzinfo=get_default_time_zone()):
-                continue
-            if end_date < dt.combine(_pickup_events.date, time(self._end_time, 0, 0)).replace(tzinfo=get_default_time_zone()):
-                continue
-
-            _summary = NAME_LIST.get(item,"Unknown") if item else "Unknown"
-            # _start: datetime.date = _pickup_events.date
-            # _end: datetime.date = _start + timedelta(days=1)
-
-            _start_dt = dt.combine(_pickup_events.date, time(self._start_time, 0, 0)).replace(tzinfo=get_default_time_zone())
-            _end_dt = dt.combine(_pickup_events.date, time(self._end_time, 0, 0)).replace(tzinfo=get_default_time_zone())
-
-            if start_date > _start_dt:
-                continue
-            if end_date < _end_dt:
-                continue
-
-            if _start_dt and _end_dt:
-                events.append(
-                    CalendarEvent(
-                        summary=_summary,
-                        description=_pickup_events.description,
-                        start=_start_dt,
-                        end=_end_dt,
+        for name, event in self._coordinator.data.pickup_events.items():
+            if event and name != "next_pickup":
+                event_start = dt.combine(event.date, time(self._start_time, 0, 0)).replace(tzinfo=get_default_time_zone())
+                event_end = dt.combine(event.date, time(self._end_time, 0, 0)).replace(tzinfo=get_default_time_zone())
+                if (start_date <= event_start) and (end_date >= event_end):
+                    events.append(
+                        CalendarEvent(
+                            summary=event.friendly_name,
+                            description=event.description,
+                            start=event_start,
+                            end=event_end,
+                        )
                     )
-                )
         return events
 
     async def async_added_to_hass(self):

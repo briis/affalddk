@@ -14,6 +14,7 @@
   * Gladsaxe ([#352](https://github.com/briis/affalddk/issues/352))
   * Brønderslev ([#356](https://github.com/briis/affalddk/issues/356))
   * Faxe ([#65](https://github.com/briis/pyaffalddk/pull/65))
+* Fixed wrong next calendar event ([#362](https://github.com/briis/affalddk/issues/362))
 
 * Bump `pyaffalddk` to 2.13.1
 
