@@ -16,5 +16,5 @@
         "beautifulsoup4",
         "pyaffalddk==2.13.1"
     ],
-    "version": "2.7.3-Beta-5"
+    "version": "2.7.3"
 }

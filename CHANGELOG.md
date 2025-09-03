@@ -2,7 +2,7 @@
 
 ## Version 2.7.3
 
-**Date**: `IN BETA RELEASE`
+**Date**: `2025-09-03`
 
 ### Added
 * Added new API for Silkeborg: ([#361](https://github.com/briis/affalddk/issues/361))
