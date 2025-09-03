@@ -5,7 +5,8 @@
         "http"
     ],
     "codeowners": [
-        "@briis"
+        "@briis",
+        "@TermeHansen"
     ],
     "config_flow": true,
     "documentation": "https://github.com/briis/affalddk",
@@ -13,7 +14,7 @@
     "issue_tracker": "https://github.com/briis/affalddk/issues",
     "requirements": [
         "beautifulsoup4",
-        "pyaffalddk==2.12.5"
+        "pyaffalddk==2.13.1"
     ],
-    "version": "2.7.2"
+    "version": "2.7.3"
 }

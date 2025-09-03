@@ -16,7 +16,7 @@ The Affaldshåndtering DK integration adds support for retreiving Garbage Collec
 ### INTRODUCTION
 
 As of May 2025, there is no longer support for municipalities that just use RenoWeb, as they have all implemented MitID validation, for you to see your own Garbage Pickup Data. I am sure there a good reasons for that, but unfortunately that broke most of this integration.
-As of release 2.6.0, this integration now supports the following API's:
+As of release 2.7.3, this integration now supports the following API's:
 - Municipalities that use **AffaldOnline**
 - Municipalities that use **AffaldsPortal**
 - Municipalities that use **Open Experience**
@@ -28,6 +28,7 @@ As of release 2.6.0, this integration now supports the following API's:
 - Municipalities that have an **iCal** implementation. (Like København)
 - The municipality of **Herning**
 - The municipality of **Ikast-Brande**
+- The municipality of **Silkeborg**
 
 That also means that a few Municipalities that were previously supported through **RenoWeb** and are not using any of the above API's, are no longer supported. There is no workaround for that at the moment.
 
@@ -112,11 +113,11 @@ Odense has introduced reCAPTCHA, which is a technology to ensure that a real per
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (85)
+Here is the list of currently supported Municipalities (86)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
-- Aarhus (iCal)
+- Aarhus (Aarhus)
 - Albertslund (Vestforbrænding)
 - Allerød (Affaldsportal)
 - Assens (AffaldOnline)
@@ -181,6 +182,7 @@ Here is the list of currently supported Municipalities (85)
 - Rudersdal (Affaldsportal)
 - Rødovre (Affaldsportal)
 - Samsø (Affaldsportal)
+- Silkeborg (Silkeborg)
 - Skanderborg (RenoSyd)
 - Skive (Open Experience)
 - Slagelse (Perfect Waste)

@@ -1,5 +1,29 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 2.7.3
+
+**Date**: `2025-09-03`
+
+### Added
+* Added new API for Silkeborg: ([#361](https://github.com/briis/affalddk/issues/361))
+
+### Changes
+
+* Fixed missing or failing Fractions in:
+  * Solrød ([#349](https://github.com/briis/affalddk/issues/349))
+  * Gladsaxe ([#352](https://github.com/briis/affalddk/issues/352))
+  * Brønderslev ([#356](https://github.com/briis/affalddk/issues/356))
+  * Faxe ([#65](https://github.com/briis/pyaffalddk/pull/65))
+* Fixed wrong next calendar event ([#362](https://github.com/briis/affalddk/issues/362))
+
+* Bump `pyaffalddk` to 2.13.1
+
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.7.2
 
 **Date**: `2025-07-09`
@@ -10,12 +34,6 @@
   * Solrød ([#343](https://github.com/briis/affalddk/issues/343))
 
 * Bump `pyaffalddk` to 2.12.5
-
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.7.1
 
