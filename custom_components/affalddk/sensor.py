@@ -42,12 +42,12 @@ from .const import (
     DEFAULT_BRAND,
     DOMAIN,
 )
-from pyaffalddk import (
+from .pyaffalddk.const import (
     ICON_LIST,
-    PickupType,
     WEEKDAYS,
     WEEKDAYS_SHORT,
 )
+from .pyaffalddk.data import PickupType
 
 git_images = 'https://github.com/briis/affalddk/raw/refs/heads/main/images/affalddk/'
 

@@ -1,0 +1,14 @@
+name: pyaffald
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - aiohttp
+  - pytest
+  - pytest-asyncio
+  - freezegun
+  - requests
+  - ruff
+  - beautifulsoup4
+  - pip:
+    - ical

@@ -6,9 +6,9 @@ from datetime import timedelta
 import logging
 from typing import Self
 
-from pyaffalddk import (
-    GarbageCollection,
-    PickupEvents,
+from .pyaffalddk.api import GarbageCollection
+from .pyaffalddk.data import PickupEvents
+from .pyaffalddk.interface import (
     AffaldDKNotSupportedError,
     AffaldDKNotValidAddressError,
     AffaldDKNoConnection,
