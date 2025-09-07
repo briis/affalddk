@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# ruff: noqa: F401
+# ruff: noqa: F401, S301
 """This module is only used to run some realtime data tests using the async functions, while developing the module."""
 
 import argparse
