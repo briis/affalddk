@@ -12,6 +12,7 @@ if "homeassistant" not in sys.modules:
     homeassistant = types.ModuleType("homeassistant")
     Platform = types.SimpleNamespace(SENSOR="sensor", CALENDAR="calendar")
     homeassistant.config_entries = types.SimpleNamespace(ConfigEntry=object, ConfigEntryState=object)
+    homeassistant.components = types.SimpleNamespace(http=types.SimpleNamespace(StaticPathConfig=object))
     homeassistant.const = types.SimpleNamespace(Platform=Platform)
     homeassistant.core = types.SimpleNamespace(HomeAssistant=object)
     homeassistant.exceptions = types.SimpleNamespace(HomeAssistantError=Exception, ConfigEntryNotReady=Exception)
@@ -22,6 +23,7 @@ if "homeassistant" not in sys.modules:
 
     sys.modules["homeassistant"] = homeassistant
     sys.modules["homeassistant.config_entries"] = homeassistant.config_entries
+    sys.modules["homeassistant.components.http"] = homeassistant.components.http
     sys.modules["homeassistant.const"] = homeassistant.const
     sys.modules["homeassistant.core"] = homeassistant.core
     sys.modules["homeassistant.exceptions"] = homeassistant.exceptions
