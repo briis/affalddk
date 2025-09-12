@@ -7,7 +7,7 @@
 ### Changes
  * With this release the code of the [pyaffalddk](https://github.com/briis/pyaffalddk) dependency have been merged into this repository.
  * Making Odense api fetch data from the online api at each syncronisation, to keep it active.
- * Changing to serving images locally from home assistant ([#368](https://github.com/briis/affalddk/issues/368))
+ * Changing to serve images locally from home assistant ([#368](https://github.com/briis/affalddk/issues/368))
 
 ---------------------------
 
