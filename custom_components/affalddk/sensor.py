@@ -358,9 +358,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         _categori = self.entity_description.key
         if _categori == "next_pickup":
             _categori = "genbrug"
-
         att = {
-            ATTR_ENTITY_PICTURE: f'{git_images}{_categori}.svg',
+            ATTR_ENTITY_PICTURE: f'/affalddk/img/{_categori}.svg',
             ATTR_LAST_UPDATE: now().isoformat()
         }
 
