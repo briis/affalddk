@@ -179,7 +179,6 @@ class GarbageCollection:
         # pull data from these each time we sync
         if self._api_type == 'odense':
             garbage_data = await self._api.get_garbage_data(address_id)
-            _LOGGER.debug("Fetched Odense data...")
 
         if (self._api_type is not None) & (self.today != dt.date.today()):
             self.pickup_events: PickupEvents = {}
@@ -188,7 +187,6 @@ class GarbageCollection:
             self.last_fetch = str(dt.datetime.now())
 
             if self._api_type == 'odense':
-#                garbage_data = await self._api.get_garbage_data(address_id)
                 try:
                     ics = IcsCalendarStream.calendar_from_ics(garbage_data)
                     for event in ics.timeline:
@@ -323,10 +321,9 @@ def iso_string_to_date(datetext: str, dayfirst=None) -> dt.date:
 
 
 def weekday_week_to_date(weekday_name, week_number, year=None):
-    """
-    Convert weekday name and ISO week number to a date.
-    If weeks_number is -1 we will find next in uneven weeks, and
-    if -2 in even weeks
+    """Convert weekday name and ISO week number to a date.
+    If weeks_number is -1 we will find next in uneven weeks,
+    and if -2 in even weeks.
     """
     today = dt.date.today()
     if year is None:
