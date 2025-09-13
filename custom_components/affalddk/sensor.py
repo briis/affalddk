@@ -49,7 +49,6 @@ from .pyaffalddk.const import (
 )
 from .pyaffalddk.data import PickupType
 
-git_images = 'https://github.com/briis/affalddk/raw/refs/heads/main/images/affalddk/'
 
 @dataclass(frozen=True)
 class AffaldDKSensorEntityDescription(SensorEntityDescription):
