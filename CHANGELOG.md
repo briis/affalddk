@@ -2,7 +2,7 @@
 
 ## Version 3.0.0
 
-**Date**: `BETA release`
+**Date**: `2025-09-13`
 
 ### Changes
  * With this release the code of the [pyaffalddk](https://github.com/briis/pyaffalddk) dependency have been merged into this repository.
