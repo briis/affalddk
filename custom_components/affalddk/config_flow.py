@@ -19,13 +19,13 @@ from homeassistant.core import callback
 from homeassistant.helpers.aiohttp_client import async_create_clientsession
 from homeassistant.helpers.selector import selector
 
-from pyaffalddk import (
-    GarbageCollection,
+from .pyaffalddk.api import GarbageCollection
+from .pyaffalddk.interface import (
     AffaldDKNotSupportedError,
     AffaldDKNotValidAddressError,
     AffaldDKNoConnection,
 )
-from pyaffalddk.municipalities import MUNICIPALITIES_LIST
+from .pyaffalddk.municipalities import MUNICIPALITIES_LIST
 
 from .const import (
     CONF_ADDRESS,
@@ -94,7 +94,7 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
         address_info = await self.affalddkapi.get_address(address_name)
         await self.affalddkapi.init_address(address_info.address_id)
         await self.async_set_unique_id(address_info.uid)
-        self._abort_if_unique_id_configured
+        self._abort_if_unique_id_configured()
 
         return self.async_create_entry(
             title=address_info.address,

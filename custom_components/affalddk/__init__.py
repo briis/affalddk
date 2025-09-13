@@ -4,16 +4,18 @@ from __future__ import annotations
 
 from datetime import timedelta
 import logging
+from pathlib import Path
 from typing import Self
 
-from pyaffalddk import (
-    GarbageCollection,
-    PickupEvents,
+from .pyaffalddk.api import GarbageCollection
+from .pyaffalddk.data import PickupEvents
+from .pyaffalddk.interface import (
     AffaldDKNotSupportedError,
     AffaldDKNotValidAddressError,
     AffaldDKNoConnection,
 )
 
+from homeassistant.components.http import StaticPathConfig
 from homeassistant.config_entries import ConfigEntry, ConfigEntryState
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
@@ -43,11 +45,19 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
 
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN][config_entry.entry_id] = coordinator
-
     config_entry.async_on_unload(config_entry.add_update_listener(async_update_entry))
 
     await hass.config_entries.async_forward_entry_setups(config_entry, PLATFORMS)
-
+    if not hass.data[DOMAIN].get("static_registered"):
+        static_dir = (Path(__file__).parent / "images").resolve()
+        if not static_dir.exists():
+            _LOGGER.warning(f"AffaldDK static image dir not found: {static_dir}")
+        else:
+            cache_headers=True
+            await hass.http.async_register_static_paths([
+                StaticPathConfig("/affalddk/img", str(static_dir), cache_headers)
+            ])
+            hass.data[DOMAIN]["static_registered"] = True
     return True
 
 

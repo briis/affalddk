@@ -42,14 +42,13 @@ from .const import (
     DEFAULT_BRAND,
     DOMAIN,
 )
-from pyaffalddk import (
+from .pyaffalddk.const import (
     ICON_LIST,
-    PickupType,
     WEEKDAYS,
     WEEKDAYS_SHORT,
 )
+from .pyaffalddk.data import PickupType
 
-git_images = 'https://github.com/briis/affalddk/raw/refs/heads/main/images/affalddk/'
 
 @dataclass(frozen=True)
 class AffaldDKSensorEntityDescription(SensorEntityDescription):
@@ -358,9 +357,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         _categori = self.entity_description.key
         if _categori == "next_pickup":
             _categori = "genbrug"
-
         att = {
-            ATTR_ENTITY_PICTURE: f'{git_images}{_categori}.svg',
+            ATTR_ENTITY_PICTURE: f'/affalddk/img/{_categori}.svg',
             ATTR_LAST_UPDATE: now().isoformat()
         }
 

@@ -13,8 +13,7 @@
     "iot_class": "cloud_polling",
     "issue_tracker": "https://github.com/briis/affalddk/issues",
     "requirements": [
-        "beautifulsoup4",
-        "pyaffalddk==2.13.1"
+        "beautifulsoup4"
     ],
-    "version": "2.7.3"
+    "version": "3.0.0"
 }

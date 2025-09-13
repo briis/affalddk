@@ -1,0 +1,841 @@
+BEGIN:VCALENDAR
+PRODID:-//github.com/rianjs/ical.net//NONSGML ical.net 4.0//EN
+VERSION:2.0
+BEGIN:VTIMEZONE
+TZID:Europe/Copenhagen
+X-LIC-LOCATION:Europe/Copenhagen
+BEGIN:STANDARD
+DTSTART:20231029T030000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=10
+TZNAME:CET
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:20240331T020000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=3
+TZNAME:CEST
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250425T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250425T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:9903b273-e012-4473-a24d-59085f70d73b
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250428T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250428T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap på Flakhaven 2
+UID:8e0d1d0d-56b5-45dc-9dfb-b84c51f418ac
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250501T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250501T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:e534e455-a679-4edc-8f29-abd201a5d498
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250505T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250505T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:9999f262-f56c-4318-af96-8039515c5e12
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250508T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250508T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:a668af0e-8afe-4cf6-8a76-7b143aee20ce
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250512T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250512T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Glas & Metal\, Papir & småt pa
+ p på Flakhaven 2
+UID:57deff96-f1a7-4e9e-aa91-ac475c651c3a
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250515T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250515T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:5a21f42b-c868-4a9b-938f-bf9a26f92cca
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250519T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250519T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:ecac8c6e-d11a-44a5-a606-04e49f725b01
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250522T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250522T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:e2b4e937-058d-415e-b483-bc8759272b55
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250526T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250526T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap på Flakhaven 2
+UID:dcae6433-c486-48ae-89fe-ed7771286ca0
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250530T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250530T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:329fd114-cec0-49d7-a3a8-b6eb6a8e1141
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250602T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250602T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:199e5396-64e0-42af-8f84-5a757b7b47f0
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250605T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250605T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:1d24736f-e23f-431b-af1c-3f8c64c7efac
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250610T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250610T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Glas & Metal\, Papir & småt pa
+ p på Flakhaven 2
+UID:f2582134-0742-4398-94eb-d5255da4cb68
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250613T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250613T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:622dbcf5-f140-405c-b95c-5f872b213d66
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250616T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250616T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:0b20ee8b-89e3-4754-bf64-add9555cb447
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250619T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250619T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:67d33a6a-690a-4078-9b81-4a45845a7b6d
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250623T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250623T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap på Flakhaven 2
+UID:8b660ac7-c2e8-4551-bc27-568e690baaf5
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250626T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250626T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:770f5f02-c815-416f-b49f-c325bae73814
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250630T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250630T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:ccafa344-cac0-4f42-a276-acbdcfa7abc7
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250703T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250703T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:c28975ab-b898-4f10-b856-f33b4a51d968
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250707T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250707T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Glas & Metal\, Papir & småt pa
+ p på Flakhaven 2
+UID:45b2ee05-6362-44f2-99b0-75bd1ca58ffc
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250710T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250710T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:ea085bc5-f212-4315-85dd-5a6ad3973837
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250714T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250714T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:55a96bd8-16fa-4949-bebf-50208da4b812
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250717T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250717T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:64e19007-97f6-40e7-a9d7-39727c1f9ada
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250721T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250721T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap på Flakhaven 2
+UID:76294f84-cfba-484e-b5d8-ca436884907e
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250724T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250724T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:d8c0029b-4d03-4412-9d86-bc4877da47e1
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250728T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250728T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:7622c0d5-6de7-4da9-8308-0f8d76993e9a
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250731T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250731T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:7ba0521e-2cfb-4822-9893-0942cc412fed
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250804T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250804T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Glas & Metal\, Papir & småt pa
+ p på Flakhaven 2
+UID:d12793b1-1230-4a0d-ae4d-c83d4ba2f7a9
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250807T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250807T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:45f23e7d-35f9-4937-9fac-414f971f98e3
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250811T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250811T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:a333ec3a-4790-47eb-b116-d28333f4db71
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250814T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250814T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:e4404a6d-4721-4002-853f-40b46b72e0f4
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250818T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250818T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap på Flakhaven 2
+UID:538eb1d9-ae18-4f9e-b8b7-7c2db316353a
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250821T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250821T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:9cf9e4a3-5b1a-46df-9505-95c16402e92f
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250825T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250825T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:a39ca1a3-e663-466e-bbea-c35b60b24292
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250828T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250828T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:cd37dbea-af2b-4c01-81f7-e884e79aae5d
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250901T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250901T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Glas & Metal\, Papir & småt pa
+ p på Flakhaven 2
+UID:1986cd1e-f28d-4c8b-bf50-d33c920c279d
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250904T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250904T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:0fe926eb-b6ff-413d-a4ad-d454cb33804c
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250908T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250908T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:ef6a4e4b-8bce-49d8-b10a-634a1360946d
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250911T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250911T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:f27edfad-2546-4cac-b209-ca9fa1cfd3d1
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250915T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250915T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap på Flakhaven 2
+UID:0a42e496-5df4-459f-9d74-0b3672413bc6
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250918T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250918T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:63bee229-2e61-4bcb-8b96-4b47d4d84fe4
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250922T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250922T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:0c20a197-4911-4a08-b136-831979a62fcd
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250925T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250925T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:810a4d56-488b-4558-9137-cb54904c2a56
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20250929T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20250929T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Glas & Metal\, Papir & småt pa
+ p på Flakhaven 2
+UID:fc1aa8b1-4096-445a-a6d7-326430ac9edc
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251002T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251002T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:c1156d0b-34a2-4d18-997a-dbef00892328
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251006T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251006T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:9c722bc6-0fb5-4551-b58d-b2973f985de2
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251009T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251009T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:fadf6bff-9ae8-4a3c-ac24-aa80100cd3aa
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251013T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251013T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap på Flakhaven 2
+UID:2ce2d95b-556b-4c17-b2f6-8621e65dae59
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251016T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251016T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:9dc0e758-3336-4182-b9e2-04f2a5577926
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251020T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251020T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:8fb4c3d5-0c9f-4e90-aea9-cd20c10a37b9
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251023T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251023T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:b8277b84-80ae-41e4-9170-36975716a0fb
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251027T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251027T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Glas & Metal\, Papir & småt pa
+ p på Flakhaven 2
+UID:54c18d4f-b9f9-40f6-9aec-8598cff1982c
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251030T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251030T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:8a2139be-f068-42ae-ada2-0753e6493936
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251103T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251103T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:f673c548-0471-4b54-9dab-98ba02bbf35d
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251106T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251106T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:cd029138-8a8b-4025-accc-976016181a22
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251110T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251110T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap på Flakhaven 2
+UID:ef4c56ce-ff5f-4984-8dd5-b15b127962f4
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251113T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251113T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:6d440954-c49a-459f-9d28-3cf8b6ddf689
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251117T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251117T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:8d50a9ce-39d3-4c1e-b032-22581841cd2b
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251120T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251120T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:d4d8beb5-3689-40ef-93c0-5a02a66e27b3
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251124T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251124T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Glas & Metal\, Papir & småt pa
+ p på Flakhaven 2
+UID:fcb059ac-df4b-4ac6-b78a-d4cad8e41065
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251127T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251127T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:0d0adc54-e0cc-45ef-885d-57b0d4d865c8
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251201T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251201T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:4ce4bf3b-f43a-47d6-8f72-1422a87adcae
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251204T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251204T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:340737d7-8aba-416c-bfb2-e17ea41058a4
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251208T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251208T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap på Flakhaven 2
+UID:bda13877-931c-40f8-8eac-c8996163e9f4
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251211T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251211T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:6653f064-2e92-4658-bd82-4190fcf88dea
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251215T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251215T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:ecf9c407-f7f4-4f60-a2d0-d2d50df22192
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251218T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251218T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:18b8da95-1e17-4e94-8d6f-157045226fb8
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251220T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251220T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Glas & Metal\, Papir & småt pa
+ p på Flakhaven 2
+UID:c647ab12-33a6-4057-a808-baa399d90f30
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251227T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251227T070000
+SEQUENCE:0
+SUMMARY:Tømning af Restaffald\, Papir & småt pap på Flakhaven 2
+UID:c8a128f7-8e26-475d-b1d6-671ea61e09da
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:
+DTEND;TZID=Europe/Copenhagen:20251229T073000
+DTSTAMP:20250425T070704Z
+DTSTART;TZID=Europe/Copenhagen:20251229T070000
+SEQUENCE:0
+SUMMARY:Tømning af Madaffald\, Restaffald\, Papir & småt pap\, Plast og ma
+ d- & drikkekartoner på Flakhaven 2
+UID:e4d2c760-7492-425c-b5ae-e8d44f6e3f60
+URL:https://mit.odenserenovation.dk/api/Calendar/GetICalCalendar?addressNo
+ =112970
+END:VEVENT
+END:VCALENDAR

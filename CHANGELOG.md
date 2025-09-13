@@ -1,5 +1,19 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.0.0
+
+**Date**: `2025-09-13`
+
+### Changes
+ * With this release the code of the [pyaffalddk](https://github.com/briis/pyaffalddk) dependency have been merged into this repository.
+ * Making Odense api fetch data from the online api at each syncronisation, to keep it active.
+ * Changing to serve images locally from home assistant ([#368](https://github.com/briis/affalddk/issues/368))
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 2.7.3
 
 **Date**: `2025-09-03`
@@ -18,11 +32,6 @@
 
 * Bump `pyaffalddk` to 2.13.1
 
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 2.7.2
 
