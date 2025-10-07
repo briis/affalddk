@@ -133,6 +133,7 @@ STRIPS = [
 ]
 RE_WORDS = [
     r'14(\.)?[\s-]?(?:dags|dage|dages|dg)(\.)?',  # diffenrent ways of 14. dags
+    r'\b\d+/\d+\.\s*uge\b', # solving https://github.com/briis/affalddk/issues/373 lokking for "2/4. uge" and "8/12. uge"
     r'(?:3|4|6|8)?(\.)?[\s-]?(?:uge|ugers)',  # diffenrent ways of uge
     r'(?:to|1|2)[\s-]?(?:delt|kammer)',  # diffenrent ways of  2-delt or 2-kammer
     r'beh\.(,)?', r'\bgl\.', 'beholder', 'dobbeltbeholder', 'spand', 'tøm', 'villa', 'tømning', 'ekstra', 'havebolig', '5 m3',
