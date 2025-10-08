@@ -601,5 +601,12 @@
     "restaffaldmadaffald": "Mad-/Rest",
     "papirglasmetalplast": "Plast/MDK/Glas/Metal/Papir/Pap",
     "next_pickup": "Rest & Madaffald"
+  },
+  "holbæk_373": {
+    "restaffaldmadaffald": "240L Rest/Mad 2/4. uge Skel",
+    "plastmetalmdk": "240L PMDK/Metal 8/12. uge Skel",
+    "papirglas": "240L Glas/Papir 8/12. uge Skel",
+    "pap": "240L Pap 8. uge Skel",
+    "next_pickup": "Rest & Madaffald"
   }
 }
