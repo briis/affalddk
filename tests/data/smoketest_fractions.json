@@ -275,14 +275,14 @@
     "next_pickup": "Madaffald"
   },
   "helsingør_292": {
-    "pappapir": "240 L papir og pap",
-    "storskrald": "Storskrald Rute 6",
-    "haveaffald": "Haveaffald Rute 6",
-    "restaffaldmadaffald": "240 L mad/rest 14 dg",
-    "plastmetal": "240 L plast/metal",
-    "farligtaffald": "Farligt affald rute 6",
-    "tekstil": "Tekstilaffald rute 6",
-    "next_pickup": "Plast & Metal"
+    "restaffaldmadaffald": "Mad/Rest",
+    "haveaffald": "Haveaffald",
+    "plastmetal": "Plast/Metal",
+    "pappapir": "Papir & Pap",
+    "farligtaffald": "Farligt affald",
+    "tekstil": "Tekstilaffald",
+    "storskrald": "Storskrald",
+    "next_pickup": "Haveaffald | Rest & Madaffald"
   },
   "allerød_294": {
     "storskrald": "Storskrald Distrikt 3",
@@ -607,6 +607,16 @@
     "plastmetalmdk": "240L PMDK/Metal 8/12. uge Skel",
     "papirglas": "240L Glas/Papir 8/12. uge Skel",
     "pap": "240L Pap 8. uge Skel",
+    "next_pickup": "Rest & Madaffald"
+  },
+  "helsingør_374": {
+    "restaffaldmadaffald": "Mad/Rest",
+    "haveaffald": "Haveaffald",
+    "plastmetal": "Plast/Metal",
+    "pappapir": "Papir & Pap",
+    "farligtaffald": "Farligt affald",
+    "tekstil": "Tekstilaffald",
+    "storskrald": "Storskrald",
     "next_pickup": "Rest & Madaffald"
   }
 }
