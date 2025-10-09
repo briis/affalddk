@@ -8,6 +8,7 @@
 
 * Fixed missing or failing fractions in:
   * Holbæk ([#373](https://github.com/briis/affalddk/issues/373))
+  * Helsingør ([#374](https://github.com/briis/affalddk/issues/374))
 
 
 ---------------------------
