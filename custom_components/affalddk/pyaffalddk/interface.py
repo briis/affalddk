@@ -734,3 +734,42 @@ class OdenseAffaldAPI(AffaldDKAPIBase):
 
     async def get_garbage_data(self, address_id):
         return await self.async_get_ical_data(address_id)
+
+
+class InfovisionAPI(AffaldDKAPIBase):
+    # Kolding API
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url_data = "https://koldingivapi.infovision.dk/api/publiccitizen/"
+        self.uuid = base64.b64decode(GH_API).decode('utf-8')
+        self.headers = {
+            'Accept': 'application/json, text/plain, */*',
+            'publicAccessToken': '__NetDialogCitizenPublicAccessToken__',
+            }
+
+    async def get_address_list(self, zipcode, street, house_number):
+        road_id = await self.get_road(zipcode, street)
+        if road_id:
+            url = self.url_data + f'address/info/road/{road_id}'
+            data = await self.async_get_request(url, headers=self.headers)
+            self.address_list = {}
+            for item in data:
+                if str(house_number) in item['addressString']:
+                    self.update_address_list(item, 'addressString', 'addressGuid')
+            return list(self.address_list.keys())
+        return []
+
+    async def get_road(self, zipcode, street):
+        url = self.url_data + f'road/roadName/{quote(street)}'
+        js = await self.async_get_request(url, headers=self.headers)
+        for item in js:
+            if str(zipcode) in item['postalCode']:
+                return item['guid']
+        return None
+
+    async def get_garbage_data(self, address_id, fullinfo=0, shared=0):
+        url = self.url_data + f'container/address/active/{address_id}'
+        js = await self.async_get_request(url, headers=self.headers)
+        if js:
+            return js
+        return []

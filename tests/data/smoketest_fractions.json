@@ -618,5 +618,11 @@
     "tekstil": "Tekstilaffald",
     "storskrald": "Storskrald",
     "next_pickup": "Rest & Madaffald"
+  },
+  "kolding_1": {
+    "restaffaldmadaffald": "Rest/Madaffald",
+    "pappapirglasmetal": "Pap/Papir og glas/metal",
+    "plastmadkarton": "Plast og mad- og drikkekartoner",
+    "next_pickup": "Rest & Madaffald"
   }
 }
