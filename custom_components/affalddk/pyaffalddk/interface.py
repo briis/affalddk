@@ -741,7 +741,6 @@ class InfovisionAPI(AffaldDKAPIBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.url_data = "https://koldingivapi.infovision.dk/api/publiccitizen/"
-        self.uuid = base64.b64decode(GH_API).decode('utf-8')
         self.headers = {
             'Accept': 'application/json, text/plain, */*',
             'publicAccessToken': '__NetDialogCitizenPublicAccessToken__',
