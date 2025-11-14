@@ -1,5 +1,23 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.1.0
+
+**Date**: `2025-11-14`
+
+### Added
+* Added new API for Kolding: ([#380](https://github.com/briis/affalddk/issues/380))
+
+### Changes
+
+* Fixed missing or failing fractions in:
+  * Gribskov ([#379](https://github.com/briis/affalddk/issues/379))
+
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 3.0.1
 
 **Date**: `2025-10-07`
@@ -9,12 +27,6 @@
 * Fixed missing or failing fractions in:
   * Holbæk ([#373](https://github.com/briis/affalddk/issues/373))
   * Helsingør ([#374](https://github.com/briis/affalddk/issues/374))
-
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 3.0.0
 
