@@ -56,7 +56,7 @@ Platform | Description
 
 ## CREDITS
 
-@TermeHansen is now a new Co-Developer on this Integration, and has done a fantastic job to get support for Municipalities that use other API's than Renoweb and he has rewritten the underlying ``pyaffalddk`library, to make it easier to maintain going forward.
+@TermeHansen is now a new Co-Developer on this Integration, and has done a fantastic job to get support for Municipalities that use other API's than Renoweb and he has rewritten the underlying `pyaffalddk` library, to make it easier to maintain going forward.
 
 ## INSTALLATION
 
