@@ -2,7 +2,7 @@
 
 ## Version 3.1.0
 
-**Date**: `2025-11-14`
+**Date**: `2025-12-16`
 
 ### Added
 * Added new API for Kolding: ([#380](https://github.com/briis/affalddk/issues/380))
@@ -13,11 +13,18 @@
   * Gribskov ([#379](https://github.com/briis/affalddk/issues/379))
   * Lejre ([#385](https://github.com/briis/affalddk/issues/385))
 
-
 ---------------------------
 
 <details>
   <summary><b>PREVIOUS CHANGES</b></summary>
+
+## Version 3.0.2
+
+**Date**: `2025-12-14`
+
+### Changes
+
+* Changes Herlev to use Vestforbrænding instead of Renoweb
 
 ## Version 3.0.1
 

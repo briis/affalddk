@@ -259,14 +259,12 @@
     "next_pickup": "Rest & Madaffald"
   },
   "herlev_290": {
-    "haveaffald": "Haveaffald",
+    "metalglas": "Metal/Glas affald",
+    "restaffaldmadaffald": "Mad/Rest affald",
+    "pappi": "Papir/Plast & MDK",
+    "pap": "Pap",
     "storskrald": "Storskrald",
-    "farligtaffaldmiljoboks": "Miljøboks",
-    "pap": "Papbeholder villa",
-    "restaffaldmadaffald": "240 l to-kammer rest/mad ? 14. dags tømning",
-    "pappi": "240 L to-kammer Plast og Mad- & drikkekartoner/Papir",
-    "metalglas": "240 L to-kammer Glas/Metal",
-    "next_pickup": "Haveaffald"
+    "next_pickup": "Papir & Plast"
   },
   "bornholm_291": {
     "restplast": "240 l rest + plast/MDK",

@@ -5,7 +5,7 @@ set -e
 cd "$(dirname "$0")/.."
 
 python3 -m pip install --upgrade pip
-python3 -m pip install --requirement pip_requirements.txt
+python3 -m pip install --requirement ./scripts/pip_requirements.txt
 
 sudo apt update && sudo apt upgrade -y
 sudo apt install ffmpeg -y

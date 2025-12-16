@@ -57,7 +57,7 @@ Platform | Description
 
 ## CREDITS
 
-@TermeHansen is now a new Co-Developer on this Integration, and has done a fantastic job to get support for Municipalities that use other API's than Renoweb and he has rewritten the underlying ``pyaffalddk`library, to make it easier to maintain going forward.
+@TermeHansen is now a new Co-Developer on this Integration, and has done a fantastic job to get support for Municipalities that use other API's than Renoweb and he has rewritten the underlying `pyaffalddk` library, to make it easier to maintain going forward.
 
 ## INSTALLATION
 
@@ -146,7 +146,7 @@ Here is the list of currently supported Municipalities (86)
 - Haderslev (Provas)
 - Halsnæs (Perfect Waste)
 - Helsingør (Affaldsportal)
-- Herlev (Affaldsportal)
+- Herlev (Vestforbrænding)
 - Herning (Herning API)
 - Hillerød (Perfect Waste)
 - Hjørring (Affaldsportal)

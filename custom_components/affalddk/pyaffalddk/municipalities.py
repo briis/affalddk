@@ -133,7 +133,7 @@ MUNICIPALITIES_LIST = {
     "Haderslev": ['provas'],
     "Halsnæs": ["perfectwaste"],
     "Helsingør": ["perfectwaste"],
-    "Herlev": ["renoweb"],
+    "Herlev": ["vestfor"],
     "Herning": ["herning"],
     "Hillerød": ["perfectwaste"],
     "Hjørring": ["renoweb"],
