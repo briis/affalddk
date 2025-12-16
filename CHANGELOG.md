@@ -1,5 +1,18 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.0.2
+
+**Date**: `2025-12-14`
+
+### Changes
+
+* Changes Herlev to use Vestforbrænding instead of Renoweb
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 3.0.1
 
 **Date**: `2025-10-07`
@@ -9,12 +22,6 @@
 * Fixed missing or failing fractions in:
   * Holbæk ([#373](https://github.com/briis/affalddk/issues/373))
   * Helsingør ([#374](https://github.com/briis/affalddk/issues/374))
-
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 3.0.0
 
