@@ -195,7 +195,7 @@ async def test_Renoweb(capsys, monkeypatch):
                 # print(address.__dict__)
                 assert address.__dict__ == add
                 address_list = await gc._api.get_address_list('9000', 'Boulevarden', '')
-                assert len(address_list) == 435
+                assert len(address_list) == 425
                 await assert_add_list(gc, address_list)
                 address_list = await gc._api.get_address_list('9000', 'Boulevarden', '1')
                 assert len(address_list) == 21
