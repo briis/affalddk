@@ -624,5 +624,11 @@
     "pappapirglasmetal": "Pap/Papir og glas/metal",
     "plastmadkarton": "Plast og mad- og drikkekartoner",
     "next_pickup": "Rest & Madaffald"
+  },
+  "lejre_385": {
+    "restaffaldmadaffald": "Rest/mad",
+    "plastmetalmdk": "Plast, mad- og drikkekartoner og metal",
+    "pappapir": "Papir og pap",
+    "next_pickup": "Rest & Madaffald"
   }
 }

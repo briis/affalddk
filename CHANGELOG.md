@@ -11,6 +11,7 @@
 
 * Fixed missing or failing fractions in:
   * Gribskov ([#379](https://github.com/briis/affalddk/issues/379))
+  * Lejre ([#385](https://github.com/briis/affalddk/issues/385))
 
 
 ---------------------------
