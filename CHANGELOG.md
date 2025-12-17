@@ -1,5 +1,23 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.1.0
+
+**Date**: `2025-12-16`
+
+### Added
+* Added new API for Kolding: ([#380](https://github.com/briis/affalddk/issues/380))
+
+### Changes
+
+* Fixed missing or failing fractions in:
+  * Gribskov ([#379](https://github.com/briis/affalddk/issues/379))
+  * Lejre ([#385](https://github.com/briis/affalddk/issues/385))
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 3.0.2
 
 **Date**: `2025-12-14`
@@ -7,11 +25,6 @@
 ### Changes
 
 * Changes Herlev to use Vestforbrænding instead of Renoweb
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 3.0.1
 

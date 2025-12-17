@@ -25,7 +25,8 @@ NON_SUPPORTED_ITEMS = [
     'Pap bundtet',
     'Skal tilmeldes',
     'Storskrald (skal bestilles)',
-    'Trærødder og stammer'
+    'Trærødder og stammer',
+    'Udbringning',
 ]
 
 

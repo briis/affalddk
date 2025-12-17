@@ -259,11 +259,12 @@
     "next_pickup": "Rest & Madaffald"
   },
   "herlev_290": {
-    "metalglas": "Metal/Glas affald",
-    "restaffaldmadaffald": "Mad/Rest affald",
     "pappi": "Papir/Plast & MDK",
+    "restaffaldmadaffald": "Mad/Rest affald",
     "pap": "Pap",
+    "juletrae": "Juletræer",
     "storskrald": "Storskrald",
+    "metalglas": "Metal/Glas affald",
     "next_pickup": "Papir & Plast"
   },
   "bornholm_291": {
@@ -615,6 +616,18 @@
     "farligtaffald": "Farligt affald",
     "tekstil": "Tekstilaffald",
     "storskrald": "Storskrald",
+    "next_pickup": "Rest & Madaffald"
+  },
+  "kolding_1": {
+    "restaffaldmadaffald": "Rest/Madaffald",
+    "pappapirglasmetal": "Pap/Papir og glas/metal",
+    "plastmadkarton": "Plast og mad- og drikkekartoner",
+    "next_pickup": "Rest & Madaffald"
+  },
+  "lejre_385": {
+    "restaffaldmadaffald": "Rest/mad",
+    "plastmetalmdk": "Plast, mad- og drikkekartoner og metal",
+    "pappapir": "Papir og pap",
     "next_pickup": "Rest & Madaffald"
   }
 }

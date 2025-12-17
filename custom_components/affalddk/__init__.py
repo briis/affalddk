@@ -53,7 +53,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
         if not static_dir.exists():
             _LOGGER.warning(f"AffaldDK static image dir not found: {static_dir}")
         else:
-            cache_headers=True
+            cache_headers = True
             await hass.http.async_register_static_paths([
                 StaticPathConfig("/affalddk/img", str(static_dir), cache_headers)
             ])

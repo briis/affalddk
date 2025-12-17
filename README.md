@@ -29,6 +29,7 @@ As of release 2.7.3, this integration now supports the following API's:
 - The municipality of **Herning**
 - The municipality of **Ikast-Brande**
 - The municipality of **Silkeborg**
+- The municipality of **Kolding**
 
 That also means that a few Municipalities that were previously supported through **RenoWeb** and are not using any of the above API's, are no longer supported. There is no workaround for that at the moment.
 
@@ -160,10 +161,11 @@ Here is the list of currently supported Municipalities (86)
 - Jammerbugt (Affaldsportal)
 - Kalundborg (Perfect Waste)
 - Kerteminde (Affaldsportal)
+- Kolding (InfovisionAPI)
 - København (iCal)
 - Køge (Perfect Waste)
 - Langeland (AffaldOnline)
-- Lejre (Affaldsportal)
+- Lejre (Perfect Waste)
 - Lemvig (Open Experience)
 - Lolland (Perfect Waste)
 - Lyngby-Taarbæk (Affaldsportal)
