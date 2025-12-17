@@ -629,5 +629,13 @@
     "plastmetalmdk": "Plast, mad- og drikkekartoner og metal",
     "pappapir": "Papir og pap",
     "next_pickup": "Rest & Madaffald"
+  },
+  "ballerup_2": {
+    "restaffaldmadaffald": "Mad/Rest affald",
+    "pappi": "Papir/Plast & MDK",
+    "pap": "Pap",
+    "storskrald": "Storskrald",
+    "metalglas": "Metal/Glas affald",
+    "next_pickup": "Rest & Madaffald"
   }
 }

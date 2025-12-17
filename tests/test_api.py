@@ -48,6 +48,7 @@ async def test_smoketest(capsys, monkeypatch, update=False):
                 async def get_data(*args, **kwargs):
                     return val['data']
                 monkeypatch.setattr(gc._api, "get_garbage_data", get_data)
+                print(name)
                 pickups = await gc.get_pickup_data(1111)
                 keys = list(pickups.keys())
 
