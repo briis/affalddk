@@ -1,5 +1,17 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.1.1
+
+**Date**: `2025-12-17`
+
+### Changes
+* Added Juletræer to the integration
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 3.1.0
 
 **Date**: `2025-12-16`
@@ -12,11 +24,6 @@
 * Fixed missing or failing fractions in:
   * Gribskov ([#379](https://github.com/briis/affalddk/issues/379))
   * Lejre ([#385](https://github.com/briis/affalddk/issues/385))
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 3.0.2
 

@@ -57,11 +57,6 @@ class AffaldDKSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
     AffaldDKSensorEntityDescription(
-        key="restaffaldmadaffald",
-        name="Rest- & madaffald",
-        native_unit_of_measurement="dage",
-    ),
-    AffaldDKSensorEntityDescription(
         key="batterier",
         name="Batterier",
         native_unit_of_measurement="dage",
@@ -74,6 +69,11 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
     AffaldDKSensorEntityDescription(
         key="glas",
         name="Glas",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="glasplast",
+        name="Glas & Plast",
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
@@ -127,18 +127,18 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
+        key="haveaffald",
+        name="Haveaffald",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
         key="jern",
         name="Metal",
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
-        key="papir",
-        name="Papir",
-        native_unit_of_measurement="dage",
-    ),
-    AffaldDKSensorEntityDescription(
-        key="papirmetal",
-        name="Papir & Metal",
+        key="juletrae",
+        name="Juletræer",
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
@@ -147,8 +147,48 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
+        key="papir",
+        name="Papir",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="papirglasmetalplast",
+        name="Papir, Glas, Metal & Plast",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="papirmetal",
+        name="Papir & Metal",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="pappapir",
+        name="Pap & Papir",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="pappapirglasmetal",
+        name="Pap, Papir, Glas & Metal",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="pappapirtekstil",
+        name="Pap, Papir & Tekstil",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
         key="plast",
         name="Plast",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="plastmadkarton",
+        name="Plast & Mad-Drikkekartoner",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="plastmdkglasmetal",
+        name="Plast, Madkarton, Glas & Metal",
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
@@ -157,8 +197,28 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
-        key="plastmdkglasmetal",
-        name="Plast, Madkarton, Glas & Metal",
+        key="plastmetalmdk",
+        name="Plast, Metal, Mad & Drikkekartoner",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="plastmetalpapir",
+        name="Plast, Metal & Papir",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="restaffald",
+        name="Restaffald",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="restaffaldmadaffald",
+        name="Rest- & madaffald",
+        native_unit_of_measurement="dage",
+    ),
+    AffaldDKSensorEntityDescription(
+        key="restplast",
+        name="Restaffald & Plast/Madkartoner",
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
@@ -177,63 +237,8 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
-        key="haveaffald",
-        name="Haveaffald",
-        native_unit_of_measurement="dage",
-    ),
-    AffaldDKSensorEntityDescription(
-        key="pappapirglasmetal",
-        name="Pap, Papir, Glas & Metal",
-        native_unit_of_measurement="dage",
-    ),
-    AffaldDKSensorEntityDescription(
-        key="papirglasmetalplast",
-        name="Papir, Glas, Metal & Plast",
-        native_unit_of_measurement="dage",
-    ),
-    AffaldDKSensorEntityDescription(
-        key="plastmetalmdk",
-        name="Plast, Metal, Mad & Drikkekartoner",
-        native_unit_of_measurement="dage",
-    ),
-    AffaldDKSensorEntityDescription(
-        key="plastmadkarton",
-        name="Plast & Mad-Drikkekartoner",
-        native_unit_of_measurement="dage",
-    ),
-    AffaldDKSensorEntityDescription(
-        key="pappapir",
-        name="Pap & Papir",
-        native_unit_of_measurement="dage",
-    ),
-    AffaldDKSensorEntityDescription(
-        key="pappapirtekstil",
-        name="Pap, Papir & Tekstil",
-        native_unit_of_measurement="dage",
-    ),
-    AffaldDKSensorEntityDescription(
-        key="restaffald",
-        name="Restaffald",
-        native_unit_of_measurement="dage",
-    ),
-    AffaldDKSensorEntityDescription(
-        key="restplast",
-        name="Restaffald & Plast/Madkartoner",
-        native_unit_of_measurement="dage",
-    ),
-    AffaldDKSensorEntityDescription(
         key="tekstil",
         name="Tekstiler",
-        native_unit_of_measurement="dage",
-    ),
-    AffaldDKSensorEntityDescription(
-        key="glasplast",
-        name="Glas & Plast",
-        native_unit_of_measurement="dage",
-    ),
-    AffaldDKSensorEntityDescription(
-        key="plastmetalpapir",
-        name="Plast, Metal & Papir",
         native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
