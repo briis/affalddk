@@ -292,13 +292,15 @@
     "next_pickup": "Papir & Plast"
   },
   "ballerup_1": {
-    "restaffaldmadaffald": "Mad/Rest affald",
-    "pap": "Pap",
-    "haveaffald": "Haveaffald",
-    "pappi": "Papir/Plast & MDK",
-    "storskrald": "Storskrald",
-    "metalglas": "Metal/Glas affald",
-    "next_pickup": "Pap | Rest & Madaffald"
+    "pappi": "Tømning af Papir/Plast & MDK",
+    "storskrald": "Tømning af Storskrald",
+    "farligtaffald": "Tømning af Farligt affald",
+    "restaffaldmadaffald": "Tømning af Mad/Rest",
+    "pap": "Tømning af Pap",
+    "juletrae": "Tømning af Juletræer",
+    "metalglas": "Tømning af Metal/Glas",
+    "haveaffald": "Tømning af Haveaffald",
+    "next_pickup": "Papir & Plast"
   },
   "furesø_1": {
     "pappi": "Papir/Plast & MDK",
@@ -631,11 +633,14 @@
     "next_pickup": "Rest & Madaffald"
   },
   "ballerup_2": {
-    "restaffaldmadaffald": "Mad/Rest affald",
-    "pappi": "Papir/Plast & MDK",
-    "pap": "Pap",
-    "storskrald": "Storskrald",
-    "metalglas": "Metal/Glas affald",
-    "next_pickup": "Rest & Madaffald"
+    "farligtaffald": "Tømning af Farligt affald",
+    "restaffaldmadaffald": "Tømning af Mad/Rest",
+    "pappi": "Tømning af Papir/Plast & MDK",
+    "pap": "Tømning af Pap",
+    "storskrald": "Tømning af Storskrald",
+    "juletrae": "Tømning af Juletræer",
+    "metalglas": "Tømning af Metal/Glas",
+    "haveaffald": "Tømning af Haveaffald",
+    "next_pickup": "Farligt affald | Rest & Madaffald"
   }
 }
