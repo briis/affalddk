@@ -221,7 +221,7 @@ class VestForAPI(AffaldDKAPIBase):
         url = 'https://selvbetjening.vestfor.dk/Adresse/ToemmeDates'
         para = {
             'start': str(self.today + dt.timedelta(days=-1)),
-            'end': str(self.today + dt.timedelta(days=60))
+            'end': str(self.today + dt.timedelta(days=6*30))
             }
         data = await self.async_get_request(url, para=para)
         return data

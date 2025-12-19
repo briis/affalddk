@@ -1,5 +1,18 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.1.2
+
+**Date**: `2025-12-18`
+
+### Changes
+* Bumped VestFor api to look 6 months ahead for data
+* Changed Ballerup to use Perfect Waste
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 3.1.1
 
 **Date**: `2025-12-17`
@@ -7,10 +20,6 @@
 ### Changes
 * Added Juletræer to the integration
 
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 3.1.0
 

@@ -276,23 +276,23 @@ async def test_Aarhus(capsys, monkeypatch):
 async def test_VestFor(capsys, monkeypatch):
     with capsys.disabled():
         async with ClientSession() as session:
-            gc = GarbageCollection('Ballerup', session=session, fail=True)
+            gc = GarbageCollection('Albertslund', session=session, fail=True)
             print('start: ', gc._municipality)
 
             add = {
-                'uid': 'Ballerup_2690c90b-016f-e511-80cd-005056be6a4c',
-                'address_id': '2690c90b-016f-e511-80cd-005056be6a4c',
-                'kommunenavn': 'Ballerup', 'address': 'Banegårdspladsen 1'}
+                'uid': 'Albertslund_5d715e2a-126f-e511-80cd-005056be6a4c',
+                'address_id': '5d715e2a-126f-e511-80cd-005056be6a4c',
+                'kommunenavn': 'Albertslund', 'address': 'Nordmarks alle 1'}
             if not CI:
-                address_list = await gc.get_address_list('2750', 'Banegårdspladsen', '1')
+                address_list = await gc.get_address_list('2620', 'Nordmarks Alle', '1')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
                 assert address.__dict__ == add
-                address_list = await gc._api.get_address_list('2750', 'Banegårdspladsen', '')
-                assert len(address_list) == 64
+                address_list = await gc._api.get_address_list('2620', 'Nordmarks Alle', '')
+                assert len(address_list) == 100
                 await assert_add_list(gc, address_list)
-                address_list = await gc._api.get_address_list('2750', 'Banegårdspladsen', '1')
-                assert len(address_list) == 5
+                address_list = await gc._api.get_address_list('2620', 'Nordmarks Alle', '2')
+                assert len(address_list) == 2
 
             async def get_data(*args, **kwargs):
                 return vestfor_data
