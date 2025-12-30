@@ -12,6 +12,7 @@ from dateutil import parser
 from .const import (
     ICON_LIST,
     NAME_LIST,
+    NAME_LIST_REV,
     NON_SUPPORTED_ITEMS,
     RE_WORDS,
     RE_RAW,
@@ -149,7 +150,7 @@ class GarbageCollection:
                 self.next_events.update({_pickup_date: {'name': [NAME_LIST.get(key)], 'description': [item_name]}})
         return 'done'
 
-    def set_next_event(self):
+    def set_next_event(self, dynamic_next_icon):
         if self.next_events:
             if dt.datetime.now().time() > self.switch_time:
                 _next_pickup = sorted([key for key in self.next_events.keys() if key > self.today])[0]
@@ -162,19 +163,33 @@ class GarbageCollection:
             sorted_pairs = sorted(zip(_next_name, _next_description), key=lambda pair: pair[0])
             _next_name, _next_description = zip(*sorted_pairs)
 
-            _next_pickup_event = {
-                "next_pickup": PickupType(
-                    date=_next_pickup,
-                    group="genbrug",
-                    friendly_name=list_to_string(_next_name),
-                    icon=ICON_LIST.get("genbrug"),
-                    entity_picture="genbrug.svg",
-                    description=list_to_string(_next_description),
-                )
-            }
+            if dynamic_next_icon:
+                key = NAME_LIST_REV[_next_name[0]]
+                _next_pickup_event = {
+                    "next_pickup": PickupType(
+                        date=_next_pickup,
+                        group=key,
+                        friendly_name=list_to_string(_next_name),
+                        icon=ICON_LIST.get(key),
+                        entity_picture=f"{key}.svg",
+                        description=list_to_string(_next_description),
+                    )
+                }
+            else:
+                _next_pickup_event = {
+                    "next_pickup": PickupType(
+                        date=_next_pickup,
+                        group="genbrug",
+                        friendly_name=list_to_string(_next_name),
+                        icon=ICON_LIST.get("genbrug"),
+                        entity_picture="genbrug.svg",
+                        description=list_to_string(_next_description),
+                    )
+                }
+
             self.pickup_events.update(_next_pickup_event)
 
-    async def get_pickup_data(self, address_id: str, debug=False) -> PickupEvents:
+    async def get_pickup_data(self, address_id: str, dynamic_next_icon=False, debug=False) -> PickupEvents:
         """Get the garbage collection data."""
 
         # pull data from these each time we sync
@@ -318,7 +333,7 @@ class GarbageCollection:
                         for _pickup_date in sorted([d for d in dt_list if d >= self.today])[:2]:
                             self.update_pickup_event(fraction_name, address_id, _pickup_date)
 
-        self.set_next_event()
+        self.set_next_event(dynamic_next_icon)
         return self.pickup_events
 
 

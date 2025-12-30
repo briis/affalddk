@@ -36,6 +36,7 @@ from .const import (
     CONF_MUNICIPALITY,
     CONF_ROAD_NAME,
     CONF_ZIPCODE,
+    CONF_DYNAMIC_NEXT_EVENT_ICON,
     DEFAULT_END_TIME,
     DEFAULT_START_TIME,
     DOMAIN,
@@ -172,6 +173,7 @@ class AffaldDKFlowHandler(ConfigFlow, domain=DOMAIN):
         """Get the options flow for this handler."""
         return OptionsFlowHandler()
 
+
 class OptionsFlowHandler(OptionsFlow):
     """Handle Options."""
 
@@ -198,6 +200,12 @@ class OptionsFlowHandler(OptionsFlow):
                             CONF_CALENDAR_END_TIME, DEFAULT_END_TIME
                         ),
                     ): vol.All(vol.Coerce(int), vol.Range(min=12, max=20)),
+                    vol.Optional(
+                        CONF_DYNAMIC_NEXT_EVENT_ICON,
+                        default=self.config_entry.options.get(
+                            CONF_DYNAMIC_NEXT_EVENT_ICON, False
+                        ),
+                    ): bool,
                 }
             ),
         )

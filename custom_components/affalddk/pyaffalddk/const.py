@@ -125,7 +125,10 @@ NAME_LIST = {
     "tekstil": "Tekstilaffald",
 }
 
+NAME_LIST_REV = {val: key for key, val in NAME_LIST.items()}
 NAME_ARRAY = list(NAME_LIST.keys())
+
+
 STRIPS = [
         'med 14-dages tømning ved helårshuse', '– tømmes hver 2. uge', 'tømning af',
         'sommerhustømning', 'henteordning', 'beholder til', '1-rums',
