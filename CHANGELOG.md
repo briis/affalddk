@@ -1,5 +1,17 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.1.3
+
+**Date**: `2025-12-30`
+
+### Changes
+* Added new option to show first found fraction icon for next pickup, instead of recycled ([#394](https://github.com/briis/affalddk/issues/394))
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 3.1.2
 
 **Date**: `2025-12-18`
@@ -8,10 +20,6 @@
 * Bumped VestFor api to look 6 months ahead for data
 * Changed Ballerup to use Perfect Waste
 
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 3.1.1
 

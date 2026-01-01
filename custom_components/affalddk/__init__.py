@@ -25,6 +25,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, Upda
 from .const import (
     CONF_ADDRESS_ID,
     CONF_MUNICIPALITY,
+    CONF_DYNAMIC_NEXT_EVENT_ICON,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
 )
@@ -122,14 +123,14 @@ class AffaldDKData:
         """Initialise affalddk entity data."""
 
         self.hass = hass
-        self._config = config.data
+        self._config = config
         self._affalddk_data: GarbageCollection
         self.pickup_events: PickupEvents
 
     def initialize_data(self) -> bool:
         """Establish connection to API."""
         self._affalddk_data = GarbageCollection(
-            municipality=self._config[CONF_MUNICIPALITY],
+            municipality=self._config.data[CONF_MUNICIPALITY],
             session=async_get_clientsession(self.hass),
         )
 
@@ -137,10 +138,10 @@ class AffaldDKData:
 
     async def fetch_data(self) -> Self:
         """Fetch data from API."""
-
         try:
             self.pickup_events = await self._affalddk_data.get_pickup_data(
-                address_id=self._config[CONF_ADDRESS_ID]
+                address_id=self._config.data[CONF_ADDRESS_ID],
+                dynamic_next_icon=self._config.options.get(CONF_DYNAMIC_NEXT_EVENT_ICON, False),
             )
         except AffaldDKNotSupportedError as err:
             _LOGGER.debug(err)

@@ -15,7 +15,7 @@ CONF_MUNICIPALITY = "municipality"
 CONF_ROAD_NAME = "road_name"
 CONF_UPDATE_INTERVAL = "update_interval"
 CONF_ZIPCODE = "zipcode"
-
+CONF_DYNAMIC_NEXT_EVENT_ICON = "dynamic_next_event_icon"
 DEFAULT_ATTRIBUTION = "Data delivered by Danish Municipalities"
 DEFAULT_API_VERSION = "Legacy"
 DEFAULT_BRAND = "@BRiis"

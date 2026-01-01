@@ -42,6 +42,7 @@ from .const import (
     DEFAULT_BRAND,
     DOMAIN,
 )
+from .pyaffalddk.data import PickupEvents
 from .pyaffalddk.const import (
     ICON_LIST,
     WEEKDAYS,
@@ -309,18 +310,21 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         )
         self._attr_unique_id = f"{config.data[CONF_ADDRESS_ID]} {description.key}"
 
+
+    @property
+    def event(self) -> PickupEvents | None:
+        """Return current event or None."""
+        if self._coordinator.data.pickup_events:
+            return self._coordinator.data.pickup_events[self.entity_description.key]
+        return None
+
     @property
     def native_unit_of_measurement(self) -> str | None:
         """Return unit of sensor."""
 
-        self._pickup_events = (
-            self._coordinator.data.pickup_events.get(self.entity_description.key)
-            if self._coordinator.data.pickup_events
-            else None
-        )
-        if self._pickup_events is not None:
+        if self.event is not None:
             current_time = now().date()
-            pickup_time: datetime.date = self._pickup_events.date
+            pickup_time: datetime.date = self.event.date
             _pickup_days = (pickup_time - current_time).days
             if pickup_time:
                 if _pickup_days == 1:
@@ -332,14 +336,9 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
     def native_value(self) -> StateType:
         """Return state of the sensor."""
 
-        self._pickup_events = (
-            self._coordinator.data.pickup_events.get(self.entity_description.key)
-            if self._coordinator.data.pickup_events
-            else None
-        )
-        if self._pickup_events is not None:
+        if self.event is not None:
             current_time = now().date()
-            pickup_time: datetime.date = self._pickup_events.date
+            pickup_time: datetime.date = self.event.date
             _pickup_days = (pickup_time - current_time).days
             if pickup_time:
                 return _pickup_days
@@ -347,18 +346,12 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
     @property
     def icon(self) -> str | None:
         """Return icon for sensor."""
-
         return ICON_LIST.get(self.entity_description.key)
 
     @property
     def extra_state_attributes(self) -> None:
         """Return non standard attributes."""
 
-        self._pickup_events = (
-            self._coordinator.data.pickup_events.get(self.entity_description.key)
-            if self._coordinator.data.pickup_events
-            else None
-        )
         _categori = self.entity_description.key
         if _categori == "next_pickup":
             _categori = "genbrug"
@@ -367,8 +360,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             ATTR_LAST_UPDATE: now().isoformat()
         }
 
-        if self._pickup_events is not None:
-            _date: datetime.date = self._pickup_events.date
+        if self.event is not None:
+            _date: datetime.date = self.event.date
             _current_date = dt.today().date()
             _state = (_date - _current_date).days
             if _state < 0:
@@ -389,9 +382,10 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
                 f"{_date.strftime('d. %d-%m-%Y') if _date else None}"
             )
             att[ATTR_DATE_SHORT] = f"{_day_name} {_date.strftime('d. %d/%m') if _date else None}"
-            att[ATTR_DESCRIPTION] = self._pickup_events.description
+            att[ATTR_DESCRIPTION] = self.event.description
             att[ATTR_DURATION] = _day_text
-            att[ATTR_NAME] = self._pickup_events.friendly_name
+            att[ATTR_NAME] = self.event.friendly_name
+            att[ATTR_ENTITY_PICTURE] = f'/affalddk/img/{self.event.group}.svg',
         return att
 
     async def async_added_to_hass(self):

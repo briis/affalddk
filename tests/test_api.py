@@ -71,6 +71,25 @@ async def test_smoketest(capsys, monkeypatch, update=False):
 
 @pytest.mark.asyncio
 @freeze_time("2025-05-22 12:30:00")
+async def test_next_icon_type(capsys, monkeypatch):
+    with capsys.disabled():
+        async with ClientSession() as session:
+            gc = GarbageCollection('Viborg', session=session, fail=True)
+            openexp_data = json.loads((datadir/'openexp.data').read_text())
+
+            async def get_data(*args, **kwargs):
+                return openexp_data
+            monkeypatch.setattr(gc._api, "get_garbage_data", get_data)
+
+            pickups = await gc.get_pickup_data('1111')
+            assert pickups['next_pickup'].group == 'genbrug'
+
+            pickups = await gc.get_pickup_data('1111', dynamic_next_icon=True)
+            assert pickups['next_pickup'].group == 'restaffaldmadaffald'
+
+
+@pytest.mark.asyncio
+@freeze_time("2025-05-22 12:30:00")
 async def test_switch_next(capsys, monkeypatch):
     with capsys.disabled():
         async with ClientSession() as session:
