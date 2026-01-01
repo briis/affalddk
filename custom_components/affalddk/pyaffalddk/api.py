@@ -163,29 +163,17 @@ class GarbageCollection:
             sorted_pairs = sorted(zip(_next_name, _next_description), key=lambda pair: pair[0])
             _next_name, _next_description = zip(*sorted_pairs)
 
-            if dynamic_next_icon:
-                key = NAME_LIST_REV[_next_name[0]]
-                _next_pickup_event = {
-                    "next_pickup": PickupType(
-                        date=_next_pickup,
-                        group=key,
-                        friendly_name=list_to_string(_next_name),
-                        icon=ICON_LIST.get(key),
-                        entity_picture=f"{key}.svg",
-                        description=list_to_string(_next_description),
-                    )
-                }
-            else:
-                _next_pickup_event = {
-                    "next_pickup": PickupType(
-                        date=_next_pickup,
-                        group="genbrug",
-                        friendly_name=list_to_string(_next_name),
-                        icon=ICON_LIST.get("genbrug"),
-                        entity_picture="genbrug.svg",
-                        description=list_to_string(_next_description),
-                    )
-                }
+            key = NAME_LIST_REV[_next_name[0]] if dynamic_next_icon else 'genbrug'
+            _next_pickup_event = {
+                "next_pickup": PickupType(
+                    date=_next_pickup,
+                    group=key,
+                    friendly_name=list_to_string(_next_name),
+                    icon=ICON_LIST.get(key),
+                    entity_picture=f"{key}.svg",
+                    description=list_to_string(_next_description),
+                )
+            }
 
             self.pickup_events.update(_next_pickup_event)
 
