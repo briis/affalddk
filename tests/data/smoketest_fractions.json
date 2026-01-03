@@ -642,5 +642,15 @@
     "metalglas": "Tømning af Metal/Glas",
     "haveaffald": "Tømning af Haveaffald",
     "next_pickup": "Farligt affald | Rest & Madaffald"
+  },
+  "397_lyngby": {
+    "storskrald": "Storskrald",
+    "papirglasmetalplast": "4-kammer (370 l)",
+    "restaffaldmadaffald": "240 l. 1 x ugentligt (M/R)",
+    "haveaffald": "Haveaffald 1. mar-30. nov",
+    "pap": "Beholder til pap",
+    "farligtaffaldmiljoboks": "Miljøboks",
+    "juletrae": "Juletræsafhentning",
+    "next_pickup": "Farligt affald & Miljøboks | Rest & Madaffald"
   }
 }
