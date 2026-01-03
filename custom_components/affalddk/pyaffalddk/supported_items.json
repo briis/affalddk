@@ -226,7 +226,8 @@
         "plast, MDK/metal, glas",
         "Plast/Drikkekarton og Metal",
         "Plast/mad- og drikkekartoner og glas/metal",
-        "plast/mad- og drikkekartoner/glas/metal"
+        "plast/mad- og drikkekartoner/glas/metal",
+        "Plast/MDK/Metal/Glas"
     ],
     "plastmetal": [
         "Metal og Plast",
