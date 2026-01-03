@@ -74,7 +74,7 @@ async def test_smoketest(capsys, monkeypatch, update=False):
 async def test_next_icon_type(capsys, monkeypatch):
     with capsys.disabled():
         async with ClientSession() as session:
-            gc = GarbageCollection('Viborg', session=session, fail=True)
+            gc = GarbageCollection('Holstebro', session=session, fail=True)
             openexp_data = json.loads((datadir/'openexp.data').read_text())
 
             async def get_data(*args, **kwargs):
@@ -93,7 +93,7 @@ async def test_next_icon_type(capsys, monkeypatch):
 async def test_switch_next(capsys, monkeypatch):
     with capsys.disabled():
         async with ClientSession() as session:
-            gc = GarbageCollection('Viborg', session=session, fail=True)
+            gc = GarbageCollection('Holstebro', session=session, fail=True)
             openexp_data = json.loads((datadir/'openexp.data').read_text())
 
             async def get_data(*args, **kwargs):
@@ -112,7 +112,7 @@ async def test_switch_next(capsys, monkeypatch):
 async def test_next_of_same(capsys, monkeypatch):
     with capsys.disabled():
         async with ClientSession() as session:
-            gc = GarbageCollection('Viborg', session=session, fail=True)
+            gc = GarbageCollection('Holstebro', session=session, fail=True)
             openexp_data = json.loads((datadir/'openexp.data').read_text())
 
             async def get_data(*args, **kwargs):
