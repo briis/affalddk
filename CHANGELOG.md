@@ -1,5 +1,17 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.2.1
+
+**Date**: `2026-01-03`
+
+### Changes
+* fixed "Juletræsafhentning" in Lyngby-Taarbæk ([#397](https://github.com/briis/affalddk/issues/397))
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 3.2.0
 
 **Date**: `2026-01-01`
@@ -10,10 +22,6 @@
 * Changed Ballerup to use Perfect Waste
 * Added new option to show first found fraction icon for next pickup, instead of recycled ([#394](https://github.com/briis/affalddk/issues/394))
 
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 3.1.3
 
