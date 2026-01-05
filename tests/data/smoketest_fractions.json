@@ -365,9 +365,9 @@
     "next_pickup": "Genbrug | Papir & Plast | Storskrald"
   },
   "viborg_1": {
-    "plastmdkglasmetal": "Metal/Glas/Plast/MDK",
-    "pappapir": "Papir/Pap",
-    "restaffaldmadaffald": "Rest/Madaffald",
+    "restaffaldmadaffald": "240L Rest/Mad 2. uge P",
+    "plastmdkglasmetal": "240L Plast/MDK/Metal/Glas 3. uge P",
+    "pappapir": "240L Papir/Pap 6. uge P",
     "next_pickup": "Rest & Madaffald"
   },
   "ærø_1": {
@@ -652,5 +652,11 @@
     "farligtaffaldmiljoboks": "Miljøboks",
     "juletrae": "Juletræsafhentning",
     "next_pickup": "Farligt affald & Miljøboks | Rest & Madaffald"
+  },
+  "viborg_399": {
+    "pappapir": "240L Papir/Pap 6. uge P",
+    "restaffaldmadaffald": "240L Rest/Mad 2. uge P",
+    "plastmdkglasmetal": "240L Plast/MDK/Metal/Glas 3. uge P",
+    "next_pickup": "Pap & Papir"
   }
 }

@@ -87,32 +87,32 @@ async def test_OpenExpLive(capsys, monkeypatch):
 @pytest.mark.asyncio
 @freeze_time("2025-05-20")
 async def test_OpenExp(capsys, monkeypatch):
-    # test Viborg
+    # test Holstebro
     with capsys.disabled():
         async with ClientSession() as session:
-            gc = GarbageCollection('Viborg', session=session, fail=True)
+            gc = GarbageCollection('Holstebro', session=session, fail=True)
             print('start: ', gc._municipality)
 
             add = {
-                'uid': 'Viborg_67580', 'address_id': '67580',
-                'kommunenavn': 'Viborg', 'address': 'Prinsens alle 5'}
+                'uid': 'Holstebro_14738', 'address_id': '14738',
+                'kommunenavn': 'Holstebro', 'address': 'Kirkestræde 11'}
             if not CI:
-                address_list = await gc.get_address_list('8800', 'Prinsens Alle', '5')
+                address_list = await gc.get_address_list('7500', 'Kirkestræde', '11')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
                 assert address.__dict__ == add
-                address_list = await gc._api.get_address_list('8800', 'Vesterled', '')
+                address_list = await gc._api.get_address_list('7500', 'Skivevej', '')
                 assert len(address_list) == 52
                 await assert_add_list(gc, address_list)
-                address_list = await gc._api.get_address_list('8800', 'Vesterled', '4')
-                assert len(address_list) == 9
+                address_list = await gc._api.get_address_list('7500', 'Skivevej', '4')
+                assert len(address_list) == 14
 
             async def get_data(*args, **kwargs):
                 return openexp_data
             monkeypatch.setattr(gc._api, "get_garbage_data", get_data)
 
             pickups = await gc.get_pickup_data(add['address_id'])
-            update_and_compare('Viborg', pickups, UPDATE)
+            update_and_compare('Holstebro', pickups, UPDATE)
             print('done: ', gc._municipality)
 
 

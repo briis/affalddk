@@ -1,5 +1,17 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.2.2
+
+**Date**: `2026-01-03`
+
+### Changes
+* Changed Viborg to Affaldonline ([#399](https://github.com/briis/affalddk/issues/399))
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 3.2.1
 
 **Date**: `2026-01-03`
@@ -7,10 +19,6 @@
 ### Changes
 * fixed "Juletræsafhentning" in Lyngby-Taarbæk ([#397](https://github.com/briis/affalddk/issues/397))
 
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 3.2.0
 
