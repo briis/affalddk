@@ -25,6 +25,7 @@ As of release 2.7.3, this integration now supports the following API's:
 - Municipalities that use **Renodjurs**
 - Municipalities that use **RenoSyd**
 - Municipalities that use **Vest Forbrænding**
+- Municipalities that use **WasteWatch**
 - Municipalities that have an **iCal** implementation. (Like København)
 - The municipality of **Herning**
 - The municipality of **Ikast-Brande**
