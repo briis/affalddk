@@ -836,8 +836,8 @@ class WasteWatchAPI(AffaldDKAPIBase):
         try:
             road, house_no, post_code = str(address_id).split("|", 2)
             house_no_int = int(house_no)
-        except Exception:
-            raise AffaldDKNotValidAddressError("Invalid WasteWatch address id")
+        except Exception as err:
+            raise AffaldDKNotValidAddressError("Invalid WasteWatch address id") from err
 
         url = self._build_filtered_url(road, house_no_int, post_code)
         data = await self.async_get_request(url, as_json=True)
