@@ -772,3 +772,93 @@ class InfovisionAPI(AffaldDKAPIBase):
         if js:
             return js
         return []
+
+class WasteWatchAPI(AffaldDKAPIBase):
+    # WasteWatch API (used by e.g. Tønder Forsyning).
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # municipality_id is used as provider slug, e.g. "tonfor"
+        self.provider = str(self.municipality_id).strip()
+        self.url_base = f"https://wastewatch.forsyningonline.dk/prod/{self.provider}"
+
+    def _normalize_date(self, date_str: str) -> str:
+        """Normalize date to ISO format YYYY-MM-DD."""
+        date_str = (date_str or "").strip()
+        if not date_str:
+            return ""
+
+        try:
+            return dt.datetime.strptime(date_str, "%Y-%m-%d").date().isoformat()
+        except ValueError:
+            pass
+
+        try:
+            return dt.datetime.strptime(date_str, "%d-%m-%Y").date().isoformat()
+        except ValueError:
+            return date_str
+
+    def _build_filtered_url(self, road: str, house_no_int: int, post_code: str) -> str:
+        """Build WasteWatch OData filter URL."""
+        road_escaped = str(road).replace("'", "''")
+        return (
+            f"{self.url_base}?$filter="
+            f"roadName eq '{road_escaped}' and houseNumber eq {house_no_int} and postCode eq '{post_code}'"
+        )
+
+    async def get_address_list(self, zipcode, street, house_number):
+        self.address_list = {}
+        street = str(street).strip()
+        zipcode = str(zipcode).strip()
+        m = re.match(r"^(\d+)", str(house_number).strip())
+        if not m:
+            return []
+        house_no_int = int(m.group(1))
+
+        url = self._build_filtered_url(street, house_no_int, zipcode)
+        data = await self.async_get_request(url, as_json=True)
+
+        events = []
+        if isinstance(data, dict):
+            events = data.get("wastewatch") or []
+        if not events:
+            return []
+
+        display = f"{street} {house_number}, {zipcode}"
+        address_id = f"{street}|{house_no_int}|{zipcode}"
+        self.address_list[display] = address_id
+        return [display]
+
+    async def get_address(self, address_name):
+        address_id = self.address_list.get(address_name)
+        return address_id, address_name
+
+    async def get_garbage_data(self, address_id):
+        try:
+            road, house_no, post_code = str(address_id).split("|", 2)
+            house_no_int = int(house_no)
+        except Exception:
+            raise AffaldDKNotValidAddressError("Invalid WasteWatch address id")
+
+        url = self._build_filtered_url(road, house_no_int, post_code)
+        data = await self.async_get_request(url, as_json=True)
+
+        if not isinstance(data, dict):
+            return []
+
+        items = data.get("wastewatch") or []
+        results = []
+
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+
+            raw_date = (item.get("dato") or item.get("date") or "").strip()
+            dato = self._normalize_date(raw_date)
+
+            normalized_item = dict(item)
+            normalized_item["dato"] = dato
+            normalized_item.setdefault("container", item.get("container", ""))
+
+            results.append(normalized_item)
+
+        return results
