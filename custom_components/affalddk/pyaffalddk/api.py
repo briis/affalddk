@@ -41,6 +41,7 @@ APIS = {
     'provas': interface.ProvasAPI,
     'renodjurs': interface.RenoDjursAPI,
     'renosyd': interface.RenoSydAPI,
+    'wastewatch': interface.WasteWatchAPI,
     'herning': interface.AffaldWebAPI,
     'ikastbrande': interface.IkastBrandeAPI,
     'silkeborg': interface.SilkeborgAPI,
@@ -287,6 +288,12 @@ class GarbageCollection:
                     _pickup_date = iso_string_to_date(item['dato'])
                     fraction_name = ' '.join(sorted(item['fraktioner']))
                     self.update_pickup_event(fraction_name, address_id, _pickup_date)
+
+            elif self._api_type == "wastewatch":
+                garbage_data = await self._api.get_garbage_data(address_id)
+                for item in garbage_data:
+                    _pickup_date = iso_string_to_date(item["dato"])
+                    self.update_pickup_event(item["container"], address_id, _pickup_date)
 
             elif self._api_type == "herning":
                 garbage_data = await self._api.get_garbage_data(address_id)
