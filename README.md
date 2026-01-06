@@ -115,7 +115,7 @@ Odense has introduced reCAPTCHA, which is a technology to ensure that a real per
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (86)
+Here is the list of currently supported Municipalities (87)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
@@ -196,6 +196,7 @@ Here is the list of currently supported Municipalities (86)
 - Syddjurs (Renodjurs)
 - Sønderborg (Affaldsportal)
 - Thy (Open Experience)
+- Tønder (WasteWatch)
 - Tårnby (Perfect Waste)
 - Vallensbæk (Vestforbrænding)
 - Varde (Affaldsportal)
