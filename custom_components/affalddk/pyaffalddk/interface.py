@@ -73,13 +73,11 @@ class AffaldDKAPIBase:
                 self.update_address_list(item, 'betegnelse', 'id')
         return list(self.address_list.keys())
 
-    async def get_item(self, code, address_name):
+    async def get_item(self, code, address_id):
         url_search = "https://api.dataforsyningen.dk/adresser"
-        item = self.address_list.get(address_name)
-        if item:
-            para = {'kommunekode': code, 'id': item['id'], 'struktur': 'mini'}
-            row = await self.async_get_request(url_search, para=para)
-            return row[0]
+        para = {'kommunekode': code, 'id': address_id, 'struktur': 'mini'}
+        row = await self.async_get_request(url_search, para=para)
+        return row[0]
 
     async def get_kvhx(self, code, address_name):
         url_search = "https://api.dataforsyningen.dk/adresser"
@@ -800,33 +798,21 @@ class WasteWatchAPI(AffaldDKAPIBase):
         }
         self.provider_id = waste_ids[self.municipality_id]
         self.url_base = f"https://wastewatch.forsyningonline.dk/prod/{self.provider_id}"
-        self.street = ''
-        self.number = ''
-        self.zipcode = ''
-
-    def _build_filtered_url(self, road: str, house_no_int: int, post_code: str) -> str:
-        """Build WasteWatch OData filter URL."""
-        road_escaped = str(road).replace("'", "''")
-        return (
-            f"{self.url_base}?$filter="
-            f"roadName eq '{road_escaped}' and houseNumber eq {house_no_int} and postCode eq '{post_code}'"
-        )
 
     async def get_address_list(self, zipcode, street, house_number):
         return await self.get_df_address_list(self.municipality_id, zipcode, street, house_number)
 
     async def get_address(self, address_name):
-        item = await self.get_item(self.municipality_id, address_name)
-        if item:
-            self.street = item['vejnavn']
-            self.number = item['husnr']
-            self.zipcode = item['postnr']
         address_id = self.address_list.get(address_name)['id']
         return address_id, address_name
 
     async def get_garbage_data(self, address_id):
-        number, letter = split_housenumber(self.number)
-        url = self._build_filtered_url(self.street, number, self.zipcode)
+        item = await self.get_item(self.municipality_id, address_id)
+        number, letter = split_housenumber(item['husnr'])
+        road = item['vejnavn']
+        zipcode = item['postnr']
+
+        url = f"{self.url_base}?$filter=roadName eq '{road}' and houseNumber eq {number} and postCode eq '{zipcode}'"
         if letter:
             url += f"and Letter eq '{letter}'"
         data = await self.async_get_request(url, as_json=True)
