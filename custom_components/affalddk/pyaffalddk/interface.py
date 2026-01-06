@@ -831,7 +831,7 @@ class WasteWatchAPI(AffaldDKAPIBase):
             url += f"and Letter eq '{letter}'"
         data = await self.async_get_request(url, as_json=True)
         if not data.get("wastewatch", []) and self.provider_id == 'tonfor':
-            url2 = await self.get_tonfor_url(road, number, letter, zipcode)
+            url2 = await self.get_tonfor_url(road, number, '', zipcode) # seems to be an issue with tonfor.dk to get data from addresses with letters (Ludvig Andresensvej 12A for instance)
             if url != url2:
                 data = await self.async_get_request(url2, as_json=True)
         return data.get("wastewatch", [])
