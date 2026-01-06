@@ -19,12 +19,15 @@ def clean_name(name):
 
 
 def split_housenumber(s):
+    if ',' in s:
+        num, char = s.split(',')
+        return int(num), char.strip()
     match = re.match(r'^(\d+)([a-zA-Z]*)$', s)
     if match:
         num = int(match.group(1))
         char = match.group(2)
         return num, char
-    return None, ''
+    return int(s), ''
 
 
 class AffaldDKNotSupportedError(Exception):
@@ -806,6 +809,17 @@ class WasteWatchAPI(AffaldDKAPIBase):
         address_id = self.address_list.get(address_name)['id']
         return address_id, address_name
 
+    async def get_tonfor_url(self, road, number, letter, zipcode):
+        url = 'https://www.tonfor.dk/affald/toemmedatoer/dine-toemmedatoer'
+        params = {
+            "postnr": zipcode, "vejnavn": road, "husnummer": number, "bogstav": letter,
+            "Lavopslag": "Lav opslag"
+        }
+        data = await self.async_get_request(url, para=params, as_json=False)
+        soup = BeautifulSoup(data, "html.parser")
+        h2 = soup.find('h2')
+        return h2.find_next('a', href=True)['href']
+
     async def get_garbage_data(self, address_id):
         item = await self.get_item(self.municipality_id, address_id)
         number, letter = split_housenumber(item['husnr'])
@@ -816,4 +830,8 @@ class WasteWatchAPI(AffaldDKAPIBase):
         if letter:
             url += f"and Letter eq '{letter}'"
         data = await self.async_get_request(url, as_json=True)
+        if not data.get("wastewatch", []) and self.provider_id == 'tonfor':
+            url2 = await self.get_tonfor_url(road, number, letter, zipcode)
+            if url != url2:
+                data = await self.async_get_request(url2, as_json=True)
         return data.get("wastewatch", [])

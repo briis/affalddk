@@ -3,6 +3,7 @@ import pytest
 from freezegun import freeze_time
 from aiohttp import ClientSession
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
+from custom_components.affalddk.pyaffalddk.interface import split_housenumber
 
 from pathlib import Path
 import pickle
@@ -479,3 +480,10 @@ async def test_WasteWatch(capsys, monkeypatch):
             pickups = await gc.get_pickup_data(add['address_id'])
             update_and_compare('Tønder', pickups, UPDATE)
             print('done: ', gc._municipality)
+
+
+def test_split_housenumber(capsys):
+    with capsys.disabled():
+        assert split_housenumber('12E') == (12, 'E')
+        assert split_housenumber('12') == (12, '')
+        assert split_housenumber('12, 2.tv') == (12, '2.tv')
