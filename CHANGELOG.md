@@ -2,7 +2,10 @@
 
 ## Version 3.2.2
 
-**Date**: `2026-01-03`
+**Date**: `2026-01-06`
+
+### Added
+* Added new API for Tønder - thanks @Ralleberg ([#401](https://github.com/briis/affalddk/pull/401))
 
 ### Changes
 * Changed Viborg to Affaldonline ([#399](https://github.com/briis/affalddk/issues/399))
