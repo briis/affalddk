@@ -266,6 +266,7 @@
         "energi",
         "Energibeholder",
         "Energispand - Obligatorisk min. 1",
+        "Husholdningsaffald",
         "M/R",
         "Mad og rest",
         "Mad og restaffald",
@@ -291,8 +292,7 @@
         "Restaffald-Madaffald",
         "Restaffald/Madaffald",
         "rød",
-        "skraldespand",
-        "Husholdningsaffald"
+        "skraldespand"
     ],
     "restplast": [
         "Rest + plast/MDK"

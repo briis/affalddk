@@ -182,7 +182,7 @@ MUNICIPALITIES_LIST = {
     "Syddjurs": ['renodjurs'],
     "Sønderborg": ["renoweb"],
     "Thy": ["openexplive", "5NmkzUGpvZlRaMzdqZzBEQw=="],
-    "Tønder": ["wastewatch", "tonfor"],
+    "Tønder": ["wastewatch"],
     "Tårnby": ["perfectwaste"],
     "Vallensbæk": ["vestfor"],
     "Varde": ["renoweb"],

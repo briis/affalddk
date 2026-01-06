@@ -12,7 +12,7 @@ import os
 
 CI = os.getenv("CI") == "true"
 skip_in_ci = pytest.mark.skipif(CI, reason="Skipped in CI environment")
-UPDATE = True
+UPDATE = False
 ADDRESS_LIST_KEYS = ['id', 'fullname']
 
 datadir = Path(__file__).parent/'data'
@@ -28,6 +28,7 @@ openexplive_data = json.loads((datadir/'openexplive.data').read_text())
 renodjurs_data = json.loads((datadir/'renodjurs.data').read_text())
 provas_data = json.loads((datadir/'provas.data').read_text())
 herning_data = json.loads((datadir/'herning.data').read_text())
+tønder_data = json.loads((datadir/'tonfor.data').read_text())
 
 FREEZE_TIME = "2025-04-25"
 compare_file = (datadir/'compare_data.p')
@@ -445,4 +446,36 @@ async def test_Kbh(capsys, monkeypatch):
             assert pickups['next_pickup'].description == 'Rest/Madaffald'
             assert pickups['next_pickup'].date.strftime('%d/%m/%y') == '05/05/25'
             assert list(pickups.keys()) == ['restaffaldmadaffald', 'farligtaffald', 'next_pickup']
+            print('done: ', gc._municipality)
+
+
+@pytest.mark.asyncio
+@freeze_time("2026-01-06")
+async def test_WasteWatch(capsys, monkeypatch):
+    with capsys.disabled():
+        async with ClientSession() as session:
+            gc = GarbageCollection('Tønder', session=session, fail=True)
+            print('start: ', gc._municipality)
+
+            add = {
+                'uid': 'Tønder_a976f9e9-8136-46fb-a54c-ce8331522834', 'address_id': 'a976f9e9-8136-46fb-a54c-ce8331522834',
+                'kommunenavn': 'Tønder', 'address': 'Håndværkervej 4'
+                }
+            if not CI:
+                address_list = await gc.get_address_list('6261', 'Håndværkervej', '4')
+                address = await gc.get_address(address_list[0])
+                # print(address.__dict__)
+                assert address.__dict__ == add
+                address_list = await gc._api.get_address_list('6270', 'Ulriksalle', '')
+                assert len(address_list) == 214
+                await assert_add_list(gc, address_list)
+                address_list = await gc._api.get_address_list('6270', 'Ulriksalle', '2')
+                assert len(address_list) == 20
+
+            async def get_data(*args, **kwargs):
+                return tønder_data
+            monkeypatch.setattr(gc._api, "get_garbage_data", get_data)
+
+            pickups = await gc.get_pickup_data(add['address_id'])
+            update_and_compare('Tønder', pickups, UPDATE)
             print('done: ', gc._municipality)
