@@ -658,5 +658,10 @@
     "restaffaldmadaffald": "240L Rest/Mad 2. uge P",
     "plastmdkglasmetal": "240L Plast/MDK/Metal/Glas 3. uge P",
     "next_pickup": "Pap & Papir"
+  },
+  "tønder_1": {
+    "genbrug": "Genbrug",
+    "restaffaldmadaffald": "Husholdningsaffald",
+    "next_pickup": "Genbrug"
   }
 }

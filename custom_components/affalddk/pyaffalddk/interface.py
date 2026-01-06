@@ -18,6 +18,18 @@ def clean_name(name):
     return re.sub(r',\s*\d{4}.*$', '', name)
 
 
+def split_housenumber(s):
+    if ',' in s:
+        num, char = s.split(',')
+        return int(num), char.strip()
+    match = re.match(r'^(\d+)([a-zA-Z]*)$', s)
+    if match:
+        num = int(match.group(1))
+        char = match.group(2)
+        return num, char
+    return int(s), ''
+
+
 class AffaldDKNotSupportedError(Exception):
     """Raised when the municipality is not supported."""
 
@@ -63,6 +75,12 @@ class AffaldDKAPIBase:
             if str(zipcode) in item['postnr']:
                 self.update_address_list(item, 'betegnelse', 'id')
         return list(self.address_list.keys())
+
+    async def get_item(self, code, address_id):
+        url_search = "https://api.dataforsyningen.dk/adresser"
+        para = {'kommunekode': code, 'id': address_id, 'struktur': 'mini'}
+        row = await self.async_get_request(url_search, para=para)
+        return row[0]
 
     async def get_kvhx(self, code, address_name):
         url_search = "https://api.dataforsyningen.dk/adresser"
@@ -773,92 +791,47 @@ class InfovisionAPI(AffaldDKAPIBase):
             return js
         return []
 
+
 class WasteWatchAPI(AffaldDKAPIBase):
     # WasteWatch API (used by e.g. Tønder Forsyning).
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # municipality_id is used as provider slug, e.g. "tonfor"
-        self.provider = str(self.municipality_id).strip()
-        self.url_base = f"https://wastewatch.forsyningonline.dk/prod/{self.provider}"
-
-    def _normalize_date(self, date_str: str) -> str:
-        """Normalize date to ISO format YYYY-MM-DD."""
-        date_str = (date_str or "").strip()
-        if not date_str:
-            return ""
-
-        try:
-            return dt.datetime.strptime(date_str, "%Y-%m-%d").date().isoformat()
-        except ValueError:
-            pass
-
-        try:
-            return dt.datetime.strptime(date_str, "%d-%m-%Y").date().isoformat()
-        except ValueError:
-            return date_str
-
-    def _build_filtered_url(self, road: str, house_no_int: int, post_code: str) -> str:
-        """Build WasteWatch OData filter URL."""
-        road_escaped = str(road).replace("'", "''")
-        return (
-            f"{self.url_base}?$filter="
-            f"roadName eq '{road_escaped}' and houseNumber eq {house_no_int} and postCode eq '{post_code}'"
-        )
+        waste_ids = {
+            550: 'tonfor'
+        }
+        self.provider_id = waste_ids[self.municipality_id]
+        self.url_base = f"https://wastewatch.forsyningonline.dk/prod/{self.provider_id}"
 
     async def get_address_list(self, zipcode, street, house_number):
-        self.address_list = {}
-        street = str(street).strip()
-        zipcode = str(zipcode).strip()
-        m = re.match(r"^(\d+)", str(house_number).strip())
-        if not m:
-            return []
-        house_no_int = int(m.group(1))
-
-        url = self._build_filtered_url(street, house_no_int, zipcode)
-        data = await self.async_get_request(url, as_json=True)
-
-        events = []
-        if isinstance(data, dict):
-            events = data.get("wastewatch") or []
-        if not events:
-            return []
-
-        display = f"{street} {house_number}, {zipcode}"
-        address_id = f"{street}|{house_no_int}|{zipcode}"
-        self.address_list[display] = address_id
-        return [display]
+        return await self.get_df_address_list(self.municipality_id, zipcode, street, house_number)
 
     async def get_address(self, address_name):
-        address_id = self.address_list.get(address_name)
+        address_id = self.address_list.get(address_name)['id']
         return address_id, address_name
 
+    async def get_tonfor_url(self, road, number, letter, zipcode):
+        url = 'https://www.tonfor.dk/affald/toemmedatoer/dine-toemmedatoer'
+        params = {
+            "postnr": zipcode, "vejnavn": road, "husnummer": number, "bogstav": letter,
+            "Lavopslag": "Lav opslag"
+        }
+        data = await self.async_get_request(url, para=params, as_json=False)
+        soup = BeautifulSoup(data, "html.parser")
+        h2 = soup.find('h2')
+        return h2.find_next('a', href=True)['href']
+
     async def get_garbage_data(self, address_id):
-        try:
-            road, house_no, post_code = str(address_id).split("|", 2)
-            house_no_int = int(house_no)
-        except Exception as err:
-            raise AffaldDKNotValidAddressError("Invalid WasteWatch address id") from err
+        item = await self.get_item(self.municipality_id, address_id)
+        number, letter = split_housenumber(item['husnr'])
+        road = item['vejnavn']
+        zipcode = item['postnr']
 
-        url = self._build_filtered_url(road, house_no_int, post_code)
+        url = f"{self.url_base}?$filter=roadName eq '{road}' and houseNumber eq {number} and postCode eq '{zipcode}'"
+        if letter:
+            url += f"and Letter eq '{letter}'"
         data = await self.async_get_request(url, as_json=True)
-
-        if not isinstance(data, dict):
-            return []
-
-        items = data.get("wastewatch") or []
-        results = []
-
-        for item in items:
-            if not isinstance(item, dict):
-                continue
-
-            raw_date = (item.get("dato") or item.get("date") or "").strip()
-            dato = self._normalize_date(raw_date)
-
-            normalized_item = dict(item)
-            normalized_item["dato"] = dato
-            normalized_item.setdefault("container", item.get("container", ""))
-
-            results.append(normalized_item)
-
-        return results
+        if not data.get("wastewatch", []) and self.provider_id == 'tonfor':
+            url2 = await self.get_tonfor_url(road, number, letter, zipcode)
+            if url != url2:
+                data = await self.async_get_request(url2, as_json=True)
+        return data.get("wastewatch", [])
