@@ -663,5 +663,11 @@
     "genbrug": "Genbrug",
     "restaffaldmadaffald": "Husholdningsaffald",
     "next_pickup": "Genbrug"
+  },
+  "syddjurs_404": {
+    "restaffaldmadaffald": "240 l rest-/madaffald sommerhus 20+",
+    "plastmdkglasmetal": "240 plast/kartoner/glas/metal, 11 tømninger årligt",
+    "pappapir": "240 l papir/pap, tømning hver 8. uge",
+    "next_pickup": "Rest & Madaffald"
   }
 }

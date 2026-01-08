@@ -1,5 +1,17 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.2.3
+
+**Date**: `2026-01-08`
+
+### Changes
+* fixed address bug in Syddjurs  ([#404](https://github.com/briis/affalddk/issues/404))
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 3.2.2
 
 **Date**: `2026-01-06`
@@ -9,11 +21,6 @@
 
 ### Changes
 * Changed Viborg to Affaldonline ([#399](https://github.com/briis/affalddk/issues/399))
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 3.2.1
 
