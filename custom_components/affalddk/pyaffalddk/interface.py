@@ -470,7 +470,7 @@ class RenoDjursAPI(AffaldDKAPIBase):
         return list(self.address_list.keys())
 
     async def get_garbage_data(self, address_id):
-        url = self.url_base + '/Ordninger.aspx?id=55424'
+        url =  f'{self.url_base}/Ordninger.aspx?id={address_id}'
         data = await self.async_get_request(url, as_json=False)
         soup = BeautifulSoup(data, "html.parser")
         table = soup.find("table", class_="table--compact")
