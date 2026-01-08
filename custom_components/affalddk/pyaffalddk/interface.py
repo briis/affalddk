@@ -822,7 +822,6 @@ class WasteWatchAPI(AffaldDKAPIBase):
 
     async def get_garbage_data(self, address_id):
         item = await self.get_item(self.municipality_id, address_id)
-        print(item)
         number, letter = split_housenumber(item['husnr'])
         road = item['vejnavn']
         zipcode = item['postnr']
