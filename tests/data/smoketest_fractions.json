@@ -669,5 +669,11 @@
     "plastmdkglasmetal": "240 plast/kartoner/glas/metal, 11 tømninger årligt",
     "pappapir": "240 l papir/pap, tømning hver 8. uge",
     "next_pickup": "Rest & Madaffald"
+  },
+  "viborg_406": {
+    "plastmdkglasmetal": "240L Plast/MDK/Metal/Glas 3. uge Stand P",
+    "restaffaldmadaffald": "240L Rest/Mad 2. uge Stand P",
+    "pappapir": "240L Papir/Pap 6. uge Stand P",
+    "next_pickup": "Plast, Madkarton, Glas & Metal"
   }
 }

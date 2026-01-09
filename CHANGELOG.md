@@ -5,7 +5,9 @@
 **Date**: `2026-01-08`
 
 ### Changes
-* fixed address bug in Syddjurs  ([#404](https://github.com/briis/affalddk/issues/404))
+* fixed address bug in Syddjurs ([#404](https://github.com/briis/affalddk/issues/404))
+* fixed missing fractions in Viborg ([#406](https://github.com/briis/affalddk/issues/406))
+
 
 ---------------------------
 
