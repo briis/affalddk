@@ -385,7 +385,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             att[ATTR_DESCRIPTION] = self.event.description
             att[ATTR_DURATION] = _day_text
             att[ATTR_NAME] = self.event.friendly_name
-            att[ATTR_ENTITY_PICTURE] = f'/affalddk/img/{self.event.group}.svg',
+            att[ATTR_ENTITY_PICTURE] = f'/affalddk/img/{self.event.group}.svg'
         return att
 
     async def async_added_to_hass(self):
