@@ -675,5 +675,11 @@
     "restaffaldmadaffald": "240L Rest/Mad 2. uge Stand P",
     "pappapir": "240L Papir/Pap 6. uge Stand P",
     "next_pickup": "Plast, Madkarton, Glas & Metal"
+  },
+  "bornholm_409": {
+    "pappapirglasmetal": "240 l papir/pap + glas/metal ",
+    "restplast": "240 l rest + plast/MDK ANDEL",
+    "madaffald": "140 l mad ANDEL",
+    "next_pickup": "Madaffald"
   }
 }
