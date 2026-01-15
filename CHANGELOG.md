@@ -8,7 +8,7 @@
 * fixed address bug in Syddjurs ([#404](https://github.com/briis/affalddk/issues/404))
 * fixed missing fractions in Viborg ([#406](https://github.com/briis/affalddk/issues/406))
 * fixed entity_picture bug from v3.1.3 ([#408](https://github.com/briis/affalddk/issues/408))
-* fixed missing fraction in Bornholm ([#409](https://github.com/briis/affalddk/issues/409))
+* fixed missing fractions in Bornholm ([#409](https://github.com/briis/affalddk/issues/409))
 
 
 ---------------------------
