@@ -37,6 +37,8 @@ from .const import (
     CONF_ROAD_NAME,
     CONF_ZIPCODE,
     CONF_DYNAMIC_NEXT_EVENT_ICON,
+    CONF_UNIT_LANGUAGE,
+    DEFAULT_UNIT_LANGUAGE,
     DEFAULT_END_TIME,
     DEFAULT_START_TIME,
     DOMAIN,
@@ -206,6 +208,12 @@ class OptionsFlowHandler(OptionsFlow):
                             CONF_DYNAMIC_NEXT_EVENT_ICON, False
                         ),
                     ): bool,
+                    vol.Optional(
+                        CONF_UNIT_LANGUAGE,
+                        default=self.config_entry.options.get(
+                            CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE
+                        ),
+                    ): vol.In(["da", "en"]),
                 }
             ),
         )

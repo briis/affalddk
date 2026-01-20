@@ -16,7 +16,7 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
-from homeassistant.const import ATTR_DATE, ATTR_NAME, ATTR_ENTITY_PICTURE
+from homeassistant.const import ATTR_DATE, ATTR_NAME, ATTR_ENTITY_PICTURE, UnitOfTime
 from homeassistant.helpers.device_registry import DeviceEntryType, DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import StateType
@@ -38,6 +38,8 @@ from .const import (
     CONF_HOUSE_NUMBER,
     CONF_MUNICIPALITY,
     CONF_ROAD_NAME,
+    CONF_UNIT_LANGUAGE,
+    DEFAULT_UNIT_LANGUAGE,
     DEFAULT_ATTRIBUTION,
     DEFAULT_BRAND,
     DOMAIN,
@@ -60,192 +62,154 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
     AffaldDKSensorEntityDescription(
         key="batterier",
         name="Batterier",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="elektronik",
         name="Elektronik",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="glas",
         name="Glas",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="glasplast",
         name="Glas & Plast",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="madaffald",
         name="Madaffald",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="dagrenovation",
         name="Dagrenovation",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="metalglas",
         name="Metal & Glas",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="papirglas",
         name="Papir, Pap & Glas",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="papirglasdaaser",
         name="Papir, Glas & Dåser",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="pappi",
         name="Papir & Plast",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="farligtaffald",
         name="Farligt affald",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="farligtaffaldmiljoboks",
         name="Farligt affald & Miljøboks",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="flis",
         name="Flis",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="genbrug",
         name="Genbrug",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="haveaffald",
         name="Haveaffald",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="jern",
         name="Metal",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="juletrae",
         name="Juletræer",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="pap",
         name="Pap",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="papir",
         name="Papir",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="papirglasmetalplast",
         name="Papir, Glas, Metal & Plast",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="papirmetal",
         name="Papir & Metal",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="pappapir",
         name="Pap & Papir",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="pappapirglasmetal",
         name="Pap, Papir, Glas & Metal",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="pappapirtekstil",
         name="Pap, Papir & Tekstil",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="plast",
         name="Plast",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="plastmadkarton",
         name="Plast & Mad-Drikkekartoner",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="plastmdkglasmetal",
         name="Plast, Madkarton, Glas & Metal",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="plastmetal",
         name="Plast & Metal",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="plastmetalmdk",
         name="Plast, Metal, Mad & Drikkekartoner",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="plastmetalpapir",
         name="Plast, Metal & Papir",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="restaffald",
         name="Restaffald",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="restaffaldmadaffald",
         name="Rest- & madaffald",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="restplast",
         name="Restaffald & Plast/Madkartoner",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="storskrald",
         name="Storskrald",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="storskraldogfarligtaffald",
         name="Storskrald & Farligt affald",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="storskraldogtekstilaffald",
         name="Storskrald & Tekstilaffald",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="tekstil",
         name="Tekstiler",
-        native_unit_of_measurement="dage",
     ),
     AffaldDKSensorEntityDescription(
         key="next_pickup",
         name="Næste afhentning",
-        native_unit_of_measurement="dage",
     ),
 )
 
@@ -280,6 +244,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
     entity_description: AffaldDKSensorEntityDescription
     _attr_attribution = DEFAULT_ATTRIBUTION
     _attr_has_entity_name = True
+    _attr_native_unit_of_measurement = UnitOfTime.DAYS
 
     def __init__(
         self,
@@ -293,6 +258,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         self._config = config
         self._coordinator = coordinator
         self._pickup_events: PickupType = None
+        self._da = config.options.get(CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE) == DEFAULT_UNIT_LANGUAGE
         name = DOMAIN.capitalize()
         if CONF_ADDRESS in self._config.data:
             name += f" {self._config.data[CONF_ADDRESS]}"
@@ -309,7 +275,6 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             model_id=f"ID: {config.data[CONF_ADDRESS_ID]}",
         )
         self._attr_unique_id = f"{config.data[CONF_ADDRESS_ID]} {description.key}"
-
 
     @property
     def event(self) -> PickupEvents | None:
@@ -328,9 +293,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             _pickup_days = (pickup_time - current_time).days
             if pickup_time:
                 if _pickup_days == 1:
-                    return "dag"
-
-            return super().native_unit_of_measurement
+                    return "dag" if self._da else "day"
+            return "dage" if self._da else "days"
 
     @property
     def native_value(self) -> StateType:
@@ -370,11 +334,11 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             _day_name = WEEKDAYS_SHORT[_day_number]
             _day_name_long = WEEKDAYS[_day_number]
             if _state == 0:
-                _day_text = "I dag"
+                _day_text = "I dag" if self._da else "Today"
             elif _state == 1:
-                _day_text = "I morgen"
+                _day_text = "I morgen" if self._da else "Tomorrow"
             else:
-                _day_text = f"Om {_state} dage"
+                _day_text = f"Om {_state} dage" if self._da else f"In {_state} days"
 
             att[ATTR_DATE] = _date if _date else None
             att[ATTR_DATE_LONG] = (

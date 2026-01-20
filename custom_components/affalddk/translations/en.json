@@ -39,7 +39,8 @@
                     "house_number": "House Number",
                     "calendar_end_time": "Pickup end time",
                     "calendar_start_time": "Pickup start time",
-                    "dynamic_next_event_icon": "Show first fraction type icon for next event"
+                    "dynamic_next_event_icon": "Show first fraction type icon for next event",
+                    "unit_language": "Unit language"
                 }
             }
         }
