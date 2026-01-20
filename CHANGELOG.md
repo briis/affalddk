@@ -2,7 +2,10 @@
 
 ## Version 3.2.3
 
-**Date**: `2026-01-08`
+**Date**: `2026-01-20`
+
+### Added
+* option to select english for unit language (instead of hardcoded danish) ([#412](https://github.com/briis/affalddk/issues/412))
 
 ### Changes
 * fixed address bug in Syddjurs ([#404](https://github.com/briis/affalddk/issues/404))

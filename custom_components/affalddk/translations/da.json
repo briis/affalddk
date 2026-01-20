@@ -39,7 +39,8 @@
                     "house_number": "Hus nummer",
                     "calendar_end_time": "Tømmings slut tid",
                     "calendar_start_time": "Tømmings start tid",
-                    "dynamic_next_event_icon": "Vis første affaldstype ikon for næste tømning"
+                    "dynamic_next_event_icon": "Vis første affaldstype ikon for næste tømning",
+                    "unit_language": "Enheds sprog"
                 }
             }
         }
