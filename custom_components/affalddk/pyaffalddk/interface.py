@@ -7,7 +7,7 @@ import json
 from urllib.parse import urlparse, parse_qsl, quote
 from bs4 import BeautifulSoup
 
-from .const import GH_API
+from .const import GH_API, DANISH_MOTHS
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -157,6 +157,47 @@ class AffaldDKAPIBase:
                 await session.close()
 
             return data
+
+
+class AffaldKKAPI(AffaldDKAPIBase):
+    # affald.kk.dk API
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url_data = 'https://affald.kk.dk/din-kalender'
+        self.url_search = 'https://datascience.kk.dk/affaldkbh/adresse/address'
+
+    async def get_address_list(self, zipcode, street, house_number):
+        para = {'searchQuery': f'{street} {house_number}'}
+        data = await self.async_postform_request(self.url_search, para=para)
+        self.address_list = {}
+        for item in data['addresses']:
+            if item['postalCode'] is None or str(zipcode) in item['postalCode']:
+                self.update_address_list(item, 'searchQuery', 'searchQuery')
+        return list(self.address_list.keys())
+
+    async def get_address(self, address_name):
+        para = {'searchQuery': address_name + ' '}
+        data = await self.async_postform_request(self.url_search, para=para)
+        item = data['addresses'][0]
+        return item['id'], item['searchQuery'].strip()
+
+    async def get_garbage_data(self, address_id):
+        para = {'address_id': address_id}
+        htm = await self.async_get_request(self.url_data, para=para, as_json=False)
+
+        soup = BeautifulSoup(htm, 'html.parser')
+        calendar_waste_dates = soup.find_all('div', class_='calendar-waste-date')
+        data = []
+        for date_div in calendar_waste_dates:
+            text = date_div.find('div', class_='date').get_text(strip=False)
+            lines = [line.strip() for line in text.split('\n') if line.strip()]
+            date_str = lines[0].split(',')[1].strip().lower()
+            for dk_month, en_month in DANISH_MOTHS.items():
+                if dk_month in date_str:
+                    date_str = date_str.replace(dk_month, en_month)
+            for fraction in lines[1:]:
+                data.append({'date': date_str, 'fraction': fraction})
+        return data
 
 
 class NemAffaldAPI(AffaldDKAPIBase):

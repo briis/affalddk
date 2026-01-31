@@ -149,7 +149,7 @@ MUNICIPALITIES_LIST = {
     "Kalundborg": ["perfectwaste"],
     "Kerteminde": ["renoweb"],
     "Kolding": ["kolding"],
-    "København": ["nemaffald", 'kk'],
+    "København": ["affaldkk"],
     "Køge": ["perfectwaste"],
     "Langeland": ["affaldonline", "YmU4YTk0MjAtYTlhZS00MmU2LTgzZjItZWRhNWVjM2ZhMjlm"],
     "Lejre": ["perfectwaste"],
