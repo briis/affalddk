@@ -131,7 +131,7 @@ NAME_ARRAY = list(NAME_LIST.keys())
 
 STRIPS = [
         'med 14-dages tømning ved helårshuse', '– tømmes hver 2. uge', 'tømning af',
-        'sommerhustømning', 'henteordning', 'beholder til', '1-rums',
+        'rækkehuse', 'sommerhustømning', 'henteordning', 'beholder til', '1-rums',
         'egenløsning', 'en-familie', 'enfamiliehus', '26 tøm', 'm. sommertømning',
         '-skel 0-2 meter', 'afstand over 5 meter', 'Jern/Elektronik/Hårde hvidevarer', ' ?', '**',
 ]
@@ -157,3 +157,18 @@ ODD_EVEN_ARRAY = ["lige", "ulige"]
 WEEKDAYS = ["Mandag", "Tirsdag", "Onsdag",
             "Torsdag", "Fredag", "Lørdag", "Søndag"]
 WEEKDAYS_SHORT = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]
+
+DANISH_MOTHS = {
+    "januar": "January",
+    "februar": "February",
+    "marts": "March",
+    "april": "April",
+    "maj": "May",
+    "juni": "June",
+    "juli": "July",
+    "august": "August",
+    "september": "September",
+    "oktober": "October",
+    "november": "November",
+    "december": "December"
+}

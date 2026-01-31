@@ -424,8 +424,8 @@ async def test_Kbh(capsys, monkeypatch):
             print('start: ', gc._municipality)
 
             add = {
-                'uid': 'København_a4e9a503-c27f-ef11-9169-005056823710',
-                'address_id': 'a4e9a503-c27f-ef11-9169-005056823710',
+                'uid': 'København_509b3952-857c-e911-bfa7-005056ad66a0',
+                'address_id': '509b3952-857c-e911-bfa7-005056ad66a0',
                 'kommunenavn': 'København', 'address': 'Rådhuspladsen 1'}
             if not CI:
                 address_list = await gc.get_address_list('1550', 'Rådhuspladsen', '1')
@@ -433,21 +433,10 @@ async def test_Kbh(capsys, monkeypatch):
                 # print(address.__dict__)
                 assert address.__dict__ == add
                 address_list = await gc._api.get_address_list('2300', 'Irlandsvej', '')
-                assert len(address_list) == 50
+                assert len(address_list) == 62
                 await assert_add_list(gc, address_list)
                 address_list = await gc._api.get_address_list('2300', 'Irlandsvej', '1')
                 assert len(address_list) == 14
-
-            async def get_data(*args, **kwargs):
-                return kbh_ics_data
-            monkeypatch.setattr(gc._api, "get_garbage_data", get_data)
-
-            pickups = await gc.get_pickup_data(add['address_id'])
-            update_and_compare('Kbh', pickups, UPDATE)
-            assert pickups['next_pickup'].description == 'Rest/Madaffald'
-            assert pickups['next_pickup'].date.strftime('%d/%m/%y') == '05/05/25'
-            assert list(pickups.keys()) == ['restaffaldmadaffald', 'farligtaffald', 'next_pickup']
-            print('done: ', gc._municipality)
 
 
 @pytest.mark.asyncio

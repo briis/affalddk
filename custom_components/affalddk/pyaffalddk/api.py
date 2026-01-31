@@ -32,6 +32,7 @@ APIS = {
     'odense': interface.OdenseAffaldAPI,
     'aarhus': interface.AarhusAffaldAPI,
     'nemaffald': interface.NemAffaldAPI,
+    'affaldkk': interface.AffaldKKAPI,
     'perfectwaste': interface.PerfectWasteAPI,
     'renoweb': interface.RenowebghAPI,
     'vestfor': interface.VestForAPI,
@@ -208,6 +209,12 @@ class GarbageCollection:
                     _pickup_date = iso_string_to_date(row["date"])
                     for garbage_type in row["fractions"]:
                         self.update_pickup_event(garbage_type, address_id, _pickup_date)
+
+            elif self._api_type == "affaldkk":
+                garbage_data = await self._api.get_garbage_data(address_id)
+                for row in garbage_data:
+                    _pickup_date = iso_string_to_date(row["date"])
+                    self.update_pickup_event(row['fraction'], address_id, _pickup_date)
 
             elif self._api_type == "nemaffald":
                 garbage_data = await self._api.get_garbage_data(address_id)

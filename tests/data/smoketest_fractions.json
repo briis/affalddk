@@ -24,8 +24,15 @@
     "next_pickup": "Restaffald"
   },
   "smoke_3": {
-    "restaffaldmadaffald": "Rest/Madaffald",
-    "farligtaffald": "Farligt Affald",
+    "restaffaldmadaffald": "Restaffald/Madaffald",
+    "farligtaffald": "Farligt affald",
+    "juletrae": "Juletræer",
+    "pap": "Pap",
+    "plast": "Plast",
+    "storskrald": "Stort indbo",
+    "elektronik": "Elektronik",
+    "haveaffald": "Haveaffald",
+    "papirmetal": "Metal/Papir",
     "next_pickup": "Rest & Madaffald"
   },
   "smoke_4": {
@@ -681,5 +688,27 @@
     "restplast": "240 l rest + plast/MDK ANDEL",
     "madaffald": "140 l mad ANDEL",
     "next_pickup": "Madaffald"
+  },
+  "rødovre_415": {
+    "restaffaldmadaffald": "240 L beholder til mad- og restaffald",
+    "storskrald": "Storskrald rækkehuse",
+    "metalglas": "240 L - Metal og Glas",
+    "haveaffald": "Indsamling af haveaffald (sække og beholder)",
+    "farligtaffaldmiljoboks": "Rød miljøboks",
+    "pap": "Indsamling af pap (løst og beholder)",
+    "next_pickup": "Rest & Madaffald"
+  },
+  "brønshøj_414": {
+    "madaffald": "Madaffald",
+    "pap": "Pap",
+    "elektronik": "Elektronik",
+    "jern": "Metal",
+    "restaffald": "Restaffald",
+    "juletrae": "Juletræer",
+    "plast": "Plast",
+    "storskrald": "Stort indbo",
+    "papir": "Papir",
+    "haveaffald": "Haveaffald",
+    "next_pickup": "Madaffald | Pap"
   }
 }
