@@ -122,7 +122,7 @@ MUNICIPALITIES_LIST = {
     "Fredensborg": ["renoweb"],
     "Fredericia": ["openexplive", "3YWh0MjlpbDh1djNiM25hZA=="],
     "Frederikssund": ["perfectwaste"],
-    "Frederiksberg": ["openexplive", '6RjFCNUdtUGNxRU1xMGxFWA=='],
+    "Frederiksberg": ["perfectwaste"],
     "Furesø": ["vestfor"],
     "Gentofte": ["renoweb"],
     "Gladsaxe": ["perfectwaste"],

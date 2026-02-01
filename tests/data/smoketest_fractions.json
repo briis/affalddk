@@ -434,15 +434,18 @@
     "next_pickup": "Pap & Papir"
   },
   "frederiksberg_1": {
+    "pap": "Pap",
+    "farligtaffald": "Farligt affald",
+    "storskrald": "Storskrald",
+    "juletrae": "Juletræ",
     "restaffald": "Restaffald",
     "haveaffald": "Haveaffald",
-    "storskrald": "Stort Elektronik",
     "madaffald": "Madaffald",
-    "pap": "Pap",
-    "papirmetal": "Metal/papir",
     "plastmadkarton": "Plast/ Mad- og drikkekartoner",
+    "papir": "Papir",
+    "jern": "Metal",
     "tekstil": "Tekstilaffald",
-    "next_pickup": "Madaffald | Restaffald"
+    "next_pickup": "Farligt affald | Pap | Storskrald"
   },
   "fredericia_1": {
     "genbrug": "Genbrug",

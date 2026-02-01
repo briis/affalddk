@@ -4,14 +4,13 @@ from freezegun import freeze_time
 from aiohttp import ClientSession
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
 from custom_components.affalddk.pyaffalddk.interface import split_housenumber
-
 from pathlib import Path
 import pickle
 import json
 import os
 
 
-CI = os.getenv("CI") == "true"
+CI = os.getenv("CI") == "true_"
 skip_in_ci = pytest.mark.skipif(CI, reason="Skipped in CI environment")
 UPDATE = False
 ADDRESS_LIST_KEYS = ['id', 'fullname']
@@ -57,25 +56,25 @@ async def assert_add_list(gc, address_list):
 @pytest.mark.asyncio
 @freeze_time("2025-05-25")
 async def test_OpenExpLive(capsys, monkeypatch):
-    # test Frederiksberg
+    # test Fredericia
     with capsys.disabled():
         async with ClientSession() as session:
-            gc = GarbageCollection('Frederiksberg', session=session, fail=True)
+            gc = GarbageCollection('Fredericia', session=session, fail=True)
             print('start: ', gc._municipality)
 
             add = {
-                'uid': 'Frederiksberg_70984', 'address_id': '70984',
-                'kommunenavn': 'Frederiksberg', 'address': 'Smallegade 1'}
+                'uid': 'Fredericia_14578', 'address_id': '14578',
+                'kommunenavn': 'Fredericia', 'address': 'Gothersgade 20b'}
             if not CI:
-                address_list = await gc.get_address_list('2000', 'Smallegade', '1')
+                address_list = await gc.get_address_list('7000', 'Gothersgade', '20')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
                 assert address.__dict__ == add
-                address_list = await gc._api.get_address_list('2000', 'Smallegade', '')
-                assert len(address_list) == 79
+                address_list = await gc._api.get_address_list('7000', 'korskærvej', '')
+                assert len(address_list) == 4
                 await assert_add_list(gc, address_list)
-                address_list = await gc._api.get_address_list('2000', 'Smallegade', '2')
-                assert len(address_list) == 9
+                address_list = await gc._api.get_address_list('7000', 'Korskærvej', '2')
+                assert len(address_list) == 1
 
             async def get_data(*args, **kwargs):
                 return openexplive_data
@@ -320,7 +319,7 @@ async def test_Provas(capsys, monkeypatch):
             if not CI:
                 address_list = await gc.get_address_list('6100', "Christian X Vej", '29')
                 address = await gc.get_address(address_list[0])
-    #            print(address.__dict__)
+#                print(address.__dict__)
                 assert address.__dict__ == add
                 address_list = await gc._api.get_address_list('6100', 'Parkvej', '')
                 assert len(address_list) == 53
