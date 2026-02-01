@@ -10,7 +10,7 @@ import json
 import os
 
 
-CI = os.getenv("CI") == "true_"
+CI = os.getenv("CI") == "true"
 skip_in_ci = pytest.mark.skipif(CI, reason="Skipped in CI environment")
 UPDATE = False
 ADDRESS_LIST_KEYS = ['id', 'fullname']
@@ -65,7 +65,7 @@ async def test_OpenExpLive(capsys, monkeypatch):
             add = {
                 'uid': 'Fredericia_14578', 'address_id': '14578',
                 'kommunenavn': 'Fredericia', 'address': 'Gothersgade 20b'}
-            if not CI:
+            if True:
                 address_list = await gc.get_address_list('7000', 'Gothersgade', '20')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
@@ -97,7 +97,7 @@ async def test_OpenExp(capsys, monkeypatch):
             add = {
                 'uid': 'Holstebro_14738', 'address_id': '14738',
                 'kommunenavn': 'Holstebro', 'address': 'Kirkestræde 11'}
-            if not CI:
+            if True:
                 address_list = await gc.get_address_list('7500', 'Kirkestræde', '11')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
@@ -128,7 +128,7 @@ async def test_Affaldonline(capsys, monkeypatch):
             add = {
                 'uid': 'Vejle_1261533|490691026|0', 'address_id': '1261533|490691026|0',
                 'kommunenavn': 'Vejle', 'address': 'Klostergade 2a'}
-            if not CI:
+            if True:
                 address_list = await gc.get_address_list('7100', 'Klostergade', '2A')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
@@ -159,7 +159,7 @@ async def test_PerfectWaste(capsys, monkeypatch):
             add = {
                 'uid': 'Køge_27768', 'address_id': '27768',
                 'kommunenavn': 'Køge', 'address': 'Torvet 1'}
-            if not CI:
+            if True:
                 address_list = await gc.get_address_list('4600', 'Torvet', '1')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
@@ -190,7 +190,7 @@ async def test_Renoweb(capsys, monkeypatch):
             add = {
                 'uid': 'Aalborg_139322', 'address_id': '139322',
                 'kommunenavn': 'Aalborg', 'address': 'Boulevarden 13'}
-            if not CI:
+            if True:
                 address_list = await gc.get_address_list('9000', 'Boulevarden', '13')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
@@ -221,7 +221,7 @@ async def test_Odense(capsys, monkeypatch):
             add = {
                 'uid': 'Odense_112970', 'address_id': '112970',
                 'kommunenavn': 'Odense', 'address': 'Flakhaven 2'}
-            if not CI:
+            if True:
                 address_list = await gc.get_address_list('5000', 'Flakhaven', '2')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
@@ -252,7 +252,7 @@ async def test_Aarhus(capsys, monkeypatch):
             add = {
                 'uid': 'Aarhus_07517005___1__2____', 'address_id': '07517005___1__2____',
                 'kommunenavn': 'Aarhus', 'address': 'Rådhuspladsen 1, 2.'}
-            if not CI:
+            if True:
                 address_list = await gc.get_address_list('8000', 'Rådhuspladsen', '2')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
@@ -316,7 +316,7 @@ async def test_Provas(capsys, monkeypatch):
                 'uid': 'Haderslev_UHJvcGVydHlUeXBlOjEwMTQzNDE=', 'address_id': 'UHJvcGVydHlUeXBlOjEwMTQzNDE=',
                 'kommunenavn': 'Haderslev', 'address': "Christian x's vej 29"
                 }
-            if not CI:
+            if True:
                 address_list = await gc.get_address_list('6100', "Christian X Vej", '29')
                 address = await gc.get_address(address_list[0])
 #                print(address.__dict__)
@@ -348,7 +348,7 @@ async def test_RenoDjurs(capsys, monkeypatch):
                 'uid': 'Norddjurs_40130', 'address_id': '40130',
                 'kommunenavn': 'Norddjurs', 'address': 'Torvet 3'
                 }
-            if not CI:
+            if True:
                 address_list = await gc.get_address_list('8500', 'Torvet', '3')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
@@ -380,7 +380,7 @@ async def test_Herning(capsys, monkeypatch):
                 'uid': 'Herning_8486', 'address_id': '8486',
                 'kommunenavn': 'Herning', 'address': 'Torvet 5 (herning)'
                 }
-            if not CI:
+            if True:
                 address_list = await gc.get_address_list('7400', 'Torvet', '5')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
@@ -426,7 +426,7 @@ async def test_Kbh(capsys, monkeypatch):
                 'uid': 'København_509b3952-857c-e911-bfa7-005056ad66a0',
                 'address_id': '509b3952-857c-e911-bfa7-005056ad66a0',
                 'kommunenavn': 'København', 'address': 'Rådhuspladsen 1'}
-            if not CI:
+            if True:
                 address_list = await gc.get_address_list('1550', 'Rådhuspladsen', '1')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
@@ -450,7 +450,7 @@ async def test_WasteWatch(capsys, monkeypatch):
                 'uid': 'Tønder_a976f9e9-8136-46fb-a54c-ce8331522834', 'address_id': 'a976f9e9-8136-46fb-a54c-ce8331522834',
                 'kommunenavn': 'Tønder', 'address': 'Håndværkervej 4'
                 }
-            if not CI:
+            if True:
                 address_list = await gc.get_address_list('6261', 'Håndværkervej', '4')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
