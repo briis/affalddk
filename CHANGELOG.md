@@ -2,11 +2,15 @@
 
 ## Version 3.2.4
 
-**Date**: `2026-01-31`
+**Date**: `2026-02-01`
 
 ### Changes
-* fixed missing fracions in Kbh with a new api to affald.kk.dk ([#414](https://github.com/briis/affalddk/issues/414))
+* changed API which means you need to delete and add old sensors for these)
+  * fixed missing fracions in København with a new api to affald.kk.dk ([#414](https://github.com/briis/affalddk/issues/414))
+  * changed Frederikberg to Perfect Waste
+
 * fixed missing fraction in Rødovre ([#415](https://github.com/briis/affalddk/issues/415))
+* added automatic retry to fix timeout problems with Haderslev
 
 
 ---------------------------
