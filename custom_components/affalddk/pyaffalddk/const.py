@@ -158,7 +158,7 @@ WEEKDAYS = ["Mandag", "Tirsdag", "Onsdag",
             "Torsdag", "Fredag", "Lørdag", "Søndag"]
 WEEKDAYS_SHORT = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]
 
-DANISH_MOTHS = {
+DANISH_MONTHS = {
     "januar": "January",
     "februar": "February",
     "marts": "March",

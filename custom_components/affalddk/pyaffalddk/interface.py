@@ -9,7 +9,7 @@ import json
 from urllib.parse import urlparse, parse_qsl, quote
 from bs4 import BeautifulSoup
 
-from .const import GH_API, DANISH_MOTHS
+from .const import GH_API, DANISH_MONTHS
 MAX_RETRIES = 5
 
 _LOGGER = logging.getLogger(__name__)
@@ -215,7 +215,7 @@ class AffaldKKAPI(AffaldDKAPIBase):
             text = date_div.find('div', class_='date').get_text(strip=False)
             lines = [line.strip() for line in text.split('\n') if line.strip()]
             date_str = lines[0].split(',')[1].strip().lower()
-            for dk_month, en_month in DANISH_MOTHS.items():
+            for dk_month, en_month in DANISH_MONTHS.items():
                 if dk_month in date_str:
                     date_str = date_str.replace(dk_month, en_month)
             for fraction in lines[1:]:
