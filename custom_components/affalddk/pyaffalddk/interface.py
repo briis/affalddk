@@ -550,7 +550,7 @@ class RenoDjursAPI(AffaldDKAPIBase):
         for tr in table.find("tbody").find_all("tr"):
             td = tr.find_all("td")
             if len(td) == len(headers):
-                row_data = {h: td.get_text(strip=True) for h, td in zip(headers, td)}
+                row_data = {h: td.get_text(strip=True) for h, td in zip(headers, td, strict=True)}
                 if row_data['Næste tømningsdag']:
                     rows.append(row_data)
         return rows

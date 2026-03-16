@@ -162,8 +162,8 @@ class GarbageCollection:
             _next_name = self.next_events[_next_pickup]['name']
             _next_description = self.next_events[_next_pickup]['description']
             # Zip, sort by _next_name, then unzip
-            sorted_pairs = sorted(zip(_next_name, _next_description), key=lambda pair: pair[0])
-            _next_name, _next_description = zip(*sorted_pairs)
+            sorted_pairs = sorted(zip(_next_name, _next_description, strict=True), key=lambda pair: pair[0])
+            _next_name, _next_description = zip(*sorted_pairs, strict=True)
 
             key = NAME_LIST_REV[_next_name[0]] if dynamic_next_icon else 'genbrug'
             _next_pickup_event = {
