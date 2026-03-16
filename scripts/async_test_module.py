@@ -37,6 +37,7 @@ async def main() -> None:
                         help="add to smoketest data with this name")
     parser.add_argument("--pickup", action="store_true", help="show pickups")
     parser.add_argument("--force", action="store_true", help="force overwrite of smoketest")
+    parser.add_argument("--delete", action="store_true", help="delete data in smoketest")
 
     args = parser.parse_args()
 
@@ -124,9 +125,13 @@ async def main() -> None:
                     if args.smoketest in smokedata and args.force is False:
                         raise RuntimeError(
                             f'the name "{args.smoketest}"is already in the smoketest set')
-                    smokedata[args.smoketest] = {
-                        'city': args.municipality, 'data': data}
-                    print(f'Added "{args.smoketest}" to the smoketest set...')
+                    if args.smoketest in smokedata and args.delete:
+                        del smokedata[args.smoketest]
+                        print(f'Deleted "{args.smoketest}" from the smoketest set...')
+                    else:
+                        smokedata[args.smoketest] = {
+                            'city': args.municipality, 'data': data}
+                        print(f'Added "{args.smoketest}" to the smoketest set...')
                     with open('tests/data/smoketest_garbage_data.p', 'wb') as fh:
                         smokedata = pickle.dump(smokedata, fh)
 

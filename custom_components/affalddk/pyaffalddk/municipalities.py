@@ -155,7 +155,7 @@ MUNICIPALITIES_LIST = {
     "Lejre": ["perfectwaste"],
     "Lemvig": ["openexp", "renomatic.nomi4s.dk/app/appservice/"],
     "Lolland": ["perfectwaste"],
-    "Lyngby-Taarbæk": ["renoweb"],
+    "Lyngby-Taarbæk": ["perfectwaste"],
     "Mariagerfjord": ["renoweb"],
     "Morsø": ["affaldonline", "MDE5OWI3ZDItYmJhZS00NmE1LWE3MjYtMjkzYzkyMzZmNGU1"],
     "Norddjurs": ['renodjurs'],

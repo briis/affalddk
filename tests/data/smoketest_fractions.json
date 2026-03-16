@@ -105,12 +105,12 @@
     "next_pickup": "Metal & Glas"
   },
   "lyngby_1": {
+    "haveaffald": "Haveaffald",
+    "restaffaldmadaffald": "Mad/Rest",
+    "farligtaffald": "Farligt affald",
+    "pap": "Pap",
     "storskrald": "Storskrald",
-    "pappapirglasmetal": "4-kammer (240 l)",
-    "restaffaldmadaffald": "240 l. 14 dages tømning (M/R)",
-    "haveaffald": "Haveaffald 1. mar-30. nov",
-    "pap": "Beholder til pap",
-    "farligtaffaldmiljoboks": "Miljøboks",
+    "papirglasmetalplast": "4-kammer",
     "next_pickup": "Haveaffald"
   },
   "jammerbugt_1": {
@@ -653,15 +653,14 @@
     "haveaffald": "Tømning af Haveaffald",
     "next_pickup": "Farligt affald | Rest & Madaffald"
   },
-  "397_lyngby": {
+  "lyngby_397": {
+    "restaffaldmadaffald": "Mad/Rest",
+    "farligtaffald": "Farligt affald",
+    "haveaffald": "Haveaffald",
+    "papirglasmetalplast": "4-kammer",
+    "pap": "Pap",
     "storskrald": "Storskrald",
-    "papirglasmetalplast": "4-kammer (370 l)",
-    "restaffaldmadaffald": "240 l. 1 x ugentligt (M/R)",
-    "haveaffald": "Haveaffald 1. mar-30. nov",
-    "pap": "Beholder til pap",
-    "farligtaffaldmiljoboks": "Miljøboks",
-    "juletrae": "Juletræsafhentning",
-    "next_pickup": "Farligt affald & Miljøboks | Rest & Madaffald"
+    "next_pickup": "Farligt affald | Rest & Madaffald"
   },
   "viborg_399": {
     "pappapir": "240L Papir/Pap 6. uge P",
