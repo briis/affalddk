@@ -169,10 +169,17 @@ class AffaldDKAPIBase:
             except (AffaldDKNoConnection, asyncio.TimeoutError):
                 if retry_count < MAX_RETRIES - 1:
                     delay = initial_delay * (2 ** retry_count)  # Exponential backoff
-                    print(f"Retry {retry_count + 1}/{MAX_RETRIES} in {delay:.2f} seconds...")
+                    _LOGGER.error(f"Retry {retry_count + 1}/{MAX_RETRIES} in {delay:.2f} seconds...")
                     time.sleep(delay)
 #                    await asyncio.sleep(delay)
                     retry_count += 1
+                    if new_session:
+                        await session.close()
+                        session = aiohttp.ClientSession()
+                    else:
+                        await self.session.close()
+                        self.session = aiohttp.ClientSession()
+                        session = self.session
                 else:
                     if new_session:
                         await session.close()
