@@ -217,6 +217,7 @@ class GarbageCollection:
                     self.update_pickup_event(row['fraction'], address_id, _pickup_date)
 
             elif self._api_type == "nemaffald":
+                # deprecated Kbh api
                 garbage_data = await self._api.get_garbage_data(address_id)
                 try:
                     ics = IcsCalendarStream.calendar_from_ics(garbage_data)

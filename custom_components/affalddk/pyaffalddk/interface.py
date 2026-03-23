@@ -168,8 +168,7 @@ class AffaldDKAPIBase:
             except (AffaldDKNoConnection, asyncio.TimeoutError):
                 if retry_count < MAX_RETRIES - 1:
                     delay = initial_delay * (2 ** retry_count)  # Exponential backoff
-                    _LOGGER.error(f"Retry {retry_count + 1}/{MAX_RETRIES} in {delay:.2f} seconds...")
-#                    time.sleep(delay)
+                    _LOGGER.warning(f"Retry {retry_count + 1}/{MAX_RETRIES} in {delay:.2f} seconds...")
                     await asyncio.sleep(delay)
                     retry_count += 1
                     if new_session:
