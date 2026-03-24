@@ -421,10 +421,9 @@ def clean_fraction_string(item):
 
     fixed_item = fixed_item.strip().rstrip(',').lstrip(', ').rstrip(' -').lstrip('- ').lstrip('*')
     res = [fixed_item.strip()]
-    if ' - ' in fixed_item:
-        res += [o.strip() for o in fixed_item.split(' - ')]
-    if ', ' in fixed_item:
-        res += [o.strip() for o in fixed_item.split(', ')]
+    for sp in [' - ', ', ', ' og ']:
+        if sp in fixed_item:
+            res += [o.strip() for o in fixed_item.split(sp)]
     return res + strings_in_parenthesis
 
 

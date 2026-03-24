@@ -2,7 +2,10 @@
 
 ## Version 3.3.0
 
-**Date**: `2026-03-16`
+**Date**: `2026-03-25`
+
+### Added
+* Added new API for Faaborg-Midtfyn - thanks @Rlonerookie ([#425](https://github.com/briis/affalddk/issues/425))
 
 ### Changes
 * changed API which means you need to delete and add old sensors for these)

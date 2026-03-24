@@ -124,6 +124,7 @@ MUNICIPALITIES_LIST = {
     "Frederikssund": ["perfectwaste"],
     "Frederiksberg": ["perfectwaste"],
     "Furesø": ["vestfor"],
+    "Faaborg-Midtfyn": ["affaldonline", "Y2VjYTU5NzgtNjM4MC00ZmY4LWFjMjgtOWI2NTA1NDU3ZGE4"],
     "Gentofte": ["renoweb"],
     "Gladsaxe": ["perfectwaste"],
     "Glostrup": ["renoweb"],
