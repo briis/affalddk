@@ -396,6 +396,18 @@ def get_garbage_types(item, municipality, address_id, fail=False):
             for entry in values:
                 if fixed_item.lower() == entry.lower():
                     return [key]
+
+    for sp in [' - ', ', ', ' og ']:
+        items = []
+        splitted = [o.strip() for o in fixed_items[0].split(sp)]
+        for fixed_item in splitted:
+            for key, values in SUPPORTED_ITEMS.items():
+                for entry in values:
+                    if fixed_item.lower() == entry.lower():
+                        items.append(key)
+        if items:
+            return items
+
     print(f'\nmissing: {fixed_items}')
     warn_or_fail(item, municipality, address_id, fail=fail)
     return ['missing-type']
@@ -420,11 +432,7 @@ def clean_fraction_string(item):
         fixed_item = fixed_item.split(':')[1]
 
     fixed_item = fixed_item.strip().rstrip(',').lstrip(', ').rstrip(' -').lstrip('- ').lstrip('*')
-    res = [fixed_item.strip()]
-    for sp in [' - ', ', ', ' og ']:
-        if sp in fixed_item:
-            res += [o.strip() for o in fixed_item.split(sp)]
-    return res + strings_in_parenthesis
+    return [fixed_item.strip()] + strings_in_parenthesis
 
 
 def warn_or_fail(name, municipality, address_id, fail=False):
