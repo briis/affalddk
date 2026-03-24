@@ -1,5 +1,24 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.3.0
+
+**Date**: `2026-03-16`
+
+### Changes
+* changed API which means you need to delete and add old sensors for these)
+  * fixed missing fracions in København with a new api to affald.kk.dk ([#414](https://github.com/briis/affalddk/issues/414))
+  * changed Frederikberg to Perfect Waste
+  * changed Lyngby-Taarbæk to Perfect Waste #424
+
+* fixed missing fraction in Rødovre ([#415](https://github.com/briis/affalddk/issues/415))
+* added automatic retry to fix timeout problems with Haderslev
+
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 ## Version 3.2.3
 
 **Date**: `2026-01-20`
@@ -12,12 +31,6 @@
 * fixed missing fractions in Viborg ([#406](https://github.com/briis/affalddk/issues/406))
 * fixed entity_picture bug from v3.1.3 ([#408](https://github.com/briis/affalddk/issues/408))
 * fixed missing fractions in Bornholm ([#409](https://github.com/briis/affalddk/issues/409))
-
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 3.2.2
 

@@ -48,7 +48,11 @@ async def test_smoketest(capsys, monkeypatch, update=False):
                 async def get_data(*args, **kwargs):
                     return val['data']
                 monkeypatch.setattr(gc._api, "get_garbage_data", get_data)
-                pickups = await gc.get_pickup_data(1111)
+                try:
+                    pickups = await gc.get_pickup_data(1111)
+                except Exception as e:
+                    print(name, val)
+                    raise e
                 keys = list(pickups.keys())
 
                 assert set(keys[:-1]).issubset(NAME_LIST)

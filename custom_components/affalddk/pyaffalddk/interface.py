@@ -1,4 +1,5 @@
 import aiohttp
+import asyncio
 import base64
 import datetime as dt
 import logging
@@ -7,8 +8,8 @@ import json
 from urllib.parse import urlparse, parse_qsl, quote
 from bs4 import BeautifulSoup
 
-from .const import GH_API
-
+from .const import GH_API, DANISH_MONTHS
+MAX_RETRIES = 5
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -98,16 +99,16 @@ class AffaldDKAPIBase:
                 name += '*'
         self.address_list[name] = {'id': item[id_key], 'fullname': item[name_key]}
 
-    async def async_get_request(self, url, headers=None, para=None, as_json=True, new_session=False):
-        return await self.async_api_request('GET', url, headers, para, as_json, new_session)
+    async def async_get_request(self, url, headers=None, pre_headers={}, para=None, as_json=True, new_session=False):
+        return await self.async_api_request('GET', url, headers, pre_headers, para, as_json, new_session)
 
-    async def async_post_request(self, url, headers={"Content-Type": "application/json"}, para=None, as_json=True, new_session=False):
-        return await self.async_api_request('POST', url, headers, para, as_json, new_session)
+    async def async_post_request(self, url, headers={"Content-Type": "application/json"}, pre_headers={}, para=None, as_json=True, new_session=False):
+        return await self.async_api_request('POST', url, headers, pre_headers, para, as_json, new_session)
 
-    async def async_postform_request(self, url, headers={"Content-Type": "application/x-www-form-urlencoded"}, para=None, as_json=True, new_session=False):
-        return await self.async_api_request('POSTform', url, headers, para, as_json, new_session)
+    async def async_postform_request(self, url, headers={"Content-Type": "application/x-www-form-urlencoded"}, pre_headers={}, para=None, as_json=True, new_session=False):
+        return await self.async_api_request('POSTform', url, headers, pre_headers, para, as_json, new_session)
 
-    async def async_api_request(self, method, url, headers, para=None, as_json=True, new_session=False):
+    async def async_api_request(self, method, url, headers, pre_headers={}, para=None, as_json=True, new_session=False):
         """Make an API request."""
 
         if new_session:
@@ -130,33 +131,101 @@ class AffaldDKAPIBase:
             data_input = None
             params_input = para
 
-        async with session.request(method, url, headers=headers, json=json_input, params=params_input, data=data_input) as response:
-            if response.status != 200:
-                if new_session:
-                    await session.close()
+        if pre_headers:
+            async with session.request('OPTIONS', url, headers=pre_headers) as response:
+                response.raise_for_status()
 
-                if response.status == 400:
-                    raise AffaldDKNotSupportedError(
-                        "Municipality not supported")
+        retry_count = 0
+        initial_delay = 0.1
+        while retry_count < MAX_RETRIES:
+            try:
+                async with session.request(method, url, headers=headers, json=json_input, params=params_input, data=data_input) as response:
+                    if response.status == 200:
+                        data = await response.json() if as_json else await response.text()
+                        if new_session:
+                            await session.close()
+                        return data
 
-                if response.status == 404:
-                    raise AffaldDKNotSupportedError(
-                        "Municipality not supported")
+                    if response.status == 400:
+                        if new_session:
+                            await session.close()
+                        raise AffaldDKNotSupportedError(
+                            "Municipality not supported")
 
-                if response.status == 503:
+                    if response.status == 404:
+                        if new_session:
+                            await session.close()
+                        raise AffaldDKNotSupportedError(
+                            "Municipality not supported")
+
+                    if response.status == 503:
+                        raise AffaldDKNoConnection(
+                            "System API is currently not available")
+
                     raise AffaldDKNoConnection(
-                        "System API is currently not available")
+                        f"Error {response.status} from {url}")
 
-                raise AffaldDKNoConnection(
-                    f"Error {response.status} from {url}")
-            if as_json:
-                data = await response.json()
-            else:
-                data = await response.text()
-            if new_session:
-                await session.close()
+            except (AffaldDKNoConnection, asyncio.TimeoutError):
+                if retry_count < MAX_RETRIES - 1:
+                    delay = initial_delay * (2 ** retry_count)  # Exponential backoff
+                    _LOGGER.warning(f"Retry {retry_count + 1}/{MAX_RETRIES} in {delay:.2f} seconds...")
+                    await asyncio.sleep(delay)
+                    retry_count += 1
+                    if new_session:
+                        await session.close()
+                        session = aiohttp.ClientSession()
+                    else:
+                        await self.session.close()
+                        self.session = aiohttp.ClientSession()
+                        session = self.session
+                else:
+                    if new_session:
+                        await session.close()
+                    raise  # Re-raise the last exception if all retries fail
 
-            return data
+        if new_session:
+            await session.close()
+
+
+class AffaldKKAPI(AffaldDKAPIBase):
+    # affald.kk.dk API
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url_data = 'https://affald.kk.dk/din-kalender'
+        self.url_search = 'https://datascience.kk.dk/affaldkbh/adresse/address'
+
+    async def get_address_list(self, zipcode, street, house_number):
+        para = {'searchQuery': f'{street} {house_number}'}
+        data = await self.async_postform_request(self.url_search, para=para)
+        self.address_list = {}
+        for item in data['addresses']:
+            if item['postalCode'] is None or str(zipcode) in item['postalCode']:
+                self.update_address_list(item, 'searchQuery', 'searchQuery')
+        return list(self.address_list.keys())
+
+    async def get_address(self, address_name):
+        para = {'searchQuery': address_name + ' '}
+        data = await self.async_postform_request(self.url_search, para=para)
+        item = data['addresses'][0]
+        return item['id'], item['searchQuery'].strip()
+
+    async def get_garbage_data(self, address_id):
+        para = {'address_id': address_id}
+        htm = await self.async_get_request(self.url_data, para=para, as_json=False)
+
+        soup = BeautifulSoup(htm, 'html.parser')
+        calendar_waste_dates = soup.find_all('div', class_='calendar-waste-date')
+        data = []
+        for date_div in calendar_waste_dates:
+            text = date_div.find('div', class_='date').get_text(strip=False)
+            lines = [line.strip() for line in text.split('\n') if line.strip()]
+            date_str = lines[0].split(',')[1].strip().lower()
+            for dk_month, en_month in DANISH_MONTHS.items():
+                if dk_month in date_str:
+                    date_str = date_str.replace(dk_month, en_month)
+            for fraction in lines[1:]:
+                data.append({'date': date_str, 'fraction': fraction})
+        return data
 
 
 class NemAffaldAPI(AffaldDKAPIBase):
@@ -420,6 +489,12 @@ class ProvasAPI(AffaldDKAPIBase):
         super().__init__(*args, **kwargs)
         self.url_base = "https://platform-api.wastehero.io/api-crm-portal/v1/"
         self._token = None
+        self.pre_headers = {
+            "Access-Control-Request-Method": "GET",
+            "Access-Control-Request-Headers": "x-api-key",
+            "Referer": "https://provas-portal.wastehero.io/",
+            "Origin": "https://provas-portal.wastehero.io",
+        }
 
     @property
     async def token(self):
@@ -434,7 +509,7 @@ class ProvasAPI(AffaldDKAPIBase):
         headers = {'X-API-Key': await self.token}
         address = f'{street} {house_number}, {zipcode}'.strip()
         url = self.url_base + 'property/'
-        data = await self.async_get_request(url, para={'search': address, 'limit':100}, headers=headers)
+        data = await self.async_get_request(url, para={'search': address, 'limit': 100}, headers=headers, pre_headers=self.pre_headers)
         self.address_list = {}
         for item in data:
             item['name'] = item['location']['name']
@@ -449,7 +524,7 @@ class ProvasAPI(AffaldDKAPIBase):
             'from_date': str(self.today + dt.timedelta(days=-1)),
             'to_date': str(self.today + dt.timedelta(days=60))
         }
-        data = await self.async_get_request(url, para=params, headers=headers)
+        data = await self.async_get_request(url, para=params, headers=headers, pre_headers=self.pre_headers)
         return data
 
 
@@ -480,7 +555,7 @@ class RenoDjursAPI(AffaldDKAPIBase):
         for tr in table.find("tbody").find_all("tr"):
             td = tr.find_all("td")
             if len(td) == len(headers):
-                row_data = {h: td.get_text(strip=True) for h, td in zip(headers, td)}
+                row_data = {h: td.get_text(strip=True) for h, td in zip(headers, td, strict=True)}
                 if row_data['Næste tømningsdag']:
                     rows.append(row_data)
         return rows
