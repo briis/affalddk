@@ -143,7 +143,7 @@ MUNICIPALITIES_LIST = {
     "Horsens": ["perfectwaste"],
     "Hvidovre": ["perfectwaste"],
     "Høje-Taastrup": ["perfectwaste"],
-    "Hørsholm": ["renoweb"],
+    "Hørsholm": ["perfectwaste"],
     "Ikast-Brande": ["ikastbrande"],
     "Ishøj": ["vestfor"],
     "Jammerbugt": ["renoweb"],

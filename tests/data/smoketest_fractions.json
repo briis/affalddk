@@ -234,15 +234,6 @@
     "restaffaldmadaffald": "240L mad/rest",
     "next_pickup": "Papir, Glas, Metal & Plast"
   },
-  "hørsholm_1": {
-    "pappi": "Plast/papir",
-    "metalglas": "Glas/metal",
-    "pap": "Pap 240 L (villa)",
-    "restaffaldmadaffald": "(H) Rest/mad 240 L beh. - 14. dg. tømning",
-    "farligtaffald": "Farligt affald, distrikt E",
-    "storskrald": "Storskrald (tilmelding) Onsdag - dst 4 (H)",
-    "next_pickup": "Rest & Madaffald"
-  },
   "varde_1": {
     "restaffaldmadaffald": "240 L todelt skraldespand med 14-dages tømning ved helårshuse",
     "pappapir": "240 L 1-rums pap/papir hver 6. uge",
@@ -720,5 +711,14 @@
     "farligtaffaldmiljoboks": "Rød kasse og Tekstilposer",
     "tekstil": "Rød kasse og Tekstilposer",
     "next_pickup": "Pap, Papir, Glas & Metal | Rest & Madaffald"
+  },
+  "hørsholm_427": {
+    "restaffaldmadaffald": "Rest/mad",
+    "restaffald": "Restaffald",
+    "pappi": "Papir/plast",
+    "farligtaffald": "Farligt affald",
+    "storskrald": "Storskrald",
+    "metalglas": "Glas/metal",
+    "next_pickup": "Rest & Madaffald | Restaffald"
   }
 }
