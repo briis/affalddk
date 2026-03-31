@@ -35,7 +35,7 @@ As of release 2.7.3, this integration now supports the following API's:
 That also means that a few Municipalities that were previously supported through **RenoWeb** and are not using any of the above API's, are no longer supported. There is no workaround for that at the moment.
 
 ### DESCRIPTION
-Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from Garbage Pickup API's listed above and that accounts for around 86% of all Municipalities.
+Municipalities in Denmark, do not have one standard for how to expose the Pickup Calendars for their citizens, and different Municipalities have different solutions. This integration currently supports the Municipalities that uses the solution from Garbage Pickup API's listed above and that accounts for around 88% of all Municipalities.
 
 Go to the [Municipality List](#MUNICIPALITIES) to see if your Municipality will work with this integration.
 
@@ -115,7 +115,7 @@ Odense has introduced reCAPTCHA, which is a technology to ensure that a real per
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (87)
+Here is the list of currently supported Municipalities (88)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
@@ -138,6 +138,7 @@ Here is the list of currently supported Municipalities (87)
 - Frederiksberg (Open Experience)
 - Frederikssund (Perfect Waste)
 - Furesø (Vestforbrænding)
+- Faaborg-Midtfyn (AffaldOnline)
 - Gentofte (Affaldsportal)
 - Gladsaxe (Perfect Waste)
 - Glostrup (Affaldsportal)
@@ -156,7 +157,7 @@ Here is the list of currently supported Municipalities (87)
 - Horsens (Perfect Waste)
 - Hvidovre (Perfect Waste)
 - Høje-Taastrup (Perfect Waste)
-- Hørsholm (Affaldsportal)
+- Hørsholm (Perfect Waste)
 - Ikast-Brande (Ikast-Brande)
 - Ishøj (Vestforbrænding)
 - Jammerbugt (Affaldsportal)
@@ -169,7 +170,7 @@ Here is the list of currently supported Municipalities (87)
 - Lejre (Perfect Waste)
 - Lemvig (Open Experience)
 - Lolland (Perfect Waste)
-- Lyngby-Taarbæk (Affaldsportal)
+- Lyngby-Taarbæk (Perfect Waste)
 - Mariagerfjord (Affaldsportal)
 - Morsø (AffaldOnline)
 - Norddjurs (Renodjurs)
