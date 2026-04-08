@@ -149,11 +149,12 @@
     "next_pickup": "Dagrenovation | Genbrug | Pap, Papir, Glas & Metal | Rest & Madaffald"
   },
   "rudersdal_1": {
-    "pappi": "Plast/papir",
+    "restaffaldmadaffald": "Rest/mad",
+    "farligtaffald": "Farligt affald",
+    "pappi": "Papir/plast",
+    "pap": "Pap",
     "metalglas": "Glas/metal",
-    "pap": "Pap 240 L (villa)",
-    "restaffaldmadaffald": "(R) REST/MAD 240 L beh. (villa) - ugetømning",
-    "storskrald": "Storskrald (tilmelding) Tirsdag - dst 5 (R)",
+    "storskrald": "Storskrald",
     "next_pickup": "Rest & Madaffald"
   },
   "næstved_1": {
@@ -248,12 +249,12 @@
     "next_pickup": "Rest & Madaffald"
   },
   "rudersdal_289": {
-    "pappi": "Plast/papir",
+    "restaffaldmadaffald": "Rest/mad",
+    "pappi": "Papir/plast",
+    "pap": "Pap",
+    "storskrald": "Storskrald",
     "metalglas": "Glas/metal",
-    "pap": "Pap 240 L (villa)",
-    "restaffaldmadaffald": "(R) REST/MAD 240 L beh. (villa) - ugetømning",
-    "farligtaffald": "Farligt affald, distrikt A",
-    "storskrald": "Storskrald (tilmelding) Tirsdag - dst 4 (R)",
+    "farligtaffald": "Farligt affald",
     "next_pickup": "Rest & Madaffald"
   },
   "herlev_290": {

@@ -169,7 +169,7 @@ MUNICIPALITIES_LIST = {
     "Rebild": ["affaldonline", "Y2IzZGRjOGMtOTAwYS00M2NlLWFjODgtZWM3NTg3ZGI0ZGIz"],
     "Ringkøbing-Skjern": ["perfectwaste"],
     "Roskilde": ["perfectwaste"],
-    "Rudersdal": ["renoweb"],
+    "Rudersdal": ["perfectwaste"],
     "Rødovre": ["renoweb"],
     "Samsø": ["renoweb"],
     "Silkeborg": ["silkeborg"],
