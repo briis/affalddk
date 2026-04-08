@@ -1,5 +1,20 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.3.1
+
+**Date**: `2026-04-08`
+
+### Changes
+* changed API which means you need to delete and add old sensors for these)
+  * Changed Rudersdal to Perfect Waste ([#429](https://github.com/briis/affalddk/issues/429))
+
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
+
 ## Version 3.3.0
 
 **Date**: `2026-03-25`
@@ -17,11 +32,6 @@
 * fixed missing fraction in Rødovre ([#415](https://github.com/briis/affalddk/issues/415))
 * added automatic retry to fix timeout problems with Haderslev
 
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 ## Version 3.2.3
 
