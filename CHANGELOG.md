@@ -5,7 +5,7 @@
 **Date**: `2026-04-08`
 
 ### Changes
-* changed API which means you need to delete and add old sensors for these)
+* changed API, which means you need to delete and add old sensors for these
   * Changed Rudersdal to Perfect Waste ([#429](https://github.com/briis/affalddk/issues/429))
 
 
@@ -23,7 +23,7 @@
 * Added new API for Faaborg-Midtfyn - thanks @Rlonerookie ([#425](https://github.com/briis/affalddk/issues/425))
 
 ### Changes
-* changed API which means you need to delete and add old sensors for these)
+* changed API, which means you need to delete and add old sensors for these
   * fixed missing fracions in København with a new api to affald.kk.dk ([#414](https://github.com/briis/affalddk/issues/414))
   * changed Frederikberg to Perfect Waste
   * changed Lyngby-Taarbæk to Perfect Waste #424
