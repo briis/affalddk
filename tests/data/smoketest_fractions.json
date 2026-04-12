@@ -721,5 +721,12 @@
     "storskrald": "Storskrald",
     "metalglas": "Glas/metal",
     "next_pickup": "Rest & Madaffald | Restaffald"
+  },
+  "billund_431": {
+    "restaffald": "Restaffald 150/14",
+    "madaffald": "Madaffald 150L/14",
+    "pappapir": "Genbrugsbeholder PP-240L/6uge",
+    "plastmdkglasmetal": "Genbrugsbeholder PMDK/MG-240L/3uge",
+    "next_pickup": "Restaffald"
   }
 }
