@@ -1,5 +1,19 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.3.2
+
+**Date**: `2026-04-12`
+
+### Changes
+* fixed missing fraction in Billund ([#431](https://github.com/briis/affalddk/issues/431))
+
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
+
 ## Version 3.3.1
 
 **Date**: `2026-04-08`
@@ -7,12 +21,6 @@
 ### Changes
 * changed API, which means you need to delete and add old sensors for these
   * Changed Rudersdal to Perfect Waste ([#429](https://github.com/briis/affalddk/issues/429))
-
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 
 ## Version 3.3.0

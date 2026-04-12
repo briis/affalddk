@@ -148,8 +148,8 @@ RE_WORDS = [
 RE_RAW = [
     r'\b\d{4}\b\s*,',  # 4 digit postal codes with a comma after
     r'\b\d{4}\b\ og \b\d{4}\b',  # special ending of postal code listing
-    r'(?<![\w/-])(?:25|90|140|190|240|360|370|400|660|770)\s*l(?:tr|iter)?\.?(?=\b|[^a-zA-Z]|$)',  # remove volume parts
-    r'(?<![\w/-])(?:25|90|140|190|240|360|370|400|660|770)l(?:tr|iter)?\.?(?=\b|[^a-zA-Z]|$)',  # remove volume parts (no space before L)
+    r'(?<![\w/-])(?:25|90|140|150|190|240|360|370|400|660|770)\s*l(?:tr|iter)?\.?(?=\b|[^a-zA-Z]|$)',  # remove volume parts
+    r'(?<![\w/-])(?:25|90|140|150|190|240|360|370|400|660|770)(?:ltr|liter)?\.?(?=[^a-zA-Z]|$)\b',  # remove volume parts (no space before L)
     r'^(?:90|140|190|240|370|400)\s',  # only remove "[vol] " if it is the start of the string like in Assens
     ]
 
