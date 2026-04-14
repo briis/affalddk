@@ -6,7 +6,7 @@
 
 ### Changes
 * fixed missing fraction in Billund ([#431](https://github.com/briis/affalddk/issues/431))
-
+* Updated Danish translation #433, thank you @hhjuhl
 
 ---------------------------
 
