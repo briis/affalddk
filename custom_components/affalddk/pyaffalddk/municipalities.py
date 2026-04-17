@@ -107,7 +107,7 @@ MUNICIPALITIES_LIST = {
     "Aalborg": ["renoweb"],
     "Aarhus": ["aarhus"],
     "Albertslund": ["vestfor"],
-    "Allerød": ["renoweb"],
+    "Allerød": ["perfectwaste"],
     "Assens": ["affaldonline", "YWZkOTEyYTItNDRiMy00MDJmLTllMTMtNWFlYjcwMWNlMTQz"],
     "Ballerup": ["perfectwaste"],
     "Billund": ["renoweb"],
