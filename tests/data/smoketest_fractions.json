@@ -283,11 +283,12 @@
     "next_pickup": "Haveaffald | Rest & Madaffald"
   },
   "allerød_294": {
-    "storskrald": "Storskrald Distrikt 3",
-    "pappi": "Plast/papir",
+    "pappi": "Papir/plast",
+    "restaffaldmadaffald": "Rest/mad",
+    "pap": "Pap",
+    "storskrald": "Storskrald",
     "metalglas": "Glas/metal",
-    "pap": "Pap 240 L (villa)",
-    "restaffaldmadaffald": "(A) Rest/mad 240 L beh. - 14 dg. tømning",
+    "farligtaffald": "Farligt affald",
     "next_pickup": "Papir & Plast"
   },
   "ballerup_1": {
@@ -469,12 +470,13 @@
     "next_pickup": "Rest & Madaffald"
   },
   "allerød_315": {
-    "storskrald": "Storskrald Distrikt 1",
-    "pap": "Pap 240 L (villa)",
-    "pappi": "Plast/papir, afstand over 5 meter",
-    "metalglas": "Glas/metal, afstand over 5 meter",
-    "restaffaldmadaffald": "(A) Rest/mad 240 L beh., afstand over 5 meter - 14 dg. tømning",
-    "next_pickup": "Papir & Plast"
+    "restaffaldmadaffald": "Rest/mad",
+    "pap": "Pap",
+    "pappi": "Papir/plast",
+    "metalglas": "Glas/metal",
+    "storskrald": "Storskrald",
+    "farligtaffald": "Farligt affald",
+    "next_pickup": "Rest & Madaffald"
   },
   "assens_1": {
     "pappapirglasmetal": "240 MGPP",

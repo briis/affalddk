@@ -5,6 +5,8 @@
 **Date**: `2026-04-12`
 
 ### Changes
+* changed API, which means you need to delete and add old sensors for these
+  * Changed Allerød to Perfect Waste ([#435](https://github.com/briis/affalddk/issues/435))
 * fixed missing fraction in Billund ([#431](https://github.com/briis/affalddk/issues/431))
 * Updated Danish translation #433, thank you @hhjuhl
 
