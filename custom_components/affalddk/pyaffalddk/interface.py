@@ -695,6 +695,13 @@ class SilkeborgAPI(AffaldDKAPIBase):
         return min(candidates) if candidates else None
 
 
+class MiddelfartAPI(SilkeborgAPI):
+    # Middelfart API
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url_base = 'https://www.affaldonline.dk/kalender/middelfart'
+
+
 class IkastBrandeAPI(AffaldDKAPIBase):
     # Ikast / Brande API
     def __init__(self, *args, **kwargs):

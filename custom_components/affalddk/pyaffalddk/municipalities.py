@@ -158,6 +158,7 @@ MUNICIPALITIES_LIST = {
     "Lolland": ["perfectwaste"],
     "Lyngby-Taarbæk": ["perfectwaste"],
     "Mariagerfjord": ["renoweb"],
+    "Middelfart": ["middelfart"],
     "Morsø": ["affaldonline", "MDE5OWI3ZDItYmJhZS00NmE1LWE3MjYtMjkzYzkyMzZmNGU1"],
     "Norddjurs": ['renodjurs'],
     "Næstved": ["perfectwaste"],
