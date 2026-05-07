@@ -758,7 +758,8 @@ class MiddelfartAPI(SilkeborgAPI):
         for dk_month, en_month in DANISH_MONTHS.items():
             normalized = re.sub(rf'\b{dk_month}\b', en_month, normalized)
 
-        normalized = normalized.replace('.', ' ')
+        normalized = re.sub(r'[./-]', ' ', normalized)
+        normalized = re.sub(r'\s+', ' ', normalized).strip()
         try:
             return dt.datetime.strptime(normalized, "%d %m %Y").date()
         except ValueError:
