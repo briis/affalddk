@@ -7,6 +7,7 @@ import re
 import json
 from urllib.parse import urlparse, parse_qsl, quote
 from bs4 import BeautifulSoup
+from dateutil import parser
 
 from .const import GH_API, DANISH_MONTHS
 MAX_RETRIES = 5
@@ -700,6 +701,79 @@ class MiddelfartAPI(SilkeborgAPI):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.url_base = 'https://www.affaldonline.dk/kalender/middelfart'
+
+    async def get_garbage_data(self, address_id):
+        forbid = str(address_id).split('|')[0]
+        results = []
+        seen = set()
+
+        for year in (self.today.year, self.today.year + 1):
+            url = self.url_base + '/showToemCal.php'
+            params = {'year': year, 'forbid': forbid, 'altid': 0, 'type': 1}
+            html = await self.async_get_request(url, para=params, as_json=False)
+            for item in self._parse_toem_cal_rows(html):
+                key = (item['Materiel'], item['Tømningsdag'])
+                if key not in seen:
+                    seen.add(key)
+                    results.append(item)
+
+        if results:
+            return results
+        return await super().get_garbage_data(address_id)
+
+    def _parse_toem_cal_rows(self, html):
+        soup = BeautifulSoup(html, "html.parser")
+        rows = []
+        for row in soup.find_all("tr"):
+            cols = row.find_all("td")
+            if not cols:
+                continue
+
+            if len(cols) >= 2:
+                date_text = cols[0].get_text(" ", strip=True)
+                material_text = cols[1].get_text(" ", strip=True)
+            else:
+                text = cols[0].get_text(" ", strip=True)
+                match = re.search(r"\(([^)]+)\)", text)
+                date_text = text
+                material_text = match.group(1).strip() if match else ""
+
+            pickup_date = self._parse_middelfart_date(date_text)
+            if not pickup_date:
+                continue
+
+            for material in [m.strip() for m in material_text.split(',') if m.strip()]:
+                rows.append({
+                    'Materiel': material,
+                    'Tømningsdag': pickup_date
+                })
+        return rows
+
+    def _parse_middelfart_date(self, text):
+        normalized = text.lower()
+        normalized = re.sub(r'\bden\b', ' ', normalized)
+        normalized = re.sub(r'\([^)]*\)', ' ', normalized)
+        normalized = re.sub(r'\s+', ' ', normalized).strip()
+
+        for dk_month, en_month in DANISH_MONTHS.items():
+            normalized = re.sub(rf'\b{dk_month}\b', en_month, normalized)
+
+        normalized = re.sub(r'[./-]', ' ', normalized)
+        normalized = re.sub(r'\s+', ' ', normalized).strip()
+        try:
+            return dt.datetime.strptime(normalized, "%d %m %Y").date()
+        except ValueError:
+            pass
+
+        try:
+            return dt.datetime.strptime(normalized, "%d %B %Y").date()
+        except ValueError:
+            pass
+
+        try:
+            return parser.parse(normalized, dayfirst=True, fuzzy=True).date()
+        except Exception:
+            return None
 
 
 class IkastBrandeAPI(AffaldDKAPIBase):
