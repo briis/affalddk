@@ -1,5 +1,14 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.3.3
+
+**Date**: `2026-05-05`
+
+### Added
+* Added support for Middelfart municipality ([#421](https://github.com/briis/affalddk/issues/421))
+
+---------------------------
+
 ## Version 3.3.2
 
 **Date**: `2026-04-12`
