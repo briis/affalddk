@@ -7,6 +7,7 @@ import datetime as dt
 from custom_components.affalddk.pyaffalddk import api, const
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
 from custom_components.affalddk.pyaffalddk.const import NAME_LIST
+from custom_components.affalddk.pyaffalddk.interface import MiddelfartAPI
 
 from .data import const_tests
 from pathlib import Path
@@ -194,3 +195,26 @@ def test_weekday_conversion(capsys):
         date = api.weekday_week_to_date('Onsdag', -2)
         assert date == dt.date(2025, 6, 25)
 
+
+@pytest.mark.asyncio
+@freeze_time("2026-05-07")
+async def test_middelfart_show_toem_cal_parsing(capsys, monkeypatch):
+    with capsys.disabled():
+        async with ClientSession() as session:
+            gc_api = MiddelfartAPI("middelfart", session=session)
+            html = """
+                <table>
+                    <tr><td>Mandag den 18. maj 2026</td><td>Dagrenovation</td></tr>
+                    <tr><td>26-05-2026</td><td>Papir, Plast</td></tr>
+                </table>
+            """
+
+            async def get_data(*args, **kwargs):
+                return html
+
+            monkeypatch.setattr(gc_api, "async_get_request", get_data)
+
+            rows = await gc_api.get_garbage_data("6506031")
+            assert {'Materiel': 'Dagrenovation', 'Tømningsdag': dt.date(2026, 5, 18)} in rows
+            assert {'Materiel': 'Papir', 'Tømningsdag': dt.date(2026, 5, 26)} in rows
+            assert {'Materiel': 'Plast', 'Tømningsdag': dt.date(2026, 5, 26)} in rows
