@@ -730,5 +730,10 @@
     "pappapir": "Genbrugsbeholder PP-240L/6uge",
     "plastmdkglasmetal": "Genbrugsbeholder PMDK/MG-240L/3uge",
     "next_pickup": "Restaffald"
+  },
+  "middelfart_1": {
+    "pappapir": "papir/pap og plast/mad- og drikkekartoner",
+    "dagrenovation": "dagrenovation",
+    "next_pickup": "Dagrenovation | Pap & Papir"
   }
 }
