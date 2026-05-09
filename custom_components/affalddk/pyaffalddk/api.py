@@ -45,7 +45,7 @@ APIS = {
     'wastewatch': interface.WasteWatchAPI,
     'herning': interface.AffaldWebAPI,
     'ikastbrande': interface.IkastBrandeAPI,
-    'silkeborg': interface.SilkeborgAPI,
+    'affaldonlineweb': interface.AffaldOnlineWeb,
     'kolding': interface.InfovisionAPI,
 }
 
@@ -320,7 +320,7 @@ class GarbageCollection:
                         _pickup_date = item['Tømningsdag']
                         fraction_name = item['Materiel']
                         self.update_pickup_event(fraction_name, address_id, _pickup_date)
-            elif self._api_type == "silkeborg":
+            elif self._api_type == "affaldonlineweb":
                 garbage_data = await self._api.get_garbage_data(address_id)
                 for item in garbage_data:
                     if item['Tømningsdag']:

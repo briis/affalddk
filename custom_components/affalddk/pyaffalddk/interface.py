@@ -31,6 +31,13 @@ def split_housenumber(s):
     return int(s), ''
 
 
+def en_month(date_str):
+    for dk_month, en_month in DANISH_MONTHS.items():
+        if dk_month in date_str:
+            return date_str.replace(dk_month, en_month)
+    return date_str
+
+
 class AffaldDKNotSupportedError(Exception):
     """Raised when the municipality is not supported."""
 
@@ -219,10 +226,7 @@ class AffaldKKAPI(AffaldDKAPIBase):
         for date_div in calendar_waste_dates:
             text = date_div.find('div', class_='date').get_text(strip=False)
             lines = [line.strip() for line in text.split('\n') if line.strip()]
-            date_str = lines[0].split(',')[1].strip().lower()
-            for dk_month, en_month in DANISH_MONTHS.items():
-                if dk_month in date_str:
-                    date_str = date_str.replace(dk_month, en_month)
+            date_str = en_month(lines[0].split(',')[1].strip().lower())
             for fraction in lines[1:]:
                 data.append({'date': date_str, 'fraction': fraction})
         return data
@@ -623,11 +627,12 @@ class AffaldWebAPI(AffaldDKAPIBase):
         return weekday, weeks
 
 
-class SilkeborgAPI(AffaldDKAPIBase):
-    # Silkeborg API
+class AffaldOnlineWeb(AffaldDKAPIBase):
+    # Affald online / Renoweb web scraping API
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.url_base = 'https://www.affaldonline.dk/kalender/silkeborg'
+        self.url_base = f'https://www.affaldonline.dk/kalender/{self.municipality_id}'
 
     async def get_address_list(self, zipcode, street, house_number):
         self.address_list = {}
@@ -660,6 +665,20 @@ class SilkeborgAPI(AffaldDKAPIBase):
     async def get_garbage_data(self, address_id):
         url = self.url_base + '/showInfo.php'
         data = await self.async_postform_request(url, para={'values': address_id}, as_json=False)
+
+        if self.municipality_id == 'middelfart':
+            pattern = r'næste tømningsdag:\s*\w+\s*den\s*([\d.]+\s*\w+\s*\d{4})\s*\(([^)]+)\)'
+            match = re.search(pattern, data.lower())
+            if match:
+                date_str = en_month(match.group(1).strip())  # "19. maj 2026"
+                date = dt.datetime.strptime(date_str, "%d. %B %Y").date()
+                desc = match.group(2).strip()  # "Dagrenovation"
+                return [{
+                    'Materiel': desc.strip(),
+                    'Tømningsdag': date
+                }]
+            return []
+
         soup = BeautifulSoup(data, "html.parser")
         table = soup.find("table")
         results = []
