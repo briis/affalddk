@@ -5,7 +5,7 @@
 **Date**: `2026-05-10`
 
 ### Added
-* Added new API for Middelfart - only next pickup in data ([#425](https://github.com/briis/affalddk/issues/425))
+* Added new API for Middelfart - only next pickup in data ([#421](https://github.com/briis/affalddk/issues/421))
 
 ### Changes
 * changed API, which means you need to delete and add old sensors for these

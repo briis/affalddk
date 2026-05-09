@@ -669,15 +669,13 @@ class AffaldOnlineWeb(AffaldDKAPIBase):
         if self.municipality_id == 'middelfart':
             pattern = r'næste tømningsdag:\s*\w+\s*den\s*([\d.]+\s*\w+\s*\d{4})\s*\(([^)]+)\)'
             match = re.search(pattern, data.lower())
+            results = []
             if match:
-                date_str = en_month(match.group(1).strip())  # "19. maj 2026"
+                date_str = en_month(match.group(1).strip())
                 date = dt.datetime.strptime(date_str, "%d. %B %Y").date()
-                desc = match.group(2).strip()  # "Dagrenovation"
-                return [{
-                    'Materiel': desc.strip(),
-                    'Tømningsdag': date
-                }]
-            return []
+                for desc in match.group(2).strip().split(','):
+                    results.append({'Materiel': desc.strip(), 'Tømningsdag': date})
+            return results
 
         soup = BeautifulSoup(data, "html.parser")
         table = soup.find("table")
