@@ -1,8 +1,8 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
-## Version 3.3.2
+## Version 3.4.0
 
-**Date**: `2026-05-10`
+**Date**: `2026-06-06`
 
 ### Added
 * Added new API for Middelfart - only next pickup in data ([#421](https://github.com/briis/affalddk/issues/421))
