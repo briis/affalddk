@@ -17,6 +17,7 @@ from homeassistant.components.sensor import (
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.const import ATTR_DATE, ATTR_NAME, ATTR_ENTITY_PICTURE, UnitOfTime, STATE_UNKNOWN
+from homeassistant.helpers import entity_registry
 from homeassistant.helpers.device_registry import DeviceEntryType, DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import StateType
@@ -216,6 +217,11 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
 _LOGGER = logging.getLogger(__name__)
 
 
+def unique_id(config, description):
+    """Sensor unique ID."""
+    return f"{config.data[CONF_ADDRESS_ID]} {description.key}"
+
+
 async def async_setup_entry(
     hass: HomeAssistant,
     config_entry: ConfigEntry,
@@ -229,12 +235,15 @@ async def async_setup_entry(
     if coordinator.data.pickup_events == {}:
         return
 
-    entities: list[AffaldDKSensor[Any]] = [
-        AffaldDKSensor(coordinator, description, config_entry)
-        for description in SENSOR_TYPES
-        if description.key in coordinator.active_sensor_keys
-    ]
+    entity_registry_instance = entity_registry.async_get(hass)
 
+    entities: list[AffaldDKSensor[Any]] = []
+    for description in SENSOR_TYPES:
+        entity_id = entity_registry_instance.async_get_entity_id(
+            "sensor", DOMAIN, unique_id(config_entry, description)
+        )
+        if description.key in coordinator.data.pickup_events or entity_id:
+            entities.append(AffaldDKSensor(coordinator, description, config_entry))
     async_add_entities(entities, False)
 
 
@@ -274,7 +283,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             model=f"Kommune: {config.data[CONF_MUNICIPALITY]}",
             model_id=f"ID: {config.data[CONF_ADDRESS_ID]}",
         )
-        self._attr_unique_id = f"{config.data[CONF_ADDRESS_ID]} {description.key}"
+        self._attr_unique_id = unique_id(config, description)
 
     @property
     def event(self) -> PickupEvents | None:
