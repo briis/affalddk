@@ -92,6 +92,7 @@ class AffaldDKDataUpdateCoordinator(DataUpdateCoordinator):
         self.affalddk.initialize_data()
         self.hass = hass
         self.config_entry = config_entry
+        self.active_sensor_keys = set(config_entry.data.get("active_sensor_keys", []))
 
         update_interval = timedelta(hours=DEFAULT_SCAN_INTERVAL)
         # update_interval = timedelta(
@@ -111,7 +112,16 @@ class AffaldDKDataUpdateCoordinator(DataUpdateCoordinator):
     async def _async_update_data(self) -> AffaldDKData:
         """Fetch data from AffaldDK."""
         try:
-            return await self.affalddk.fetch_data()
+            data = await self.affalddk.fetch_data()
+            if data.pickup_events:
+                new_keys = set(data.pickup_events.keys())
+                self.active_sensor_keys.update(new_keys)
+                # Save to config_entry
+                updated_data = {**self.config_entry.data, "active_sensor_keys": list(self.active_sensor_keys)}
+                self.hass.config_entries.async_update_entry(
+                    self.config_entry, data=updated_data,
+                )
+            return data
         except Exception as err:
             raise UpdateFailed(f"Update failed: {err}") from err
 

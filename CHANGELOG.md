@@ -1,5 +1,20 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+
+## Version 3.4.1
+
+**Date**: `2026-06-14`
+
+### Changes
+* change to follow sensors that have been exposed at anytime, to fix ([#443](https://github.com/briis/affalddk/issues/443))
+
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
+
 ## Version 3.4.0
 
 **Date**: `2026-06-06`
@@ -12,11 +27,6 @@
   * Changed Allerød to Perfect Waste ([#435](https://github.com/briis/affalddk/issues/435))
 * fixed missing fraction in Billund ([#431](https://github.com/briis/affalddk/issues/431))
 * Updated Danish translation #433, thank you @hhjuhl
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 
 ## Version 3.3.1
