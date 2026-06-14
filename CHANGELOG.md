@@ -6,7 +6,7 @@
 **Date**: `2026-06-14`
 
 ### Changes
-* change to follow sensors that have been exposed at anytime, to fix ([#443](https://github.com/briis/affalddk/issues/443))
+* change to make sensors that also exist in hass even without data, to fix ([#443](https://github.com/briis/affalddk/issues/443))
 
 
 ---------------------------
