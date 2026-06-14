@@ -16,7 +16,7 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
-from homeassistant.const import ATTR_DATE, ATTR_NAME, ATTR_ENTITY_PICTURE, UnitOfTime
+from homeassistant.const import ATTR_DATE, ATTR_NAME, ATTR_ENTITY_PICTURE, UnitOfTime, STATE_UNKNOWN
 from homeassistant.helpers.device_registry import DeviceEntryType, DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import StateType
@@ -232,7 +232,7 @@ async def async_setup_entry(
     entities: list[AffaldDKSensor[Any]] = [
         AffaldDKSensor(coordinator, description, config_entry)
         for description in SENSOR_TYPES
-        if coordinator.data.pickup_events.get(description.key) is not None
+        if description.key in coordinator.active_sensor_keys
     ]
 
     async_add_entities(entities, False)
@@ -280,7 +280,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
     def event(self) -> PickupEvents | None:
         """Return current event or None."""
         if self._coordinator.data.pickup_events:
-            return self._coordinator.data.pickup_events[self.entity_description.key]
+            return self._coordinator.data.pickup_events.get(self.entity_description.key)
         return None
 
     @property
@@ -295,6 +295,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
                 if _pickup_days == 1:
                     return "dag" if self._da else "day"
             return "dage" if self._da else "days"
+        return None
 
     @property
     def native_value(self) -> StateType:
@@ -306,6 +307,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             _pickup_days = (pickup_time - current_time).days
             if pickup_time:
                 return _pickup_days
+        return STATE_UNKNOWN
 
     @property
     def icon(self) -> str | None:
