@@ -1,18 +1,26 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
 
-## Version 3.4.1
+## Version 3.4.2
 
-**Date**: `2026-06-14`
+**Date**: `2026-07-08`
 
 ### Changes
-* change to make sensors that also exist in hass even without data, to fix ([#443](https://github.com/briis/affalddk/issues/443))
+* fixed missing fraction in Haderslev ([#447](https://github.com/briis/affalddk/issues/447))
 
 
 ---------------------------
 
 <details>
   <summary><b>PREVIOUS CHANGES</b></summary>
+
+
+## Version 3.4.1
+
+**Date**: `2026-06-14`
+
+### Changes
+* change to make sensors that also exist in hass even without data, to fix ([#443](https://github.com/briis/affalddk/issues/443))
 
 
 ## Version 3.4.0

@@ -735,5 +735,11 @@
     "pappapir": "papir/pap og plast/mad- og drikkekartoner",
     "dagrenovation": "dagrenovation",
     "next_pickup": "Dagrenovation | Pap & Papir"
+  },
+  "447_haderslev": {
+    "pappapirglasmetal": "Pap/papir + Metal/glas",
+    "restaffaldmadaffald": "Mad/Rest",
+    "plastmadkarton": "Plast/mad- og drikkekarton",
+    "next_pickup": "Pap, Papir, Glas & Metal"
   }
 }
