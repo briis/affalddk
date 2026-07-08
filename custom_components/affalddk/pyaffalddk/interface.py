@@ -598,20 +598,18 @@ class AffaldWebAPI(AffaldDKAPIBase):
         data = await self.async_get_request(url, para=params, headers=headers, as_json=False)
 
         soup = BeautifulSoup(data, "html.parser")
-        table = soup.find("table")
-        header_row = table.find('tr')
-        header_cells = header_row.find_all(['th', 'td'])
-        headers = [cell.get_text(strip=True) for cell in header_cells]
-        if ['Beholder-id', 'Tømningsdag'] == headers[2:]:
-            data = []
-            for row in table.find_all('tr')[1:]:
-                cells = row.find_all('td')
-                row_data = [cell.get_text(separator=' ', strip=True) for cell in cells]
-                data.append({'Beholder-id': row_data[2], 'Tømningsdag': row_data[3]})
-            return data
+        route_cards = soup.find_all("div", class_="route-card")
 
-    def get_weekday_and_weeks(self, item):
-        weekday, rest = item['Tømningsdag'].split(None, 1)
+        # Extract data from each card
+        data = []
+        for card in route_cards:
+            fraction = card.find("div", class_="route-title").get_text(strip=True)
+            day = card.find("div", class_="day-name").get_text(strip=True)
+            week_info = card.find("div", class_="day-box").find("div", recursive=False).find_next_sibling("div").get_text(strip=True)
+            data.append({'fraction': fraction, 'day': day, 'weeks': self.get_weeks(week_info)})
+        return data
+
+    def get_weeks(self, rest):
         weeks = []
         if 'Ugenumre:' in rest:
             this_week = self.today.isocalendar()[1]
@@ -624,7 +622,7 @@ class AffaldWebAPI(AffaldDKAPIBase):
             weeks.append([-1, self.year])
         else:
             weeks.append([-2, self.year])
-        return weekday, weeks
+        return weeks
 
 
 class AffaldOnlineWeb(AffaldDKAPIBase):
