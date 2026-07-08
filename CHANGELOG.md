@@ -6,7 +6,8 @@
 **Date**: `2026-07-08`
 
 ### Changes
-* fixed missing fraction in Haderslev ([#447](https://github.com/briis/affalddk/issues/447))
+* Fixed missing fraction in Haderslev ([#447](https://github.com/briis/affalddk/issues/447))
+* Fixed general API for Herning ([#447](https://github.com/briis/affalddk/issues/447))
 
 
 ---------------------------
