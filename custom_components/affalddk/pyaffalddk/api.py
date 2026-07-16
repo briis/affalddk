@@ -123,7 +123,7 @@ class GarbageCollection:
         else:
             raise interface.AffaldDKNotSupportedError("Cannot find Municipality")
 
-    def update_pickup_event(self, item_name, address_id, _pickup_date):
+    def update_pickup_event(self, item_name, address_id, _pickup_date, container_count=None):
         if _pickup_date is not None and _pickup_date < self.today:
             return 'old-event'
 
@@ -140,6 +140,7 @@ class GarbageCollection:
                         icon=ICON_LIST.get(key),
                         entity_picture=f"{key}.svg",
                         description=item_name,
+                        container_count=container_count,
                     )
                 }
                 self.pickup_events.update(_pickup_event)
@@ -235,7 +236,7 @@ class GarbageCollection:
                     _pickup_date = iso_string_to_date(row["date"])
                     for item in row["fractions"]:
                         garbage_type = item['fractionName']
-                        self.update_pickup_event(garbage_type, address_id, _pickup_date)
+                        self.update_pickup_event(garbage_type, address_id, _pickup_date, item.get('containerCount'))
 
             elif self._api_type == "renoweb":
                 garbage_data = await self._api.get_garbage_data(address_id)
