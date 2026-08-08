@@ -1,6 +1,21 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
 
+## Version 3.5.0
+
+**Date**: `2026-08-08`
+
+### Changes
+* Added container_count attribute for PerfectWaste by @MagnusErler ([#451](https://github.com/briis/affalddk/pull/451))
+* Fixed calendar trigger not firing by @MrAdam ([#452](https://github.com/briis/affalddk/pull/452))
+
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
+
 ## Version 3.4.2
 
 **Date**: `2026-07-08`
@@ -8,12 +23,6 @@
 ### Changes
 * Fixed missing fraction in Haderslev ([#447](https://github.com/briis/affalddk/issues/447))
 * Fixed general API for Herning ([#447](https://github.com/briis/affalddk/issues/447))
-
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 
 ## Version 3.4.1
