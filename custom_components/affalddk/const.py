@@ -4,6 +4,7 @@ ATTR_DATE_LONG = "date_long"
 ATTR_DATE_SHORT = "date_short"
 ATTR_DURATION = "duration"
 ATTR_DESCRIPTION = "description"
+ATTR_CONTAINER_COUNT = "container_count"
 ATTR_LAST_UPDATE = "last_update"
 
 CONF_ADDRESS = "address"

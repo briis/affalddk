@@ -30,6 +30,7 @@ from homeassistant.util.dt import now
 from . import AffaldDKDataUpdateCoordinator
 from .const import (
     ATTR_DATE_LONG,
+    ATTR_CONTAINER_COUNT,
     ATTR_DATE_SHORT,
     ATTR_DESCRIPTION,
     ATTR_DURATION,
@@ -361,6 +362,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             att[ATTR_DURATION] = _day_text
             att[ATTR_NAME] = self.event.friendly_name
             att[ATTR_ENTITY_PICTURE] = f'/affalddk/img/{self.event.group}.svg'
+            if self.event.container_count is not None:
+                att[ATTR_CONTAINER_COUNT] = self.event.container_count
         return att
 
     async def async_added_to_hass(self):

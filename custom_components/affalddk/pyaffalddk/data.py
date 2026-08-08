@@ -24,6 +24,7 @@ class PickupType:
     icon: str | None = None
     entity_picture: str | None = None
     description: str | None = None
+    container_count: int | None = None
 
 
 @dataclass(frozen=True)
