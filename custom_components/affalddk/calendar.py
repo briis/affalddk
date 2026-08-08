@@ -115,7 +115,7 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
             if event and name != "next_pickup":
                 event_start = dt.combine(event.date, time(self._start_time, 0, 0)).replace(tzinfo=get_default_time_zone())
                 event_end = dt.combine(event.date, time(self._end_time, 0, 0)).replace(tzinfo=get_default_time_zone())
-                if (start_date <= event_start) and (end_date >= event_end):
+                if event_start < end_date and event_end > start_date:
                     events.append(
                         CalendarEvent(
                             summary=event.friendly_name,
