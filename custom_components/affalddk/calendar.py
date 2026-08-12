@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import datetime
 from datetime import datetime as dt, time
+import json
 import logging
+from pathlib import Path
 from types import MappingProxyType
 from typing import Any
 
@@ -26,12 +28,15 @@ from .const import (
     CONF_CALENDAR_START_TIME,
     CONF_HOUSE_NUMBER,
     CONF_ROAD_NAME,
+    CONF_UNIT_LANGUAGE,
     DEFAULT_ATTRIBUTION,
     DEFAULT_BRAND,
     DEFAULT_END_TIME,
     DEFAULT_START_TIME,
+    DEFAULT_UNIT_LANGUAGE,
     DOMAIN,
 )
+from .pyaffalddk.const import NAME_LIST_REV
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -68,6 +73,9 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
         super().__init__(coordinator)
         self._config = config
         self._coordinator = coordinator
+        language = self._config.options.get(CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE)
+        with (Path(__file__).parent / "translations" / f"{language}.json").open(encoding="utf-8") as translation_file:
+            self._waste_names = json.load(translation_file)["entity"]["sensor"]["waste_type"]["state"]
         name = DOMAIN.capitalize()
         if CONF_ADDRESS in self._config.data:
             name += f" {self._config.data[CONF_ADDRESS]}"
@@ -88,6 +96,10 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
         self._end_time = self._config.options.get(CONF_CALENDAR_END_TIME, DEFAULT_END_TIME)
         self._start_time = self._config.options.get(CONF_CALENDAR_START_TIME, DEFAULT_START_TIME)
 
+    def _event_name(self, event) -> str:
+        """Return translated waste type name."""
+        return " | ".join(self._waste_names.get(NAME_LIST_REV.get(name), name) for name in event.friendly_name.split(" | "))
+
     @property
     def event(self) -> CalendarEvent | None:
         """Return the next upcoming event."""
@@ -95,7 +107,7 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
             _start_dt = dt.combine(next_pickup.date, time(self._start_time, 0, 0)).replace(tzinfo=get_default_time_zone())
             _end_dt = dt.combine(next_pickup.date, time(self._end_time, 0, 0)).replace(tzinfo=get_default_time_zone())
             return CalendarEvent(
-                summary=next_pickup.friendly_name,
+                summary=self._event_name(next_pickup),
                 description=next_pickup.description,
                 start=_start_dt,
                 end=_end_dt,
@@ -118,7 +130,7 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
                 if event_start < end_date and event_end > start_date:
                     events.append(
                         CalendarEvent(
-                            summary=event.friendly_name,
+                            summary=self._event_name(event),
                             description=event.description,
                             start=event_start,
                             end=event_end,
