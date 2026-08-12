@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
+import json
 import logging
 
 from dataclasses import dataclass
 import datetime
 from datetime import datetime as dt
+from pathlib import Path
 from types import MappingProxyType
 from typing import Any
 
@@ -49,6 +51,7 @@ from .const import (
 from .pyaffalddk.data import PickupEvents
 from .pyaffalddk.const import (
     ICON_LIST,
+    NAME_LIST_REV,
     WEEKDAYS,
     WEEKDAYS_SHORT,
 )
@@ -269,6 +272,10 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         self._coordinator = coordinator
         self._pickup_events: PickupType = None
         self._da = config.options.get(CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE) == DEFAULT_UNIT_LANGUAGE
+        language = self._config.options.get(CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE)
+        with (Path(__file__).parent / "translations" / f"{language}.json").open(encoding="utf-8") as translation_file:
+            self._waste_names = json.load(translation_file)["entity"]["sensor"]["waste_type"]["state"]
+        self._attr_name = self._waste_names.get(description.key, description.name)
         name = DOMAIN.capitalize()
         if CONF_ADDRESS in self._config.data:
             name += f" {self._config.data[CONF_ADDRESS]}"
@@ -285,6 +292,10 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             model_id=f"ID: {config.data[CONF_ADDRESS_ID]}",
         )
         self._attr_unique_id = unique_id(config, description)
+
+    def _event_name(self, event) -> str:
+        """Return translated waste type name."""
+        return " | ".join(self._waste_names.get(NAME_LIST_REV.get(name), name) for name in event.friendly_name.split(" | "))
 
     @property
     def event(self) -> PickupEvents | None:
@@ -360,7 +371,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             att[ATTR_DATE_SHORT] = f"{_day_name} {_date.strftime('d. %d/%m') if _date else None}"
             att[ATTR_DESCRIPTION] = self.event.description
             att[ATTR_DURATION] = _day_text
-            att[ATTR_NAME] = self.event.friendly_name
+            att[ATTR_NAME] = self._event_name(self.event)
             att[ATTR_ENTITY_PICTURE] = f'/affalddk/img/{self.event.group}.svg'
             if self.event.container_count is not None:
                 att[ATTR_CONTAINER_COUNT] = self.event.container_count
