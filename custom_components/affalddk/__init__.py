@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import timedelta
+import json
 import logging
 from pathlib import Path
 from typing import Self
@@ -26,6 +27,8 @@ from .const import (
     CONF_ADDRESS_ID,
     CONF_MUNICIPALITY,
     CONF_DYNAMIC_NEXT_EVENT_ICON,
+    CONF_UNIT_LANGUAGE,
+    DEFAULT_UNIT_LANGUAGE,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
 )
@@ -33,6 +36,12 @@ from .const import (
 PLATFORMS = [Platform.SENSOR, Platform.CALENDAR]
 
 _LOGGER = logging.getLogger(__name__)
+
+
+def load_waste_names(language: str) -> dict[str, str]:
+    """Load waste type translations."""
+    with (Path(__file__).parent / "translations" / f"{language}.json").open(encoding="utf-8") as translation_file:
+        return json.load(translation_file)["entity"]["sensor"]["waste_type"]["state"]
 
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool:
@@ -43,6 +52,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
         await coordinator.async_config_entry_first_refresh()
     else:
         await coordinator.async_refresh()
+
+    language = config_entry.options.get(CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE)
+    coordinator.waste_names = await hass.async_add_executor_job(load_waste_names, language)
 
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN][config_entry.entry_id] = coordinator
