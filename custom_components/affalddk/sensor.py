@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-import json
 import logging
 
 from dataclasses import dataclass
 import datetime
 from datetime import datetime as dt
-from pathlib import Path
 from types import MappingProxyType
 from typing import Any
 
@@ -272,9 +270,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         self._coordinator = coordinator
         self._pickup_events: PickupType = None
         self._da = config.options.get(CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE) == DEFAULT_UNIT_LANGUAGE
-        language = self._config.options.get(CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE)
-        with (Path(__file__).parent / "translations" / f"{language}.json").open(encoding="utf-8") as translation_file:
-            self._waste_names = json.load(translation_file)["entity"]["sensor"]["waste_type"]["state"]
+        self._waste_names = coordinator.waste_names
         self._attr_name = self._waste_names.get(description.key, description.name)
         name = DOMAIN.capitalize()
         if CONF_ADDRESS in self._config.data:
