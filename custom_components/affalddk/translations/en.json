@@ -29,6 +29,53 @@
             }
         }
     },
+    "entity": {
+        "sensor": {
+            "waste_type": {
+                "state": {
+                    "batterier": "Batteries",
+                    "bioposer": "Bio bags",
+                    "dagrenovation": "Household waste",
+                    "elektronik": "Electronics",
+                    "farligtaffald": "Hazardous waste",
+                    "farligtaffaldmiljoboks": "Hazardous waste & environmental box",
+                    "flis": "Wood chips",
+                    "genbrug": "Recycling",
+                    "glas": "Glass",
+                    "glasplast": "Glass, plastic & food cartons",
+                    "haveaffald": "Garden waste",
+                    "jern": "Iron",
+                    "juletrae": "Christmas trees",
+                    "madaffald": "Food waste",
+                    "metal": "Metal",
+                    "metalglas": "Metal & glass",
+                    "pap": "Cardboard",
+                    "pappapir": "Cardboard & paper",
+                    "pappapirglasmetal": "Cardboard, paper, glass & metal",
+                    "pappapirtekstil": "Cardboard, paper & textile waste",
+                    "pappi": "Paper & plastic",
+                    "papir": "Paper",
+                    "papirglas": "Paper, cardboard & glass",
+                    "papirglasdaaser": "Paper, glass & cans",
+                    "papirglasmetalplast": "Paper, glass, metal & plastic",
+                    "papirmetal": "Paper & metal",
+                    "plast": "Plastic",
+                    "plastmadkarton": "Plastic & food cartons",
+                    "plastmdkglasmetal": "Plastic, food cartons, glass & metal",
+                    "plastmetal": "Plastic & metal",
+                    "plastmetalmdk": "Plastic, metal, food & beverage cartons",
+                    "plastmetalpapir": "Plastic, metal & paper",
+                    "restaffald": "Residual waste",
+                    "restaffaldmadaffald": "Residual & food waste",
+                    "restplast": "Residual waste & plastic/food cartons",
+                    "storskrald": "Bulky waste",
+                    "storskraldogfarligtaffald": "Bulky & hazardous waste",
+                    "storskraldogtekstilaffald": "Bulky & textile waste",
+                    "tekstil": "Textile waste"
+                }
+            }
+        }
+    },
     "options": {
         "step": {
             "init": {
@@ -40,7 +87,7 @@
                     "calendar_end_time": "Pickup end time",
                     "calendar_start_time": "Pickup start time",
                     "dynamic_next_event_icon": "Show first fraction type icon for next event",
-                    "unit_language": "Unit language"
+                    "unit_language": "Display language"
                 }
             }
         }

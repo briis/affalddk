@@ -29,6 +29,53 @@
             }
         }
     },
+    "entity": {
+        "sensor": {
+            "waste_type": {
+                "state": {
+                    "batterier": "Batterier",
+                    "bioposer": "Bioposer",
+                    "dagrenovation": "Dagrenovation",
+                    "elektronik": "Elektronik",
+                    "farligtaffald": "Farligt affald",
+                    "farligtaffaldmiljoboks": "Farligt affald & Miljøboks",
+                    "flis": "Flis",
+                    "genbrug": "Genbrug",
+                    "glas": "Glas",
+                    "glasplast": "Glas, Plast & Madkartoner",
+                    "haveaffald": "Haveaffald",
+                    "jern": "Jern",
+                    "juletrae": "Juletræer",
+                    "madaffald": "Madaffald",
+                    "metal": "Metal",
+                    "metalglas": "Metal & Glas",
+                    "pap": "Pap",
+                    "pappapir": "Pap & Papir",
+                    "pappapirglasmetal": "Pap, Papir, Glas & Metal",
+                    "pappapirtekstil": "Pap, Papir & Tekstilaffald",
+                    "pappi": "Papir & Plast",
+                    "papir": "Papir",
+                    "papirglas": "Papir, Pap & Glas",
+                    "papirglasdaaser": "Papir, Glas & Dåser",
+                    "papirglasmetalplast": "Papir, Glas, Metal & Plast",
+                    "papirmetal": "Papir & Metal",
+                    "plast": "Plast",
+                    "plastmadkarton": "Plast & Madkarton",
+                    "plastmdkglasmetal": "Plast, Madkarton, Glas & Metal",
+                    "plastmetal": "Plast & Metal",
+                    "plastmetalmdk": "Plast, Metal, Mad & Drikkekartoner",
+                    "plastmetalpapir": "Plast, Metal & Papir",
+                    "restaffald": "Restaffald",
+                    "restaffaldmadaffald": "Rest & Madaffald",
+                    "restplast": "Restaffald & Plast/Madkartoner",
+                    "storskrald": "Storskrald",
+                    "storskraldogfarligtaffald": "Storskrald & Farligt affald",
+                    "storskraldogtekstilaffald": "Storskrald & Tekstilaffald",
+                    "tekstil": "Tekstilaffald"
+                }
+            }
+        }
+    },
     "options": {
         "step": {
             "init": {
