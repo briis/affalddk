@@ -1,3 +1,4 @@
+# ruff: noqa: S301, B023
 """Tests for the AffaldDK calendar entity definition."""
 
 import datetime as dt
