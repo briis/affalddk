@@ -65,12 +65,11 @@ def _make_sensor(pickup_events, description_key="restaffaldmadaffald", unit_lang
     return AffaldDKSensor(coordinator, _find_description(description_key), config)
 
 
-def _pickup(date, description="Rest & Madaffald", group="restaffaldmadaffald",
-            friendly_name="Rest & Madaffald", container_count=None):
+def _pickup(date, description="Rest & Madaffald", group=["restaffaldmadaffald"],
+            container_count=None):
     return PickupType(
         date=date,
         group=group,
-        friendly_name=friendly_name,
         description=description,
         container_count=container_count,
     )
@@ -161,15 +160,16 @@ async def test_sensor_attributes_from_smoke_data(capsys, monkeypatch):
                     sensor = _make_sensor(pickup_events, description_key=key)
 
                     # the sensor's ATTR_NAME is the event's friendly_name
-                    assert sensor.extra_state_attributes[ATTR_NAME] == event.friendly_name
+                    assert sensor.extra_state_attributes[ATTR_NAME] == sensor.waste_name(event.group)
                     assert sensor.extra_state_attributes[ATTR_DESCRIPTION] == event.description
-                    assert sensor.extra_state_attributes[ATTR_ENTITY_PICTURE] == f"/affalddk/img/{event.group[0]}.svg"
+                    assert sensor.extra_state_attributes[ATTR_ENTITY_PICTURE] == event.entity_picture
 
                     # against compare data
                     if key == 'next_pickup':
                         assert sensor.extra_state_attributes[ATTR_NAME] == smokecompare[_name][key]
                     else:
                         assert sensor.extra_state_attributes[ATTR_DESCRIPTION] == smokecompare[_name][key]
+                        assert sensor.extra_state_attributes[ATTR_ENTITY_PICTURE] == f"/affalddk/img/{event.group[0]}.svg"
 
 
                     if event.container_count is not None:

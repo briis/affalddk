@@ -18,6 +18,7 @@ from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
 )
 from homeassistant.util.dt import get_default_time_zone
+from .pyaffalddk.const import NAME_LIST
 from . import AffaldDKDataUpdateCoordinator
 from .const import (
     CONF_ADDRESS,
@@ -88,6 +89,9 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
         self._end_time = self._config.options.get(CONF_CALENDAR_END_TIME, DEFAULT_END_TIME)
         self._start_time = self._config.options.get(CONF_CALENDAR_START_TIME, DEFAULT_START_TIME)
 
+    def waste_name(self, group: list[str]) -> str:
+        return ' | '.join([NAME_LIST[key] for key in group])
+
     @property
     def event(self) -> CalendarEvent | None:
         """Return the next upcoming event."""
@@ -95,7 +99,7 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
             _start_dt = dt.combine(next_pickup.date, time(self._start_time, 0, 0)).replace(tzinfo=get_default_time_zone())
             _end_dt = dt.combine(next_pickup.date, time(self._end_time, 0, 0)).replace(tzinfo=get_default_time_zone())
             return CalendarEvent(
-                summary=next_pickup.friendly_name,
+                summary=self.waste_name(next_pickup.group),
                 description=next_pickup.description,
                 start=_start_dt,
                 end=_end_dt,
@@ -118,7 +122,7 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
                 if event_start < end_date and event_end > start_date:
                     events.append(
                         CalendarEvent(
-                            summary=event.friendly_name,
+                            summary=self.waste_name(event.group),
                             description=event.description,
                             start=event_start,
                             end=event_end,

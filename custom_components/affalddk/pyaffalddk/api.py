@@ -12,7 +12,6 @@ from dateutil import parser
 from .const import (
     ICON_LIST,
     NAME_LIST,
-    NAME_LIST_REV,
     NON_SUPPORTED_ITEMS,
     RE_WORDS,
     RE_RAW,
@@ -136,7 +135,7 @@ class GarbageCollection:
                     key: PickupType(
                         date=_pickup_date,
                         group=[key],
-                        friendly_name=NAME_LIST.get(key),
+#                        friendly_name=NAME_LIST.get(key),
                         icon=ICON_LIST.get(key),
                         entity_picture=f"/affalddk/img/{key}.svg",
                         description=item_name,
@@ -147,8 +146,7 @@ class GarbageCollection:
 
             if _pickup_date in self.next_events:
                 if key not in self.next_events[_pickup_date]['key']:
-                    self.next_events[_pickup_date]['key'] .append(key)
-#                    self.next_events[_pickup_date]['name'] .append(NAME_LIST.get(key))
+                    self.next_events[_pickup_date]['key'].append(key)
                     self.next_events[_pickup_date]['description'].append(item_name)
             else:
                 self.next_events.update({_pickup_date: {'key': [key], 'description': [item_name]}})
@@ -163,16 +161,17 @@ class GarbageCollection:
 
             _next_key = self.next_events[_next_pickup]['key']
             _next_description = self.next_events[_next_pickup]['description']
-            # Zip, sort by _next_name, then unzip
-            sorted_pairs = sorted(zip(_next_key, _next_description, strict=True), key=lambda pair: pair[0])
-            _next_key, _next_description = zip(*sorted_pairs, strict=True)
+
+            # Sort and convert to lists in one step
+            _next_key, _next_description = map(list, zip(*sorted(zip(_next_key, _next_description, strict=True), key=lambda pair: pair[0]), strict=True))
+            assert isinstance(_next_key, list)
 
             key = _next_key[0] if dynamic_next_icon else 'genbrug'
             _next_pickup_event = {
                 "next_pickup": PickupType(
                     date=_next_pickup,
-                    group=[key],
-                    friendly_name=list_to_string([NAME_LIST[k] for k in _next_key]),
+                    group=_next_key,
+#                    friendly_name=list_to_string([NAME_LIST[k] for k in _next_key]),
                     icon=ICON_LIST.get(key),
                     entity_picture=f"/affalddk/img/{key}.svg",
                     description=list_to_string(_next_description),

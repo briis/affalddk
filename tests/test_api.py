@@ -59,7 +59,8 @@ async def test_smoketest(capsys, monkeypatch, update=False):
                 assert keys[-1] == 'next_pickup'
 
                 data = {key: pickups[key].description for key in keys[:-1]}
-                data['next_pickup'] = pickups['next_pickup'].friendly_name
+                waste_name = ' | '.join([NAME_LIST[key] for key in pickups['next_pickup'].group])
+                data['next_pickup'] = waste_name
 
                 if name not in smokecompare or update:
                     smokecompare[name] = data
@@ -86,10 +87,9 @@ async def test_next_icon_type(capsys, monkeypatch):
             monkeypatch.setattr(gc._api, "get_garbage_data", get_data)
 
             pickups = await gc.get_pickup_data('1111')
-            assert pickups['next_pickup'].group == ['genbrug']
-
+            assert pickups['next_pickup'].entity_picture == '/affalddk/img/genbrug.svg'
             pickups = await gc.get_pickup_data('1111', dynamic_next_icon=True)
-            assert pickups['next_pickup'].group == ['restaffaldmadaffald']
+            assert pickups['next_pickup'].entity_picture == '/affalddk/img/restaffaldmadaffald.svg'
 
 
 @pytest.mark.asyncio

@@ -325,6 +325,9 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         """Return icon for sensor."""
         return ICON_LIST.get(self.entity_description.key)
 
+    def waste_name(self, group: list[str]) -> str:
+        return ' | '.join([NAME_LIST[key] for key in group])
+
     @property
     def extra_state_attributes(self) -> None:
         """Return non standard attributes."""
@@ -361,8 +364,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             att[ATTR_DATE_SHORT] = f"{_day_name} {_date.strftime('d. %d/%m') if _date else None}"
             att[ATTR_DESCRIPTION] = self.event.description
             att[ATTR_DURATION] = _day_text
-#            friendly_name = ' | '.join([NAME_LIST[key] for key in self.event.group])
-            att[ATTR_NAME] = self.event.friendly_name
+            att[ATTR_NAME] = self.waste_name(self.event.group)
             att[ATTR_ENTITY_PICTURE] = self.event.entity_picture
             if self.event.container_count is not None:
                 att[ATTR_CONTAINER_COUNT] = self.event.container_count
