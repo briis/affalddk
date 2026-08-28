@@ -11,7 +11,6 @@ from dateutil import parser
 
 from .const import (
     ICON_LIST,
-    NAME_LIST,
     NON_SUPPORTED_ITEMS,
     RE_WORDS,
     RE_RAW,
@@ -135,7 +134,6 @@ class GarbageCollection:
                     key: PickupType(
                         date=_pickup_date,
                         group=[key],
-#                        friendly_name=NAME_LIST.get(key),
                         icon=ICON_LIST.get(key),
                         entity_picture=f"/affalddk/img/{key}.svg",
                         description=item_name,
@@ -171,7 +169,6 @@ class GarbageCollection:
                 "next_pickup": PickupType(
                     date=_next_pickup,
                     group=_next_key,
-#                    friendly_name=list_to_string([NAME_LIST[k] for k in _next_key]),
                     icon=ICON_LIST.get(key),
                     entity_picture=f"/affalddk/img/{key}.svg",
                     description=list_to_string(_next_description),
