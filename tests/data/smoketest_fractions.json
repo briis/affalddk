@@ -84,7 +84,7 @@
     "pappi": "370 l Plast+MDK/Papir - Egenløsning (Privat)",
     "pap": "240 l Pap Egenløsning (Privat)",
     "metalglas": "240 l Glas/metal Egenløsning (Privat)",
-    "next_pickup": "Rest & Madaffald | Restaffald"
+    "next_pickup": "Restaffald | Rest & Madaffald"
   },
   "svendborg_1": {
     "plastmadkarton": "Genbrug henteordning",
@@ -205,7 +205,7 @@
     "restaffald": "Restaffald, 140L (ekstra til 2-delt)",
     "plastmdkglasmetal": "Genbrugsspand, 240L (2-delt)",
     "pappapir": "Papir/Papspand, 240L",
-    "next_pickup": "Rest & Madaffald | Restaffald"
+    "next_pickup": "Restaffald | Rest & Madaffald"
   },
   "gentofte_275": {
     "storskrald": "Storskrald",
@@ -340,8 +340,8 @@
   },
   "holbæk_1": {
     "restaffaldmadaffald": "240L Rest/Mad 14.dg Skel",
-    "plastmetalmdk": "240L PMDK/Metal 4. uge Skel",
     "papirglas": "240L Glas/Papir 8. uge Skel",
+    "plastmetalmdk": "240L PMDK/Metal 4. uge Skel",
     "pap": "240L Pap 8. uge Skel",
     "next_pickup": "Rest & Madaffald"
   },
@@ -358,8 +358,8 @@
     "next_pickup": "Rest & Madaffald"
   },
   "rebild_1": {
-    "genbrug": "Ekstra 240 L genbrugscontainer",
     "pappi": "240L Genbrug",
+    "genbrug": "Ekstra 240 L genbrugscontainer",
     "storskrald": "Storskrald S6",
     "restaffaldmadaffald": "240 L mad/rest - 14 dags",
     "next_pickup": "Genbrug | Papir & Plast | Storskrald"
@@ -410,10 +410,10 @@
   },
   "holbæk_306": {
     "restaffald": "770L Rest uge Stand",
-    "plastmadkarton": "770L PMDK 4. uge Stand",
     "jern": "660L Metal 4. uge Stand",
-    "glas": "660L Glas 4. uge Stand",
     "papir": "660L Papir 4. uge Stand",
+    "glas": "660L Glas 4. uge Stand",
+    "plastmadkarton": "770L PMDK 4. uge Stand",
     "pap": "770L Pap 14.dg Stand",
     "madaffald": "370L Mad 14.dg Stand",
     "farligtaffaldmiljoboks": "Miljøskab",
@@ -723,7 +723,7 @@
     "farligtaffald": "Farligt affald",
     "storskrald": "Storskrald",
     "metalglas": "Glas/metal",
-    "next_pickup": "Rest & Madaffald | Restaffald"
+    "next_pickup": "Restaffald | Rest & Madaffald"
   },
   "billund_431": {
     "restaffald": "Restaffald 150/14",

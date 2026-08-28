@@ -86,10 +86,10 @@ async def test_next_icon_type(capsys, monkeypatch):
             monkeypatch.setattr(gc._api, "get_garbage_data", get_data)
 
             pickups = await gc.get_pickup_data('1111')
-            assert pickups['next_pickup'].group == 'genbrug'
+            assert pickups['next_pickup'].group == ['genbrug']
 
             pickups = await gc.get_pickup_data('1111', dynamic_next_icon=True)
-            assert pickups['next_pickup'].group == 'restaffaldmadaffald'
+            assert pickups['next_pickup'].group == ['restaffaldmadaffald']
 
 
 @pytest.mark.asyncio

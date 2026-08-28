@@ -49,6 +49,7 @@ from .const import (
 from .pyaffalddk.data import PickupEvents
 from .pyaffalddk.const import (
     ICON_LIST,
+    NAME_LIST,
     WEEKDAYS,
     WEEKDAYS_SHORT,
 )
@@ -360,8 +361,9 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             att[ATTR_DATE_SHORT] = f"{_day_name} {_date.strftime('d. %d/%m') if _date else None}"
             att[ATTR_DESCRIPTION] = self.event.description
             att[ATTR_DURATION] = _day_text
+#            friendly_name = ' | '.join([NAME_LIST[key] for key in self.event.group])
             att[ATTR_NAME] = self.event.friendly_name
-            att[ATTR_ENTITY_PICTURE] = f'/affalddk/img/{self.event.group}.svg'
+            att[ATTR_ENTITY_PICTURE] = self.event.entity_picture
             if self.event.container_count is not None:
                 att[ATTR_CONTAINER_COUNT] = self.event.container_count
         return att

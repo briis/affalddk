@@ -135,22 +135,25 @@ class GarbageCollection:
                 _pickup_event = {
                     key: PickupType(
                         date=_pickup_date,
-                        group=key,
+                        group=[key],
                         friendly_name=NAME_LIST.get(key),
                         icon=ICON_LIST.get(key),
-                        entity_picture=f"{key}.svg",
+                        entity_picture=f"/affalddk/img/{key}.svg",
                         description=item_name,
                         container_count=container_count,
                     )
                 }
+                friendly_name = ' | '.join([NAME_LIST[k] for k in [key]])
+                assert _pickup_event[key].friendly_name == friendly_name
                 self.pickup_events.update(_pickup_event)
 
             if _pickup_date in self.next_events:
-                if NAME_LIST.get(key) not in self.next_events[_pickup_date]['name']:
-                    self.next_events[_pickup_date]['name'] .append(NAME_LIST.get(key))
+                if key not in self.next_events[_pickup_date]['key']:
+                    self.next_events[_pickup_date]['key'] .append(key)
+#                    self.next_events[_pickup_date]['name'] .append(NAME_LIST.get(key))
                     self.next_events[_pickup_date]['description'].append(item_name)
             else:
-                self.next_events.update({_pickup_date: {'name': [NAME_LIST.get(key)], 'description': [item_name]}})
+                self.next_events.update({_pickup_date: {'key': [key], 'description': [item_name]}})
         return 'done'
 
     def set_next_event(self, dynamic_next_icon):
@@ -160,20 +163,21 @@ class GarbageCollection:
             else:
                 _next_pickup = sorted([key for key in self.next_events.keys() if key >= self.today])[0]
 
-            _next_name = self.next_events[_next_pickup]['name']
+            _next_key = self.next_events[_next_pickup]['key']
             _next_description = self.next_events[_next_pickup]['description']
             # Zip, sort by _next_name, then unzip
-            sorted_pairs = sorted(zip(_next_name, _next_description, strict=True), key=lambda pair: pair[0])
-            _next_name, _next_description = zip(*sorted_pairs, strict=True)
+            sorted_pairs = sorted(zip(_next_key, _next_description, strict=True), key=lambda pair: pair[0])
+            _next_key, _next_description = zip(*sorted_pairs, strict=True)
 
-            key = NAME_LIST_REV[_next_name[0]] if dynamic_next_icon else 'genbrug'
+            key = _next_key[0] if dynamic_next_icon else 'genbrug'
+#            key = NAME_LIST_REV[_next_name[0]] if dynamic_next_icon else 'genbrug'
             _next_pickup_event = {
                 "next_pickup": PickupType(
                     date=_next_pickup,
-                    group=key,
-                    friendly_name=list_to_string(_next_name),
+                    group=[key],
+                    friendly_name=list_to_string([NAME_LIST[k] for k in _next_key]),
                     icon=ICON_LIST.get(key),
-                    entity_picture=f"{key}.svg",
+                    entity_picture=f"/affalddk/img/{key}.svg",
                     description=list_to_string(_next_description),
                 )
             }
