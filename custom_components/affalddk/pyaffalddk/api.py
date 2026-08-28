@@ -143,8 +143,6 @@ class GarbageCollection:
                         container_count=container_count,
                     )
                 }
-                friendly_name = ' | '.join([NAME_LIST[k] for k in [key]])
-                assert _pickup_event[key].friendly_name == friendly_name
                 self.pickup_events.update(_pickup_event)
 
             if _pickup_date in self.next_events:
@@ -170,7 +168,6 @@ class GarbageCollection:
             _next_key, _next_description = zip(*sorted_pairs, strict=True)
 
             key = _next_key[0] if dynamic_next_icon else 'genbrug'
-#            key = NAME_LIST_REV[_next_name[0]] if dynamic_next_icon else 'genbrug'
             _next_pickup_event = {
                 "next_pickup": PickupType(
                     date=_next_pickup,

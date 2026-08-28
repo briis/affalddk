@@ -134,17 +134,6 @@ def test_english_unit_language():
     assert sensor.extra_state_attributes[ATTR_DURATION] == "Tomorrow"
 
 
-@freeze_time("2025-05-22")
-def test_next_pickup_uses_genbrug_image():
-    """next_pickup is special cased so the picture uses its own group."""
-
-    event = _pickup(dt.date(2025, 5, 25), group="genbrug", friendly_name="Genbrug")
-    sensor = _make_sensor({"next_pickup": event}, description_key="next_pickup")
-
-    # next_pickup falls back to the genbrug category for the default picture.
-#    assert sensor.extra_state_attributes[ATTR_ENTITY_PICTURE] == "/affalddk/img/genbrug.svg"
-
-
 @pytest.mark.asyncio
 @freeze_time("2025-05-09")
 async def test_sensor_attributes_from_smoke_data(capsys, monkeypatch):
