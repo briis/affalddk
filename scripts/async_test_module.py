@@ -16,7 +16,7 @@ sys.path.insert(0, str((Path(__file__).parent.parent / 'custom_components/affald
 
 from pyaffalddk.api import GarbageCollection
 from pyaffalddk.municipalities import MUNICIPALITIES_LIST
-from pyaffalddk.const import NAME_ARRAY, NAME_LIST
+from pyaffalddk.const import NAME_LIST
 from pyaffalddk.interface import AffaldDKNoConnection
 
 _LOGGER = logging.getLogger(__name__)
@@ -84,11 +84,10 @@ async def main() -> None:
                         print("")
                         print(
                             "========================================================")
-                        for item in NAME_ARRAY:
+                        for item in NAME_LIST:
                             if data.get(item) is None:
                                 continue
                             print(f"{waste_name(data[item].group)}:")
-                            print("  Nøgle: ", item)
                             print("  Gruppe: ", data[item].group)
                             print("  Navn: ", waste_name(data[item].group))
                             try:
