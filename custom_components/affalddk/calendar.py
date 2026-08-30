@@ -18,7 +18,6 @@ from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
 )
 from homeassistant.util.dt import get_default_time_zone
-from .pyaffalddk.const import NAME_LIST
 from . import AffaldDKDataUpdateCoordinator
 from .const import (
     CONF_ADDRESS,
@@ -27,11 +26,14 @@ from .const import (
     CONF_CALENDAR_START_TIME,
     CONF_HOUSE_NUMBER,
     CONF_ROAD_NAME,
+    CONF_UNIT_LANGUAGE,
     DEFAULT_ATTRIBUTION,
     DEFAULT_BRAND,
     DEFAULT_END_TIME,
     DEFAULT_START_TIME,
+    DEFAULT_UNIT_LANGUAGE,
     DOMAIN,
+    TRANSLATIONS,
 )
 
 
@@ -69,6 +71,8 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
         super().__init__(coordinator)
         self._config = config
         self._coordinator = coordinator
+        self.language = config.options.get(CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE)
+        self.tr_name = TRANSLATIONS[self.language]
         name = DOMAIN.capitalize()
         if CONF_ADDRESS in self._config.data:
             name += f" {self._config.data[CONF_ADDRESS]}"
@@ -90,7 +94,8 @@ class AffaldDKCalendar(CoordinatorEntity[DataUpdateCoordinator], CalendarEntity)
         self._start_time = self._config.options.get(CONF_CALENDAR_START_TIME, DEFAULT_START_TIME)
 
     def waste_name(self, group: list[str]) -> str:
-        return ' | '.join([NAME_LIST[key] for key in group])
+        """Return friendly name(s) of fraction group(s)."""
+        return ' | '.join([self.tr_name['waste_name'][key] for key in group])
 
     @property
     def event(self) -> CalendarEvent | None:

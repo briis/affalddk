@@ -50,7 +50,6 @@ from .const import (
 from .pyaffalddk.data import PickupEvents
 from .pyaffalddk.const import (
     ICON_LIST,
-    NAME_LIST,
     WEEKDAYS,
     WEEKDAYS_SHORT,
 )
@@ -272,6 +271,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         self._pickup_events: PickupType = None
         self.language = config.options.get(CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE)
         self.tr_name = TRANSLATIONS[self.language]
+        self._attr_name = self.tr_name['waste_name'].get(description.key, description.name)
+
         name = DOMAIN.capitalize()
         if CONF_ADDRESS in self._config.data:
             name += f" {self._config.data[CONF_ADDRESS]}"
@@ -328,7 +329,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         return ICON_LIST.get(self.entity_description.key)
 
     def waste_name(self, group: list[str]) -> str:
-        return ' | '.join([NAME_LIST[key] for key in group])
+        """Return friendly name(s) of fraction group(s)."""
+        return ' | '.join([self.tr_name['waste_name'][key] for key in group])
 
     @property
     def extra_state_attributes(self) -> None:
