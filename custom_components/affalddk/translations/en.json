@@ -44,5 +44,14 @@
                 }
             }
         }
+    },
+    "entity": {
+        "daynames": {
+            "day": "day",
+            "days": "days",
+            "today": "Today",
+            "tomorrow": "Tomorrow",
+            "in_days": "In _state days"
+        }
     }
 }

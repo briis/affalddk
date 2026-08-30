@@ -8,7 +8,6 @@ from pathlib import Path
 from typing import Self
 
 from .pyaffalddk.api import GarbageCollection
-from .pyaffalddk.const import NAME_LIST
 from .pyaffalddk.data import PickupEvents
 from .pyaffalddk.interface import (
     AffaldDKNotSupportedError,
@@ -108,9 +107,6 @@ class AffaldDKDataUpdateCoordinator(DataUpdateCoordinator):
             update_interval=update_interval,
             config_entry=config_entry,
         )
-
-    def waste_name(self, group: list[str]):
-        return ' | '.join([NAME_LIST[key] for key in group])
 
     async def _async_update_data(self) -> AffaldDKData:
         """Fetch data from AffaldDK."""

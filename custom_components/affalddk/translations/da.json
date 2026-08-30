@@ -44,5 +44,14 @@
                 }
             }
         }
+    },
+    "entity": {
+        "daynames": {
+            "day": "dag",
+            "days": "dage",
+            "today": "I dag",
+            "tomorrow": "I morgen",
+            "in_days": "Om _state dage"
+        }
     }
 }

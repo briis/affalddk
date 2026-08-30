@@ -1,4 +1,12 @@
-"""Constants in renoweb component."""
+"""Constants in affald component."""
+from pathlib import Path
+import json
+
+
+TRANSLATIONS = {}
+for tr_file in (Path(__file__).parent / "translations").glob("*.json"):
+    with tr_file.open('r', encoding='utf-8') as f:
+        TRANSLATIONS[tr_file.stem] = json.load(f)["entity"]
 
 ATTR_DATE_LONG = "date_long"
 ATTR_DATE_SHORT = "date_short"

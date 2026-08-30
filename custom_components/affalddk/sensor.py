@@ -45,6 +45,7 @@ from .const import (
     DEFAULT_ATTRIBUTION,
     DEFAULT_BRAND,
     DOMAIN,
+    TRANSLATIONS,
 )
 from .pyaffalddk.data import PickupEvents
 from .pyaffalddk.const import (
@@ -269,7 +270,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         self._config = config
         self._coordinator = coordinator
         self._pickup_events: PickupType = None
-        self._da = config.options.get(CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE) == DEFAULT_UNIT_LANGUAGE
+        self.language = config.options.get(CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE)
+        self.tr_name = TRANSLATIONS[self.language]
         name = DOMAIN.capitalize()
         if CONF_ADDRESS in self._config.data:
             name += f" {self._config.data[CONF_ADDRESS]}"
@@ -304,8 +306,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             _pickup_days = (pickup_time - current_time).days
             if pickup_time:
                 if _pickup_days == 1:
-                    return "dag" if self._da else "day"
-            return "dage" if self._da else "days"
+                    return self.tr_name['daynames']["day"]
+            return self.tr_name['daynames']["days"]
         return None
 
     @property
@@ -350,11 +352,11 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             _day_name = WEEKDAYS_SHORT[_day_number]
             _day_name_long = WEEKDAYS[_day_number]
             if _state == 0:
-                _day_text = "I dag" if self._da else "Today"
+                _day_text = self.tr_name['daynames']["today"]
             elif _state == 1:
-                _day_text = "I morgen" if self._da else "Tomorrow"
+                _day_text = self.tr_name['daynames']["tomorrow"]
             else:
-                _day_text = f"Om {_state} dage" if self._da else f"In {_state} days"
+                _day_text = self.tr_name['daynames']["in_days"].replace('_state', str(_state))
 
             att[ATTR_DATE] = _date if _date else None
             att[ATTR_DATE_LONG] = (
