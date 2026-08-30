@@ -40,18 +40,13 @@ from .const import (
     CONF_HOUSE_NUMBER,
     CONF_MUNICIPALITY,
     CONF_ROAD_NAME,
-    CONF_UNIT_LANGUAGE,
-    DEFAULT_UNIT_LANGUAGE,
     DEFAULT_ATTRIBUTION,
     DEFAULT_BRAND,
     DOMAIN,
-    TRANSLATIONS,
 )
 from .pyaffalddk.data import PickupEvents
 from .pyaffalddk.const import (
     ICON_LIST,
-    WEEKDAYS,
-    WEEKDAYS_SHORT,
 )
 from .pyaffalddk.data import PickupType
 
@@ -269,9 +264,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
         self._config = config
         self._coordinator = coordinator
         self._pickup_events: PickupType = None
-        self.language = config.options.get(CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE)
-        self.tr_name = TRANSLATIONS[self.language]
-        self._attr_name = self.tr_name['waste_name'].get(description.key, description.name)
+        self._tr = coordinator.translations
+        self._attr_name = self._tr['waste_name'].get(description.key, description.name)
 
         name = DOMAIN.capitalize()
         if CONF_ADDRESS in self._config.data:
@@ -307,8 +301,8 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             _pickup_days = (pickup_time - current_time).days
             if pickup_time:
                 if _pickup_days == 1:
-                    return self.tr_name['daynames']["day"]
-            return self.tr_name['daynames']["days"]
+                    return self._tr['daynames']["day"]
+            return self._tr['daynames']["days"]
         return None
 
     @property
@@ -330,7 +324,7 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
 
     def waste_name(self, group: list[str]) -> str:
         """Return friendly name(s) of fraction group(s)."""
-        return ' | '.join([self.tr_name['waste_name'][key] for key in group])
+        return ' | '.join([self._tr['waste_name'][key] for key in group])
 
     @property
     def extra_state_attributes(self) -> None:
@@ -351,14 +345,14 @@ class AffaldDKSensor(CoordinatorEntity[DataUpdateCoordinator], SensorEntity):
             if _state < 0:
                 _state = 0
             _day_number = _date.weekday()
-            _day_name = WEEKDAYS_SHORT[_day_number]
-            _day_name_long = WEEKDAYS[_day_number]
+            _day_name = self._tr['daynames']['weekdays_short'][_day_number]
+            _day_name_long = self._tr['daynames']['weekdays'][_day_number]
             if _state == 0:
-                _day_text = self.tr_name['daynames']["today"]
+                _day_text = self._tr['daynames']["today"]
             elif _state == 1:
-                _day_text = self.tr_name['daynames']["tomorrow"]
+                _day_text = self._tr['daynames']["tomorrow"]
             else:
-                _day_text = self.tr_name['daynames']["in_days"].replace('_state', str(_state))
+                _day_text = self._tr['daynames']["in_days"].replace('_state', str(_state))
 
             att[ATTR_DATE] = _date if _date else None
             att[ATTR_DATE_LONG] = (

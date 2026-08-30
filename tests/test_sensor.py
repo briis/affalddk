@@ -22,6 +22,7 @@ from custom_components.affalddk.const import (
     CONF_ADDRESS_ID,
     CONF_MUNICIPALITY,
     DEFAULT_ATTRIBUTION,
+    TRANSLATIONS,
 )
 from homeassistant.const import ATTR_DATE, ATTR_NAME, ATTR_ENTITY_PICTURE
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
@@ -62,6 +63,7 @@ def _make_sensor(pickup_events, description_key="restaffaldmadaffald", unit_lang
         },
     )()
     coordinator = FakeCoordinator(pickup_events)
+    coordinator.translations = TRANSLATIONS[unit_language]
     return AffaldDKSensor(coordinator, _find_description(description_key), config)
 
 

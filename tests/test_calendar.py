@@ -21,6 +21,7 @@ from custom_components.affalddk.const import (
     DEFAULT_ATTRIBUTION,
     DEFAULT_END_TIME,
     DEFAULT_START_TIME,
+    TRANSLATIONS,
 )
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
 from custom_components.affalddk.pyaffalddk.data import PickupType
@@ -36,7 +37,7 @@ class FakeCoordinator:
         self.data = type("Data", (), {"pickup_events": pickup_events})()
 
 
-def _make_calendar(pickup_events, start_time=7, end_time=15):
+def _make_calendar(pickup_events, start_time=7, end_time=15, unit_language='da'):
     """Build an AffaldDKCalendar wired to the given pickup_events dict."""
     config_data = {
         CONF_MUNICIPALITY: "Holstebro",
@@ -57,6 +58,7 @@ def _make_calendar(pickup_events, start_time=7, end_time=15):
         },
     )()
     coordinator = FakeCoordinator(pickup_events)
+    coordinator.translations = TRANSLATIONS[unit_language]
     return AffaldDKCalendar(coordinator, config)
 
 
