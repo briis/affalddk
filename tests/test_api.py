@@ -34,12 +34,13 @@ def test_const_consistency(capsys):
 
 def test_waste_name_keys_match_name_list():
     """Every waste_type in NAME_LIST must be translatable in all languages."""
+    name_list = set(list(NAME_LIST) + ['next_pickup'])
     for lang, translations in TRANSLATIONS.items():
         waste_keys = set(translations["waste_name"])
-        assert waste_keys == set(NAME_LIST), (
+        assert waste_keys == name_list, (
             f"'waste_name' keys in {lang} do not match NAME_LIST: "
-            f"missing={set(NAME_LIST) - waste_keys} "
-            f"extra={waste_keys - set(NAME_LIST)}"
+            f"missing={name_list - waste_keys} "
+            f"extra={waste_keys - name_list}"
         )
 
 
