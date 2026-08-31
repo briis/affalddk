@@ -42,8 +42,8 @@ def update_and_compare(name, actual_data, update=False, debug=False):
     if debug and actual_data != compare_data[name]:
         print(actual_data.keys())
         print(compare_data[name].keys())
-        print(actual_data['next_pickup'])
-        print(compare_data[name]['next_pickup'])
+#        print(actual_data['next_pickup'])
+#        print(compare_data[name]['next_pickup'])
     assert actual_data == compare_data[name]
 
 
