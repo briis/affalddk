@@ -1,12 +1,10 @@
 """Constants for the pyaffalddk integration."""
 from pathlib import Path
-#import importlib.resources as pkg_resources  # Python 3.7+
 import json
 
 GH_API = b'NDc5RDQwRjQtQjNFMS00MDM4LTkxMzAtNzY0NTMxODhDNzRD'
 
 
-#with pkg_resources.files('pyaffalddk').joinpath('supported_items.json').open('r', encoding='utf-8') as f:
 with (Path(__file__).parent / 'supported_items.json').open('r', encoding='utf-8') as f:
     SUPPORTED_ITEMS = json.load(f)
 
@@ -125,9 +123,6 @@ NAME_LIST = {
     "tekstil": "Tekstilaffald",
 }
 
-NAME_LIST_REV = {val: key for key, val in NAME_LIST.items()}
-NAME_ARRAY = list(NAME_LIST.keys())
-
 
 STRIPS = [
         'med 14-dages tømning ved helårshuse', '– tømmes hver 2. uge', 'tømning af',
@@ -156,7 +151,6 @@ RE_RAW = [
 ODD_EVEN_ARRAY = ["lige", "ulige"]
 WEEKDAYS = ["Mandag", "Tirsdag", "Onsdag",
             "Torsdag", "Fredag", "Lørdag", "Søndag"]
-WEEKDAYS_SHORT = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"]
 
 DANISH_MONTHS = {
     "januar": "January",

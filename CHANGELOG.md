@@ -3,11 +3,12 @@
 
 ## Version 3.5.0
 
-**Date**: `2026-08-08`
+**Date**: `2026-08-31`
 
 ### Changes
 * Added container_count attribute for PerfectWaste by @MagnusErler ([#451](https://github.com/briis/affalddk/pull/451))
 * Fixed calendar trigger not firing by @MrAdam ([#452](https://github.com/briis/affalddk/pull/452))
+* Add English localisation for waste types @ricobach ([#453](https://github.com/briis/affalddk/pull/453))
 
 
 ---------------------------

@@ -19,8 +19,7 @@ class AffaldDKAddressInfo:
 class PickupType:
     """Define a waste pickup type."""
     date: dt.date | None = None
-    group: str | None = None
-    friendly_name: str | None = None
+    group: list[str] | None = None
     icon: str | None = None
     entity_picture: str | None = None
     description: str | None = None

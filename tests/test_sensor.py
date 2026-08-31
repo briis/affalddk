@@ -22,8 +22,9 @@ from custom_components.affalddk.const import (
     CONF_ADDRESS_ID,
     CONF_MUNICIPALITY,
     DEFAULT_ATTRIBUTION,
+    TRANSLATIONS,
 )
-from homeassistant.const import ATTR_DATE, ATTR_NAME
+from homeassistant.const import ATTR_DATE, ATTR_NAME, ATTR_ENTITY_PICTURE
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
 from custom_components.affalddk.pyaffalddk.data import PickupType
 from custom_components.affalddk.sensor import AffaldDKSensor, SENSOR_TYPES
@@ -62,15 +63,15 @@ def _make_sensor(pickup_events, description_key="restaffaldmadaffald", unit_lang
         },
     )()
     coordinator = FakeCoordinator(pickup_events)
+    coordinator.translations = TRANSLATIONS[unit_language]
     return AffaldDKSensor(coordinator, _find_description(description_key), config)
 
 
-def _pickup(date, description="Rest & Madaffald", group="restaffaldmadaffald",
-            friendly_name="Rest & Madaffald", container_count=None):
+def _pickup(date, description="Rest & Madaffald", group=["restaffaldmadaffald"],
+            container_count=None):
     return PickupType(
         date=date,
         group=group,
-        friendly_name=friendly_name,
         description=description,
         container_count=container_count,
     )
@@ -134,18 +135,6 @@ def test_english_unit_language():
     assert sensor.extra_state_attributes[ATTR_DURATION] == "Tomorrow"
 
 
-@freeze_time("2025-05-22")
-def test_next_pickup_uses_genbrug_image():
-    """next_pickup is special cased so the picture uses its own group."""
-    from homeassistant.const import ATTR_ENTITY_PICTURE
-
-    event = _pickup(dt.date(2025, 5, 25), group="genbrug", friendly_name="Genbrug")
-    sensor = _make_sensor({"next_pickup": event}, description_key="next_pickup")
-
-    # next_pickup falls back to the genbrug category for the default picture.
-    assert sensor.extra_state_attributes[ATTR_ENTITY_PICTURE] == "/affalddk/img/genbrug.svg"
-
-
 @pytest.mark.asyncio
 @freeze_time("2025-05-09")
 async def test_sensor_attributes_from_smoke_data(capsys, monkeypatch):
@@ -171,12 +160,20 @@ async def test_sensor_attributes_from_smoke_data(capsys, monkeypatch):
                 pickup_events = await gc.get_pickup_data(1111)
                 for key, event in pickup_events.items():
                     sensor = _make_sensor(pickup_events, description_key=key)
-                    if key == 'next_pickup':
-                        assert sensor.extra_state_attributes[ATTR_NAME] == smokecompare[_name][key]
 
                     # the sensor's ATTR_NAME is the event's friendly_name
-                    assert sensor.extra_state_attributes[ATTR_NAME] == event.friendly_name
+                    assert sensor.extra_state_attributes[ATTR_NAME] == sensor.waste_name(event.group)
                     assert sensor.extra_state_attributes[ATTR_DESCRIPTION] == event.description
+                    assert sensor.extra_state_attributes[ATTR_ENTITY_PICTURE] == event.entity_picture
+
+                    # against compare data
+                    if key == 'next_pickup':
+                        assert sensor.extra_state_attributes[ATTR_NAME] == smokecompare[_name][key]
+                    else:
+                        assert sensor.extra_state_attributes[ATTR_DESCRIPTION] == smokecompare[_name][key]
+                        assert sensor.extra_state_attributes[ATTR_ENTITY_PICTURE] == f"/affalddk/img/{event.group[0]}.svg"
+
+
                     if event.container_count is not None:
                         assert (
                             sensor.extra_state_attributes[ATTR_CONTAINER_COUNT]

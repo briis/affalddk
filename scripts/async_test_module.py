@@ -16,10 +16,14 @@ sys.path.insert(0, str((Path(__file__).parent.parent / 'custom_components/affald
 
 from pyaffalddk.api import GarbageCollection
 from pyaffalddk.municipalities import MUNICIPALITIES_LIST
-from pyaffalddk.const import NAME_ARRAY
+from pyaffalddk.const import NAME_LIST
 from pyaffalddk.interface import AffaldDKNoConnection
 
 _LOGGER = logging.getLogger(__name__)
+
+
+def waste_name(group: list[str]) -> str:
+    return ' | '.join([NAME_LIST[key] for key in group])
 
 
 async def main() -> None:
@@ -80,13 +84,12 @@ async def main() -> None:
                         print("")
                         print(
                             "========================================================")
-                        for item in NAME_ARRAY:
+                        for item in NAME_LIST:
                             if data.get(item) is None:
                                 continue
-                            print(f"{data[item].friendly_name}:")
-                            print("  Nøgle: ", item)
+                            print(f"{waste_name(data[item].group)}:")
                             print("  Gruppe: ", data[item].group)
-                            print("  Navn: ", data[item].friendly_name)
+                            print("  Navn: ", waste_name(data[item].group))
                             try:
                                 print("  Dato: ",
                                       data[item].date.strftime("%d-%m-%Y"))
@@ -103,7 +106,7 @@ async def main() -> None:
                         item = "next_pickup"
                         print("Mext Pickup:")
                         print("  Gruppe: ", data[item].group)
-                        print("  Navn: ", data[item].friendly_name)
+                        print("  Navn: ", waste_name(data[item].group))
                         print("  Dato: ", data[item].date.strftime("%d-%m-%Y"))
                         print("  Beskrivelse: ", data[item].description)
                         print("  Icon: ", data[item].icon)

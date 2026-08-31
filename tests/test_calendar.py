@@ -21,6 +21,7 @@ from custom_components.affalddk.const import (
     DEFAULT_ATTRIBUTION,
     DEFAULT_END_TIME,
     DEFAULT_START_TIME,
+    TRANSLATIONS,
 )
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
 from custom_components.affalddk.pyaffalddk.data import PickupType
@@ -36,7 +37,7 @@ class FakeCoordinator:
         self.data = type("Data", (), {"pickup_events": pickup_events})()
 
 
-def _make_calendar(pickup_events, start_time=7, end_time=15):
+def _make_calendar(pickup_events, start_time=7, end_time=15, unit_language='da'):
     """Build an AffaldDKCalendar wired to the given pickup_events dict."""
     config_data = {
         CONF_MUNICIPALITY: "Holstebro",
@@ -57,15 +58,15 @@ def _make_calendar(pickup_events, start_time=7, end_time=15):
         },
     )()
     coordinator = FakeCoordinator(pickup_events)
+    coordinator.translations = TRANSLATIONS[unit_language]
     return AffaldDKCalendar(coordinator, config)
 
 
-def _pickup(date, description="Rest & Madaffald", group="restaffaldmadaffald",
-            friendly_name="Rest & Madaffald", container_count=None):
+def _pickup(date, description="Rest & Madaffald", group=["restaffaldmadaffald"],
+            container_count=None):
     return PickupType(
         date=date,
         group=group,
-        friendly_name=friendly_name,
         description=description,
         container_count=container_count,
     )
@@ -92,8 +93,7 @@ def test_event_from_next_pickup():
     """The event summary/description/times come from the next_pickup PickupType."""
     next_pickup = _pickup(
         dt.date(2025, 5, 24),
-        group="genbrug",
-        friendly_name="Genbrug",
+        group=["genbrug"],
         description="Genbrug",
     )
     calendar = _make_calendar({"next_pickup": next_pickup})
@@ -122,10 +122,10 @@ async def test_async_get_events_range():
     """async_get_events returns pickup events overlapping the requested window."""
     events_data = {
         "restaffaldmadaffald": _pickup(dt.date(2025, 5, 24)),
-        "papir": _pickup(dt.date(2025, 6, 1), description="Papir", friendly_name="Papir"),
+        "papir": _pickup(dt.date(2025, 6, 1), description="Papir", group=["papir"]),
         # outside the window
-        "storskrald": _pickup(dt.date(2025, 7, 1), description="Storskrald", friendly_name="Storskrald"),
-        "next_pickup": _pickup(dt.date(2025, 5, 24), group="genbrug", friendly_name="Genbrug"),
+        "storskrald": _pickup(dt.date(2025, 7, 1), description="Storskrald", group=["storskrald"]),
+        "next_pickup": _pickup(dt.date(2025, 5, 24), group=["genbrug"]),
     }
     calendar = _make_calendar(events_data)
 

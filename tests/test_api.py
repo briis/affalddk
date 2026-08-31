@@ -4,6 +4,7 @@ from freezegun import freeze_time
 from aiohttp import ClientSession
 import datetime as dt
 
+from custom_components.affalddk.const import TRANSLATIONS
 from custom_components.affalddk.pyaffalddk import api, const
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
 from custom_components.affalddk.pyaffalddk.const import NAME_LIST
@@ -29,6 +30,17 @@ def test_const_consistency(capsys):
     with capsys.disabled():
         names = list(NAME_LIST.values())
         assert len(set(names)) == len(names)
+
+
+def test_waste_name_keys_match_name_list():
+    """Every waste_type in NAME_LIST must be translatable in all languages."""
+    for lang, translations in TRANSLATIONS.items():
+        waste_keys = set(translations["waste_name"])
+        assert waste_keys == set(NAME_LIST), (
+            f"'waste_name' keys in {lang} do not match NAME_LIST: "
+            f"missing={set(NAME_LIST) - waste_keys} "
+            f"extra={waste_keys - set(NAME_LIST)}"
+        )
 
 
 @pytest.mark.asyncio
@@ -59,7 +71,8 @@ async def test_smoketest(capsys, monkeypatch, update=False):
                 assert keys[-1] == 'next_pickup'
 
                 data = {key: pickups[key].description for key in keys[:-1]}
-                data['next_pickup'] = pickups['next_pickup'].friendly_name
+                waste_name = ' | '.join([NAME_LIST[key] for key in pickups['next_pickup'].group])
+                data['next_pickup'] = waste_name
 
                 if name not in smokecompare or update:
                     smokecompare[name] = data
@@ -86,10 +99,9 @@ async def test_next_icon_type(capsys, monkeypatch):
             monkeypatch.setattr(gc._api, "get_garbage_data", get_data)
 
             pickups = await gc.get_pickup_data('1111')
-            assert pickups['next_pickup'].group == 'genbrug'
-
+            assert pickups['next_pickup'].entity_picture == '/affalddk/img/genbrug.svg'
             pickups = await gc.get_pickup_data('1111', dynamic_next_icon=True)
-            assert pickups['next_pickup'].group == 'restaffaldmadaffald'
+            assert pickups['next_pickup'].entity_picture == '/affalddk/img/restaffaldmadaffald.svg'
 
 
 @pytest.mark.asyncio
