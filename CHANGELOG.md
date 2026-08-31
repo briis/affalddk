@@ -3,7 +3,7 @@
 
 ## Version 3.5.0
 
-**Date**: `2026-08-08`
+**Date**: `2026-08-31`
 
 ### Changes
 * Added container_count attribute for PerfectWaste by @MagnusErler ([#451](https://github.com/briis/affalddk/pull/451))
