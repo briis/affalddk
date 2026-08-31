@@ -4,6 +4,7 @@ from freezegun import freeze_time
 from aiohttp import ClientSession
 import datetime as dt
 
+from custom_components.affalddk.const import TRANSLATIONS
 from custom_components.affalddk.pyaffalddk import api, const
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
 from custom_components.affalddk.pyaffalddk.const import NAME_LIST
@@ -29,6 +30,17 @@ def test_const_consistency(capsys):
     with capsys.disabled():
         names = list(NAME_LIST.values())
         assert len(set(names)) == len(names)
+
+
+def test_waste_name_keys_match_name_list():
+    """Every waste_type in NAME_LIST must be translatable in all languages."""
+    for lang, translations in TRANSLATIONS.items():
+        waste_keys = set(translations["waste_name"])
+        assert waste_keys == set(NAME_LIST), (
+            f"'waste_name' keys in {lang} do not match NAME_LIST: "
+            f"missing={set(NAME_LIST) - waste_keys} "
+            f"extra={waste_keys - set(NAME_LIST)}"
+        )
 
 
 @pytest.mark.asyncio

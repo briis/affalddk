@@ -4,9 +4,9 @@ import json
 
 
 TRANSLATIONS = {}
-for tr_file in (Path(__file__).parent / "translations").glob("*.json"):
+for tr_file in (Path(__file__).parent / "i18n").glob("*.json"):
     with tr_file.open('r', encoding='utf-8') as f:
-        TRANSLATIONS[tr_file.stem] = json.load(f)["entity"]
+        TRANSLATIONS[tr_file.stem] = json.load(f)
 
 ATTR_DATE_LONG = "date_long"
 ATTR_DATE_SHORT = "date_short"
