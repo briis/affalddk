@@ -808,9 +808,6 @@ class AarhusAffaldAPI(AffaldDKAPIBase):
     async def get_address_list(self, zipcode, street, house_number):
         return await self.get_df_address_list(751, zipcode, street, house_number)
 
-    async def get_address(self, address_name):
-        return await self.get_kvhx(751, address_name)
-
     async def get_garbage_data(self, address_id):
         url = f"{self.url_data}{address_id}"
         data = await self.async_get_request(url)

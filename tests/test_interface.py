@@ -250,7 +250,8 @@ async def test_Aarhus(capsys, monkeypatch):
             print('start: ', gc._municipality)
 
             add = {
-                'uid': 'Aarhus_07517005___1__2____', 'address_id': '07517005___1__2____',
+                'uid': 'Aarhus_0a3f50c4-05a4-32b8-e044-0003ba298018',
+                'address_id': '0a3f50c4-05a4-32b8-e044-0003ba298018',
                 'kommunenavn': 'Aarhus', 'address': 'Rådhuspladsen 1, 2.'}
             if True:
                 address_list = await gc.get_address_list('8000', 'Rådhuspladsen', '2')
@@ -263,6 +264,11 @@ async def test_Aarhus(capsys, monkeypatch):
                 address_list = await gc._api.get_address_list('8000', 'Rådhuspladsen', '2')
                 assert len(address_list) == 11
 
+            # Live smoke test: a single real get_garbage_data call against the
+            # Aarhus API must succeed. Fails when the API changes.
+            # Rådhuspladsen 1, 2. has no planned loads, so use Rådhuspladsen 2.
+            real_get_garbage_data = gc._api.get_garbage_data
+
             async def get_data(*args, **kwargs):
                 return aarhus_data[0]["plannedLoads"]
             monkeypatch.setattr(gc._api, "get_garbage_data", get_data)
@@ -270,6 +276,14 @@ async def test_Aarhus(capsys, monkeypatch):
             pickups = await gc.get_pickup_data(add['address_id'])
             update_and_compare('Aarhus', pickups, UPDATE)
             print('done: ', gc._municipality)
+
+            live_address_id = gc._api.address_list['Rådhuspladsen 2']['id']
+            live_data = await real_get_garbage_data(live_address_id)
+            assert isinstance(live_data, list) and live_data, (
+                'Aarhus API returned no plannedLoads data')
+            for row in live_data:
+                assert set(row) == {'date', 'fractions'}, f'Unexpected Aarhus row: {row}'
+                assert row['date'] and isinstance(row['fractions'], list), f'Bad Aarhus row: {row}'
 
 
 @pytest.mark.asyncio
