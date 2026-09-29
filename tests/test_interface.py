@@ -263,6 +263,12 @@ async def test_Aarhus(capsys, monkeypatch):
                 address_list = await gc._api.get_address_list('8000', 'Rådhuspladsen', '2')
                 assert len(address_list) == 11
 
+            # Kredsløb's API only accepts the DAWA address UUID; the kvhx must be translated.
+            # (Rådhuspladsen 1, 2. has no pickups, so use Rådhuspladsen 2.)
+            planned = await gc._api.get_garbage_data('07517005___2_______')
+            assert isinstance(planned, list) and len(planned) > 0
+            assert {'date', 'fractions'} <= set(planned[0])
+
             async def get_data(*args, **kwargs):
                 return aarhus_data[0]["plannedLoads"]
             monkeypatch.setattr(gc._api, "get_garbage_data", get_data)

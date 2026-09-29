@@ -812,6 +812,11 @@ class AarhusAffaldAPI(AffaldDKAPIBase):
         return await self.get_kvhx(751, address_name)
 
     async def get_garbage_data(self, address_id):
+        # Kredsløb's calendar API is keyed by the DAWA address UUID, not kvhx.
+        # address_id is still the kvhx (it is also the config entry's unique id), so translate it.
+        if "_" in address_id:
+            rows = await self.async_get_request(self.url_search, para={'kvhx': address_id, 'struktur': 'mini'})
+            address_id = rows[0]['id']
         url = f"{self.url_data}{address_id}"
         data = await self.async_get_request(url)
         return data[0]["plannedLoads"]
