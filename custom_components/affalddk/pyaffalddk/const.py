@@ -10,9 +10,11 @@ with (Path(__file__).parent / 'supported_items.json').open('r', encoding='utf-8'
 
 
 NON_SUPPORTED_ITEMS = [
+    'Afhentning på grund',
     'Asbest',
     'Beholderservice',
     'Beholderudbringning',
+    'Beholderværksted',
     'Bestil afhentning',
     'Bestillerordning',
     'Farligt affald (skal bestilles)',
@@ -135,7 +137,7 @@ RE_WORDS = [
     r'\b\d+/\d+\.\s*uge\b', # fixing https://github.com/briis/affalddk/issues/373 looking for "2/4. uge" and "8/12. uge"
     r'(?:2|3|4|6|8)?(\.)?[\s-]?(?:uge k|uge p|uge|ugers)',  # diffenrent ways of uge
     r'(?:to|1|2)[\s-]?(?:delt|kammer)',  # diffenrent ways of  2-delt or 2-kammer
-    r'beh\.(,)?', r'\bgl\.', 'beholder', 'dobbeltbeholder', 'spand', 'tøm', 'villa', 'tømning', 'ekstra', 'havebolig', '5 m3',
+    r'beh\.(,)?', r'\bgl\.', 'beholder', 'dobbeltbeholder', 'spand', '(\d{2} )?tøm', 'villa', 'tømning', 'ekstra', 'havebolig', '5 m3',
     r'stand(?: p)?', 'andel', 'skel', 'skelordning', 'hver', 'nord', 'syd', 'øst', 'vest', r'sommer(hus)?( \d{2}\+?)?', 'vinter',
     r'distrikt (?:[A-Za-z]|\d+)', 'rute [0-9]', 's[0-9]', 'd[0-9]', r'/\d{2}',
     ]

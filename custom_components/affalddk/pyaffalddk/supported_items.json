@@ -11,6 +11,7 @@
     ],
     "elektronik": [
         "Elektronik",
+        "Småt elektronik",
         "Småt elektronik i pose på låg"
     ],
     "farligtaffald": [
@@ -18,6 +19,7 @@
         "Farligt affald Rød boks",
         "Farligt Affald, Rød boks",
         "Genbrugsbilen",
+        "Miljøkasse til farligt affald",
         "Miljøkasser"
     ],
     "farligtaffaldmiljoboks": [
@@ -199,6 +201,7 @@
         "blåt låg",
         "Genbrug - blåt låg",
         "Genbrug henteordning",
+        "Mad- & Drikkekartoner",
         "Mad- og drikkekartoner",
         "mad- og drikkekartoner plast",
         "Mad-og drikkekarton",

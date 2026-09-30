@@ -351,12 +351,6 @@
     "papirglasmetalplast": "PP/GM 240L 2-delt 4uge",
     "next_pickup": "Plast & Madkarton | Rest & Madaffald"
   },
-  "morsø_1": {
-    "restaffaldmadaffald": "240 L Restaffald og Madaffald 26 tøm",
-    "plast": "240 L Plast - Mad- & Drikkekartoner 13 tøm",
-    "pappapir": "240 L Papir og Pap - Metal og Glas 13 tøm",
-    "next_pickup": "Rest & Madaffald"
-  },
   "rebild_1": {
     "pappi": "240L Genbrug",
     "genbrug": "Ekstra 240 L genbrugscontainer",
@@ -742,5 +736,37 @@
     "restaffaldmadaffald": "Mad/Rest",
     "plastmadkarton": "Plast/mad- og drikkekarton",
     "next_pickup": "Pap, Papir, Glas & Metal"
+  },
+  "frederiksberg_2": {
+    "pap": "Pap",
+    "restaffald": "Restaffald",
+    "jern": "Metal",
+    "tekstil": "Tekstilaffald",
+    "plastmadkarton": "Plast/ Mad- og drikkekartoner",
+    "madaffald": "Madaffald",
+    "papir": "Papir",
+    "elektronik": "Småt elektronik",
+    "next_pickup": "Pap"
+  },
+  "morsø_1": {
+    "restaffaldmadaffald": "240 L Restaffald og Madaffald 26 tøm",
+    "plast": "240 L Plast - Mad- & Drikkekartoner 13 tøm",
+    "plastmadkarton": "240 L Plast - Mad- & Drikkekartoner 13 tøm",
+    "pappapir": "240 L Papir og Pap - Metal og Glas 13 tøm",
+    "metalglas": "240 L Papir og Pap - Metal og Glas 13 tøm",
+    "next_pickup": "Rest & Madaffald"
+  },
+  "morsø_2": {
+    "restaffald": "400 L Restaffald 52 tøm",
+    "madaffald": "240 L Madaffald 52 tøm",
+    "metalglas": "240 L Metal og Glas 26 tøm",
+    "plastmadkarton": "600 L Plast - Mad- & Drikkekartoner 26 tøm",
+    "next_pickup": "Madaffald | Metal & Glas | Plast & Madkarton | Restaffald"
+  },
+  "kalundborg_1": {
+    "restaffaldmadaffald": "370 l beh. rest/mad - ny",
+    "pappapir": "240 l beh. papir/pap - metal/plast/drikkekarton",
+    "farligtaffald": "Miljøkasse til farligt affald",
+    "next_pickup": "Rest & Madaffald"
   }
 }
