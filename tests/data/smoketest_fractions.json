@@ -802,5 +802,43 @@
     "pappapir": "Pap/papir",
     "metalglas": "Metal/glas",
     "next_pickup": "Rest & Madaffald"
+  },
+  "lolland_2": {
+    "restaffald": "Restaffald",
+    "madaffald": "Madaffald",
+    "pappapir": "Papir/småt pap",
+    "plastmadkarton": "Plast og mad- & drikkekartoner",
+    "metalglas": "Glas/metal",
+    "storskraldogfarligtaffald": "Storskrald og farligt affald - hvis du har bestilt",
+    "next_pickup": "Madaffald | Restaffald"
+  },
+  "billund_2": {
+    "restaffald": "Fælles Restaffald container 770L/14 u.takst",
+    "madaffald": "Fælles Madaffald 90L/14 u. takst",
+    "pappapir": "Fælles Genbrugsbeholder PP-240L/6uge u. takst",
+    "plastmdkglasmetal": "Fælles Genbrugsbeholder PMDK/MG-240L/3uge u.takst",
+    "next_pickup": "Restaffald"
+  },
+  "kerteminde_3": {
+    "dagrenovation": "Dag-Skel 0-2 meter",
+    "genbrug": "Gen-Skel 0-2 meter",
+    "plast": "Plast-Skel 0-2 meter",
+    "restaffaldmadaffald": "240 l energi 2-kammer - SH ",
+    "pappapirglasmetal": "240 l genbrug 2-kammer SH ",
+    "next_pickup": "Dagrenovation | Plast | Rest & Madaffald"
+  },
+  "glostrup_3": {
+    "storskrald": "Storskrald",
+    "haveaffald": "Haveaffald",
+    "jern": "240 L metal",
+    "pap": "1000 L pap",
+    "papir": "660 L papir",
+    "glas": "240 L glas",
+    "elektronik": "660 L småt elektronik",
+    "madaffald": "400 L madaffald",
+    "plastmadkarton": "660 L plast, mad- og drikkekartoner",
+    "restaffald": "9830: 660 L restaffald uge - institutioner",
+    "juletrae": "Juletræer",
+    "next_pickup": "Pap"
   }
 }

@@ -131,15 +131,16 @@ NAME_LIST = {
 STRIPS = [
         'med 14-dages tømning ved helårshuse', '– tømmes hver 2. uge', 'tømning af',
         'rækkehuse', 'sommerhustømning', 'henteordning', 'beholder til', '1-rums',
-        'egenløsning', 'en-familie', 'enfamiliehus', '26 tøm', 'm. sommertømning',
+        'egenløsning', 'en-familie', 'enfamiliehus', 'm. sommertømning', "fælles",
         '-skel 0-2 meter', 'afstand over 5 meter', 'Jern/Elektronik/Hårde hvidevarer', ' ?', '**',
 ]
 RE_WORDS = [
     r'14(\.)?[\s-]?(?:dags|dage|dages|dg)(\.)?',  # diffenrent ways of 14. dags
     r'\b\d+/\d+\.\s*uge\b', # fixing https://github.com/briis/affalddk/issues/373 looking for "2/4. uge" and "8/12. uge"
     r'(?:2|3|4|6|8)?(\.)?[\s-]?(?:uge k|uge p|uge|ugers)',  # diffenrent ways of uge
-    r'(?:to|1|2)[\s-]?(?:delt|kammer)',  # diffenrent ways of  2-delt or 2-kammer
-    r'beh\.(,)?', r'\bgl\.', 'beholder', 'dobbeltbeholder', 'spand', '(\d{2} )?tøm', 'villa', 'tømning', 'ekstra', 'havebolig', '5 m3',
+    r'(?:to|1|2)[\s-]?(?:delt|kammer|kammer-sh)',  # diffenrent ways of  2-delt or 2-kammer
+    r'u.[\s]?takst',
+    r'beh\.(,)?', r'\bgl\.', 'beholder', 'container', 'dobbeltbeholder', 'spand', r'(\d{2} )?tøm', 'villa', 'tømning', 'ekstra', 'havebolig', '5 m3',
     r'stand(?: p| e)?', 'andel', 'skel', 'skelordning', 'hver', 'nord', 'syd', 'øst', 'vest', r'sommer(hus)?( \d{2}\+?)?', 'vinter',
     r'distrikt (?:[A-Za-z]|\d+)', 'rute [0-9]', 's[0-9]', 'd[0-9]', r'/\d{2}',
     r'(?:plast|gen|dag)-standplads 2-20 meter',
@@ -148,8 +149,8 @@ RE_WORDS = [
 RE_RAW = [
     r'\b\d{4}\b\s*,',  # 4 digit postal codes with a comma after
     r'\b\d{4}\b\ og \b\d{4}\b',  # special ending of postal code listing
-    r'(?<![\w/-])(?:25|90|140|150|190|240|360|370|400|660|770)\s*l(?:tr|iter)?\.?(?=\b|[^a-zA-Z]|$)',  # remove volume parts
-    r'(?<![\w/-])(?:25|90|140|150|190|240|360|370|400|660|770)(?:ltr|liter)?\.?(?=[^a-zA-Z]|$)\b',  # remove volume parts (no space before L)
+    r'(?<![\w/-])(?:25|90|140|150|190|240|360|370|400|660|770|1000)\s*l(?:tr|iter)?\.?(?=\b|[^a-zA-Z]|$)',  # remove volume parts
+    r'(?<![\w/-])(?:25|90|140|150|190|240|360|370|400|660|770|1000)(?:ltr|liter)?\.?(?=[^a-zA-Z]|$)\b',  # remove volume parts (no space before L)
     r'^(?:90|140|190|240|370|400)\s',  # only remove "[vol] " if it is the start of the string like in Assens
     ]
 
