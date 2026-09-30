@@ -198,7 +198,6 @@ SUPPORTED_ITEMS = {
     ],
     "tekstil": [
         "Tekstiler",
-        "Standplads",
         "Tekstilaffald",
         "Tekstil",
         "Tekstilposer (1 stk.)",
@@ -216,7 +215,6 @@ MATERIAL_LIST = {
         "Batterier i pose på låg (1 stk.)",
     ],
     "dagrenovation": [
-        "240 l. container 1 x ugentligt (12 stk.)",
         "Dag",
     ],
     "elektronik": [
