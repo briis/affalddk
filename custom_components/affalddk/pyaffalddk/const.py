@@ -74,6 +74,7 @@ ICON_LIST = {
     "plastmetal": "mdi:trash-can-outline",
     "plastmetalmdk": "mdi:trash-can",
     "plastmetalpapir": "mdi:trash-can",
+    "porcelaen": "mdi:glass-fragile",
     "restaffald": "mdi:trash-can",
     "restaffaldmadaffald": "mdi:trash-can",
     "restplast": "mdi:trash-can",
@@ -116,6 +117,7 @@ NAME_LIST = {
     "plastmetal": "Plast & Metal",
     "plastmetalmdk": "Plast, Metal, Mad & Drikkekartoner",
     "plastmetalpapir": "Plast, Metal & Papir",
+    "porcelaen": "Porcelæn",
     "restaffald": "Restaffald",
     "restaffaldmadaffald": "Rest & Madaffald",
     "restplast": "Restaffald & Plast/Madkartoner",
@@ -138,8 +140,9 @@ RE_WORDS = [
     r'(?:2|3|4|6|8)?(\.)?[\s-]?(?:uge k|uge p|uge|ugers)',  # diffenrent ways of uge
     r'(?:to|1|2)[\s-]?(?:delt|kammer)',  # diffenrent ways of  2-delt or 2-kammer
     r'beh\.(,)?', r'\bgl\.', 'beholder', 'dobbeltbeholder', 'spand', '(\d{2} )?tøm', 'villa', 'tømning', 'ekstra', 'havebolig', '5 m3',
-    r'stand(?: p)?', 'andel', 'skel', 'skelordning', 'hver', 'nord', 'syd', 'øst', 'vest', r'sommer(hus)?( \d{2}\+?)?', 'vinter',
+    r'stand(?: p| e)?', 'andel', 'skel', 'skelordning', 'hver', 'nord', 'syd', 'øst', 'vest', r'sommer(hus)?( \d{2}\+?)?', 'vinter',
     r'distrikt (?:[A-Za-z]|\d+)', 'rute [0-9]', 's[0-9]', 'd[0-9]', r'/\d{2}',
+    r'(?:plast|gen|dag)-standplads 2-20 meter',
     ]
 
 RE_RAW = [

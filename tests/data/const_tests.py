@@ -441,6 +441,14 @@ MATERIAL_LIST = {
     ],
     "storskraldogtekstilaffald": [
     ],
+    "porcelaen": [
+        "Porcelæn",
+        "Porcelæn (1 stk.)",
+        "porcelæn",
+        "Porcelæn og keramik",
+        "Porcelæn, keramik og glas",
+        "240 L porcelæn (1 stk.)",
+    ],
     "tekstil": [
         "Tekstil pose (1 stk.)",
         "Tekstilaffald (1 stk.)",

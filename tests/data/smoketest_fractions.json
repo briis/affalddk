@@ -768,5 +768,39 @@
     "pappapir": "240 l beh. papir/pap - metal/plast/drikkekarton",
     "farligtaffald": "Miljøkasse til farligt affald",
     "next_pickup": "Rest & Madaffald"
+  },
+  "kerteminde_2": {
+    "plast": "240 l plast 1-kammer ",
+    "restaffaldmadaffald": "240 l energi 2-kammer ",
+    "pappapirglasmetal": "240 l genbrug 2-kammer ",
+    "next_pickup": "Plast | Rest & Madaffald"
+  },
+  "glostrup_2": {
+    "storskrald": "Storskrald",
+    "haveaffald": "Haveaffald",
+    "jern": "240 L metal",
+    "pap": "770 L pap",
+    "papir": "140 L papir",
+    "glas": "240 L glas",
+    "elektronik": "240 L småt elektronik",
+    "madaffald": "140 L madaffald",
+    "restaffald": "9504: 660 L restaffald uge",
+    "plastmadkarton": "660 L plast, mad- og drikkekartoner",
+    "porcelaen": "140 L porcelæn",
+    "juletrae": "Juletræer",
+    "next_pickup": "Madaffald | Restaffald"
+  },
+  "holbæk_2": {
+    "restaffald": "240L Rest 14.dg Stand E",
+    "metalglas": "240L Glas/Metal 8. uge Stand E",
+    "next_pickup": "Restaffald"
+  },
+  "haderslev_2": {
+    "restaffaldmadaffald": "Mad/Rest",
+    "plast": "Plast",
+    "plastmadkarton": "Mad- og drikkekarton",
+    "pappapir": "Pap/papir",
+    "metalglas": "Metal/glas",
+    "next_pickup": "Rest & Madaffald"
   }
 }

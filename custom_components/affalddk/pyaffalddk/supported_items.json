@@ -202,6 +202,7 @@
         "Genbrug - blåt låg",
         "Genbrug henteordning",
         "Mad- & Drikkekartoner",
+        "Mad- og drikkekarton",
         "Mad- og drikkekartoner",
         "mad- og drikkekartoner plast",
         "Mad-og drikkekarton",
@@ -324,12 +325,14 @@
         "Storskrald og farligt affald"
     ],
     "tekstil": [
-        "Standplads",
         "Tekstil",
         "Tekstil pose",
         "Tekstilaffald",
         "Tekstiler",
         "Tekstilpose",
         "Tekstilposer"
+    ],
+    "porcelaen": [
+        "Porcelæn"
     ]
 }

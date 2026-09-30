@@ -385,6 +385,8 @@ def get_garbage_types(item, municipality, address_id, fail=False):
             return SPECIAL_MATERIALS[special]
 
     fixed_items = clean_fraction_string(item)
+    if len(fixed_items) == 1 and fixed_items[0] == '':
+        return ['not-supported']
     for fixed_item in fixed_items:
         if fixed_item in [non.lower() for non in NON_SUPPORTED_ITEMS]:
             return ['not-supported']
