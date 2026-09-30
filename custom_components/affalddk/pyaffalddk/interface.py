@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 
 from .const import GH_API, DANISH_MONTHS
 MAX_RETRIES = 5
+REQUEST_TIMEOUT = aiohttp.ClientTimeout(total=30)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -139,14 +140,14 @@ class AffaldDKAPIBase:
             params_input = para
 
         if pre_headers:
-            async with session.request('OPTIONS', url, headers=pre_headers) as response:
+            async with session.request('OPTIONS', url, headers=pre_headers, timeout=REQUEST_TIMEOUT) as response:
                 response.raise_for_status()
 
         retry_count = 0
         initial_delay = 0.1
         while retry_count < MAX_RETRIES:
             try:
-                async with session.request(method, url, headers=headers, json=json_input, params=params_input, data=data_input) as response:
+                async with session.request(method, url, headers=headers, json=json_input, params=params_input, data=data_input, timeout=REQUEST_TIMEOUT) as response:
                     if response.status == 200:
                         data = await response.json() if as_json else await response.text()
                         if new_session:

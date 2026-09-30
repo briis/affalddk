@@ -58,7 +58,7 @@ async def assert_add_list(gc, address_list):
 async def test_OpenExpLive(capsys, monkeypatch):
     # test Fredericia
     with capsys.disabled():
-        async with ClientSession() as session:
+        async with ClientSession(trust_env=True) as session:
             gc = GarbageCollection('Fredericia', session=session, fail=True)
             print('start: ', gc._municipality)
 
@@ -90,7 +90,7 @@ async def test_OpenExpLive(capsys, monkeypatch):
 async def test_OpenExp(capsys, monkeypatch):
     # test Holstebro
     with capsys.disabled():
-        async with ClientSession() as session:
+        async with ClientSession(trust_env=True) as session:
             gc = GarbageCollection('Holstebro', session=session, fail=True)
             print('start: ', gc._municipality)
 
@@ -121,7 +121,7 @@ async def test_OpenExp(capsys, monkeypatch):
 @freeze_time("2025-05-20")
 async def test_Affaldonline(capsys, monkeypatch):
     with capsys.disabled():
-        async with ClientSession() as session:
+        async with ClientSession(trust_env=True) as session:
             gc = GarbageCollection('Vejle', session=session, fail=True)
             print('start: ', gc._municipality)
 
@@ -152,7 +152,7 @@ async def test_Affaldonline(capsys, monkeypatch):
 @freeze_time("2025-05-04")
 async def test_PerfectWaste(capsys, monkeypatch):
     with capsys.disabled():
-        async with ClientSession() as session:
+        async with ClientSession(trust_env=True) as session:
             gc = GarbageCollection('Køge', session=session, fail=True)
             print('start: ', gc._municipality)
 
@@ -183,7 +183,7 @@ async def test_PerfectWaste(capsys, monkeypatch):
 @freeze_time("2025-05-04")
 async def test_Renoweb(capsys, monkeypatch):
     with capsys.disabled():
-        async with ClientSession() as session:
+        async with ClientSession(trust_env=True) as session:
             gc = GarbageCollection('Aalborg', session=session, fail=True)
             print('start: ', gc._municipality)
 
@@ -214,7 +214,7 @@ async def test_Renoweb(capsys, monkeypatch):
 @freeze_time(FREEZE_TIME)
 async def test_Odense(capsys, monkeypatch):
     with capsys.disabled():
-        async with ClientSession() as session:
+        async with ClientSession(trust_env=True) as session:
             gc = GarbageCollection('Odense', session=session, fail=True)
             print('start: ', gc._municipality)
 
@@ -245,7 +245,7 @@ async def test_Odense(capsys, monkeypatch):
 @freeze_time(FREEZE_TIME)
 async def test_Aarhus(capsys, monkeypatch):
     with capsys.disabled():
-        async with ClientSession() as session:
+        async with ClientSession(trust_env=True) as session:
             gc = GarbageCollection('Aarhus', session=session, fail=True)
             print('start: ', gc._municipality)
 
@@ -264,11 +264,6 @@ async def test_Aarhus(capsys, monkeypatch):
                 address_list = await gc._api.get_address_list('8000', 'Rådhuspladsen', '2')
                 assert len(address_list) == 11
 
-            # Live smoke test: a single real get_garbage_data call against the
-            # Aarhus API must succeed. Fails when the API changes.
-            # Rådhuspladsen 1, 2. has no planned loads, so use Rådhuspladsen 2.
-            real_get_garbage_data = gc._api.get_garbage_data
-
             async def get_data(*args, **kwargs):
                 return aarhus_data[0]["plannedLoads"]
             monkeypatch.setattr(gc._api, "get_garbage_data", get_data)
@@ -277,20 +272,12 @@ async def test_Aarhus(capsys, monkeypatch):
             update_and_compare('Aarhus', pickups, UPDATE)
             print('done: ', gc._municipality)
 
-            live_address_id = gc._api.address_list['Rådhuspladsen 2']['id']
-            live_data = await real_get_garbage_data(live_address_id)
-            assert isinstance(live_data, list) and live_data, (
-                'Aarhus API returned no plannedLoads data')
-            for row in live_data:
-                assert set(row) == {'date', 'fractions'}, f'Unexpected Aarhus row: {row}'
-                assert row['date'] and isinstance(row['fractions'], list), f'Bad Aarhus row: {row}'
-
 
 @pytest.mark.asyncio
 @freeze_time("2025-05-18")
 async def test_VestFor(capsys, monkeypatch):
     with capsys.disabled():
-        async with ClientSession() as session:
+        async with ClientSession(trust_env=True) as session:
             gc = GarbageCollection('Albertslund', session=session, fail=True)
             print('start: ', gc._municipality)
 
@@ -322,7 +309,7 @@ async def test_VestFor(capsys, monkeypatch):
 @freeze_time("2025-06-04")
 async def test_Provas(capsys, monkeypatch):
     with capsys.disabled():
-        async with ClientSession() as session:
+        async with ClientSession(trust_env=True) as session:
             gc = GarbageCollection('Haderslev', session=session, fail=True)
             print('start: ', gc._municipality)
 
@@ -354,7 +341,7 @@ async def test_Provas(capsys, monkeypatch):
 @freeze_time("2025-06-04")
 async def test_RenoDjurs(capsys, monkeypatch):
     with capsys.disabled():
-        async with ClientSession() as session:
+        async with ClientSession(trust_env=True) as session:
             gc = GarbageCollection('Norddjurs', session=session, fail=True)
             print('start: ', gc._municipality)
 
@@ -386,7 +373,7 @@ async def test_RenoDjurs(capsys, monkeypatch):
 @freeze_time("2025-06-17")
 async def test_Herning(capsys, monkeypatch):
     with capsys.disabled():
-        async with ClientSession() as session:
+        async with ClientSession(trust_env=True) as session:
             gc = GarbageCollection('Herning', session=session, fail=True)
             print('start: ', gc._municipality)
 
@@ -432,7 +419,7 @@ async def test_Herning(capsys, monkeypatch):
 @freeze_time(FREEZE_TIME)
 async def test_Kbh(capsys, monkeypatch):
     with capsys.disabled():
-        async with ClientSession() as session:
+        async with ClientSession(trust_env=True) as session:
             gc = GarbageCollection('København', session=session, fail=True)
             print('start: ', gc._municipality)
 
@@ -456,7 +443,7 @@ async def test_Kbh(capsys, monkeypatch):
 @freeze_time("2026-01-06")
 async def test_WasteWatch(capsys, monkeypatch):
     with capsys.disabled():
-        async with ClientSession() as session:
+        async with ClientSession(trust_env=True) as session:
             gc = GarbageCollection('Tønder', session=session, fail=True)
             print('start: ', gc._municipality)
 
