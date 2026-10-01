@@ -4,6 +4,13 @@ import json
 
 GH_API = b'NDc5RDQwRjQtQjNFMS00MDM4LTkxMzAtNzY0NTMxODhDNzRD'
 
+# Klimadatastyrelsens Adressevælger - replacement for the retired DAWA
+# (api.dataforsyningen.dk, shut down 1 October 2026). The token below is
+# the public demo token documented by KDS.
+AV_ADRESSER = 'https://adressevaelger.dk/adresser'
+AV_ADRESSER_SOEG = 'https://adressevaelger.dk/adresser/soeg'
+AV_TOKEN = 'adressevaelger123'  # noqa: S105 - public demo token, documented by KDS
+
 
 with (Path(__file__).parent / 'supported_items.json').open('r', encoding='utf-8') as f:
     SUPPORTED_ITEMS = json.load(f)

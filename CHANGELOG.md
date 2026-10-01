@@ -1,13 +1,18 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
 
-## Version 3.5.2
+## Version 3.6.0
 
 **Date**: `2026-10-01`
 
+* Migrated address lookups from the retired DAWA service to Klimadatastyrelsens Adressevælger (Aarhus, Odder, Skanderborg and Tønder)
+* Renamed the municipality "Thy" to "Thisted" (existing installs keep working)
+* Added support for the Porcelæn fraction
 * Added long regression test, to test all supported municipalities.
 * Fixed several found missing fractions
-* Aded new Porcelain fraction
+
+
+## Version 3.5.2
 
 
 ---------------------------

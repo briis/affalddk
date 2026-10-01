@@ -60,6 +60,9 @@ class GarbageCollection:
     ) -> None:
         """Initialize the class."""
         self._municipality = municipality
+        # Legacy name: the openexplive provider (Thisted) was listed as
+        # "Thy" before 3.6.0; keep existing installs and fixtures working.
+        self._municipality = 'Thisted' if municipality.lower() == 'thy' else municipality
         self._street = None
         self._house_number = None
         self._api_type = None

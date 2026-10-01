@@ -3,7 +3,7 @@
 """Random-address regression test for pyaffalddk.
 
 Samples a random real address (street, house number, zipcode, city) for
-every supported municipality from dataforsyningen.dk (DAWA), then runs it
+every supported municipality via Klimadatastyrelsens Adressevaelger, then runs it
 through the full GarbageCollection chain: address search -> address
 lookup -> garbage pull.
 
@@ -17,7 +17,7 @@ Purpose:
 The seed defaults to today's date (YYYYMMDD), so a failure can be rerun
 against the same address with --seed. Municipalities in FIXED_ADDRESSES
 (e.g. Odense, which requires per-address online activation) use a pinned
-address instead of sampling. Address sampling is live (DAWA) and
+address instead of sampling. Address sampling is live (AV) and
 provider endpoints are geo-blocked outside Denmark - run from a server
 inside Denmark, like scripts/weekly_api_check.py.
 
@@ -55,7 +55,7 @@ sys.path.append(str(ROOT / 'custom_components' / 'affalddk'))
 from pyaffalddk.api import GarbageCollection  # noqa: E402
 from pyaffalddk.municipalities import MUNICIPALITIES_IDS, MUNICIPALITIES_LIST  # noqa: E402
 
-DAWA = 'https://api.dataforsyningen.dk'
+AV = 'https://adressevaelger.dk'
 ATTEMPT_TIMEOUT = 120
 DEFAULT_RETRIES = 10
 DEFAULT_CONCURRENCY = 5
@@ -68,12 +68,11 @@ FIXED_ADDRESSES = {
     'Odense': ('5000', 'Flakhaven', '2', 'Odense'),
 }
 
-# 'Thy' is the region name the openexplive provider uses (it covers
-# Thisted municipality) and has no entry in MUNICIPALITIES_IDS; the
+# 'Thy' was the old list name for Thisted (kommunekode 0787). The
 # openexplive address search matches on street string + zipcode, so
-# addresses sampled from Thisted (kommunekode 0787) work for it.
+# addresses sampled from Thisted work for it.
 SAMPLING_KODE = {
-    'Thy': '0787',
+    'Thisted': '0787',
 }
 
 # warn_or_fail() in api.py logs:
@@ -139,15 +138,20 @@ class MissingFractionCapture(logging.Handler):
 
 
 async def dawa_get(session, path, params):
-    """GET a DAWA endpoint, returning (json-or-None, error-string)."""
+    """GET an address-service endpoint, returning (json-or-None, error-string).
+
+    DAWA (api.dataforsyningen.dk) was retired 2026-10-01. Street sampling
+    now goes through Klimadatastyrelsens Adressevælger, which has no
+    /vejstykker endpoint; a kommunewide free-text search is used instead.
+    """
     try:
-        async with session.get(f'{DAWA}{path}', params=params,
+        async with session.get(f'{AV}{path}', params=params,
                                timeout=aiohttp.ClientTimeout(total=60)) as resp:
             if resp.status != 200:
-                return None, f'DAWA {path} returned HTTP {resp.status}'
+                return None, f'AV {path} returned HTTP {resp.status}'
             return await resp.json(content_type=None), None
     except Exception as err:  # noqa: BLE001
-        return None, f'DAWA {path} failed: {type(err).__name__}: {err}'
+        return None, f'AV {path} failed: {type(err).__name__}: {err}'
 
 
 async def sample_address(session, kode, street, rng):
@@ -158,16 +162,16 @@ async def sample_address(session, kode, street, rng):
     attempt_address() picks the real address from the provider's response,
     so the sampled address is always one the provider knows.
     """
-    data, err = await dawa_get(session, '/adresser', {
-        'kommunekode': kode, 'vejkode': street['kode'],
-        'struktur': 'mini', 'format': 'json'})
+    data, err = await dawa_get(session, '/adresser/soeg', {
+        'vejnavn': street['vejnavn'], 'postnummer': street['postnr'],
+        'husnummer': str(rng.randint(1, 9)), 'token': 'adressevaelger123'})
     if err:
         return None, err
-    if not data:
-        return None, f"street {street['navn']} has no registered addresses"
-    item = rng.choice(data)
-    return {'street': item['vejnavn'], 'husnr': str(rng.randint(1, 9)),
-            'postnr': item['postnr'], 'city': item['postnrnavn'],
+    fund = [x for x in data.get('fund', []) if x.get('type') == 'adresse']
+    if not fund:
+        return None, f"street {street['vejnavn']} has no registered addresses"
+    return {'street': street['vejnavn'], 'husnr': str(rng.randint(1, 9)),
+            'postnr': street['postnr'], 'city': street['postdistrikt'],
             'digit_search': True}, None
 
 
@@ -220,12 +224,18 @@ async def run_municipality(session, sem, name, kode, args):
             zipcode, street, number, city = fixed
             order = []  # pinned address: no street sampling
         else:
+            # AV has no street listing; a kommunewide free-text search
+            # returns street+postnummer rows (navngivenvejpostnummer) which
+            # serve as the street pool.
             streets, err = await dawa_get(
-                session, '/vejstykker', {'kommunekode': kode, 'format': 'json'})
+                session, '/adresser/soeg', {'tekst': 'a', 'kommunekode': f'{kode:04d}',
+                                            'maksimum': '200', 'token': 'adressevaelger123'})
             if err:
                 return {'status': 'FAIL', 'error': err, 'attempts': 0}
+            streets = [x for x in streets.get('fund', [])
+                       if x.get('type') == 'navngivenvejpostnummer']
             if not streets:
-                return {'status': 'SKIP', 'error': 'DAWA returned no streets',
+                return {'status': 'SKIP', 'error': 'AV returned no streets',
                         'attempts': 0}
 
             # Deterministic shuffled order; a street with no addresses just
