@@ -156,9 +156,15 @@ class GarbageCollection:
     def set_next_event(self, dynamic_next_icon):
         if self.next_events:
             if dt.datetime.now().time() > self.switch_time:
-                _next_pickup = sorted([key for key in self.next_events.keys() if key > self.today])[0]
+                _next_pickup = sorted([key for key in self.next_events.keys() if key > self.today])
             else:
-                _next_pickup = sorted([key for key in self.next_events.keys() if key >= self.today])[0]
+                _next_pickup = sorted([key for key in self.next_events.keys() if key >= self.today])
+            # After the switch time every remaining pickup can be today's
+            # (providers keep listing same-day pickups as upcoming) - fall
+            # back to today's events rather than crashing.
+            if not _next_pickup:
+                _next_pickup = sorted(self.next_events.keys())
+            _next_pickup = _next_pickup[0]
 
             _next_key = self.next_events[_next_pickup]['key']
             _next_description = self.next_events[_next_pickup]['description']

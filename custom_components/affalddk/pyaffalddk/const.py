@@ -137,12 +137,12 @@ NAME_LIST = {
 
 STRIPS = [
         'med 14-dages tømning ved helårshuse', '– tømmes hver 2. uge', 'tømning af',
-        'rækkehuse', 'sommerhustømning', 'henteordning', 'beholder til', '1-rums',
+        'rækkehuse', 'sommerhustømning', 'ved sommerhuse', 'henteordning', 'beholder til', '1-rums',
         'egenløsning', 'en-familie', 'enfamiliehus', 'm. sommertømning', "fælles",
         '-skel 0-2 meter', 'afstand over 5 meter', 'Jern/Elektronik/Hårde hvidevarer', ' ?', '**',
 ]
 RE_WORDS = [
-    r'14(\.)?[\s-]?(?:dags|dage|dages|dg)(\.)?',  # diffenrent ways of 14. dags
+    r'(med )?14(\.)?[\s-]?(?:dags|dage|dages|dg)(\.)?',  # diffenrent ways of 14. dags
     r'\b\d+/\d+\.\s*uge\b', # fixing https://github.com/briis/affalddk/issues/373 looking for "2/4. uge" and "8/12. uge"
     r'(?:2|3|4|6|8)?(\.)?[\s-]?(?:uge k|uge p|uge|ugers)',  # diffenrent ways of uge
     r'(?:to|1|2)[\s-]?(?:delt|kammer|kammer-sh)',  # diffenrent ways of  2-delt or 2-kammer

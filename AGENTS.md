@@ -51,7 +51,7 @@ tests/
 └── data/                          Fixtures: *.data (json/ics), *.p (pickle),
                                    compare_data.p, smoketest_garbage_data.p,
                                    smoketest_fractions.json, const_tests.py
-scripts/                           Dev helpers (lint, setup, upgrade, live probe,
+scripts/                           Dev helpers (async_test_module.py — live probe,
                                    weekly_api_check.py — live API check, see "CI",
                                    random_regression.py — random-address sweep)
 .github/workflows/                 CI (see "CI" below)

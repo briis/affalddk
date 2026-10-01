@@ -6,7 +6,7 @@
 **Date**: `2026-10-01`
 
 * Migrated address lookups from the retired DAWA service to Klimadatastyrelsens Adressevælger (Aarhus, Odder, Skanderborg and Tønder)
-* Renamed the municipality "Thy" to "Thisted" (existing installs keep working)
+* Renamed  "Thy" to "Thisted" (existing installs keep working)
 * Added support for the Porcelæn fraction
 * Added long regression test, to test all supported municipalities.
 * Fixed several found missing fractions

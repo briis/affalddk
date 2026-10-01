@@ -228,7 +228,7 @@ async def run_municipality(session, sem, name, kode, args):
             # returns street+postnummer rows (navngivenvejpostnummer) which
             # serve as the street pool.
             streets, err = await dawa_get(
-                session, '/adresser/soeg', {'tekst': 'a', 'kommunekode': f'{kode:04d}',
+                session, '/adresser/soeg', {'tekst': 'a', 'kommunekode': f'{int(kode):04d}',
                                             'maksimum': '200', 'token': 'adressevaelger123'})
             if err:
                 return {'status': 'FAIL', 'error': err, 'attempts': 0}
