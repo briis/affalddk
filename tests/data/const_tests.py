@@ -198,7 +198,6 @@ SUPPORTED_ITEMS = {
     ],
     "tekstil": [
         "Tekstiler",
-        "Standplads",
         "Tekstilaffald",
         "Tekstil",
         "Tekstilposer (1 stk.)",
@@ -216,7 +215,6 @@ MATERIAL_LIST = {
         "Batterier i pose på låg (1 stk.)",
     ],
     "dagrenovation": [
-        "240 l. container 1 x ugentligt (12 stk.)",
         "Dag",
     ],
     "elektronik": [
@@ -440,6 +438,14 @@ MATERIAL_LIST = {
         "Stort elektronik",
     ],
     "storskraldogtekstilaffald": [
+    ],
+    "porcelaen": [
+        "Porcelæn",
+        "Porcelæn (1 stk.)",
+        "porcelæn",
+        "Porcelæn og keramik",
+        "Porcelæn, keramik og glas",
+        "240 L porcelæn (1 stk.)",
     ],
     "tekstil": [
         "Tekstil pose (1 stk.)",

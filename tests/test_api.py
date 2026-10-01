@@ -144,6 +144,29 @@ async def test_next_of_same(capsys, monkeypatch):
             assert pickups['next_pickup'].date == dt.date(2025, 6, 5)
 
 
+@pytest.mark.asyncio
+@freeze_time("2025-05-22 15:30:00")
+async def test_next_pickup_all_today(capsys, monkeypatch):
+    """After switch time, pickups listed only for today must not crash."""
+    with capsys.disabled():
+        async with ClientSession() as session:
+            gc = GarbageCollection('Holstebro', session=session, fail=True)
+
+            async def get_data(*args, **kwargs):
+                # Every pickup is today (2025-05-22); the provider still
+                # lists them as upcoming after the switch time, which is
+                # the case that crashed set_next_event().
+                return {'collections': [
+                    {'fraction': {'name': 'Rest/Madaffald'}, 'dates': ['2025-05-22']},
+                    {'fraction': {'name': 'Papir/Pap'}, 'dates': ['2025-05-22']},
+                ]}
+            monkeypatch.setattr(gc._api, "get_garbage_data", get_data)
+
+            pickups = await gc.get_pickup_data('1111')
+            assert pickups['next_pickup'].date == dt.date(2025, 5, 22)
+            assert pickups['next_pickup'].group == ['pappapir', 'restaffaldmadaffald']
+
+
 def test_type_from_material_cleaning(capsys, monkeypatch):
     with capsys.disabled():
         for category, vals in const_tests.MATERIAL_LIST.items():

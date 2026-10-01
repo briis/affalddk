@@ -1,6 +1,36 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
 
+## Version 3.6.0
+
+**Date**: `2026-10-01`
+
+* Migrated address lookups from the retired DAWA service to Klimadatastyrelsens Adressevælger (Aarhus, Odder, Skanderborg and Tønder)
+* Renamed  "Thy" to "Thisted" (existing installs keep working)
+* Added support for the Porcelæn fraction
+* Added long regression test, to test all supported municipalities.
+* Fixed several found missing fractions
+* Fixed next_pickup crash when the only remaining pickups are today (seen in Ikast-Brande after 15:00)
+
+
+## Version 3.5.2
+
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
+
+## Version 3.5.1
+
+**Date**: `2026-09-29`
+
+### Changes
+* changed API, which means you need to delete and add old sensors for these 
+  * Fix API change in Aarhus from September 2026
+
+
 ## Version 3.5.0
 
 **Date**: `2026-08-31`
@@ -9,12 +39,6 @@
 * Added container_count attribute for PerfectWaste by @MagnusErler ([#451](https://github.com/briis/affalddk/pull/451))
 * Fixed calendar trigger not firing by @MrAdam ([#452](https://github.com/briis/affalddk/pull/452))
 * Add English localisation for waste types @ricobach ([#453](https://github.com/briis/affalddk/pull/453))
-
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 
 ## Version 3.4.2
