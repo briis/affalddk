@@ -490,3 +490,30 @@ def test_parse_affaldonline_pdf(capsys):
         assert calendar[dt.date(2026, 1, 21)] == {'Storskrald'}
         assert calendar[dt.date(2026, 3, 18)] == {'Haveaffald'}
         assert calendar[dt.date(2026, 6, 12)] == {'Pap', 'Pap/papir', 'Plast/mad- og drikkekarton', 'Restaffald'}
+
+
+@pytest.mark.asyncio
+async def test_affaldonline_pdf_cache(capsys, monkeypatch):
+    with capsys.disabled():
+        async with ClientSession() as session:
+            gc = GarbageCollection('Sorø', session=session)
+            calls = []
+
+            async def get_pdf_calendar(address_id, year):
+                calls.append(year)
+                return {dt.date(year, 1, 5): {'Restaffald'}}
+            monkeypatch.setattr(gc._api, "get_pdf_calendar", get_pdf_calendar)
+
+            with freeze_time("2026-10-01"):
+                assert len(await gc._api.get_garbage_data('x')) == 2
+                await gc._api.get_garbage_data('x')
+                assert calls == [2026, 2027]
+            with freeze_time("2026-10-07"):
+                await gc._api.get_garbage_data('x')
+                assert calls == [2026, 2027]
+            with freeze_time("2026-10-08"):
+                await gc._api.get_garbage_data('x')
+                assert calls == [2026, 2027, 2026, 2027]
+            with freeze_time("2027-01-02"):
+                await gc._api.get_garbage_data('x')
+                assert calls[-2:] == [2027, 2028]

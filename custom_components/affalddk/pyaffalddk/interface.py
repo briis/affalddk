@@ -770,24 +770,37 @@ def parse_affaldonline_pdf(pdf, year):
 
 
 class AffaldOnlinePdfAPI(AffaldOnlineWeb):
-    # Affald online web calendar, where the only data source is a PDF per year
+    # Affald online web calendar, where the only data source is a PDF per year.
+    # The PDF is made for print and rarely changes, so each parsed year is cached
+    # and only fetched again after PDF_REFRESH (the server sends no ETag/Last-Modified).
+    PDF_REFRESH = dt.timedelta(days=7)
 
-    async def get_garbage_data(self, address_id):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.pdf_cache = {}  # (address_id, year) -> (fetch date, {date: {fraction}})
+
+    async def get_pdf_calendar(self, address_id, year):
         url = self.url_base + '/showInfo.php'
         data = await self.async_postform_request(url, para={'values': address_id}, as_json=False)
         match = re.search(r"showToemCal\.php\?([^'\"]+)", data)
         if not match:
             raise AffaldDKNoConnection("No calendar link in showInfo.php response")
-        params = dict(parse_qsl(match.group(1)))
+        params = dict(parse_qsl(match.group(1)), year=str(year))
+        async with self.session.get(self.url_base + '/showToemCal.php', params=params, timeout=REQUEST_TIMEOUT) as response:
+            pdf = await response.read()
+        if response.status != 200 or not pdf.startswith(b'%PDF'):
+            return {}  # next year's calendar is published late in the year
+        return parse_affaldonline_pdf(pdf, year)
 
+    async def get_garbage_data(self, address_id):
+        today = dt.date.today()
         results = []
-        for year in [self.today.year, self.today.year + 1]:
-            params['year'] = str(year)
-            async with self.session.get(self.url_base + '/showToemCal.php', params=params, timeout=REQUEST_TIMEOUT) as response:
-                pdf = await response.read()
-            if response.status != 200 or not pdf.startswith(b'%PDF'):
-                continue  # next year's calendar is published late in the year
-            for date, fractions in parse_affaldonline_pdf(pdf, year).items():
+        for year in [today.year, today.year + 1]:
+            fetched, calendar = self.pdf_cache.get((address_id, year), (None, None))
+            if fetched is None or today - fetched >= self.PDF_REFRESH:
+                calendar = await self.get_pdf_calendar(address_id, year)
+                self.pdf_cache[(address_id, year)] = (today, calendar)
+            for date, fractions in calendar.items():
                 for fraction in fractions:
                     results.append({'Materiel': fraction, 'Tømningsdag': date})
         return results
