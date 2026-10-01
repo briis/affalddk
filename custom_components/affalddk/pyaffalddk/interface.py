@@ -5,6 +5,7 @@ import datetime as dt
 import logging
 import re
 import json
+import zlib
 from urllib.parse import urlparse, parse_qsl, quote
 from bs4 import BeautifulSoup
 
@@ -709,6 +710,87 @@ class AffaldOnlineWeb(AffaldDKAPIBase):
             except ValueError:
                 continue
         return min(candidates) if candidates else None
+
+
+PDF_MONTHS = ["januar", "februar", "marts", "april", "maj", "juni", "juli",
+              "august", "september", "oktober", "november", "december"]
+PDF_WEEKDAYS = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]
+PDF_STREAM = re.compile(rb"<<([^<>]*?)>>\s*stream\r?\n(.*?)endstream", re.S)
+PDF_TEXT = re.compile(r"BT ([\d.]+) ([\d.]+) Td \((.*)\) Tj ET")
+PDF_ICON = re.compile(r"[\d.]+ 0 0 [\d.]+ ([\d.]+) ([\d.]+) cm /(I\d+) Do")
+
+
+def parse_affaldonline_pdf(pdf, year):
+    """Parse an affaldonline.dk showToemCal.php PDF into {date: {fraction, ...}}.
+
+    The fraction of a pickup is only shown as icon images next to the date.
+    The legend at the bottom puts the same icons next to the fraction name,
+    so icon name -> fraction is read from rows where icons and label share a baseline.
+    """
+    ops = []
+    for m in PDF_STREAM.finditer(pdf):
+        if b"/FlateDecode" not in m.group(1) or b"/Subtype" in m.group(1):
+            continue
+        try:
+            content = zlib.decompress(m.group(2)).decode("latin1")
+        except zlib.error:
+            continue
+        for line in content.splitlines():
+            if text := PDF_TEXT.search(line):
+                ops.append(("T", float(text[1]), float(text[2]), text[3].strip()))
+            elif icon := PDF_ICON.search(line):
+                ops.append(("I", float(icon[1]), float(icon[2]), icon[3]))
+
+    icon_fraction, pending = {}, []
+    for kind, _x, y, value in ops:
+        if kind == "I":
+            pending.append((y, value))
+            continue
+        same_row = [name for icon_y, name in pending if abs(icon_y - y) < 4]
+        if same_row and value.lower() not in PDF_WEEKDAYS and not value.isdigit():
+            icon_fraction.update(dict.fromkeys(same_row, value))
+        pending = []
+
+    headers, current, weekday, result = [], None, None, {}
+    for kind, x, y, value in ops:
+        if kind == "T" and value.lower() in PDF_MONTHS:
+            headers = [h for h in headers if abs(h[1] - y) < 1]
+            headers.append((x, y, PDF_MONTHS.index(value.lower()) + 1))
+        elif kind == "T" and value.lower() in PDF_WEEKDAYS:
+            weekday = PDF_WEEKDAYS.index(value.lower())
+        elif kind == "T" and value.isdigit() and headers and weekday is not None:
+            month = min(headers, key=lambda h: abs(h[0] - x))[2]
+            date = dt.date(year, month, int(value))
+            if date.weekday() != weekday:
+                raise ValueError(f"Weekday mismatch for {date} in affaldonline PDF")
+            current, weekday = (date, y), None
+        elif kind == "I" and current and abs(current[1] - y) < 4 and value in icon_fraction:
+            result.setdefault(current[0], set()).add(icon_fraction[value])
+    return result
+
+
+class AffaldOnlinePdfAPI(AffaldOnlineWeb):
+    # Affald online web calendar, where the only data source is a PDF per year
+
+    async def get_garbage_data(self, address_id):
+        url = self.url_base + '/showInfo.php'
+        data = await self.async_postform_request(url, para={'values': address_id}, as_json=False)
+        match = re.search(r"showToemCal\.php\?([^'\"]+)", data)
+        if not match:
+            raise AffaldDKNoConnection("No calendar link in showInfo.php response")
+        params = dict(parse_qsl(match.group(1)))
+
+        results = []
+        for year in [self.today.year, self.today.year + 1]:
+            params['year'] = str(year)
+            async with self.session.get(self.url_base + '/showToemCal.php', params=params, timeout=REQUEST_TIMEOUT) as response:
+                pdf = await response.read()
+            if response.status != 200 or not pdf.startswith(b'%PDF'):
+                continue  # next year's calendar is published late in the year
+            for date, fractions in parse_affaldonline_pdf(pdf, year).items():
+                for fraction in fractions:
+                    results.append({'Materiel': fraction, 'Tømningsdag': date})
+        return results
 
 
 class IkastBrandeAPI(AffaldDKAPIBase):

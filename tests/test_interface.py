@@ -3,10 +3,11 @@ import pytest
 from freezegun import freeze_time
 from aiohttp import ClientSession
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
-from custom_components.affalddk.pyaffalddk.interface import split_housenumber
+from custom_components.affalddk.pyaffalddk.interface import split_housenumber, parse_affaldonline_pdf
 from pathlib import Path
 import pickle
 import json
+import datetime as dt
 import os
 
 
@@ -476,3 +477,16 @@ def test_split_housenumber(capsys):
         assert split_housenumber('12E') == (12, 'E')
         assert split_housenumber('12') == (12, '')
         assert split_housenumber('12, 2.tv') == (12, '2.tv')
+
+
+def test_parse_affaldonline_pdf(capsys):
+    with capsys.disabled():
+        # Sorø Rådhus, Rådhusvej 8, 4180 Sorø
+        pdf = (datadir/'soroe_raadhus_2026.pdf').read_bytes()
+        calendar = parse_affaldonline_pdf(pdf, 2026)
+        assert len(calendar) == 91
+        assert calendar[dt.date(2026, 1, 3)] == {'Plast/mad- og drikkekarton', 'Restaffald'}
+        assert calendar[dt.date(2026, 1, 16)] == {'Glas', 'Metal', 'Plast/mad- og drikkekarton', 'Restaffald'}
+        assert calendar[dt.date(2026, 1, 21)] == {'Storskrald'}
+        assert calendar[dt.date(2026, 3, 18)] == {'Haveaffald'}
+        assert calendar[dt.date(2026, 6, 12)] == {'Pap', 'Pap/papir', 'Plast/mad- og drikkekarton', 'Restaffald'}
