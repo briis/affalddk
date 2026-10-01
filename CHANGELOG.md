@@ -10,6 +10,7 @@
 * Added support for the Porcelæn fraction
 * Added long regression test, to test all supported municipalities.
 * Fixed several found missing fractions
+* Fixed next_pickup crash when the only remaining pickups are today (seen in Ikast-Brande after 15:00)
 
 
 ## Version 3.5.2
