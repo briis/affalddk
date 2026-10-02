@@ -30,7 +30,8 @@ async def main() -> None:
     """Async test module."""
     parser = argparse.ArgumentParser(description="Async test module")
 
-    parser.add_argument("municipality", help="The name of the municipality")
+    parser.add_argument("municipality", nargs="?",
+                        help="The name of the municipality")
     parser.add_argument("--municipalities",
                         action="store_true", help="list municipalities")
     parser.add_argument("-a", "--address_id", type=str, help="address id")
@@ -44,6 +45,9 @@ async def main() -> None:
     parser.add_argument("--delete", action="store_true", help="delete data in smoketest")
 
     args = parser.parse_args()
+
+    if not args.municipalities and not args.municipality:
+        parser.error("the following arguments are required: municipality")
 
     logging.basicConfig(level=logging.DEBUG)
     logging.getLogger("ical").setLevel(logging.WARNING)

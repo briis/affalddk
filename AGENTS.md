@@ -22,8 +22,10 @@ python scripts/async_test_module.py --municipalities   # list municipalities
 python scripts/weekly_api_check.py [--notify <webhook-url>]
 ```
 
-Environment: conda env `pyaffald` from `environment.yaml` (python 3.12,
-aiohttp, pytest, pytest-asyncio, freezegun, beautifulsoup4, ical, ruff).
+Environment: uv (`uv sync`, deps in `pyproject.toml`, locked by `uv.lock`) —
+CI uses it too. A standalone conda env with the same packages is kept at
+`scripts/conda_env.yaml` for local mamba users (python 3.12, aiohttp,
+pytest, pytest-asyncio, freezegun, requests, beautifulsoup4, ical, ruff).
 Ruff config lives in `pyproject.toml` (`E, F, T, B, S`; `T201`, `S101`,
 `E501`, `B006` ignored — prints and asserts are fine here).
 
@@ -53,7 +55,9 @@ tests/
                                    smoketest_fractions.json, const_tests.py
 scripts/                           Dev helpers (async_test_module.py — live probe,
                                    weekly_api_check.py — live API check, see "CI",
-                                   random_regression.py — random-address sweep)
+                                   random_regression.py — random-address sweep,
+                                   conda_env.yaml — standalone conda env,
+                                   README.md — setup + usage)
 .github/workflows/                 CI (see "CI" below)
 ```
 

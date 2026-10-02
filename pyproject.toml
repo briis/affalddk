@@ -1,3 +1,30 @@
+[project]
+name = "affalddk-dev"
+version = "0.0.0"
+requires-python = ">=3.12"
+# Runtime deps of the pyaffalddk library. The repo is not packaged (see
+# [tool.uv] below); this is only a dependency manifest for uv/pip.
+dependencies = [
+    "aiohttp",
+    "beautifulsoup4",
+    "ical",
+]
+
+[dependency-groups]
+# Test/lint tooling: `uv sync` installs project deps + this group by default.
+# Use `uv sync --no-dev` for runtime deps only.
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "freezegun",
+    "ruff",
+    "requests",
+]
+
+[tool.uv]
+# Not a distributable package: uv syncs only the dependencies above.
+package = false
+
 [tool.ruff]
 lint.select = ["E", "F", "T", "B", "S"]
 lint.ignore = ["T201", "S101", "E501", "B006"]
