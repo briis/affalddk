@@ -61,6 +61,9 @@ class GarbageCollection:
     ) -> None:
         """Initialize the class."""
         self._municipality = municipality
+        # Legacy name: the openexplive provider (Thisted) was listed as
+        # "Thy" before 3.6.0; keep existing installs and fixtures working.
+        self._municipality = 'Thisted' if municipality.lower() == 'thy' else municipality
         self._street = None
         self._house_number = None
         self._api_type = None
@@ -154,9 +157,15 @@ class GarbageCollection:
     def set_next_event(self, dynamic_next_icon):
         if self.next_events:
             if dt.datetime.now().time() > self.switch_time:
-                _next_pickup = sorted([key for key in self.next_events.keys() if key > self.today])[0]
+                _next_pickup = sorted([key for key in self.next_events.keys() if key > self.today])
             else:
-                _next_pickup = sorted([key for key in self.next_events.keys() if key >= self.today])[0]
+                _next_pickup = sorted([key for key in self.next_events.keys() if key >= self.today])
+            # After the switch time every remaining pickup can be today's
+            # (providers keep listing same-day pickups as upcoming) - fall
+            # back to today's events rather than crashing.
+            if not _next_pickup:
+                _next_pickup = sorted(self.next_events.keys())
+            _next_pickup = _next_pickup[0]
 
             _next_key = self.next_events[_next_pickup]['key']
             _next_description = self.next_events[_next_pickup]['description']
@@ -386,6 +395,8 @@ def get_garbage_types(item, municipality, address_id, fail=False):
             return SPECIAL_MATERIALS[special]
 
     fixed_items = clean_fraction_string(item)
+    if len(fixed_items) == 1 and fixed_items[0] == '':
+        return ['not-supported']
     for fixed_item in fixed_items:
         if fixed_item in [non.lower() for non in NON_SUPPORTED_ITEMS]:
             return ['not-supported']

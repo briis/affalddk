@@ -9,7 +9,7 @@ import zlib
 from urllib.parse import urlparse, parse_qsl, quote
 from bs4 import BeautifulSoup
 
-from .const import GH_API, DANISH_MONTHS
+from .const import AV_ADRESSER, AV_ADRESSER_SOEG, AV_TOKEN, GH_API, DANISH_MONTHS
 MAX_RETRIES = 5
 REQUEST_TIMEOUT = aiohttp.ClientTimeout(total=30)
 
@@ -74,31 +74,74 @@ class AffaldDKAPIBase:
             return self.address_list[address_name]['id'], address_name
         return None, None
 
-        self.url_search = "https://api.dataforsyningen.dk/adresser"
+    async def get_av_address_list(self, zipcode, street, house_number, code=None):
+        """Address search through Klimadatastyrelsens Adressevælger.
 
-    async def get_df_address_list(self, code, zipcode, street, house_number):
-        url_search = "https://api.dataforsyningen.dk/adresser"
-        para = {'kommunekode': code, 'q': f'{street} {house_number}'.strip(), 'struktur': 'mini'}
-        data = await self.async_get_request(url_search, para=para)
+        Replaces the retired DAWA service. The AV search is relevance-based
+        and caps at 200 hits (maksimum), so a street-wide search returns the
+        most relevant addresses rather than every address on the street.
+        """
+        para = {
+            'vejnavn': street,
+            'postnummer': str(zipcode),
+            'maksimum': '200',
+            'token': AV_TOKEN,
+        }
+        if house_number:
+            para['husnummer'] = house_number
+        if code is not None:
+            para['kommunekode'] = f'{code:04d}'
+        data = await self.async_get_request(AV_ADRESSER_SOEG, para=para)
         self.address_list = {}
-        for item in data:
-            if str(zipcode) in item['postnr']:
-                self.update_address_list(item, 'betegnelse', 'id')
+        for item in data.get('fund', []):
+            if item.get('type') != 'adresse':
+                continue
+            self.update_address_list(item, 'titel', 'id')
         return list(self.address_list.keys())
 
+    async def get_av_item(self, address_id):
+        """Look up one DAR adresse by id through the Adressevælger."""
+        url = f'{AV_ADRESSER}/{address_id}'
+        data = await self.async_get_request(url, para={'token': AV_TOKEN})
+        return data.get('adresse', {})
+
+    async def get_av_kvhx(self, address_id):
+        """Build the 19-char kvhx key from Adressevælger id-lookup fields.
+
+        Layout: kommunekode(4) vejkode(4) husnr(4) etage(3) doer(4),
+        right-justified in each field with '_' padding, blank fields empty.
+        """
+        adresse = await self.get_av_item(address_id)
+        husnummer = adresse.get('husnummer', {}) or {}
+        komdel = husnummer.get('navngivenvejkommunedel', {}) or {}
+        kode = komdel.get('kommune') or ''
+        vejkode = komdel.get('vejkode') or ''
+        husnr = husnummer.get('husnummertekst') or ''
+        etage = adresse.get('etagebetegnelse') or ''
+        doer = adresse.get('doerbetegnelse') or ''
+        return (f'{kode:_>4}{vejkode:_>4}{husnr:_>4}{etage:_>3}{doer:_>4}'), adresse
+
     async def get_item(self, code, address_id):
-        url_search = "https://api.dataforsyningen.dk/adresser"
-        para = {'kommunekode': code, 'id': address_id, 'struktur': 'mini'}
-        row = await self.async_get_request(url_search, para=para)
-        return row[0]
+        """Address attributes by id, via the Adressevælger.
+
+        Returns the flat keys the provider backends expect (DAWA mini
+        naming): husnr, vejnavn, postnr.
+        """
+        adresse = await self.get_av_item(address_id)
+        husnummer = adresse.get('husnummer', {}) or {}
+        postnummer = husnummer.get('postnummer', {}) or {}
+        return {
+            'husnr': husnummer.get('husnummertekst'),
+            'vejnavn': husnummer.get('vejnavn'),
+            'postnr': postnummer.get('postnr'),
+        }
 
     async def get_kvhx(self, code, address_name):
-        url_search = "https://api.dataforsyningen.dk/adresser"
+        """Build the kvhx key for an address name, via the Adressevælger."""
         item = self.address_list.get(address_name)
         if item:
-            para = {'kommunekode': code, 'id': item['id']}
-            row = await self.async_get_request(url_search, para=para)
-            return row[0]["kvhx"], address_name
+            kvhx, _adresse = await self.get_av_kvhx(item['id'])
+            return kvhx, address_name
 
     def update_address_list(self, item, name_key, id_key):
         name = clean_name(item[name_key])
@@ -878,15 +921,18 @@ class RenoSydAPI(AffaldDKAPIBase):
         self.url_base = "https://skoda-selvbetjeningsapi.renosyd.dk/api/v1"
 
     async def get_address_list(self, zipcode, street, house_number):
-        return await self.get_df_address_list(self.municipality_id, zipcode, street, house_number)
+        return await self.get_av_address_list(zipcode, street, house_number)
 
     async def get_address(self, address_name):
-        kvhx, address_name = await self.get_kvhx(self.municipality_id, address_name)
-        if kvhx:
-            url = self.url_base + f'/adresser/{kvhx}/standpladser'
-            data = await self.async_get_request(url)
-            if data:
-                return data[0]['nummer'], address_name
+        address_id = self.address_list.get(address_name, {}).get('id')
+        if not address_id:
+            return None, None
+        kvhx, adresse = await self.get_av_kvhx(address_id)
+        url = self.url_base + f'/adresser/{kvhx}/standpladser'
+        data = await self.async_get_request(url)
+        if data:
+            return data[0]['nummer'], address_name
+        return None, None
 
     async def get_garbage_data(self, address_id):
         url = f"{self.url_base}/toemmekalender?nummer={address_id}"
@@ -899,10 +945,9 @@ class AarhusAffaldAPI(AffaldDKAPIBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.url_data = "https://portal-api.kredslob.dk/api/calendar/address/"
-        self.url_search = "https://api.dataforsyningen.dk/adresser"
 
     async def get_address_list(self, zipcode, street, house_number):
-        return await self.get_df_address_list(751, zipcode, street, house_number)
+        return await self.get_av_address_list(zipcode, street, house_number)
 
     async def get_garbage_data(self, address_id):
         url = f"{self.url_data}{address_id}"
@@ -986,10 +1031,12 @@ class WasteWatchAPI(AffaldDKAPIBase):
         self.url_base = f"https://wastewatch.forsyningonline.dk/prod/{self.provider_id}"
 
     async def get_address_list(self, zipcode, street, house_number):
-        return await self.get_df_address_list(self.municipality_id, zipcode, street, house_number)
+        return await self.get_av_address_list(zipcode, street, house_number)
 
     async def get_address(self, address_name):
-        address_id = self.address_list.get(address_name)['id']
+        address_id = self.address_list.get(address_name, {}).get('id')
+        if not address_id:
+            return None, None
         return address_id, address_name
 
     async def get_tonfor_url(self, road, number, letter, zipcode):

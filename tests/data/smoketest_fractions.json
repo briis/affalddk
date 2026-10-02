@@ -351,12 +351,6 @@
     "papirglasmetalplast": "PP/GM 240L 2-delt 4uge",
     "next_pickup": "Plast & Madkarton | Rest & Madaffald"
   },
-  "morsø_1": {
-    "restaffaldmadaffald": "240 L Restaffald og Madaffald 26 tøm",
-    "plast": "240 L Plast - Mad- & Drikkekartoner 13 tøm",
-    "pappapir": "240 L Papir og Pap - Metal og Glas 13 tøm",
-    "next_pickup": "Rest & Madaffald"
-  },
   "rebild_1": {
     "pappi": "240L Genbrug",
     "genbrug": "Ekstra 240 L genbrugscontainer",
@@ -742,5 +736,114 @@
     "restaffaldmadaffald": "Mad/Rest",
     "plastmadkarton": "Plast/mad- og drikkekarton",
     "next_pickup": "Pap, Papir, Glas & Metal"
+  },
+  "frederiksberg_2": {
+    "pap": "Pap",
+    "restaffald": "Restaffald",
+    "jern": "Metal",
+    "tekstil": "Tekstilaffald",
+    "plastmadkarton": "Plast/ Mad- og drikkekartoner",
+    "madaffald": "Madaffald",
+    "papir": "Papir",
+    "elektronik": "Småt elektronik",
+    "next_pickup": "Pap"
+  },
+  "morsø_1": {
+    "restaffaldmadaffald": "240 L Restaffald og Madaffald 26 tøm",
+    "plast": "240 L Plast - Mad- & Drikkekartoner 13 tøm",
+    "plastmadkarton": "240 L Plast - Mad- & Drikkekartoner 13 tøm",
+    "pappapir": "240 L Papir og Pap - Metal og Glas 13 tøm",
+    "metalglas": "240 L Papir og Pap - Metal og Glas 13 tøm",
+    "next_pickup": "Rest & Madaffald"
+  },
+  "morsø_2": {
+    "restaffald": "400 L Restaffald 52 tøm",
+    "madaffald": "240 L Madaffald 52 tøm",
+    "metalglas": "240 L Metal og Glas 26 tøm",
+    "plastmadkarton": "600 L Plast - Mad- & Drikkekartoner 26 tøm",
+    "next_pickup": "Madaffald | Metal & Glas | Plast & Madkarton | Restaffald"
+  },
+  "kalundborg_1": {
+    "restaffaldmadaffald": "370 l beh. rest/mad - ny",
+    "pappapir": "240 l beh. papir/pap - metal/plast/drikkekarton",
+    "farligtaffald": "Miljøkasse til farligt affald",
+    "next_pickup": "Rest & Madaffald"
+  },
+  "kerteminde_2": {
+    "plast": "240 l plast 1-kammer ",
+    "restaffaldmadaffald": "240 l energi 2-kammer ",
+    "pappapirglasmetal": "240 l genbrug 2-kammer ",
+    "next_pickup": "Plast | Rest & Madaffald"
+  },
+  "glostrup_2": {
+    "storskrald": "Storskrald",
+    "haveaffald": "Haveaffald",
+    "jern": "240 L metal",
+    "pap": "770 L pap",
+    "papir": "140 L papir",
+    "glas": "240 L glas",
+    "elektronik": "240 L småt elektronik",
+    "madaffald": "140 L madaffald",
+    "restaffald": "9504: 660 L restaffald uge",
+    "plastmadkarton": "660 L plast, mad- og drikkekartoner",
+    "porcelaen": "140 L porcelæn",
+    "juletrae": "Juletræer",
+    "next_pickup": "Madaffald | Restaffald"
+  },
+  "holbæk_2": {
+    "restaffald": "240L Rest 14.dg Stand E",
+    "metalglas": "240L Glas/Metal 8. uge Stand E",
+    "next_pickup": "Restaffald"
+  },
+  "haderslev_2": {
+    "restaffaldmadaffald": "Mad/Rest",
+    "plast": "Plast",
+    "plastmadkarton": "Mad- og drikkekarton",
+    "pappapir": "Pap/papir",
+    "metalglas": "Metal/glas",
+    "next_pickup": "Rest & Madaffald"
+  },
+  "lolland_2": {
+    "restaffald": "Restaffald",
+    "madaffald": "Madaffald",
+    "pappapir": "Papir/småt pap",
+    "plastmadkarton": "Plast og mad- & drikkekartoner",
+    "metalglas": "Glas/metal",
+    "storskraldogfarligtaffald": "Storskrald og farligt affald - hvis du har bestilt",
+    "next_pickup": "Madaffald | Restaffald"
+  },
+  "billund_2": {
+    "restaffald": "Fælles Restaffald container 770L/14 u.takst",
+    "madaffald": "Fælles Madaffald 90L/14 u. takst",
+    "pappapir": "Fælles Genbrugsbeholder PP-240L/6uge u. takst",
+    "plastmdkglasmetal": "Fælles Genbrugsbeholder PMDK/MG-240L/3uge u.takst",
+    "next_pickup": "Restaffald"
+  },
+  "kerteminde_3": {
+    "dagrenovation": "Dag-Skel 0-2 meter",
+    "genbrug": "Gen-Skel 0-2 meter",
+    "plast": "Plast-Skel 0-2 meter",
+    "restaffaldmadaffald": "240 l energi 2-kammer - SH ",
+    "pappapirglasmetal": "240 l genbrug 2-kammer SH ",
+    "next_pickup": "Dagrenovation | Plast | Rest & Madaffald"
+  },
+  "glostrup_3": {
+    "storskrald": "Storskrald",
+    "haveaffald": "Haveaffald",
+    "jern": "240 L metal",
+    "pap": "1000 L pap",
+    "papir": "660 L papir",
+    "glas": "240 L glas",
+    "elektronik": "660 L småt elektronik",
+    "madaffald": "400 L madaffald",
+    "plastmadkarton": "660 L plast, mad- og drikkekartoner",
+    "restaffald": "9830: 660 L restaffald uge - institutioner",
+    "juletrae": "Juletræer",
+    "next_pickup": "Pap"
+  },
+  "varde_2": {
+    "restaffaldmadaffald": "240 L todelt skraldespand med 14-dages tømning ved sommerhuse",
+    "plastmdkglasmetal": "240 L todelt genbrugsspand hver 3. uge ved sommerhuse",
+    "next_pickup": "Rest & Madaffald"
   }
 }

@@ -184,7 +184,7 @@ MUNICIPALITIES_LIST = {
     "Svendborg": ["renoweb"],
     "Syddjurs": ['renodjurs'],
     "Sønderborg": ["renoweb"],
-    "Thy": ["openexplive", "5NmkzUGpvZlRaMzdqZzBEQw=="],
+    "Thisted": ["openexplive", "5NmkzUGpvZlRaMzdqZzBEQw=="],
     "Tønder": ["wastewatch"],
     "Tårnby": ["perfectwaste"],
     "Vallensbæk": ["vestfor"],

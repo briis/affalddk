@@ -4,15 +4,24 @@ import json
 
 GH_API = b'NDc5RDQwRjQtQjNFMS00MDM4LTkxMzAtNzY0NTMxODhDNzRD'
 
+# Klimadatastyrelsens Adressevælger - replacement for the retired DAWA
+# (api.dataforsyningen.dk, shut down 1 October 2026). The token below is
+# the public demo token documented by KDS.
+AV_ADRESSER = 'https://adressevaelger.dk/adresser'
+AV_ADRESSER_SOEG = 'https://adressevaelger.dk/adresser/soeg'
+AV_TOKEN = 'adressevaelger123'  # noqa: S105 - public demo token, documented by KDS
+
 
 with (Path(__file__).parent / 'supported_items.json').open('r', encoding='utf-8') as f:
     SUPPORTED_ITEMS = json.load(f)
 
 
 NON_SUPPORTED_ITEMS = [
+    'Afhentning på grund',
     'Asbest',
     'Beholderservice',
     'Beholderudbringning',
+    'Beholderværksted',
     'Bestil afhentning',
     'Bestillerordning',
     'Farligt affald (skal bestilles)',
@@ -73,6 +82,7 @@ ICON_LIST = {
     "plastmetal": "mdi:trash-can-outline",
     "plastmetalmdk": "mdi:trash-can",
     "plastmetalpapir": "mdi:trash-can",
+    "porcelaen": "mdi:glass-fragile",
     "restaffald": "mdi:trash-can",
     "restaffaldmadaffald": "mdi:trash-can",
     "restplast": "mdi:trash-can",
@@ -115,6 +125,7 @@ NAME_LIST = {
     "plastmetal": "Plast & Metal",
     "plastmetalmdk": "Plast, Metal, Mad & Drikkekartoner",
     "plastmetalpapir": "Plast, Metal & Papir",
+    "porcelaen": "Porcelæn",
     "restaffald": "Restaffald",
     "restaffaldmadaffald": "Rest & Madaffald",
     "restplast": "Restaffald & Plast/Madkartoner",
@@ -127,25 +138,27 @@ NAME_LIST = {
 
 STRIPS = [
         'med 14-dages tømning ved helårshuse', '– tømmes hver 2. uge', 'tømning af',
-        'rækkehuse', 'sommerhustømning', 'henteordning', 'beholder til', '1-rums',
-        'egenløsning', 'en-familie', 'enfamiliehus', '26 tøm', 'm. sommertømning',
+        'rækkehuse', 'sommerhustømning', 'ved sommerhuse', 'henteordning', 'beholder til', '1-rums',
+        'egenløsning', 'en-familie', 'enfamiliehus', 'm. sommertømning', "fælles",
         '-skel 0-2 meter', 'afstand over 5 meter', 'Jern/Elektronik/Hårde hvidevarer', ' ?', '**',
 ]
 RE_WORDS = [
-    r'14(\.)?[\s-]?(?:dags|dage|dages|dg)(\.)?',  # diffenrent ways of 14. dags
+    r'(med )?14(\.)?[\s-]?(?:dags|dage|dages|dg)(\.)?',  # diffenrent ways of 14. dags
     r'\b\d+/\d+\.\s*uge\b', # fixing https://github.com/briis/affalddk/issues/373 looking for "2/4. uge" and "8/12. uge"
     r'(?:2|3|4|6|8)?(\.)?[\s-]?(?:uge k|uge p|uge|ugers)',  # diffenrent ways of uge
-    r'(?:to|1|2)[\s-]?(?:delt|kammer)',  # diffenrent ways of  2-delt or 2-kammer
-    r'beh\.(,)?', r'\bgl\.', 'beholder', 'dobbeltbeholder', 'spand', 'tøm', 'villa', 'tømning', 'ekstra', 'havebolig', '5 m3',
-    r'stand(?: p)?', 'andel', 'skel', 'skelordning', 'hver', 'nord', 'syd', 'øst', 'vest', r'sommer(hus)?( \d{2}\+?)?', 'vinter',
+    r'(?:to|1|2)[\s-]?(?:delt|kammer|kammer-sh)',  # diffenrent ways of  2-delt or 2-kammer
+    r'u.[\s]?takst',
+    r'beh\.(,)?', r'\bgl\.', 'beholder', 'container', 'dobbeltbeholder', 'spand', r'(\d{2} )?tøm', 'villa', 'tømning', 'ekstra', 'havebolig', '5 m3',
+    r'stand(?: p| e)?', 'andel', 'skel', 'skelordning', 'hver', 'nord', 'syd', 'øst', 'vest', r'sommer(hus)?( \d{2}\+?)?', 'vinter',
     r'distrikt (?:[A-Za-z]|\d+)', 'rute [0-9]', 's[0-9]', 'd[0-9]', r'/\d{2}',
+    r'(?:plast|gen|dag)-standplads 2-20 meter',
     ]
 
 RE_RAW = [
     r'\b\d{4}\b\s*,',  # 4 digit postal codes with a comma after
     r'\b\d{4}\b\ og \b\d{4}\b',  # special ending of postal code listing
-    r'(?<![\w/-])(?:25|90|140|150|190|240|360|370|400|660|770)\s*l(?:tr|iter)?\.?(?=\b|[^a-zA-Z]|$)',  # remove volume parts
-    r'(?<![\w/-])(?:25|90|140|150|190|240|360|370|400|660|770)(?:ltr|liter)?\.?(?=[^a-zA-Z]|$)\b',  # remove volume parts (no space before L)
+    r'(?<![\w/-])(?:25|90|140|150|190|240|360|370|400|660|770|1000)\s*l(?:tr|iter)?\.?(?=\b|[^a-zA-Z]|$)',  # remove volume parts
+    r'(?<![\w/-])(?:25|90|140|150|190|240|360|370|400|660|770|1000)(?:ltr|liter)?\.?(?=[^a-zA-Z]|$)\b',  # remove volume parts (no space before L)
     r'^(?:90|140|190|240|370|400)\s',  # only remove "[vol] " if it is the start of the string like in Assens
     ]
 

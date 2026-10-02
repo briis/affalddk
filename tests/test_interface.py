@@ -251,19 +251,19 @@ async def test_Aarhus(capsys, monkeypatch):
             print('start: ', gc._municipality)
 
             add = {
-                'uid': 'Aarhus_0a3f50c4-05a4-32b8-e044-0003ba298018',
-                'address_id': '0a3f50c4-05a4-32b8-e044-0003ba298018',
-                'kommunenavn': 'Aarhus', 'address': 'Rådhuspladsen 1, 2.'}
+                'uid': 'Aarhus_9b9a6a18-ffb7-4ece-a7f1-5368812e4719',
+                'address_id': '9b9a6a18-ffb7-4ece-a7f1-5368812e4719',
+                'kommunenavn': 'Aarhus', 'address': 'Rådhuspladsen 2'}
             if True:
                 address_list = await gc.get_address_list('8000', 'Rådhuspladsen', '2')
                 address = await gc.get_address(address_list[0])
                 # print(address.__dict__)
                 assert address.__dict__ == add
                 address_list = await gc._api.get_address_list('8000', 'Rådhuspladsen', '')
-                assert len(address_list) == 44
+                assert len(address_list) == 7
                 await assert_add_list(gc, address_list)
                 address_list = await gc._api.get_address_list('8000', 'Rådhuspladsen', '2')
-                assert len(address_list) == 11
+                assert len(address_list) == 6
 
             async def get_data(*args, **kwargs):
                 return aarhus_data[0]["plannedLoads"]
@@ -458,10 +458,10 @@ async def test_WasteWatch(capsys, monkeypatch):
                 # print(address.__dict__)
                 assert address.__dict__ == add
                 address_list = await gc._api.get_address_list('6270', 'Ulriksalle', '')
-                assert len(address_list) == 214
+                assert len(address_list) == 166
                 await assert_add_list(gc, address_list)
                 address_list = await gc._api.get_address_list('6270', 'Ulriksalle', '2')
-                assert len(address_list) == 20
+                assert len(address_list) == 18
 
             async def get_data(*args, **kwargs):
                 return tønder_data

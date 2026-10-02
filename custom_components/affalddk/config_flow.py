@@ -51,7 +51,9 @@ _LOGGER = logging.getLogger(__name__)
 async def municipalityFromCoor(lon, lat):
     """Municipality from longitude and latitude."""
 
-    url = f"https://api.dataforsyningen.dk/kommuner/reverse?x={lon}&y={lat}"
+    # api.dataforsyningen.dk (DAWA) was retired 2026-10-01; the
+    # dawa.companydata.dk mirror serves the same kommuner/reverse lookup.
+    url = f"https://dawa.companydata.dk/kommuner/reverse?x={lon}&y={lat}"
     async with aiohttp.ClientSession() as session, session.get(url) as response:
         if response.status == 200:
             js = await response.json()

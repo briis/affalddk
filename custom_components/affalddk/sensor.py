@@ -178,6 +178,10 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
         name="Plast, Metal & Papir",
     ),
     AffaldDKSensorEntityDescription(
+        key="porcelaen",
+        name="Porcelæn",
+    ),
+    AffaldDKSensorEntityDescription(
         key="restaffald",
         name="Restaffald",
     ),
