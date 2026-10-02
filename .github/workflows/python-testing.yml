@@ -14,26 +14,25 @@ jobs:
     steps:
     - uses: actions/checkout@v7
 
-    - name: provision-with-micromamba
-      uses: mamba-org/setup-micromamba@v3
+    - name: Install uv
+      uses: astral-sh/setup-uv@v10.2.0
       with:
-        environment-file: environment.yaml
-        environment-name: pyaffald
-        cache-environment: true
+        enable-cache: true
+
+    - name: Install dependencies
+      run: uv sync --frozen
 
     - name: Lint with Ruff
-      shell: bash -l {0}
       run: |
         # stop the build if there are Python syntax errors or undefined names
-        ruff check --config pyproject.toml
+        uv run ruff check --config pyproject.toml
 
     - name: Test unittests
-      shell: bash -l {0}
       env:
         CI: "true"
       run: |
         env | grep -E 'CI|TZ'
 
-        TZ=UTC pytest tests --disable-warnings
+        TZ=UTC uv run pytest tests --disable-warnings
 
-        TZ=Europe/Copenhagen pytest tests --disable-warnings
+        TZ=Europe/Copenhagen uv run pytest tests --disable-warnings
