@@ -19,6 +19,7 @@ As of May 2025, there is no longer support for municipalities that just use Reno
 As of release 2.7.3, this integration now supports the following API's:
 - Municipalities that use **AffaldOnline**
 - Municipalities that use **AffaldOnlineWeb**
+- Municipalities that use **AffaldOnline PDF calendars**
 - Municipalities that use **AffaldsPortal**
 - Municipalities that use **Open Experience**
 - Municipalities that use **Perfect Waste**
@@ -192,6 +193,7 @@ Here is the list of currently supported Municipalities (89)
 - Skive (Open Experience)
 - Slagelse (Perfect Waste)
 - Solrød (Affaldsportal)
+- Sorø (AffaldOnline PDF)
 - Stevns (Perfect Waste)
 - Struer (Open Experience)
 - Svendborg (Affaldsportal)
