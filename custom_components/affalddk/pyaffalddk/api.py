@@ -44,6 +44,7 @@ APIS = {
     'herning': interface.AffaldWebAPI,
     'ikastbrande': interface.IkastBrandeAPI,
     'affaldonlineweb': interface.AffaldOnlineWeb,
+    'affaldonlinepdf': interface.AffaldOnlinePdfAPI,
     'kolding': interface.InfovisionAPI,
 }
 
@@ -325,7 +326,7 @@ class GarbageCollection:
                         _pickup_date = item['Tømningsdag']
                         fraction_name = item['Materiel']
                         self.update_pickup_event(fraction_name, address_id, _pickup_date)
-            elif self._api_type == "affaldonlineweb":
+            elif self._api_type in ("affaldonlineweb", "affaldonlinepdf"):
                 garbage_data = await self._api.get_garbage_data(address_id)
                 for item in garbage_data:
                     if item['Tømningsdag']:

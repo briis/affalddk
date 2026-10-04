@@ -46,6 +46,7 @@ SPECIAL_MATERIALS = {
     'genbrug - blåt låg': ['plastmadkarton'],
     'Genbrug henteordning': ['plastmadkarton'],
     'Miljøkasse/tekstiler': ['farligtaffald', 'tekstil'],
+    'Plast/mad- og drikkekarton og pap/papir': ['plastmadkarton', 'pappapir'],
 }
 
 

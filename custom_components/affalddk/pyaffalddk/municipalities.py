@@ -178,6 +178,7 @@ MUNICIPALITIES_LIST = {
     "Skive": ["openexp", "renomatic.nomi4s.dk/app/appservice/"],
     "Slagelse": ["perfectwaste"],
     "Solrød": ["perfectwaste"],
+    "Sorø": ["affaldonlinepdf", "soroe"],
     "Stevns": ["perfectwaste"],
     "Struer": ["openexp", "renomatic.nomi4s.dk/app/appservice/"],
     "Svendborg": ["renoweb"],
