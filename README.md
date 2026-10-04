@@ -116,7 +116,7 @@ Odense has introduced reCAPTCHA, which is a technology to ensure that a real per
 
 ## MUNICIPALITIES
 
-Here is the list of currently supported Municipalities (89)
+Here is the list of currently supported Municipalities (93)
 
 - Aabenraa (Affaldsportal)
 - Aalborg (Affaldsportal)
@@ -132,6 +132,7 @@ Here is the list of currently supported Municipalities (89)
 - Dragør (Affaldsportal)
 - Egedal (Affaldsportal)
 - Esbjerg (Affaldsportal)
+- Fanø (AffaldOnline PDF)
 - Favrskov (AffaldOnline)
 - Faxe (Perfect Waste)
 - Fredensborg (Affaldsportal)
@@ -173,10 +174,11 @@ Here is the list of currently supported Municipalities (89)
 - Lolland (Perfect Waste)
 - Lyngby-Taarbæk (Perfect Waste)
 - Mariagerfjord (Affaldsportal)
-- Middelfart (AffaldOnlineWeb)
+- Middelfart (AffaldOnline PDF)
 - Morsø (AffaldOnline)
 - Norddjurs (Renodjurs)
 - Nordfyns (Open Experience)
+- Nyborg (AffaldOnline PDF)
 - Næstved (Perfect Waste)
 - Odder (RenoSyd)
 - Odense (iCal) - [read this](#Odense) before adding the integration

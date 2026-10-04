@@ -492,6 +492,30 @@ def test_parse_affaldonline_pdf(capsys):
         assert calendar[dt.date(2026, 6, 12)] == {'Pap', 'Pap/papir', 'Plast/mad- og drikkekarton', 'Restaffald'}
 
 
+def test_parse_affaldonline_pdf_fanoe(capsys):
+    with capsys.disabled():
+        # Fanø, Hovedgaden 1 A, 6720 Fanø
+        pdf = (datadir/'fanoe_hovedgaden_2026.pdf').read_bytes()
+        calendar = parse_affaldonline_pdf(pdf, 2026)
+        assert len(calendar) == 51
+        assert calendar[dt.date(2026, 1, 2)] == {'Bioaffald', 'Restaffald'}
+        assert calendar[dt.date(2026, 1, 6)] == {'Haveaffald'}
+        assert calendar[dt.date(2026, 1, 15)] == {'Bioaffald', 'Restaffald'}
+        assert calendar[dt.date(2026, 2, 17)] == {'Haveaffald'}
+
+
+def test_parse_affaldonline_pdf_nyborg(capsys):
+    with capsys.disabled():
+        # Nyborg, Slotsgade 1 A, 5800 Nyborg
+        pdf = (datadir/'nyborg_slotsgade_2026.pdf').read_bytes()
+        calendar = parse_affaldonline_pdf(pdf, 2026)
+        assert len(calendar) == 33
+        assert calendar[dt.date(2026, 1, 6)] == {'Haveaffald', 'Papir/Pap/Plast/Mad-drikkekarton', 'Restaffald'}
+        assert calendar[dt.date(2026, 1, 20)] == {'Haveaffald', 'Restaffald'}
+        assert calendar[dt.date(2026, 2, 3)] == {'Haveaffald', 'Papir/Pap/Plast/Mad-drikkekarton', 'Restaffald'}
+        assert calendar[dt.date(2026, 3, 17)] == {'Haveaffald', 'Restaffald'}
+
+
 @pytest.mark.asyncio
 async def test_affaldonline_pdf_cache(capsys, monkeypatch):
     with capsys.disabled():

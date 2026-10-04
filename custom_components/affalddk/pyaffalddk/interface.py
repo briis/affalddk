@@ -709,17 +709,6 @@ class AffaldOnlineWeb(AffaldDKAPIBase):
         url = self.url_base + '/showInfo.php'
         data = await self.async_postform_request(url, para={'values': address_id}, as_json=False)
 
-        if self.municipality_id == 'middelfart':
-            pattern = r'næste tømningsdag:\s*\w+\s*den\s*([\d.]+\s*\w+\s*\d{4})\s*\(([^)]+)\)'
-            match = re.search(pattern, data.lower())
-            results = []
-            if match:
-                date_str = en_month(match.group(1).strip())
-                date = dt.datetime.strptime(date_str, "%d. %B %Y").date()
-                for desc in match.group(2).strip().split(','):
-                    results.append({'Materiel': desc.strip(), 'Tømningsdag': date})
-            return results
-
         soup = BeautifulSoup(data, "html.parser")
         table = soup.find("table")
         results = []

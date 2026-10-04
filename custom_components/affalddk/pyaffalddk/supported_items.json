@@ -69,6 +69,7 @@
         "juletræsafhentning"
     ],
     "madaffald": [
+        "Bioaffald",
         "Bioposer",
         "Mad",
         "Madaffald",
@@ -136,6 +137,7 @@
         "Papir & småt pap",
         "Papir- Plast/Mad- og Drikkekartoner",
         "Papir-pap/plast-MDK",
+        "Papir/Pap/Plast/Mad-drikkekarton",
         "Papir/pap/plast/mdk",
         "Papir/plast",
         "Papir/Plast & MDK",

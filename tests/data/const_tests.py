@@ -66,6 +66,7 @@ SUPPORTED_ITEMS = {
         "Madaffald",
         "Bioposer",
         "Mad",
+        "Bioaffald",
     ],
     "metalglas": [
         "Glas og metal",
@@ -125,6 +126,7 @@ SUPPORTED_ITEMS = {
         "Plast, Mad- og drikkekartoner, Småt Pap og Papir",
         "Papir & Pap / Plast & MDK",
         "Plast & MD-Karton / PP",
+        "Papir/Pap/Plast/Mad-drikkekarton",
     ],
     "plast": [
         "Plast - Obligatorisk min. 1 spand",
