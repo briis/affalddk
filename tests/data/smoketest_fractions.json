@@ -858,5 +858,13 @@
     "haveaffald": "Haveaffald",
     "pappi": "Papir/Pap/Plast/Mad-drikkekarton",
     "next_pickup": "Haveaffald | Pap, Papir & Plast | Restaffald"
+  },
+  "sorø_1": {
+    "restaffaldmadaffald": "Rest-/madaffald",
+    "storskrald": "Storskrald",
+    "metalglas": "Glas/metal",
+    "pappi": "Plast/mad- og drikkekarton og pap/papir",
+    "haveaffald": "Haveaffald",
+    "next_pickup": "Rest & Madaffald"
   }
 }
