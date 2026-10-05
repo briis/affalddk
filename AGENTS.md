@@ -41,6 +41,7 @@ custom_components/affalddk/        The HA integration (HACS payload)
 └── pyaffalddk/                    The standalone library
     ├── api.py                     GarbageCollection orchestrator + APIS map
     ├── interface.py               One class per provider backend
+    ├── affaldonline_pdf.py        Parser for the affaldonline.dk PDF calendar
     ├── municipalities.py          Municipality code/name → provider mapping
     ├── const.py                   SUPPORTED_ITEMS, ICON_LIST, NAME_LIST, regexes
     ├── data.py                    PickupEvents, PickupType, AffaldDKAddressInfo
