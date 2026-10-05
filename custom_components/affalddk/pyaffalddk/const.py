@@ -46,7 +46,6 @@ SPECIAL_MATERIALS = {
     'genbrug - blåt låg': ['plastmadkarton'],
     'Genbrug henteordning': ['plastmadkarton'],
     'Miljøkasse/tekstiler': ['farligtaffald', 'tekstil'],
-    'Plast/mad- og drikkekarton og pap/papir': ['plastmadkarton', 'pappapir'],
 }
 
 
@@ -113,7 +112,7 @@ NAME_LIST = {
     "pappapir": "Pap & Papir",
     "pappapirglasmetal": "Pap, Papir, Glas & Metal",
     "pappapirtekstil": "Pap, Papir & Tekstilaffald",
-    "pappi": "Papir & Plast",
+    "pappi": "Pap, Papir & Plast",
     "papir": "Papir",
     "papirglas": "Papir, Pap & Glas",
     "papirglasdaaser": "Papir, Glas & Dåser",

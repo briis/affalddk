@@ -120,6 +120,7 @@ SUPPORTED_ITEMS = {
         "PAPPI",
         "Plast/MD-karton/PP",
         "Plast/Papir",
+        "Plast/mad- og drikkekarton og pap/papir",
         "Papir/Plast og kartoner",
         "Papir- Plast/Mad- og Drikkekartoner",
         "Plast og Mad- & drikkekartoner/Papir",
