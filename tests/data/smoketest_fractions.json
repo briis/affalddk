@@ -264,7 +264,7 @@
     "juletrae": "Juletræer",
     "storskrald": "Storskrald",
     "metalglas": "Metal/Glas affald",
-    "next_pickup": "Papir & Plast"
+    "next_pickup": "Pap, Papir & Plast"
   },
   "bornholm_291": {
     "restplast": "240 l rest + plast/MDK",
@@ -289,7 +289,7 @@
     "storskrald": "Storskrald",
     "metalglas": "Glas/metal",
     "farligtaffald": "Farligt affald",
-    "next_pickup": "Papir & Plast"
+    "next_pickup": "Pap, Papir & Plast"
   },
   "ballerup_1": {
     "pappi": "Tømning af Papir/Plast & MDK",
@@ -300,14 +300,14 @@
     "juletrae": "Tømning af Juletræer",
     "metalglas": "Tømning af Metal/Glas",
     "haveaffald": "Tømning af Haveaffald",
-    "next_pickup": "Papir & Plast"
+    "next_pickup": "Pap, Papir & Plast"
   },
   "furesø_1": {
     "pappi": "Papir/Plast & MDK",
     "restaffaldmadaffald": "Mad/Rest affald",
     "pap": "Pap",
     "metalglas": "Metal/Glas affald",
-    "next_pickup": "Papir & Plast"
+    "next_pickup": "Pap, Papir & Plast"
   },
   "ishøj_1": {
     "haveaffald": "Haveaffald",
@@ -324,7 +324,7 @@
     "pap": "Pap",
     "haveaffald": "Haveaffald",
     "metalglas": "Metal/Glas affald",
-    "next_pickup": "Papir & Plast | Rest & Madaffald"
+    "next_pickup": "Pap, Papir & Plast | Rest & Madaffald"
   },
   "vejle_1": {
     "dagrenovation": "240 L Dagrenovation 2-delt",
@@ -356,7 +356,7 @@
     "genbrug": "Ekstra 240 L genbrugscontainer",
     "storskrald": "Storskrald S6",
     "restaffaldmadaffald": "240 L mad/rest - 14 dags",
-    "next_pickup": "Genbrug | Papir & Plast | Storskrald"
+    "next_pickup": "Genbrug | Pap, Papir & Plast | Storskrald"
   },
   "viborg_1": {
     "restaffaldmadaffald": "240L Rest/Mad 2. uge P",
@@ -443,7 +443,7 @@
     "metalglas": "Glas/metal",
     "restaffaldmadaffald": "Mad-/restaffald",
     "pappi": "Papir-pap/plast-MDK",
-    "next_pickup": "Metal & Glas | Papir & Plast | Rest & Madaffald"
+    "next_pickup": "Metal & Glas | Pap, Papir & Plast | Rest & Madaffald"
   },
   "billund_309": {
     "madaffald": "Madaffald 90 L/14",
@@ -727,9 +727,10 @@
     "next_pickup": "Restaffald"
   },
   "middelfart_1": {
-    "pappapir": "papir/pap og plast/mad- og drikkekartoner",
-    "dagrenovation": "dagrenovation",
-    "next_pickup": "Dagrenovation | Pap & Papir"
+    "pappapir": "Papir/Pap og Plast/Mad- og drikkekartoner",
+    "restaffaldmadaffald": "Restaffald/Madaffald",
+    "metalglas": "Glas/Metal",
+    "next_pickup": "Pap & Papir"
   },
   "447_haderslev": {
     "pappapirglasmetal": "Pap/papir + Metal/glas",
@@ -844,6 +845,26 @@
   "varde_2": {
     "restaffaldmadaffald": "240 L todelt skraldespand med 14-dages tømning ved sommerhuse",
     "plastmdkglasmetal": "240 L todelt genbrugsspand hver 3. uge ved sommerhuse",
+    "next_pickup": "Rest & Madaffald"
+  },
+  "fanoe_1": {
+    "restaffald": "Restaffald",
+    "madaffald": "Bioaffald",
+    "haveaffald": "Haveaffald",
+    "next_pickup": "Madaffald | Restaffald"
+  },
+  "nyborg_1": {
+    "restaffald": "Restaffald",
+    "haveaffald": "Haveaffald",
+    "pappi": "Papir/Pap/Plast/Mad-drikkekarton",
+    "next_pickup": "Haveaffald | Pap, Papir & Plast | Restaffald"
+  },
+  "sorø_1": {
+    "restaffaldmadaffald": "Rest-/madaffald",
+    "storskrald": "Storskrald",
+    "metalglas": "Glas/metal",
+    "pappi": "Plast/mad- og drikkekarton og pap/papir",
+    "haveaffald": "Haveaffald",
     "next_pickup": "Rest & Madaffald"
   }
 }

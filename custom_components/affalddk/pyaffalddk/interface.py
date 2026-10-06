@@ -5,10 +5,10 @@ import datetime as dt
 import logging
 import re
 import json
-import zlib
 from urllib.parse import urlparse, parse_qsl, quote
 from bs4 import BeautifulSoup
 
+from .affaldonline_pdf import parse_affaldonline_pdf
 from .const import AV_ADRESSER, AV_ADRESSER_SOEG, AV_TOKEN, GH_API, DANISH_MONTHS
 MAX_RETRIES = 5
 REQUEST_TIMEOUT = aiohttp.ClientTimeout(total=30)
@@ -709,17 +709,6 @@ class AffaldOnlineWeb(AffaldDKAPIBase):
         url = self.url_base + '/showInfo.php'
         data = await self.async_postform_request(url, para={'values': address_id}, as_json=False)
 
-        if self.municipality_id == 'middelfart':
-            pattern = r'næste tømningsdag:\s*\w+\s*den\s*([\d.]+\s*\w+\s*\d{4})\s*\(([^)]+)\)'
-            match = re.search(pattern, data.lower())
-            results = []
-            if match:
-                date_str = en_month(match.group(1).strip())
-                date = dt.datetime.strptime(date_str, "%d. %B %Y").date()
-                for desc in match.group(2).strip().split(','):
-                    results.append({'Materiel': desc.strip(), 'Tømningsdag': date})
-            return results
-
         soup = BeautifulSoup(data, "html.parser")
         table = soup.find("table")
         results = []
@@ -753,63 +742,6 @@ class AffaldOnlineWeb(AffaldDKAPIBase):
             except ValueError:
                 continue
         return min(candidates) if candidates else None
-
-
-PDF_MONTHS = ["januar", "februar", "marts", "april", "maj", "juni", "juli",
-              "august", "september", "oktober", "november", "december"]
-PDF_WEEKDAYS = ["man", "tir", "ons", "tor", "fre", "lør", "søn"]
-PDF_STREAM = re.compile(rb"<<([^<>]*?)>>\s*stream\r?\n(.*?)endstream", re.S)
-PDF_TEXT = re.compile(r"BT ([\d.]+) ([\d.]+) Td \((.*)\) Tj ET")
-PDF_ICON = re.compile(r"[\d.]+ 0 0 [\d.]+ ([\d.]+) ([\d.]+) cm /(I\d+) Do")
-
-
-def parse_affaldonline_pdf(pdf, year):
-    """Parse an affaldonline.dk showToemCal.php PDF into {date: {fraction, ...}}.
-
-    The fraction of a pickup is only shown as icon images next to the date.
-    The legend at the bottom puts the same icons next to the fraction name,
-    so icon name -> fraction is read from rows where icons and label share a baseline.
-    """
-    ops = []
-    for m in PDF_STREAM.finditer(pdf):
-        if b"/FlateDecode" not in m.group(1) or b"/Subtype" in m.group(1):
-            continue
-        try:
-            content = zlib.decompress(m.group(2)).decode("latin1")
-        except zlib.error:
-            continue
-        for line in content.splitlines():
-            if text := PDF_TEXT.search(line):
-                ops.append(("T", float(text[1]), float(text[2]), text[3].strip()))
-            elif icon := PDF_ICON.search(line):
-                ops.append(("I", float(icon[1]), float(icon[2]), icon[3]))
-
-    icon_fraction, pending = {}, []
-    for kind, _x, y, value in ops:
-        if kind == "I":
-            pending.append((y, value))
-            continue
-        same_row = [name for icon_y, name in pending if abs(icon_y - y) < 4]
-        if same_row and value.lower() not in PDF_WEEKDAYS and not value.isdigit():
-            icon_fraction.update(dict.fromkeys(same_row, value))
-        pending = []
-
-    headers, current, weekday, result = [], None, None, {}
-    for kind, x, y, value in ops:
-        if kind == "T" and value.lower() in PDF_MONTHS:
-            headers = [h for h in headers if abs(h[1] - y) < 1]
-            headers.append((x, y, PDF_MONTHS.index(value.lower()) + 1))
-        elif kind == "T" and value.lower() in PDF_WEEKDAYS:
-            weekday = PDF_WEEKDAYS.index(value.lower())
-        elif kind == "T" and value.isdigit() and headers and weekday is not None:
-            month = min(headers, key=lambda h: abs(h[0] - x))[2]
-            date = dt.date(year, month, int(value))
-            if date.weekday() != weekday:
-                raise ValueError(f"Weekday mismatch for {date} in affaldonline PDF")
-            current, weekday = (date, y), None
-        elif kind == "I" and current and abs(current[1] - y) < 4 and value in icon_fraction:
-            result.setdefault(current[0], set()).add(icon_fraction[value])
-    return result
 
 
 class AffaldOnlinePdfAPI(AffaldOnlineWeb):
