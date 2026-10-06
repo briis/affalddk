@@ -1,6 +1,15 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
 
+## Version 3.7.0
+
+* Added support for Sorø - pickups are read from the affaldonline.dk PDF calendar ([#458](https://github.com/briis/affalddk/pull/458))
+* Added support for Fanø and Nyborg, using the same affaldonline.dk PDF calendar
+* Middelfart switched to the affaldonline.dk PDF calendar, which gives the full year calendar instead of only the next pickup
+* Hardened the PDF calendar parser: legend icons are paired by position, combined icon groups decode as one fraction, and unknown icons or empty rows are reported instead of silently dropped
+* Renamed the "pappi" fraction to "Pap, Papir & Plast"; sensors keep their entity id but show the new friendly name after a restart
+
+
 ## Version 3.6.0
 
 **Date**: `2026-10-01`
