@@ -1,28 +1,22 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
 
-## Version 3.7.0
-
-* Added support for Sorø - pickups are read from the affaldonline.dk PDF calendar ([#458](https://github.com/briis/affalddk/pull/458))
-* Added support for Fanø and Nyborg, using the same affaldonline.dk PDF calendar
-* Middelfart switched to the affaldonline.dk PDF calendar, which gives the full year calendar instead of only the next pickup
-* Hardened the PDF calendar parser: legend icons are paired by position, combined icon groups decode as one fraction, and unknown icons or empty rows are reported instead of silently dropped
-* Renamed the "pappi" fraction to "Pap, Papir & Plast"; sensors keep their entity id but show the new friendly name after a restart
-
-
 ## Version 3.6.0
 
-**Date**: `2026-10-01`
+**Date**: `2026-10-06`
 
+### Added
+* Added support for Sorø - pickups from a new affaldonline.dk PDF calendar by @macokay ([#458](https://github.com/briis/affalddk/pull/458))
+* Added support for Fanø and Nyborg, using the same affaldonline.dk PDF calendar
+
+### Changed
 * Migrated address lookups from the retired DAWA service to Klimadatastyrelsens Adressevælger (Aarhus, Odder, Skanderborg and Tønder)
-* Renamed  "Thy" to "Thisted" (existing installs keep working)
+* Renamed "Thy" to "Thisted" (existing installs keep working)
 * Added support for the Porcelæn fraction
 * Added long regression test, to test all supported municipalities.
-* Fixed several found missing fractions
 * Fixed next_pickup crash when the only remaining pickups are today (seen in Ikast-Brande after 15:00)
-
-
-## Version 3.5.2
+* Middelfart switched to the affaldonline.dk PDF calendar, which gives more than just next pickup
+* Renamed the "pappi" fraction to "Pap, Papir & Plast"; sensors keep their entity id but show the new friendly name after a restart
 
 
 ---------------------------
