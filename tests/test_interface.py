@@ -3,7 +3,7 @@ import pytest
 from freezegun import freeze_time
 from aiohttp import ClientSession
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
-from custom_components.affalddk.pyaffalddk.interface import split_housenumber
+from custom_components.affalddk.pyaffalddk.interface import InfovisionAPI, split_housenumber
 from pathlib import Path
 import pickle
 import json
@@ -504,3 +504,55 @@ async def test_affaldonline_pdf_cache(capsys, monkeypatch):
             with freeze_time("2027-01-02"):
                 await gc._api.get_garbage_data('x')
                 assert calls[-2:] == [2027, 2028]
+
+
+@pytest.mark.asyncio
+async def test_kolding_garbage_data(capsys, monkeypatch):
+    """InfovisionAPI.get_garbage_data flattens the grouped container response."""
+    with capsys.disabled():
+        async with ClientSession() as session:
+            api = InfovisionAPI('kolding', session=session)
+
+            def container(fraction, dates):
+                return {
+                    'containerType': {'fraction': {'description': fraction}},
+                    'collectCalendar': [{'collectDate': d} for d in dates],
+                }
+
+            def mock_request(payload):
+                async def get(*args, **kwargs):
+                    return payload
+                return get
+
+            # Grouped response: every section flattened, multiple chains per
+            # section, and a chain with missing/null containerDetails.
+            grouped = {
+                'chainDetailsOwn': [
+                    {'containerDetails': [container('Rest/Madaffald', [20260907])]},
+                    {'containerDetails': [
+                        container('Glas/Metal', [20260908]),
+                        container('Papir/Pap', [20260908]),
+                    ]},
+                ],
+                'chainDetailsZero': [{'containerDetails': None}],
+                'chainDetailsUse': [
+                    {'containerDetails': [container('Plast og mad- og drikkekartoner', [])]},
+                ],
+            }
+            monkeypatch.setattr(api, 'async_get_request', mock_request(grouped))
+            result = await api.get_garbage_data('some-guid')
+            assert [c['containerType']['fraction']['description'] for c in result] == [
+                'Rest/Madaffald', 'Glas/Metal', 'Papir/Pap',
+                'Plast og mad- og drikkekartoner',
+            ]
+
+            # A grouped response with no chains yields an empty list.
+            monkeypatch.setattr(
+                api, 'async_get_request',
+                mock_request({'chainDetailsOwn': [], 'chainDetailsZero': None}))
+            assert await api.get_garbage_data('some-guid') == []
+
+            # Legacy flat-list response is passed through untouched.
+            flat = [container('Rest/Madaffald', [20260907])]
+            monkeypatch.setattr(api, 'async_get_request', mock_request(flat))
+            assert await api.get_garbage_data('some-guid') == flat
