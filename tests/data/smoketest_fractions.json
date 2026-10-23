@@ -866,5 +866,23 @@
     "pappi": "Plast/mad- og drikkekarton og pap/papir",
     "haveaffald": "Haveaffald",
     "next_pickup": "Rest & Madaffald"
+  },
+  "assens_2": {
+    "restaffaldmadaffald": "Sæk MadRest",
+    "next_pickup": "Rest & Madaffald"
+  },
+  "revild_1": {
+    "restaffaldmadaffald": "240 L mad/rest - 14 dags",
+    "pappi": "240L Genbrug",
+    "storskrald": "Storskrald S10",
+    "next_pickup": "Rest & Madaffald"
+  },
+  "favrskov_2": {
+    "metalglas": "240 L Glas/metal (stand)",
+    "plastmadkarton": "660 L Plast/mad- og drikkekartoner (stand)",
+    "restaffald": "400 L Restaffald (stand)",
+    "madaffald": "140 L Madaffald (stand)",
+    "pappapirtekstil": "400 L Papir/pap og tekstiler (stand)",
+    "next_pickup": "Metal & Glas | Plast & Madkarton"
   }
 }
