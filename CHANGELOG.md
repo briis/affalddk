@@ -1,6 +1,20 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
 
+## Version 3.6.1
+
+**Date**: `2026-10-23`
+
+### Fixed
+* Fixed Kolding after an API change: the container endpoint now groups containers per chain, so the response is flattened back to the list the parser expects ([#465](https://github.com/briis/affalddk/pull/465))
+
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
+
 ## Version 3.6.0
 
 **Date**: `2026-10-06`
@@ -17,12 +31,6 @@
 * Fixed next_pickup crash when the only remaining pickups are today (seen in Ikast-Brande after 15:00)
 * Middelfart switched to the affaldonline.dk PDF calendar, which gives more than just next pickup
 * Renamed the "pappi" fraction to "Pap, Papir & Plast"; sensors keep their entity id but show the new friendly name after a restart
-
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 
 ## Version 3.5.1
