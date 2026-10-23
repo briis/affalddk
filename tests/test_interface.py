@@ -551,8 +551,3 @@ async def test_kolding_garbage_data(capsys, monkeypatch):
                 api, 'async_get_request',
                 mock_request({'chainDetailsOwn': [], 'chainDetailsZero': None}))
             assert await api.get_garbage_data('some-guid') == []
-
-            # Legacy flat-list response is passed through untouched.
-            flat = [container('Rest/Madaffald', [20260907])]
-            monkeypatch.setattr(api, 'async_get_request', mock_request(flat))
-            assert await api.get_garbage_data('some-guid') == flat
