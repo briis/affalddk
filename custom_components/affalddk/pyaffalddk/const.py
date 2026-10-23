@@ -136,7 +136,7 @@ NAME_LIST = {
 
 
 STRIPS = [
-        'med 14-dages tømning ved helårshuse', '– tømmes hver 2. uge', 'tømning af',
+        'med 14-dages tømning ved helårshuse', '– tømmes hver 2. uge', 'tømning af', 'sæk',
         'rækkehuse', 'sommerhustømning', 'ved sommerhuse', 'henteordning', 'beholder til', '1-rums',
         'egenløsning', 'en-familie', 'enfamiliehus', 'm. sommertømning', "fælles",
         '-skel 0-2 meter', 'afstand over 5 meter', 'Jern/Elektronik/Hårde hvidevarer', ' ?', '**',
@@ -149,7 +149,7 @@ RE_WORDS = [
     r'u.[\s]?takst',
     r'beh\.(,)?', r'\bgl\.', 'beholder', 'container', 'dobbeltbeholder', 'spand', r'(\d{2} )?tøm', 'villa', 'tømning', 'ekstra', 'havebolig', '5 m3',
     r'stand(?: p| e)?', 'andel', 'skel', 'skelordning', 'hver', 'nord', 'syd', 'øst', 'vest', r'sommer(hus)?( \d{2}\+?)?', 'vinter',
-    r'distrikt (?:[A-Za-z]|\d+)', 'rute [0-9]', 's[0-9]', 'd[0-9]', r'/\d{2}',
+    r'distrikt (?:[A-Za-z]|\d+)', 'rute [0-9]', 's[0-9]{1,2}', 'd[0-9]', r'/\d{2}',
     r'(?:plast|gen|dag)-standplads 2-20 meter',
     ]
 

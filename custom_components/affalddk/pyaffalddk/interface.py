@@ -947,9 +947,13 @@ class InfovisionAPI(AffaldDKAPIBase):
     async def get_garbage_data(self, address_id, fullinfo=0, shared=0):
         url = self.url_data + f'container/address/active/{address_id}'
         js = await self.async_get_request(url, headers=self.headers)
-        if js:
-            return js
-        return []
+        # The endpoint groups containers per chain; flatten to the
+        # per-container list the parser expects.
+        containers = []
+        for section in ('chainDetailsOwn', 'chainDetailsZero', 'chainDetailsUse'):
+            for chain in (js or {}).get(section) or []:
+                containers.extend(chain.get('containerDetails') or [])
+        return containers
 
 
 class WasteWatchAPI(AffaldDKAPIBase):
