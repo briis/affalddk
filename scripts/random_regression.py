@@ -262,8 +262,8 @@ async def run_municipality(session, sem, name, kode, args):
                 print(f"[{name} {attempt}/{args.retries}] trying "
                       f"{addr['street']} {addr['husnr']}, {addr['postnr']} "
                       f"{addr['city']}", flush=True)
-            # A fresh session per attempt: async_api_request() closes the
-            # session it is given when a request fails (interface.py).
+            # A fresh session per attempt keeps each municipality's cookies
+            # isolated from the others.
             async with aiohttp.ClientSession(trust_env=True) as prov_session:
                 fractions, reason, picked = await attempt_address(
                     prov_session, name, addr, rng)
