@@ -3,7 +3,7 @@ import pytest
 from freezegun import freeze_time
 from aiohttp import ClientSession
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
-from custom_components.affalddk.pyaffalddk.interface import InfovisionAPI, split_housenumber
+from custom_components.affalddk.pyaffalddk.interface import AffaldOnlineWeb, InfovisionAPI, split_housenumber
 from pathlib import Path
 import pickle
 import json
@@ -551,3 +551,81 @@ async def test_kolding_garbage_data(capsys, monkeypatch):
                 api, 'async_get_request',
                 mock_request({'chainDetailsOwn': [], 'chainDetailsZero': None}))
             assert await api.get_garbage_data('some-guid') == []
+
+
+@pytest.mark.asyncio
+async def test_affaldonlineweb_address_and_garbage(capsys, monkeypatch):
+    """Silkeborg's affaldonline install returns full addresses in one step and
+    nests a table inside the fraction cell of showInfo.php."""
+    with capsys.disabled():
+        async with ClientSession() as session:
+            api = AffaldOnlineWeb('silkeborg', session=session)
+
+            # Newer install: acCal.php returns full address entries directly.
+            new_style = [
+                {'value': 'Vestergade 3 1 (8600 Silkeborg)',
+                 'values': 'Vestergade|3||1||8600|Silkeborg|71446184|2012361|0'},
+                {'value': 'Vestergade 4 (8600 Silkeborg)',
+                 'values': 'Vestergade|4||||8600|Silkeborg|71431359|797735|0'},
+                {'value': 'Vestergade 1 (5500 Middelfart)',
+                 'values': 'Vestergade|1||||5500|Middelfart|1|2|0'},
+            ]
+
+            async def new_request(url, para=None, **kwargs):
+                if 'husnrCal' in url:
+                    raise AssertionError('husnrCal.php should not be called')
+                return json.dumps(new_style)
+            monkeypatch.setattr(api, 'async_get_request', new_request)
+
+            address_list = await api.get_address_list('8600', 'Vestergade', '3')
+            assert address_list == ['Vestergade 3 1 (8600 Silkeborg)']
+            assert api.address_list['Vestergade 3 1 (8600 Silkeborg)']['id'] == \
+                'Vestergade|3||1||8600|Silkeborg|71446184|2012361|0'
+
+            # Older install: streets only, house numbers via husnrCal.php.
+            old_style = [{'value': 'Vestergade (5500 Middelfart)', 'vejnavn': 'Vestergade',
+                          'postnr': '5500', 'Bynavn': 'Middelfart'}]
+            husnr_html = (
+                '<select id="SelHusNr">'
+                '<option value="Vestergade|1|B|||5500||14597918|6507092|0">1 B</option>'
+                '<option value="Vestergade|2|A|||5500||14597919|6505298|0">2 A</option>'
+                '</select>'
+            )
+
+            async def old_request(url, para=None, **kwargs):
+                if 'husnrCal' in url:
+                    return husnr_html
+                return json.dumps(old_style)
+            monkeypatch.setattr(api, 'async_get_request', old_request)
+
+            address_list = await api.get_address_list('5500', 'Vestergade', '1')
+            assert address_list == ['Vestergade 1 B']
+            assert api.address_list['Vestergade 1 B']['id'] == \
+                'Vestergade|1|B|||5500||14597918|6507092|0'
+
+            # showInfo.php nests a table in the fraction cell; only the outer
+            # table's direct rows carry the date/fraction pairs.
+            show_info_html = (
+                '<table>'
+                '<tr><td colspan="2">OKTOBER</td></tr>'
+                '<tr><td>02-11</td><td><table><tr>'
+                '<td><img src="img/icons/MADAFFALD.jpg"></td><td>Mad-/Rest</td>'
+                '</tr></table></td></tr>'
+                '<tr><td>23-11</td><td><table><tr>'
+                '<td><img src="img/icons/MADAFFALD.jpg"></td>'
+                '<td>Mad-/Rest, Plast/MDK/Glas/Metal/Papir/Pap</td>'
+                '</tr></table></td></tr>'
+                '</table>'
+            )
+
+            async def post_request(url, para=None, **kwargs):
+                return show_info_html
+            monkeypatch.setattr(api, 'async_postform_request', post_request)
+
+            with freeze_time("2026-10-28"):
+                result = await api.get_garbage_data('Vestergade|3||1||8600|Silkeborg|71446184|2012361|0')
+            assert result == [
+                {'Materiel': 'Mad-/Rest', 'Tømningsdag': dt.date(2026, 11, 2)},
+                {'Materiel': 'Mad-/Rest', 'Tømningsdag': dt.date(2026, 11, 23)},
+                {'Materiel': 'Plast/MDK/Glas/Metal/Papir/Pap', 'Tømningsdag': dt.date(2026, 11, 23)},
+            ]

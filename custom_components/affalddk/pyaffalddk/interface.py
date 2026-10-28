@@ -679,30 +679,48 @@ class AffaldOnlineWeb(AffaldDKAPIBase):
 
     async def get_address_list(self, zipcode, street, house_number):
         self.address_list = {}
-        # street
         url = f"{self.url_base}/acCal.php"
-        streets = await self.async_get_request(url, para={'term': street.strip()}, as_json=False)
-        streets = json.loads(streets)
+        addresses = json.loads(await self.async_get_request(url, para={'term': street.strip()}, as_json=False))
 
-        # house numbers
+        if addresses and 'values' in addresses[0]:
+            # Newer affaldonline installs return full address entries directly;
+            # the pipe separated "values" field is the id posted to showInfo.php.
+            # Layout: vejnavn|husnr|bogstav|etage|sidedør|postnr|postdist|...
+            # The street search caps its hits, so narrow it by house number.
+            if house_number:
+                narrow = json.loads(await self.async_get_request(url, para={'term': f'{street} {house_number}'.strip()}, as_json=False))
+                if narrow:
+                    addresses = narrow
+            for address in addresses:
+                parts = address.get('values', '').split('|')
+                if len(parts) < 7 or str(zipcode) not in str(parts[5]):
+                    continue
+                number = f'{parts[1]} {parts[2]}'.strip()
+                if house_number and house_number not in number:
+                    continue
+                item = {'name': address['value'], 'id': address['values']}
+                self.update_address_list(item, 'name', 'id')
+            return list(self.address_list.keys())
+
+        # Older installs list streets only, then house numbers via husnrCal.php.
         url = f"{self.url_base}/husnrCal.php"
-        for street in streets:
-            if str(zipcode) in str(street['postnr']):
-                params = {
-                    'vejnavn': street['vejnavn'],
-                    'postnr': street['postnr'],
-#                    'postdist': item['Bynavn'],
-                }
-                data = await self.async_get_request(url, para=params, as_json=False)
-                soup = BeautifulSoup(data, "html.parser")
-                for opt in soup.select("select#SelHusNr option"):
-                    number = opt.text.strip()
-                    if house_number in number:
-                        item = {
-                            'name': f"{street['vejnavn']} {number}, {street['postnr']} {street['Bynavn']}",
-                            'id': opt["value"]
-                        }
-                        self.update_address_list(item, 'name', 'id')
+        for street_item in addresses:
+            if str(zipcode) not in str(street_item['postnr']):
+                continue
+            params = {
+                'vejnavn': street_item['vejnavn'],
+                'postnr': street_item['postnr'],
+            }
+            data = await self.async_get_request(url, para=params, as_json=False)
+            soup = BeautifulSoup(data, "html.parser")
+            for opt in soup.select("select#SelHusNr option"):
+                number = opt.text.strip()
+                if house_number in number:
+                    item = {
+                        'name': f"{street_item['vejnavn']} {number}, {street_item['postnr']} {street_item['Bynavn']}",
+                        'id': opt["value"]
+                    }
+                    self.update_address_list(item, 'name', 'id')
         return list(self.address_list.keys())
 
     async def get_garbage_data(self, address_id):
@@ -712,11 +730,12 @@ class AffaldOnlineWeb(AffaldDKAPIBase):
         soup = BeautifulSoup(data, "html.parser")
         table = soup.find("table")
         results = []
-        for row in table.find_all("tr"):
-            cols = row.find_all("td")
+        # The fraction cell contains a nested table; only the outer table's
+        # direct rows carry the date/fraction pair (recursive=False).
+        for row in table.find_all("tr", recursive=False):
+            cols = row.find_all("td", recursive=False)
             if len(cols) == 2:
                 date = cols[0].get_text(strip=True)
-                desc = cols[1].get_text(strip=True)
                 for desc in cols[1].get_text(strip=True).split(', '):
                     results.append({
                         'Materiel': desc.strip(),
