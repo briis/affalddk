@@ -562,25 +562,33 @@ async def test_affaldonlineweb_address_and_garbage(capsys, monkeypatch):
             api = AffaldOnlineWeb('silkeborg', session=session)
 
             # Newer install: acCal.php returns full address entries directly.
-            new_style = [
-                {'value': 'Vestergade 3 1 (8600 Silkeborg)',
-                 'values': 'Vestergade|3||1||8600|Silkeborg|71446184|2012361|0'},
+            # The street search is capped and drops "Vestergade 3 1", so it is
+            # only found once the query is narrowed by house number.
+            broad_style = [
                 {'value': 'Vestergade 4 (8600 Silkeborg)',
                  'values': 'Vestergade|4||||8600|Silkeborg|71431359|797735|0'},
                 {'value': 'Vestergade 1 (5500 Middelfart)',
                  'values': 'Vestergade|1||||5500|Middelfart|1|2|0'},
             ]
+            narrow_style = [
+                {'value': 'Vestergade 3 1 (8600 Silkeborg)',
+                 'values': 'Vestergade|3||1||8600|Silkeborg|71446184|2012361|0'},
+            ]
 
             async def new_request(url, para=None, **kwargs):
                 if 'husnrCal' in url:
                     raise AssertionError('husnrCal.php should not be called')
-                return json.dumps(new_style)
+                return json.dumps(narrow_style if para['term'] == 'Vestergade 3' else broad_style)
             monkeypatch.setattr(api, 'async_get_request', new_request)
 
             address_list = await api.get_address_list('8600', 'Vestergade', '3')
             assert address_list == ['Vestergade 3 1 (8600 Silkeborg)']
             assert api.address_list['Vestergade 3 1 (8600 Silkeborg)']['id'] == \
                 'Vestergade|3||1||8600|Silkeborg|71446184|2012361|0'
+
+            # Without a house number only the (capped) street hits are returned.
+            address_list = await api.get_address_list('8600', 'Vestergade', '')
+            assert address_list == ['Vestergade 4 (8600 Silkeborg)']
 
             # Older install: streets only, house numbers via husnrCal.php.
             old_style = [{'value': 'Vestergade (5500 Middelfart)', 'vejnavn': 'Vestergade',
