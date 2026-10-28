@@ -1,6 +1,20 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
 
+## Version 3.6.2
+
+**Date**: `2026-10-28`
+
+### Fixed
+* Fixed Silkeborg after an affaldonline.dk change: the address autocomplete (`acCal.php`) now returns the full addresses in one step (no separate `husnrCal.php` call), and the pickup calendar nests a table inside the fraction cell, which broke the row parsing
+
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
+
 ## Version 3.6.1
 
 **Date**: `2026-10-23`
@@ -10,9 +24,6 @@
 
 
 ---------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
 
 
 ## Version 3.6.0
