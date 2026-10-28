@@ -7,6 +7,7 @@
 
 ### Fixed
 * Fixed Silkeborg after an affaldonline.dk change: the address autocomplete (`acCal.php`) now returns the full addresses in one step (no separate `husnrCal.php` call), and the pickup calendar nests a table inside the fraction cell, which broke the row parsing
+* Fixed a warning about closing the Home Assistant aiohttp session: a failed request no longer closes and replaces the caller-provided session on retry ([#467](https://github.com/briis/affalddk/issues/467))
 
 
 ---------------------------

@@ -226,10 +226,6 @@ class AffaldDKAPIBase:
                     if new_session:
                         await session.close()
                         session = aiohttp.ClientSession()
-                    else:
-                        await self.session.close()
-                        self.session = aiohttp.ClientSession()
-                        session = self.session
                 else:
                     if new_session:
                         await session.close()

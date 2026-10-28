@@ -3,10 +3,11 @@ import pytest
 from freezegun import freeze_time
 from aiohttp import ClientSession
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
-from custom_components.affalddk.pyaffalddk.interface import AffaldOnlineWeb, InfovisionAPI, split_housenumber
+from custom_components.affalddk.pyaffalddk.interface import AffaldDKAPIBase, AffaldOnlineWeb, InfovisionAPI, split_housenumber
 from pathlib import Path
 import pickle
 import json
+import asyncio
 import datetime as dt
 import os
 
@@ -637,3 +638,51 @@ async def test_affaldonlineweb_address_and_garbage(capsys, monkeypatch):
                 {'Materiel': 'Mad-/Rest', 'Tømningsdag': dt.date(2026, 11, 23)},
                 {'Materiel': 'Plast/MDK/Glas/Metal/Papir/Pap', 'Tømningsdag': dt.date(2026, 11, 23)},
             ]
+
+
+@pytest.mark.asyncio
+async def test_retry_keeps_caller_session(capsys):
+    """A retry must not close the caller's session (issue #467).
+
+    The Home Assistant coordinator passes its own aiohttp session; closing
+    and replacing it on a failed request makes HA log a frame warning.
+    """
+    with capsys.disabled():
+        class FakeResponse:
+            status = 200
+
+            async def json(self):
+                return {'ok': True}
+
+        class FakeRequestContext:
+            def __init__(self, session):
+                self.session = session
+
+            async def __aenter__(self):
+                self.session.calls += 1
+                if self.session.calls == 1:
+                    raise asyncio.TimeoutError
+                return FakeResponse()
+
+            async def __aexit__(self, *args):
+                return False
+
+        class FakeSession:
+            def __init__(self):
+                self.calls = 0
+                self.closed = False
+
+            def request(self, *args, **kwargs):
+                return FakeRequestContext(self)
+
+            async def close(self):
+                self.closed = True
+
+        session = FakeSession()
+        api = AffaldDKAPIBase('test', session=session)
+        result = await api.async_get_request('https://example.invalid/data')
+
+        assert result == {'ok': True}
+        assert session.calls == 2            # first attempt timed out, second succeeded
+        assert session.closed is False       # caller's session left open
+        assert api.session is session
