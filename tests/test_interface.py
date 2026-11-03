@@ -555,6 +555,7 @@ async def test_kolding_garbage_data(capsys, monkeypatch):
 
 
 @pytest.mark.asyncio
+@freeze_time("2026-10-28")
 async def test_affaldonlineweb_address_and_garbage(capsys, monkeypatch):
     """Silkeborg's affaldonline install returns full addresses in one step and
     nests a table inside the fraction cell of showInfo.php."""
@@ -631,8 +632,7 @@ async def test_affaldonlineweb_address_and_garbage(capsys, monkeypatch):
                 return show_info_html
             monkeypatch.setattr(api, 'async_postform_request', post_request)
 
-            with freeze_time("2026-10-28"):
-                result = await api.get_garbage_data('Vestergade|3||1||8600|Silkeborg|71446184|2012361|0')
+            result = await api.get_garbage_data('Vestergade|3||1||8600|Silkeborg|71446184|2012361|0')
             assert result == [
                 {'Materiel': 'Mad-/Rest', 'Tømningsdag': dt.date(2026, 11, 2)},
                 {'Materiel': 'Mad-/Rest', 'Tømningsdag': dt.date(2026, 11, 23)},
