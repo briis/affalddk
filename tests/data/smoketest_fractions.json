@@ -884,5 +884,10 @@
     "madaffald": "140 L Madaffald (stand)",
     "pappapirtekstil": "400 L Papir/pap og tekstiler (stand)",
     "next_pickup": "Metal & Glas | Plast & Madkarton"
+  },
+  "silkeborg_473": {
+    "pappapirglasmetal": "Plast/MDK/Glas/Metal/Papir/Pap/Tekstil",
+    "restaffaldmadaffald": "Mad-/Rest",
+    "next_pickup": "Pap, Papir, Glas & Metal"
   }
 }
