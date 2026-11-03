@@ -1,5 +1,18 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
+## Version 3.6.3
+
+**Date**: `2026-11-03`
+
+### Fixed
+* Fixed Silkeborg missing fractions ([#473](https://github.com/briis/affalddk/pull/473))
+
+
+---------------------------
+
+<details>
+  <summary><b>PREVIOUS CHANGES</b></summary>
+
 
 ## Version 3.6.2
 
@@ -10,11 +23,6 @@
 * Fixed a warning about closing the Home Assistant aiohttp session: a failed request no longer closes and replaces the caller-provided session on retry ([#467](https://github.com/briis/affalddk/issues/467))
 
 
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
-
 
 ## Version 3.6.1
 
@@ -23,8 +31,6 @@
 ### Fixed
 * Fixed Kolding after an API change: the container endpoint now groups containers per chain, so the response is flattened back to the list the parser expects ([#465](https://github.com/briis/affalddk/pull/465))
 
-
----------------------------
 
 
 ## Version 3.6.0
