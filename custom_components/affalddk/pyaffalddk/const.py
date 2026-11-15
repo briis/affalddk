@@ -51,6 +51,7 @@ SPECIAL_MATERIALS = {
 
 ICON_LIST = {
     "batterier": "mdi:battery",
+    "bleaffald": "mdi:diaper-outline",
     "dagrenovation": "mdi:trash-can",
     "elektronik": "mdi:power-plug",
     "farligtaffald": "mdi:recycle",
@@ -93,6 +94,7 @@ ICON_LIST = {
 
 NAME_LIST = {
     "batterier": "Batterier",
+    "bleaffald": "Bleaffald",
     "bioposer": "Bioposer",
     "dagrenovation": "Dagrenovation",
     "elektronik": "Elektronik",

@@ -62,6 +62,10 @@ SENSOR_TYPES: tuple[AffaldDKSensorEntityDescription, ...] = (
         name="Batterier",
     ),
     AffaldDKSensorEntityDescription(
+        key="bleaffald",
+        name="Bleaffald",
+    ),
+    AffaldDKSensorEntityDescription(
         key="elektronik",
         name="Elektronik",
     ),

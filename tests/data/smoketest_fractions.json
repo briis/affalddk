@@ -889,5 +889,16 @@
     "pappapirglasmetal": "Plast/MDK/Glas/Metal/Papir/Pap/Tekstil",
     "restaffaldmadaffald": "Mad-/Rest",
     "next_pickup": "Pap, Papir, Glas & Metal"
+  },
+  "københavn_476": {
+    "papir": "Papir",
+    "madaffald": "Madaffald",
+    "restaffald": "Restaffald",
+    "pap": "Pap",
+    "plast": "Plast",
+    "bleaffald": "Bleaffald",
+    "elektronik": "Elektronik",
+    "jern": "Metal",
+    "next_pickup": "Madaffald | Papir"
   }
 }
