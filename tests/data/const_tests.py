@@ -17,6 +17,7 @@ NON_SUPPORTED_ITEMS = [
 
 SUPPORTED_ITEMS = {
     "batterier": ["Batterier"],
+    "bleaffald": ["Bleaffald"],
     "dagrenovation": ["Dagrenovation"],
     "elektronik": ["Elektronik"],
     "farligtaffald": [

@@ -4,6 +4,9 @@
 
 **Date**: `2026-11-03`
 
+### Added
+* Added the Bleaffald (diaper waste) fraction, used by København ([#477](https://github.com/briis/affalddk/pull/477))
+
 ### Fixed
 * Fixed Silkeborg missing fractions ([#473](https://github.com/briis/affalddk/pull/473))
 * Fixed Sorø (and the other affaldonline PDF municipalities) returning no pickups: `showInfo.php` now HTML-escapes the calendar link (`&amp;forbid=...`), so the escaped parameter names were sent to `showToemCal.php`, which answered with a generic "no pickup dates" PDF instead of the address calendar ([#479](https://github.com/briis/affalddk/issues/479))
