@@ -5,6 +5,7 @@ import datetime as dt
 import logging
 import re
 import json
+from html import unescape
 from urllib.parse import urlparse, parse_qsl, quote
 from bs4 import BeautifulSoup
 
@@ -775,12 +776,22 @@ class AffaldOnlinePdfAPI(AffaldOnlineWeb):
         match = re.search(r"showToemCal\.php\?([^'\"]+)", data)
         if not match:
             raise AffaldDKNoConnection("No calendar link in showInfo.php response")
-        params = dict(parse_qsl(match.group(1)), year=str(year))
+        # The link is HTML-escaped in the page (&amp;forbid=...), and the escaped
+        # names reach showToemCal.php as unknown parameters: it then answers
+        # 200 with a generic "no pickup dates" PDF instead of this address's
+        # calendar, so unescape before splitting the query.
+        params = dict(parse_qsl(unescape(match.group(1))), year=str(year))
         async with self.session.get(self.url_base + '/showToemCal.php', params=params, timeout=REQUEST_TIMEOUT) as response:
             pdf = await response.read()
         if response.status != 200 or not pdf.startswith(b'%PDF'):
+            _LOGGER.debug("No affaldonline calendar PDF for %s %s (status %s, %s bytes)",
+                          address_id, year, response.status, len(pdf))
             return {}  # next year's calendar is published late in the year
-        return parse_affaldonline_pdf(pdf, year)
+        calendar = parse_affaldonline_pdf(pdf, year)
+        if not calendar:
+            _LOGGER.debug("Empty affaldonline calendar for %s %s (%s bytes)",
+                          address_id, year, len(pdf))
+        return calendar
 
     async def get_garbage_data(self, address_id):
         today = dt.date.today()

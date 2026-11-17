@@ -3,7 +3,7 @@ import pytest
 from freezegun import freeze_time
 from aiohttp import ClientSession
 from custom_components.affalddk.pyaffalddk.api import GarbageCollection
-from custom_components.affalddk.pyaffalddk.interface import AffaldDKAPIBase, AffaldOnlineWeb, InfovisionAPI, split_housenumber
+from custom_components.affalddk.pyaffalddk.interface import AffaldDKAPIBase, AffaldOnlinePdfAPI, AffaldOnlineWeb, InfovisionAPI, split_housenumber
 from pathlib import Path
 import pickle
 import json
@@ -505,6 +505,59 @@ async def test_affaldonline_pdf_cache(capsys, monkeypatch):
             with freeze_time("2027-01-02"):
                 await gc._api.get_garbage_data('x')
                 assert calls[-2:] == [2027, 2028]
+
+
+@pytest.mark.asyncio
+async def test_affaldonline_pdf_unescapes_calendar_link(capsys, monkeypatch):
+    """showInfo.php HTML-escapes the calendar link (issue #479).
+
+    Sorø's showInfo.php returns showToemCal.php?year=2026&amp;forbid=...&amp;altid=0.
+    Passing that through parse_qsl unchanged yields the keys 'amp;forbid' etc.,
+    and showToemCal.php answers 200 with a generic "no pickup dates" PDF, so the
+    calendar came back empty.
+    """
+    with capsys.disabled():
+        async with ClientSession() as session:
+            api = AffaldOnlinePdfAPI('soroe', session=session)
+
+            show_info_html = (
+                '<a href="showToemCal.php?year=2026&amp;forbid=3222&amp;altid=0'
+                '&amp;type=1&amp;pnr=0">Kalender</a>'
+            )
+
+            async def post_request(url, para=None, **kwargs):
+                return show_info_html
+            monkeypatch.setattr(api, 'async_postform_request', post_request)
+
+            requested = {}
+
+            class FakeResponse:
+                status = 200
+
+                async def read(self):
+                    return b'%PDF-1.4 fake'
+
+            class FakeRequestContext:
+                async def __aenter__(self):
+                    return FakeResponse()
+
+                async def __aexit__(self, *args):
+                    return False
+
+            class FakeSession:
+                def get(self, url, params=None, **kwargs):
+                    requested.update(params)
+                    return FakeRequestContext()
+
+            api.session = FakeSession()
+            monkeypatch.setattr('custom_components.affalddk.pyaffalddk.interface'
+                                '.parse_affaldonline_pdf',
+                                lambda pdf, year: {dt.date(year, 1, 5): {'Restaffald'}})
+            calendar = await api.get_pdf_calendar('Alleen|3||||4180|Sorø|', 2026)
+
+            assert requested == {'year': '2026', 'forbid': '3222', 'altid': '0',
+                                 'type': '1', 'pnr': '0'}
+            assert calendar == {dt.date(2026, 1, 5): {'Restaffald'}}
 
 
 @pytest.mark.asyncio
