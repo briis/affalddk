@@ -1,22 +1,11 @@
 # Changelog for Affaldshåndtering DK Home Assistant Integration
 
-## Version 3.6.4
-
-**Date**: `2026-11-15`
-
-### Added
-* Added the Bleaffald (diaper waste) fraction, used by København ([#476](https://github.com/briis/affalddk/pull/476))
-
-
----------------------------
-
-<details>
-  <summary><b>PREVIOUS CHANGES</b></summary>
-
-
 ## Version 3.6.3
 
 **Date**: `2026-11-03`
+
+### Added
+* Added the Bleaffald (diaper waste) fraction, used by København ([#477](https://github.com/briis/affalddk/pull/477))
 
 ### Fixed
 * Fixed Silkeborg missing fractions ([#473](https://github.com/briis/affalddk/pull/473))
