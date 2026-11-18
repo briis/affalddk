@@ -16,7 +16,7 @@ from .pyaffalddk.interface import (
 )
 
 from homeassistant.components.http import StaticPathConfig
-from homeassistant.config_entries import ConfigEntry, ConfigEntryState
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError, ConfigEntryNotReady
@@ -42,10 +42,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
     """Set up AffaldDK from a config entry."""
 
     coordinator = AffaldDKDataUpdateCoordinator(hass, config_entry)
-    if ConfigEntryState == ConfigEntryState.SETUP_IN_PROGRESS:
-        await coordinator.async_config_entry_first_refresh()
-    else:
-        await coordinator.async_refresh()
+    # Raises ConfigEntryNotReady on failure, so HA retries setup instead of loading with no data
+    await coordinator.async_config_entry_first_refresh()
 
     language = config_entry.options.get(CONF_UNIT_LANGUAGE, DEFAULT_UNIT_LANGUAGE)
     coordinator.translations = TRANSLATIONS[language]

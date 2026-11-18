@@ -3,6 +3,7 @@ import sys
 import types
 import pathlib
 import datetime
+import enum
 from dataclasses import dataclass
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -15,9 +16,23 @@ if "homeassistant" not in sys.modules:
 
     Platform = types.SimpleNamespace(SENSOR="sensor", CALENDAR="calendar")
 
-    homeassistant.config_entries = types.SimpleNamespace(ConfigEntry=object, ConfigEntryState=object)
+    class ConfigEntryState(enum.Enum):
+        """Subset of the real enum."""
+
+        SETUP_IN_PROGRESS = "setup_in_progress"
+        LOADED = "loaded"
+
+    class HomeAssistantError(Exception):
+        """Fake HomeAssistantError."""
+
+    class ConfigEntryNotReady(HomeAssistantError):
+        """Fake ConfigEntryNotReady, distinct so tests can assert on it."""
+
+    homeassistant.config_entries = types.SimpleNamespace(ConfigEntry=object, ConfigEntryState=ConfigEntryState)
     homeassistant.core = types.SimpleNamespace(HomeAssistant=object)
-    homeassistant.exceptions = types.SimpleNamespace(HomeAssistantError=Exception, ConfigEntryNotReady=Exception)
+    homeassistant.exceptions = types.SimpleNamespace(
+        HomeAssistantError=HomeAssistantError, ConfigEntryNotReady=ConfigEntryNotReady
+    )
     homeassistant.const = types.SimpleNamespace(
         Platform=Platform,
         ATTR_DATE="date",
@@ -77,7 +92,7 @@ if "homeassistant" not in sys.modules:
     components.__path__ = []
 
     http = types.ModuleType("homeassistant.components.http")
-    http.StaticPathConfig = object
+    http.StaticPathConfig = lambda *args, **kwargs: (args, kwargs)
     components.http = http
 
     @dataclass(frozen=True)
@@ -125,8 +140,34 @@ if "homeassistant" not in sys.modules:
     helpers.aiohttp_client = aiohttp_client
 
     update_coordinator = types.ModuleType("homeassistant.helpers.update_coordinator")
-    update_coordinator.DataUpdateCoordinator = object
-    update_coordinator.UpdateFailed = Exception
+    class UpdateFailed(Exception):
+        """Fake UpdateFailed."""
+
+    class DataUpdateCoordinator:
+        """Fake coordinator with the refresh semantics of the real one."""
+
+        def __init__(self, hass, logger, *, name=None, update_interval=None, config_entry=None):
+            self.hass = hass
+            self.config_entry = config_entry
+            self.data = None
+            self.last_update_success = True
+
+        async def async_refresh(self):
+            # Like HA: a failed update is recorded, not raised
+            try:
+                self.data = await self._async_update_data()
+                self.last_update_success = True
+            except UpdateFailed:
+                self.last_update_success = False
+
+        async def async_config_entry_first_refresh(self):
+            # Like HA: a failed first update makes setup retry later
+            await self.async_refresh()
+            if not self.last_update_success:
+                raise ConfigEntryNotReady
+
+    update_coordinator.DataUpdateCoordinator = DataUpdateCoordinator
+    update_coordinator.UpdateFailed = UpdateFailed
     update_coordinator.CoordinatorEntity = CoordinatorEntity
     helpers.update_coordinator = update_coordinator
 
